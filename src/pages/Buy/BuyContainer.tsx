@@ -1,45 +1,33 @@
+import BottomSheet from '@gorhom/bottom-sheet'
+import idx from 'idx'
 import React, { createRef, PureComponent } from 'react'
 import {
-  Text,
-  View,
-  StyleSheet,
-  ViewStyle,
-  StyleProp,
-  TouchableOpacity,
+  StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle
 } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
+import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  heightPercentageToDP,
-  widthPercentageToDP,
-} from 'react-native-responsive-screen'
-import Colors from '../../common/Colors'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP, heightPercentageToDP as hp, widthPercentageToDP, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import { connect } from 'react-redux'
-//import HomeHeader from '../../components/home/home-header'
-import idx from 'idx'
 import {
   AccountType,
-  Wallet,
+  Wallet
 } from '../../bitcoin/utilities/Interface'
-import { withNavigationFocus } from 'react-navigation'
-import BottomSheetHeader from '../Accounts/BottomSheetHeader'
-import BottomSheet from '@gorhom/bottom-sheet'
-import { Milliseconds } from '../../common/data/typealiases/UnitAliases'
+import Colors from '../../common/Colors'
 import SwanAccountCreationStatus from '../../common/data/enums/SwanAccountCreationStatus'
-import BuyBitcoinHomeBottomSheet, { BuyBitcoinBottomSheetMenuItem, BuyMenuItemKind } from '../../components/home/BuyBitcoinHomeBottomSheet'
-import NewBuyBitcoinBottomSheet from '../../components/home/NewBuyBitcoinBottomSheet'
-import BottomSheetWyreInfo from '../../components/bottom-sheets/wyre/BottomSheetWyreInfo'
+import { Milliseconds } from '../../common/data/typealiases/UnitAliases'
 import BottomSheetRampInfo from '../../components/bottom-sheets/ramp/BottomSheetRampInfo'
 import BottomSheetSwanInfo from '../../components/bottom-sheets/swan/BottomSheetSwanInfo'
-import { clearSwanCache, updateSwanStatus, createTempSwanAccountInfo } from '../../store/actions/SwanIntegration'
-import { clearRampCache } from '../../store/actions/RampIntegration'
-import { clearWyreCache } from '../../store/actions/WyreIntegration'
-import Fonts from './../../common/Fonts'
-import { RFValue } from 'react-native-responsive-fontsize'
+import BottomSheetWyreInfo from '../../components/bottom-sheets/wyre/BottomSheetWyreInfo'
+import BuyBitcoinHomeBottomSheet, { BuyBitcoinBottomSheetMenuItem, BuyMenuItemKind } from '../../components/home/BuyBitcoinHomeBottomSheet'
 import ModalContainer from '../../components/home/ModalContainer'
-import { ScrollView } from 'react-native-gesture-handler'
+import NewBuyBitcoinBottomSheet from '../../components/home/NewBuyBitcoinBottomSheet'
+import { clearRampCache } from '../../store/actions/RampIntegration'
+import { clearSwanCache, createTempSwanAccountInfo, updateSwanStatus } from '../../store/actions/SwanIntegration'
+import { clearWyreCache } from '../../store/actions/WyreIntegration'
+import BottomSheetHeader from '../Accounts/BottomSheetHeader'
+import Fonts from './../../common/Fonts'
 export const BOTTOM_SHEET_OPENING_ON_LAUNCH_DELAY: Milliseconds = 800
 export enum BottomSheetState {
     Closed,
@@ -73,7 +61,6 @@ interface HomePropsTypes {
     clearSwanCache: any;
     updateSwanStatus: any;
     createTempSwanAccountInfo: any;
-    isFocused: boolean;
     swanDeepLinkContent: string | null;
     cardDataProps: any;
     wyreDeepLinkContent: string | null;
@@ -383,7 +370,7 @@ const mapStateToProps = ( state ) => {
   }
 }
 
-export default withNavigationFocus(
+export default (
   connect( mapStateToProps, {
     clearWyreCache,
     clearRampCache,
@@ -398,9 +385,6 @@ const styles = StyleSheet.create( {
     backgroundColor: Colors.white,
     width: widthPercentageToDP( '95%' ),
     height: hp( 9 ),
-    // height: heightPercentageToDP( '7%' ),
-    // borderColor: Colors.borderColor,
-    // borderWidth: 1,
     borderRadius: widthPercentageToDP( 3 ),
     marginBottom: 10,
     alignItems: 'center',
@@ -412,11 +396,6 @@ const styles = StyleSheet.create( {
   },
 
   floatingActionButtonContainer: {
-    // position: 'absolute',
-    // zIndex: 0,
-    // bottom: TAB_BAR_HEIGHT,
-    // right: 0,
-    // flexDirection: 'row',
     justifyContent: 'flex-end',
     alignSelf: 'flex-end',
     padding: heightPercentageToDP( 1.5 ),

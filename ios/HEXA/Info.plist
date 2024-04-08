@@ -26,6 +26,16 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
+			<string>id</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>io.hexawallet.hexa2</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
 			<string>hexa</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
@@ -37,10 +47,10 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FirebaseDynamicLinksCustomDomains</key>
 	<array>
-		<string>https://gift.hexawallet.io</string>
-		<string>https://request.hexawallet.io</string>
-		<string>https://app.hexawallet.io</string>
-		<string>https://donation.hexawallet.io</string>
+		<string>https://gift.bitcointribe.app</string>
+		<string>https://request.bitcointribe.app</string>
+		<string>https://bitcointribe.app</string>
+		<string>https://donation.bitcointribe.app</string>
 	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
@@ -64,8 +74,6 @@
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
 		<key>NSExceptionDomains</key>
 		<dict/>
 	</dict>

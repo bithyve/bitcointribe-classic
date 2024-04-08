@@ -1,152 +1,141 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native'
+import React from 'react'
+import { Image, SafeAreaView, ScrollView, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Button } from 'react-native-elements'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { RFValue } from 'react-native-responsive-fontsize'
+import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { useDispatch, useSelector } from 'react-redux'
+import AccountUtilities from '../../bitcoin/utilities/accounts/AccountUtilities'
+import { AccountType, NetworkType, ScannedAddressKind } from '../../bitcoin/utilities/Interface'
+import Colors from '../../common/Colors'
+import { SATOSHIS_IN_BTC } from '../../common/constants/Bitcoin'
+import { translations } from '../../common/content/LocContext'
+import { Satoshis } from '../../common/data/enums/UnitAliases'
+import Fonts from '../../common/Fonts'
+import ButtonStyles from '../../common/Styles/ButtonStyles'
+import CommonStyles from '../../common/Styles/Styles'
 import BottomInfoBox from '../../components/BottomInfoBox'
-import getFormattedStringFromQRString from '../../utils/qr-codes/GetFormattedStringFromQRData'
-import ListStyles from '../../common/Styles/ListStyles'
+import HeaderTitle from '../../components/HeaderTitle'
 import CoveredQRCodeScanner from '../../components/qr-code-scanning/CoveredQRCodeScanner'
 import RecipientAddressTextInputSection from '../../components/send/RecipientAddressTextInputSection'
-import { REGULAR_ACCOUNT, TEST_ACCOUNT } from '../../common/constants/wallet-service-types'
-import SubAccountKind from '../../common/data/enums/SubAccountKind'
-import { useDispatch, useSelector } from 'react-redux'
-import { clearTransfer } from '../../store/actions/accounts'
 import { resetStackToSend } from '../../navigation/actions/NavigationActions'
-import { Button } from 'react-native-elements'
-import ButtonStyles from '../../common/Styles/ButtonStyles'
-import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen'
-import { SATOSHIS_IN_BTC } from '../../common/constants/Bitcoin'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { makeAddressRecipientDescription } from '../../utils/sending/RecipientFactories'
 import { addRecipientForSending, amountForRecipientUpdated, recipientSelectedForAmountSetting, sourceAccountSelectedForSending } from '../../store/actions/sending'
-import { Satoshis } from '../../common/data/enums/UnitAliases'
-import { AccountType, DeepLinkEncryptionType, NetworkType, ScannedAddressKind } from '../../bitcoin/utilities/Interface'
-import AccountUtilities from '../../bitcoin/utilities/accounts/AccountUtilities'
 import { AccountsState } from '../../store/reducers/accounts'
-import { translations } from '../../common/content/LocContext'
-import ModalContainer from '../../components/home/ModalContainer'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
-import { RFValue } from 'react-native-responsive-fontsize'
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import CheckingAccount from '../../assets/images/accIcons/icon_checking.svg'
-import GiftCard from '../../assets/images/svgs/icon_gift.svg'
-import DashedContainer from '../FriendsAndFamily/DashedContainer'
-import Illustration from '../../assets/images/svgs/illustration.svg'
-import { NavigationActions, StackActions } from 'react-navigation'
-import AcceptGift from '../FriendsAndFamily/AcceptGift'
-import { launchImageLibrary } from 'react-native-image-picker'
-import LocalQRCode from '@remobile/react-native-qrcode-local-image'
-import Toast from '../../components/Toast'
+import getFormattedStringFromQRString from '../../utils/qr-codes/GetFormattedStringFromQRData'
+import { makeAddressRecipientDescription } from '../../utils/sending/RecipientFactories'
+// import LocalQRCode from '@remobile/react-native-qrcode-local-image'
 
 export type Props = {
   navigation: any;
+  route: any;
 };
 
-const HeaderSection: React.FC = ( { title } ) => {
-  return (
-    <View style={styles.infoHeaderSection}>
-      <Text style={ListStyles.infoHeaderSubtitleText}>
-        {title}
-      </Text>
-    </View>
-  )
-}
+// const HeaderSection: React.FC = ( { title } ) => {
+//   return (
+//     <View style={styles.infoHeaderSection}>
+//       <Text style={ListStyles.infoHeaderSubtitleText}>
+//         {title}
+//       </Text>
+//     </View>
+//   )
+// }
 
-const HomeQRScannerScreen: React.FC<Props> = ( { navigation, }: Props ) => {
+const HomeQRScannerScreen: React.FC<Props> = ({ navigation, route }: Props) => {
   const dispatch = useDispatch()
-  const accountsState: AccountsState = useSelector( ( state ) => state.accounts, )
-  const defaultSourceAccount = accountsState.accountShells.find( shell => shell.primarySubAccount.type == AccountType.CHECKING_ACCOUNT && !shell.primarySubAccount.instanceNumber )
-  const common = translations[ 'common' ]
-  const strings = translations[ 'accounts' ]
-  function handleBarcodeRecognized( { data: scannedData }: { data: string } ) {
-    const networkType: NetworkType = AccountUtilities.networkType( scannedData )
-    if ( networkType ) {
-      const network = AccountUtilities.getNetworkByType( networkType )
-      const { type } = AccountUtilities.addressDiff( scannedData, network )
-      if ( type === ScannedAddressKind.ADDRESS ) {
-        onSend( scannedData, 0 )
-      } else if ( type === ScannedAddressKind.PAYMENT_URI ) {
-        const res = AccountUtilities.decodePaymentURI( scannedData )
+  const accountsState: AccountsState = useSelector((state) => state.accounts,)
+  const defaultSourceAccount = accountsState.accountShells.find(shell => shell.primarySubAccount.type == AccountType.CHECKING_ACCOUNT && !shell.primarySubAccount.instanceNumber)
+  const common = translations['common']
+  const strings = translations['accounts']
+  function handleBarcodeRecognized({ data: scannedData }: { data: string }) {
+    const networkType: NetworkType = AccountUtilities.networkType(scannedData)
+    if (networkType) {
+      const network = AccountUtilities.getNetworkByType(networkType)
+      const { type } = AccountUtilities.addressDiff(scannedData, network)
+      if (type === ScannedAddressKind.ADDRESS) {
+        onSend(scannedData, 0)
+      } else if (type === ScannedAddressKind.PAYMENT_URI) {
+        const res = AccountUtilities.decodePaymentURI(scannedData)
         const address = res.address
         const options = res.options
 
-        onSend( address, options.amount )
+        onSend(address, options.amount)
       }
       return
     }
 
-    const onCodeScanned = navigation.getParam( 'onCodeScanned' )
+    const onCodeScanned = route.params?.onCodeScanned
     try {
-      if ( typeof onCodeScanned === 'function' ) onCodeScanned( getFormattedStringFromQRString( scannedData ) )
-    } catch ( error ) {
+      if (typeof onCodeScanned === 'function') onCodeScanned(getFormattedStringFromQRString(scannedData))
+    } catch (error) {
       //
     }
-    navigation.goBack( null )
+    navigation.goBack(null)
   }
 
-  function onSend( address: string, amount: Satoshis ) {
-    const recipient = makeAddressRecipientDescription( {
+  function onSend(address: string, amount: Satoshis) {
+    const recipient = makeAddressRecipientDescription({
       address
-    } )
+    })
 
-    dispatch( sourceAccountSelectedForSending(
+    dispatch(sourceAccountSelectedForSending(
       defaultSourceAccount
-    ) )
-    dispatch( addRecipientForSending( recipient ) )
-    dispatch( recipientSelectedForAmountSetting( recipient ) )
-    dispatch( amountForRecipientUpdated( {
+    ))
+    dispatch(addRecipientForSending(recipient))
+    dispatch(recipientSelectedForAmountSetting(recipient))
+    dispatch(amountForRecipientUpdated({
       recipient,
       amount: amount < 1 ? amount * SATOSHIS_IN_BTC : amount
-    } ) )
+    }))
 
     navigation.dispatch(
-      resetStackToSend( {
+      resetStackToSend({
         selectedRecipientID: recipient.id,
-      } )
-    )
-  }
-
-
-  function importImage() {
-    launchImageLibrary(
-      {
-        title: null,
-        mediaType: 'photo',
-        takePhotoButtonTitle: null,
-        selectionLimit: 1,
-      },
-      response => {
-        if ( response.assets ) {
-          const uri = response.assets[ 0 ].uri.toString().replace( 'file://', '' )
-          LocalQRCode.decode( uri, ( error, result ) => {
-            if ( !error ) {
-              handleBarcodeRecognized( {
-                data: result
-              } )
-            } else {
-              Toast( 'No QR code found in the selected image' )
-            }
-          } )
-        }
-      },
+      })
     )
   }
 
   return (
-    <View style={styles.rootContainer}>
-      <ScrollView>
+    <SafeAreaView style={styles.rootContainer}>
+      <StatusBar backgroundColor={Colors.white} barStyle="dark-content" />
+      <View style={CommonStyles.headerContainer}>
+        <TouchableOpacity
+          style={CommonStyles.headerLeftIconContainer}
+          onPress={() => {
+            navigation.pop()
+          }}
+        >
+          <View style={CommonStyles.headerLeftIconInnerContainer}>
+            <FontAwesome
+              name="long-arrow-left"
+              color={Colors.homepageButtonColor}
+              size={17}
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
+      <HeaderTitle
+        firstLineTitle={'QR'}
+        secondLineTitle={strings.ScanaBitcoinaddress}
+        infoTextNormal={''}
+        infoTextBold={''}
+        infoTextNormal1={''}
+        step={''}
+      />
+      <ScrollView showsVerticalScrollIndicator={false}>
         <KeyboardAwareScrollView
           resetScrollToCoords={{
             x: 0, y: 0
           }}
           scrollEnabled={false}
-          style={styles.rootContainer}
+        // style={styles.rootContainer}
         >
-          <HeaderSection title={strings.ScanaBitcoinaddress} />
+          {/* <HeaderSection title={strings.ScanaBitcoinaddress} /> */}
 
           <CoveredQRCodeScanner
             onCodeScanned={handleBarcodeRecognized}
             containerStyle={{
-              marginBottom: 16
+              marginVertical: 16
             }}
           />
 
@@ -157,45 +146,38 @@ const HomeQRScannerScreen: React.FC<Props> = ( { navigation, }: Props ) => {
               }}
               placeholder={strings.Enteraddressmanually}
               accountShell={defaultSourceAccount}
-              onAddressEntered={( address ) => {
-                onSend( address, 0 )
+              onAddressEntered={(address) => {
+                onSend(address, 0)
               }}
-              onPaymentURIEntered={( uri ) => {
-                const decodingResult = AccountUtilities.decodePaymentURI( uri )
+              onPaymentURIEntered={(uri) => {
+                const decodingResult = AccountUtilities.decodePaymentURI(uri)
 
                 const address = decodingResult.address
                 const options = decodingResult.options
 
                 let amount = 0
-                if ( options?.amount )
+                if (options?.amount)
                   amount = options.amount
 
-                onSend( address, amount )
+                onSend(address, amount)
               }}
+              address={''}
             />
           </View>
 
           <View
             style={styles.floatingActionButtonContainer}
           >
-            {/* <TouchableOpacity onPress={importImage} style={styles.btnImport}>
-              <Ionicons
-                name="image"
-                size={22}
-                color="gray"
-              />
-              <Text style={styles.textImport}>Import From Gallery</Text>
-            </TouchableOpacity> */}
 
             <Button
               raised
               title={strings.Receivebitcoin}
               icon={
                 <Image
-                  source={require( '../../assets/images/icons/icon_bitcoin_light.png' )}
+                  source={require('../../assets/images/icons/icon_bitcoin_light.png')}
                   style={{
-                    width: widthPercentageToDP( 4 ),
-                    height: widthPercentageToDP( 4 ),
+                    width: widthPercentageToDP(4),
+                    height: widthPercentageToDP(4),
                     resizeMode: 'contain',
                   }}
                 />
@@ -206,16 +188,16 @@ const HomeQRScannerScreen: React.FC<Props> = ( { navigation, }: Props ) => {
               buttonStyle={{
                 ...ButtonStyles.floatingActionButton,
                 borderRadius: 9999,
-                paddingHorizontal: widthPercentageToDP( 5 )
+                paddingHorizontal: widthPercentageToDP(5)
               }}
               titleStyle={{
                 ...ButtonStyles.floatingActionButtonText,
                 marginLeft: 8,
               }}
-              onPress={() => { navigation.navigate( 'ReceiveQR' ) }}
+              onPress={() => { navigation.navigate('ReceiveQR') }}
             />
           </View>
-          {
+          {/* {
             __DEV__ && (
               <TouchableOpacity onPress={() => {
                 const qrScannedData = {
@@ -226,7 +208,7 @@ const HomeQRScannerScreen: React.FC<Props> = ( { navigation, }: Props ) => {
                 <Text>Continue</Text>
               </TouchableOpacity>
             )
-          }
+          } */}
 
           <View style={{
             marginTop: 'auto'
@@ -239,19 +221,19 @@ const HomeQRScannerScreen: React.FC<Props> = ( { navigation, }: Props ) => {
           </View>
         </KeyboardAwareScrollView>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   )
 }
 
-const styles = StyleSheet.create( {
+const styles = StyleSheet.create({
   buttonText: {
     color: Colors.white,
-    fontSize: RFValue( 13 ),
+    fontSize: RFValue(13),
     fontFamily: Fonts.Medium,
   },
   buttonView: {
-    height: widthPercentageToDP( '12%' ),
-    width: widthPercentageToDP( '35%' ),
+    height: widthPercentageToDP('12%'),
+    width: widthPercentageToDP('35%'),
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
@@ -264,33 +246,33 @@ const styles = StyleSheet.create( {
   },
   availableToSpendText: {
     color: Colors.blue,
-    fontSize: RFValue( 10 ),
+    fontSize: RFValue(10),
     fontFamily: Fonts.Italic,
     lineHeight: 15,
   },
   balanceText: {
     color: Colors.blue,
-    fontSize: RFValue( 10 ),
+    fontSize: RFValue(10),
     fontFamily: Fonts.Italic,
   },
   modalTitleText: {
     color: Colors.blue,
-    fontSize: RFValue( 18 ),
+    fontSize: RFValue(18),
     fontFamily: Fonts.Regular,
   },
   modalInfoText: {
     // marginTop: hp( '3%' ),
-    marginTop: heightPercentageToDP( 0.5 ),
+    marginTop: heightPercentageToDP(0.5),
     color: Colors.textColorGrey,
-    fontSize: RFValue( 12 ),
+    fontSize: RFValue(12),
     fontFamily: Fonts.Regular,
-    marginRight: widthPercentageToDP( 12 ),
+    marginRight: widthPercentageToDP(12),
     letterSpacing: 0.6
   },
   modalContentContainer: {
     // height: '100%',
     backgroundColor: Colors.backgroundColor,
-    paddingBottom: heightPercentageToDP( 4 ),
+    paddingBottom: heightPercentageToDP(4),
   },
   rootContainer: {
     flex: 1
@@ -301,12 +283,13 @@ const styles = StyleSheet.create( {
   infoHeaderSection: {
     paddingHorizontal: 24,
     paddingVertical: 24,
+    marginTop: 5,
   },
   floatingActionButtonContainer: {
-    bottom: heightPercentageToDP( 1.5 ),
+    bottom: heightPercentageToDP(2),
     right: 0,
     marginLeft: 'auto',
-    padding: heightPercentageToDP( 1.5 ),
+    padding: heightPercentageToDP(1.5),
     //flexDirection: 'row'
   },
   btnImport: {
@@ -318,11 +301,11 @@ const styles = StyleSheet.create( {
     flexDirection: 'row'
   },
   textImport: {
-    fontSize: RFValue( 13 ),
+    fontSize: RFValue(13),
     fontFamily: Fonts.Regular,
     marginHorizontal: 2,
   }
-} )
+})
 
 export default HomeQRScannerScreen
 
