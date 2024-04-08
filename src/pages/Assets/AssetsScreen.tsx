@@ -19,13 +19,14 @@ import {
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import { useDispatch, useSelector } from 'react-redux'
+import { windowHeight } from 'src/common/data/responsiveness/responsive'
 import ActivityIndicatorView from 'src/components/loader/ActivityIndicatorView'
 import RGBIntroModal from 'src/components/rgb/RGBIntroModal'
 import RGBInactive from '../../assets/images/tabs/rgb_inactive.svg'
 import { RGBConfig, RGB_ASSET_TYPE, Wallet } from '../../bitcoin/utilities/Interface'
 import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
 import { translations } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
 import BottomSheetAddWalletInfo from '../../components/bottom-sheets/add-wallet/BottomSheetAddWalletInfo'
 import ModalContainer from '../../components/home/ModalContainer'
 import RGBServices from '../../services/RGBServices'
@@ -428,7 +429,7 @@ export default function AssetsScreen(props) {
           bottomImage={require('../../assets/images/icons/contactPermission.png')}
           showBtn={!syncing && proceed}
           closeModal={()=>{dispatch(setRgbIntroModal(false));setProceed(false)}}
-          height={hp(60)}
+          height={windowHeight<600? hp(60) : hp(52)}
         />
       </ModalContainer>
       {/* <ModalContainer
