@@ -22,7 +22,7 @@ import { LocalizationContext } from '../common/content/LocContext'
 import Fonts from '../common/Fonts'
 import { storeCreds } from '../store/actions/setupAndAuth'
 
-const RememberPasscode = ({props}) => {
+const RememberPasscode = (props) => {
   const { translations } = useContext( LocalizationContext )
   const common = translations[ 'common' ]
   return(
@@ -40,7 +40,7 @@ const RememberPasscode = ({props}) => {
       }}
     >
       <AppBottomSheetTouchableWrapper
-        onPress={() => props.onContinue()}
+        onPress={props.onContinue}
         delayPressIn={0}
       >
         <Text
@@ -693,7 +693,15 @@ export default function PasscodeConfirm( props ) {
         closeBottomSheet={() => {}}
         visible={passcodeModal}
       >
-        <RememberPasscode onContinue={()=>  dispatch( storeCreds( passcode ) )}/>
+        <RememberPasscode 
+          onContinue={()=>{
+            setPasscodeModal(false);
+            setTimeout(()=>{
+              dispatch( storeCreds( passcode ) )
+            }, 100)
+            
+          }}
+          />
       </ModalContainer>
       </View>  
     </SafeAreaView>
