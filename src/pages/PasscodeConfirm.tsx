@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
   heightPercentageToDP as hp,
@@ -537,13 +536,7 @@ export default function PasscodeConfirm( props ) {
                 disabled={passcode == confirmPasscode ? false : true}
                 onPress={() => setPasscodeModal(true) }
               >
-                <LinearGradient colors={[ Colors.blue, Colors.darkBlue ]}
-                  start={{
-                    x: 0, y: 0
-                  }} end={{
-                    x: 1, y: 0
-                  }}
-                  locations={[ 0.2, 1 ]}
+                <View
                   style={{
                     ...styles.proceedButtonView,
                     backgroundColor:
@@ -551,7 +544,7 @@ export default function PasscodeConfirm( props ) {
                   }}
                 >
                   <Text style={styles.proceedButtonText}>{common.proceed}</Text>
-                </LinearGradient>
+                </View>
               </TouchableOpacity>
             </View>
           ) : null}
