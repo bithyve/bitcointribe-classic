@@ -1,6 +1,6 @@
 import firebase from '@react-native-firebase/app'
 import messaging from '@react-native-firebase/messaging'
-import { CommonActions, useFocusEffect } from '@react-navigation/native'
+import { useFocusEffect } from '@react-navigation/native'
 import JailMonkey from 'jail-monkey'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import {
@@ -15,11 +15,10 @@ import {
   View
 } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
-import LinearGradient from 'react-native-linear-gradient'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
   heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
+  widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -28,19 +27,19 @@ import BottomSheet from 'reanimated-bottom-sheet'
 import Relay from '../bitcoin/utilities/Relay'
 import Colors from '../common/Colors'
 import { processDeepLink } from '../common/CommonFunctions'
-import Fonts from '../common/Fonts'
 import { LocalizationContext } from '../common/content/LocContext'
 import CloudBackupStatus from '../common/data/enums/CloudBackupStatus'
+import Fonts from '../common/Fonts'
 import AlertModalContents from '../components/AlertModalContents'
 import ErrorModalContents from '../components/ErrorModalContents'
-import LoaderModal from '../components/LoaderModal'
-import Toast from '../components/Toast'
 import BottomInputModalContainer from '../components/home/BottomInputModalContainer'
 import ModalContainer from '../components/home/ModalContainer'
+import LoaderModal from '../components/LoaderModal'
+import Toast from '../components/Toast'
 import { setOpenToApproval } from '../store/actions/BHR'
 import { setCloudBackupStatus } from '../store/actions/cloud'
 import {
-  updateFCMTokens,
+  updateFCMTokens
 } from '../store/actions/notifications'
 import {
   setFCMToken,
@@ -656,17 +655,11 @@ export default function Login( props ) {
                 handleLoaderMessages( passcode )
               }}
             >
-              <LinearGradient
-                start={{
-                  x: 0, y: 0
-                }} end={{
-                  x: 1, y: 0
-                }}
-                colors={[ Colors.skyBlue, Colors.darkBlue ]}
-                style={styles.proceedButtonView}
+              <View
+                style={[styles.proceedButtonView,{backgroundColor: Colors.blue}]}
               >
                 <Text style={styles.proceedButtonText}>{common.proceed}</Text>
-              </LinearGradient>
+              </View>
             </TouchableOpacity>
           </View>
         </View>
