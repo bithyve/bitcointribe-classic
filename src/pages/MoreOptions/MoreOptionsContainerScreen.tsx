@@ -9,6 +9,7 @@ import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsi
 import { useDispatch, useSelector } from 'react-redux'
 import LoginMethod from 'src/common/interfaces/LoginMethod'
 import Toast from 'src/components/Toast'
+import { changeLoginMethod } from 'src/store/actions/setupAndAuth'
 import CrossButton from '../../assets/images/svgs/icons_close.svg'
 import DocumentPad from '../../assets/images/svgs/icons_document_copy.svg'
 import AccManagement from '../../assets/images/svgs/icon_accounts.svg'
@@ -162,6 +163,7 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
   const [ onKeeperButtonClick, setOnKeeperButtonClick ] = useState( false )
   const [ modalVisible, setModalVisible ] = useState( false )
   const [ message, setMessage ] = useState( '' )
+  const { loginMethod }: { loginMethod: LoginMethod } = useSelector((state) => state.setupAndAuth);
 
   const defaultKeeperObj: {
     shareType: string
@@ -258,7 +260,6 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
   }
 
   const findImage = ( name ) => {
-    console.log('name', name)
     switch ( name ) {
         case strings.accountManagement:
           return ( <AccManagement /> )
@@ -285,7 +286,6 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
   }
 
   const onChangeLoginMethod = async () => {
-    let loginMethod = "PIN"
     try {
       const { available } = await RNBiometrics.isSensorAvailable();
       if (available) {
@@ -294,15 +294,18 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
           if (keysExist) {
             await RNBiometrics.createKeys();
           }
+          console.log('keysExist', keysExist)
           const { publicKey } = await RNBiometrics.createKeys();
+          console.log('publicKey', publicKey)
           const { success } = await RNBiometrics.simplePrompt({
             promptMessage: 'Confirm your identity',
           });
+          console.log('success', success)
           if (success) {
-            // dispatch(changeLoginMethod(LoginMethod.BIOMETRIC, publicKey));
+            dispatch(changeLoginMethod(LoginMethod.BIOMETRIC, publicKey));
           }
         } else {
-          // dispatch(changeLoginMethod(LoginMethod.PIN));
+          dispatch(changeLoginMethod(LoginMethod.PIN));
         }
       } else {
         Toast('Biometrics not enabled.\nPlease go to setting and enable it');
