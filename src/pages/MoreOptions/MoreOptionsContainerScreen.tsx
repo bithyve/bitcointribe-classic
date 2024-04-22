@@ -65,7 +65,7 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
 
   const navigationObj: any = useSelector( ( state ) => state.bhr.navigationObj )
   const [ isEnabled, setIsEnabled ] = useState( false )
-  const toggleSwitch = () => setIsEnabled( previousState => !previousState )
+  // const toggleSwitch = () => setIsEnabled( previousState => !previousState )
   const currencyCode = useSelector(
     ( state ) => state.preferences.currencyCode,
   )
@@ -163,7 +163,8 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
   const [ onKeeperButtonClick, setOnKeeperButtonClick ] = useState( false )
   const [ modalVisible, setModalVisible ] = useState( false )
   const [ message, setMessage ] = useState( '' )
-  const { loginMethod }: { loginMethod: LoginMethod } = useSelector((state) => state.setupAndAuth);
+  const { method }: { method: LoginMethod } = useSelector((state) => state.setupAndAuth.loginMethod);
+  console.log('loginMethod', method)
 
   const defaultKeeperObj: {
     shareType: string
@@ -289,7 +290,7 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
     try {
       const { available } = await RNBiometrics.isSensorAvailable();
       if (available) {
-        if (loginMethod === LoginMethod.PIN) {
+        if (method === LoginMethod.PIN) {
           const { keysExist } = await RNBiometrics.biometricKeysExist();
           if (keysExist) {
             await RNBiometrics.createKeys();
@@ -532,9 +533,9 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
                   marginLeft: 'auto'
                 }}>
                   <Switch
-                    value={isEnabled}
+                    value={method === LoginMethod.BIOMETRIC}
                     onValueChange={()=> onSwitch( menuOption.title )}
-                    thumbColor={isEnabled ? Colors.blue : Colors.white}
+                    thumbColor={method === LoginMethod.BIOMETRIC ? Colors.blue : Colors.white}
                     trackColor={{
                       false: Colors.borderColor, true: Colors.lightBlue
                     }}
