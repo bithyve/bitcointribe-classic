@@ -294,13 +294,10 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
           if (keysExist) {
             await RNBiometrics.createKeys();
           }
-          console.log('keysExist', keysExist)
           const { publicKey } = await RNBiometrics.createKeys();
-          console.log('publicKey', publicKey)
           const { success } = await RNBiometrics.simplePrompt({
             promptMessage: 'Confirm your identity',
           });
-          console.log('success', success)
           if (success) {
             dispatch(changeLoginMethod(LoginMethod.BIOMETRIC, publicKey));
           }
