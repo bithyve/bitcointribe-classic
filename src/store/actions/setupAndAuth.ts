@@ -10,6 +10,9 @@ export const CHANGE_AUTH_CRED = 'CHANGE_AUTH_CRED'
 export const RESET_PIN = 'RESET_PIN'
 export const SWITCH_CREDS_CHANGED = 'SWITCH_CREDS_CHANGED'
 export const INIT_RECOVERY_COMPLETED = 'INIT_RECOVERY_COMPLETED'
+export const CHANGE_LOGIN_METHOD = 'CHANGE_LOGIN_METHOD';
+export const SET_LOGIN_METHOD = 'SET_LOGIN_METHOD';
+import LoginMethod from 'src/common/interfaces/LoginMethod'
 import * as Cipher from '../../common/encryption'
 import * as SecureStore from '../../storage/secure-store'
 
@@ -24,10 +27,10 @@ export const storeCreds = passcode => {
 }
 
 
-export const credsAuth = ( passcode, reLogin? ) => {
+export const credsAuth = ( passcode, method: LoginMethod, reLogin?  ) => {
   return {
     type: CREDS_AUTH, payload: {
-      passcode, reLogin
+      passcode, reLogin, method,
     }
   }
 }
@@ -190,3 +193,18 @@ export const updateApplication = ( newVersion: string, previousVersion: string )
     }
   }
 }
+// Biometrics method
+export const changeLoginMethod = (method: LoginMethod, pubKey: string = '') => ({
+  type: CHANGE_LOGIN_METHOD,
+  payload: {
+    method,
+    pubKey,
+  },
+});
+
+export const setLoginMethod = (method: LoginMethod) => ({
+  type: SET_LOGIN_METHOD,
+  payload: {
+    method,
+  },
+});

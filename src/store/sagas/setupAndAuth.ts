@@ -4,6 +4,7 @@ import crypto from 'crypto';
 import DeviceInfo from 'react-native-device-info';
 import { call, put, select } from 'redux-saga/effects';
 import semverLte from 'semver/functions/lte';
+import LoginMethod from 'src/common/interfaces/LoginMethod';
 import RGBServices from 'src/services/RGBServices';
 import BHROperations from '../../bitcoin/utilities/BHROperations';
 import {
@@ -14,12 +15,13 @@ import {
   MetaShare,
   Trusted_Contacts,
   UnecryptedStreamData,
-  Wallet,
+  Wallet
 } from '../../bitcoin/utilities/Interface';
 import TrustedContactsOperations from '../../bitcoin/utilities/TrustedContactsOperations';
 import * as Cipher from '../../common/encryption';
 import dbManager from '../../storage/realm/dbManager';
 import * as SecureStore from '../../storage/secure-store';
+import { newAccountShellCreationCompleted } from '../actions/accounts';
 import {
   initializeHealthSetup,
   resetLevelsAfterPasswordChange,
@@ -27,27 +29,21 @@ import {
   updateMetaSharesKeeper,
   updateOldMetaSharesKeeper,
   updateWalletImageHealth,
-  upgradePDF,
+  upgradePDF
 } from '../actions/BHR';
-import { newAccountShellCreationCompleted } from '../actions/accounts';
 import { connectToNode } from '../actions/nodeSettings';
 import { setWalletId } from '../actions/preferences';
 import { setRgbConfig } from '../actions/rgb';
 import {
-  CHANGE_AUTH_CRED,
-  CREDS_AUTH,
-  RESET_PIN,
-  SETUP_WALLET,
-  STORE_CREDS,
-  UPDATE_APPLICATION,
-  completedWalletSetup,
+  CHANGE_AUTH_CRED, CHANGE_LOGIN_METHOD, completedWalletSetup,
   credsAuthenticated,
   credsChanged,
-  credsStored,
-  pinChangedFailed,
-  switchReLogin,
+  credsStored, CREDS_AUTH, pinChangedFailed, RESET_PIN,
+  setLoginMethod,
+  SETUP_WALLET,
+  STORE_CREDS, switchReLogin,
   switchSetupLoader,
-  updateApplication,
+  updateApplication, UPDATE_APPLICATION
 } from '../actions/setupAndAuth';
 import { keyFetched, updateWallet } from '../actions/storage';
 import { PermanentChannelsSyncKind, syncPermanentChannels } from '../actions/trustedContacts';
@@ -413,3 +409,28 @@ function* applicationUpdateWorker({
 }
 
 export const applicationUpdateWatcher = createWatcher(applicationUpdateWorker, UPDATE_APPLICATION);
+
+// Biometrics
+function* changeLoginMethodWorker({
+  payload,
+}: {
+  payload: { method: LoginMethod; pubKey: string };
+}) {
+  try {
+    const { method, pubKey } = payload;
+    if (method === LoginMethod.BIOMETRIC) {
+      const savePubKey = yield call(SecureStore.storeBiometricPubKey, pubKey);
+      if (savePubKey) {
+        yield put(setLoginMethod(method));
+      }
+    } else {
+      yield put(setLoginMethod(method));
+    }
+  } catch (err) {
+    console.log({
+      err,
+    });
+  }
+}
+
+export const changeLoginMethodWatcher = createWatcher(changeLoginMethodWorker, CHANGE_LOGIN_METHOD);
