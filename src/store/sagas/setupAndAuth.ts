@@ -428,7 +428,7 @@ function* changeLoginMethodWorker({
     }
   } catch (err) {
     console.log({
-      err,
+      'err_': err
     });
   }
 }
