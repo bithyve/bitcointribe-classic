@@ -14,6 +14,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
+import ReactNativeBiometrics from 'react-native-biometrics'
 import DeviceInfo from 'react-native-device-info'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
@@ -50,6 +51,8 @@ import { credsAuth } from '../store/actions/setupAndAuth'
 import ConfirmSeedWordsModal from './NewBHR/ConfirmSeedWordsModal'
 import SecurityQuestion from './NewBHR/SecurityQuestion'
 import SecuritySeedWord from './NewBHR/SecuritySeedWord'
+
+const RNBiometrics = new ReactNativeBiometrics();
 
 export default function Login( props ) {
   const { translations } = useContext( LocalizationContext )
@@ -89,6 +92,7 @@ export default function Login( props ) {
   const [ showPasscodeErrorModal, setPasscodeErrorModal ] = useState( false )
   const [ loaderModal, setloaderModal ] = useState( false )
   const [ errorModal, setErrorModal ] = useState( false )
+  const [canLogin, setCanLogin] = useState(false);
   const [ showAlertModal, setShowAlertModal ]=useState( false )
   const [ confirmSeedWordModal, setConfirmSeedWordModal ] = useState( false )
   const [ info, setInfo ] = useState( '' )
@@ -102,6 +106,8 @@ export default function Login( props ) {
   const existingFCMToken = useSelector(
     ( state ) => state.preferences.fcmTokenValue,
   )
+  const { method }: { method: LoginMethod } = useSelector((state) => state.setupAndAuth.loginMethod);
+
   const [ processedLink, setProcessedLink ] = useState( null )
   const [ isDisabledProceed, setIsDisabledProceed ] = useState( false )
   const [ creationFlag, setCreationFlag ] = useState( false )
@@ -262,6 +268,33 @@ export default function Login( props ) {
       }
     }, 100 )
   }, [ isAuthenticated, walletExists, processedLink ] )
+
+  // useEffect(() => {
+  //   biometricAuth();
+  // }, [canLogin]);
+
+  // const biometricAuth = async () => {
+  //   if (method === LoginMethod.BIOMETRIC) {
+  //     try {
+  //       setTimeout(async () => {
+  //         if (canLogin) {
+  //           const { success, signature } = await RNBiometrics.createSignature({
+  //             promptMessage: 'Authenticate',
+  //             payload: appId,
+  //             cancelButtonText: 'Use PIN',
+  //           });
+  //           if (success) {
+  //             dispatch(credsAuth(signature, LoginMethod.BIOMETRIC));
+  //           }
+  //         }
+  //       }, 200);
+  //     } catch (error) {
+  //       //
+  //       console.log(error);
+  //     }
+  //   }
+  // };
+
   const bootStrapNotifications = async () => {
     dispatch( setIsPermissionGiven( true ) )
     const t0 = performance.now()
