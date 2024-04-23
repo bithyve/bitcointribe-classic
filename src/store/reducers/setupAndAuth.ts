@@ -39,6 +39,7 @@ const initialState: {
 }
 
 export default ( state = initialState, action ) => {
+  console.log('pay',action.payload)
   switch ( action.type ) {
       case CREDS_STORED:
         return chain( state )
@@ -99,11 +100,11 @@ export default ( state = initialState, action ) => {
         return {
           ...state,
           initializeRecoveryCompleted: action.payload.initializeRecoveryCompleted,
-        }
+      }
       case SET_LOGIN_METHOD:
-        return{
+        return {
           ...state,
-          loginMethod : action.payload,
+          loginMethod : action.payload.method
         }
 
   }
