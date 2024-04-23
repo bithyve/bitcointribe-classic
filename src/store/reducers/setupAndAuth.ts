@@ -39,7 +39,6 @@ const initialState: {
 }
 
 export default ( state = initialState, action ) => {
-  console.log('pay',action.payload)
   switch ( action.type ) {
       case CREDS_STORED:
         return chain( state )

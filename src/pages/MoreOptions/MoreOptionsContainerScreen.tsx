@@ -164,7 +164,6 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
   const [ modalVisible, setModalVisible ] = useState( false )
   const [ message, setMessage ] = useState( '' )
   const { loginMethod }: { loginMethod: LoginMethod } = useSelector((state) => state.setupAndAuth);
-  console.log('loginMethod', loginMethod)
 
   const defaultKeeperObj: {
     shareType: string
@@ -289,7 +288,6 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
   const onChangeLoginMethod = async () => {
     try {
       const { available } = await RNBiometrics.isSensorAvailable();
-      console.log('available', available)
       if (available) {
         if (loginMethod === LoginMethod.PIN) {
           const { keysExist } = await RNBiometrics.biometricKeysExist();

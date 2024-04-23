@@ -108,8 +108,7 @@ export default function Login( props ) {
   const existingFCMToken = useSelector(
     ( state ) => state.preferences.fcmTokenValue,
   )
-  const { method }: { method: LoginMethod } = useSelector((state) => state.setupAndAuth.loginMethod);
-  console.log('method', method)
+  const { loginMethod }: { loginMethod: LoginMethod } = useSelector((state) => state.setupAndAuth);
 
   const [ processedLink, setProcessedLink ] = useState( null )
   const [ isDisabledProceed, setIsDisabledProceed ] = useState( false )
@@ -274,10 +273,10 @@ export default function Login( props ) {
 
   useEffect(() => {
     biometricAuth();
-  }, [method === LoginMethod.BIOMETRIC]);
+  }, [loginMethod === LoginMethod.BIOMETRIC]);
 
   const biometricAuth = async () => {
-    if (method === LoginMethod.BIOMETRIC) {
+    if (loginMethod === LoginMethod.BIOMETRIC) {
       try {
         let primaryMnemonic = bip39.generateMnemonic();
       let primarySeed = bip39.mnemonicToSeedSync(primaryMnemonic);
