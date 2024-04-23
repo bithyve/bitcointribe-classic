@@ -163,8 +163,8 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
   const [ onKeeperButtonClick, setOnKeeperButtonClick ] = useState( false )
   const [ modalVisible, setModalVisible ] = useState( false )
   const [ message, setMessage ] = useState( '' )
-  const { method }: { method: LoginMethod } = useSelector((state) => state.setupAndAuth.loginMethod);
-  console.log('loginMethod', method)
+  const { loginMethod }: { loginMethod: LoginMethod } = useSelector((state) => state.setupAndAuth);
+  console.log('loginMethod', loginMethod)
 
   const defaultKeeperObj: {
     shareType: string
@@ -289,8 +289,9 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
   const onChangeLoginMethod = async () => {
     try {
       const { available } = await RNBiometrics.isSensorAvailable();
+      console.log('available', available)
       if (available) {
-        if (method === LoginMethod.PIN) {
+        if (loginMethod === LoginMethod.PIN) {
           const { keysExist } = await RNBiometrics.biometricKeysExist();
           if (keysExist) {
             await RNBiometrics.createKeys();
@@ -533,9 +534,9 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
                   marginLeft: 'auto'
                 }}>
                   <Switch
-                    value={method === LoginMethod.BIOMETRIC}
+                    value={loginMethod === LoginMethod.BIOMETRIC}
                     onValueChange={()=> onSwitch( menuOption.title )}
-                    thumbColor={method === LoginMethod.BIOMETRIC ? Colors.blue : Colors.white}
+                    thumbColor={loginMethod === LoginMethod.BIOMETRIC ? Colors.blue : Colors.white}
                     trackColor={{
                       false: Colors.borderColor, true: Colors.lightBlue
                     }}
