@@ -98,7 +98,7 @@ import {
 import { calculateCustomFeeWatcher, calculateSendMaxFeeWatcher, executeSendStage1Watcher, executeSendStage2Watcher, sendTxNotificationWatcher } from './sagas/sending'
 import {
   applicationUpdateWatcher,
-  changeAuthCredWatcher, changeLoginMethodWatcher, credentialsAuthWatcher, credentialStorageWatcher, resetPinCredWatcher,
+  changeAuthCredWatcher, credentialsAuthWatcher, credentialStorageWatcher, resetPinCredWatcher,
   setupWalletWatcher
 } from './sagas/setupAndAuth'
 import {
@@ -164,7 +164,7 @@ import {
   fetchRampReservationWatcher
 } from './sagas/RampIntegration'
 import { satCardAcountWatcher } from './sagas/satCardAccount'
-import { updateUserNameWatcher } from './sagas/storage'
+import { changeLoginMethodWatcher, updateUserNameWatcher } from './sagas/storage'
 import { versionHistoryWatcher } from './sagas/versionHistory'
 import {
   fetchWyreReservationWatcher
