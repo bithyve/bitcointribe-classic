@@ -1,8 +1,6 @@
 import firebase from '@react-native-firebase/app';
 import messaging from '@react-native-firebase/messaging';
 import { useFocusEffect } from '@react-navigation/native';
-import * as bip39 from 'bip39';
-import crypto from 'crypto';
 import JailMonkey from 'jail-monkey';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import {
@@ -108,8 +106,8 @@ export default function Login( props ) {
   const existingFCMToken = useSelector(
     ( state ) => state.preferences.fcmTokenValue,
   )
-  const { loginMethod }: { loginMethod: LoginMethod } = useSelector((state) => state.setupAndAuth);
-
+  const { loginMethod }: { loginMethod: LoginMethod } = useSelector((state) => state.storage);
+console.log('loginMethod_login', loginMethod)
   const [ processedLink, setProcessedLink ] = useState( null )
   const [ isDisabledProceed, setIsDisabledProceed ] = useState( false )
   const [ creationFlag, setCreationFlag ] = useState( false )
@@ -278,13 +276,11 @@ export default function Login( props ) {
   const biometricAuth = async () => {
     if (loginMethod === LoginMethod.BIOMETRIC) {
       try {
-        let primaryMnemonic = bip39.generateMnemonic();
-      let primarySeed = bip39.mnemonicToSeedSync(primaryMnemonic);
-      let appID = crypto.createHash('sha256').update(primarySeed).digest('hex');
         setTimeout(async () => {
             const { success, signature } = await RNBiometrics.createSignature({
               promptMessage: 'Authenticate',
-              payload: appID,
+              payload: '',
+              // payload: appID,
               cancelButtonText: 'Use PIN',
             });
             if (success) {

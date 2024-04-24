@@ -9,7 +9,7 @@ import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsi
 import { useDispatch, useSelector } from 'react-redux'
 import LoginMethod from 'src/common/interfaces/LoginMethod'
 import Toast from 'src/components/Toast'
-import { changeLoginMethod } from 'src/store/actions/setupAndAuth'
+import { changeLoginMethod } from 'src/store/actions/storage'
 import CrossButton from '../../assets/images/svgs/icons_close.svg'
 import DocumentPad from '../../assets/images/svgs/icons_document_copy.svg'
 import AccManagement from '../../assets/images/svgs/icon_accounts.svg'
@@ -163,7 +163,8 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
   const [ onKeeperButtonClick, setOnKeeperButtonClick ] = useState( false )
   const [ modalVisible, setModalVisible ] = useState( false )
   const [ message, setMessage ] = useState( '' )
-  const { loginMethod }: { loginMethod: LoginMethod } = useSelector((state) => state.setupAndAuth);
+  const { loginMethod }: { loginMethod: LoginMethod } = useSelector((state) => state.storage);
+  console.log('loginMethod', loginMethod)
 
   const defaultKeeperObj: {
     shareType: string
