@@ -231,7 +231,7 @@ function* credentialsAuthWorker({ payload }) {
     const uint8array = yield call(Cipher.stringToArrayBuffer, key);
     yield call(dbManager.initDb, uint8array);
     } else if (method === LoginMethod.BIOMETRIC) {
-      const res = yield call(SecureStore.verifyBiometricAuth, payload.passcode, appId);
+      const res = yield call(SecureStore.verifyBiometricAuth, hash);
       if (!res.success) throw new Error('Biometric Auth Failed');
       hash = res.hash;
       encryptedKey = res.encryptedKey;
