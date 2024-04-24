@@ -35,12 +35,10 @@ import { connectToNode } from '../actions/nodeSettings';
 import { setWalletId } from '../actions/preferences';
 import { setRgbConfig } from '../actions/rgb';
 import {
-  CHANGE_AUTH_CRED, CHANGE_LOGIN_METHOD, completedWalletSetup,
+  CHANGE_AUTH_CRED, completedWalletSetup,
   credsAuthenticated,
   credsChanged,
-  credsStored, CREDS_AUTH, pinChangedFailed, RESET_PIN,
-  setLoginMethod,
-  SETUP_WALLET,
+  credsStored, CREDS_AUTH, pinChangedFailed, RESET_PIN, SETUP_WALLET,
   STORE_CREDS, switchReLogin,
   switchSetupLoader,
   updateApplication, UPDATE_APPLICATION
@@ -418,27 +416,4 @@ function* applicationUpdateWorker({
 
 export const applicationUpdateWatcher = createWatcher(applicationUpdateWorker, UPDATE_APPLICATION);
 
-// Biometrics
-function* changeLoginMethodWorker({
-  payload,
-}: {
-  payload: { method: LoginMethod; pubKey: string };
-}) {
-  try {
-    const { method, pubKey } = payload;
-    if (method === LoginMethod.BIOMETRIC) {
-      const savePubKey = yield call(SecureStore.storeBiometricPubKey, pubKey);
-      if (savePubKey) {
-        yield put(setLoginMethod(method));
-      }
-    } else {
-      yield put(setLoginMethod(method));
-    }
-  } catch (err) {
-    console.log({
-      'err_': err
-    });
-  }
-}
 
-export const changeLoginMethodWatcher = createWatcher(changeLoginMethodWorker, CHANGE_LOGIN_METHOD);

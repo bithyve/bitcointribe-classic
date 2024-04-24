@@ -1,7 +1,6 @@
 import { chain } from 'icepick';
-import LoginMethod from 'src/common/interfaces/LoginMethod';
 import {
-  AUTH_CRED_CHANGED, COMPLETED_WALLET_SETUP, CREDS_AUTHENTICATED, CREDS_STORED, INIT_RECOVERY_COMPLETED, PIN_CHANGED_FAILED, RE_LOGIN, SETUP_LOADING, SET_LOGIN_METHOD, SWITCH_CREDS_CHANGED, WALLET_SETUP_FAILED
+  AUTH_CRED_CHANGED, COMPLETED_WALLET_SETUP, CREDS_AUTHENTICATED, CREDS_STORED, INIT_RECOVERY_COMPLETED, PIN_CHANGED_FAILED, RE_LOGIN, SETUP_LOADING, SWITCH_CREDS_CHANGED, WALLET_SETUP_FAILED
 } from '../actions/setupAndAuth';
 
 const initialState: {
@@ -19,7 +18,6 @@ const initialState: {
   credsChanged: string;
   pinChangedFailed: Boolean;
   initializeRecoveryCompleted: boolean;
-  loginMethod: LoginMethod;
 } = {
   hasCreds: false,
   isAuthenticated: false,
@@ -35,7 +33,6 @@ const initialState: {
   credsChanged: '',
   pinChangedFailed: false,
   initializeRecoveryCompleted: false,
-  loginMethod: LoginMethod.PIN,
 }
 
 export default ( state = initialState, action ) => {
@@ -100,11 +97,6 @@ export default ( state = initialState, action ) => {
           ...state,
           initializeRecoveryCompleted: action.payload.initializeRecoveryCompleted,
       }
-      case SET_LOGIN_METHOD:
-        return {
-          ...state,
-          loginMethod : action.payload.method
-        }
 
   }
 
