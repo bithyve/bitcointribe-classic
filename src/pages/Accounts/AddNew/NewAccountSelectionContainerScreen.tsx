@@ -1,28 +1,27 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { View, Text, StyleSheet, SectionList, SafeAreaView, TouchableOpacity, StatusBar } from 'react-native'
-import NewAccountOptionsSection from './NewAccountOptionsSection'
-import HeadingStyles from '../../../common/Styles/HeadingStyles'
-import SubAccountKind from '../../../common/data/enums/SubAccountKind'
-import ServiceAccountKind from '../../../common/data/enums/ServiceAccountKind'
-import ExternalServiceSubAccountInfo from '../../../common/data/models/SubAccountInfo/ExternalServiceSubAccountInfo'
-import SubAccountDescribing from '../../../common/data/models/SubAccountInfo/Interfaces'
-import useNewAccountChoices from '../../../utils/hooks/account-utils/UseNewAccountChoices'
+import { SafeAreaView, SectionList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { useSelector } from 'react-redux'
+import { AccountType } from '../../../bitcoin/utilities/Interface'
 import Colors from '../../../common/Colors'
+import { translations } from '../../../common/content/LocContext'
+import ServiceAccountKind from '../../../common/data/enums/ServiceAccountKind'
+import SubAccountKind from '../../../common/data/enums/SubAccountKind'
+import ExternalServiceSubAccountInfo from '../../../common/data/models/SubAccountInfo/ExternalServiceSubAccountInfo'
+import SubAccountDescribing from '../../../common/data/models/SubAccountInfo/Interfaces'
 import Fonts from '../../../common/Fonts'
+import HeadingStyles from '../../../common/Styles/HeadingStyles'
 import NavStyles from '../../../common/Styles/NavStyles'
 import ButtonBlue from '../../../components/ButtonBlue'
-import { useSelector } from 'react-redux'
-import ModalContainer from '../../../components/home/ModalContainer'
 import ErrorModalContents from '../../../components/ErrorModalContents'
+import ModalContainer from '../../../components/home/ModalContainer'
 import SavingAccountAlertBeforeLevel2 from '../../../components/know-more-sheets/SavingAccountAlertBeforeLevel2'
-import { AccountType } from '../../../bitcoin/utilities/Interface'
-import { translations } from '../../../common/content/LocContext'
+import useNewAccountChoices from '../../../utils/hooks/account-utils/UseNewAccountChoices'
+import NewAccountOptionsSection from './NewAccountOptionsSection'
 
 export enum SectionKind {
   ADD_NEW_HEXA_ACCOUNT,
@@ -104,11 +103,11 @@ const NewAccountSelectionContainerScreen: React.FC<Props> = ( { navigation }: Pr
           } )
           break
 
-        case SubAccountKind.DONATION_ACCOUNT:
-          navigation.navigate( 'AddNewDonationAccountDetails', {
-            currentSubAccount: selectedChoice,
-          } )
-          break
+        // case SubAccountKind.DONATION_ACCOUNT:
+        //   navigation.navigate( 'AddNewDonationAccountDetails', {
+        //     currentSubAccount: selectedChoice,
+        //   } )
+        //   break
 
         case SubAccountKind.SERVICE:
           switch( ( selectedChoice as ExternalServiceSubAccountInfo ).serviceAccountKind ){
