@@ -3,7 +3,7 @@ import * as bitcoinJS from 'bitcoinjs-lib'
 import _ from 'lodash'
 import Config from 'react-native-config'
 import {
-  DONATION_ACCOUNT,
+  // DONATION_ACCOUNT,
   RAMP,
   SUB_PRIMARY_ACCOUNT,
   SWAN,
@@ -14,13 +14,11 @@ import { APP_STAGE } from '../common/interfaces/Interfaces'
 import {
   AccountType,
   DerivativeAccount,
-  DerivativeAccounts,
-  DonationDerivativeAccount,
-  NetworkType,
+  DerivativeAccounts, NetworkType,
   RampDerivativeAccount,
   SwanDerivativeAccount,
   TrustedContactDerivativeAccount,
-  WyreDerivativeAccount,
+  WyreDerivativeAccount
 } from './utilities/Interface'
 
 class HexaConfig {
@@ -146,10 +144,10 @@ class HexaConfig {
       series: 10,
       upperBound: 10,
     },
-    [ AccountType.DONATION_ACCOUNT ]: {
-      series: 20,
-      upperBound: 10,
-    },
+    // [ AccountType.DONATION_ACCOUNT ]: {
+    //   series: 20,
+    //   upperBound: 10,
+    // },
     [ AccountType.SWAN_ACCOUNT ]: {
       series: 30,
       upperBound: 10,
@@ -242,13 +240,13 @@ class HexaConfig {
     },
   };
 
-  public DONATION_ACCOUNT: DonationDerivativeAccount = {
-    series: Config.BIT_DONATION_ACCOUNT_SERIES ? parseInt( Config.BIT_DONATION_ACCOUNT_SERIES.trim(), 10 ) : 101,
-    instance: {
-      max: Config.BIT_DONATION_ACCOUNT_INSTANCE_COUNT ? parseInt( Config.BIT_DONATION_ACCOUNT_INSTANCE_COUNT.trim(), 10 ) : 5,
-      using: 0,
-    },
-  };
+  // public DONATION_ACCOUNT: DonationDerivativeAccount = {
+  //   series: Config.BIT_DONATION_ACCOUNT_SERIES ? parseInt( Config.BIT_DONATION_ACCOUNT_SERIES.trim(), 10 ) : 101,
+  //   instance: {
+  //     max: Config.BIT_DONATION_ACCOUNT_INSTANCE_COUNT ? parseInt( Config.BIT_DONATION_ACCOUNT_INSTANCE_COUNT.trim(), 10 ) : 5,
+  //     using: 0,
+  //   },
+  // };
 
 
   public DERIVATIVE_ACC: DerivativeAccounts = {
@@ -258,10 +256,10 @@ class HexaConfig {
     RAMP: this.RAMP,
     SWAN: this.SWAN,
     TRUSTED_CONTACTS: this.TRUSTED_CONTACTS,
-    DONATION_ACCOUNT: this.DONATION_ACCOUNT,
+    // DONATION_ACCOUNT: this.DONATION_ACCOUNT,
   };
 
-  public EJECTED_ACCOUNTS = [ SUB_PRIMARY_ACCOUNT, DONATION_ACCOUNT, WYRE, RAMP, SWAN ];
+  public EJECTED_ACCOUNTS = [ SUB_PRIMARY_ACCOUNT, WYRE, RAMP, SWAN ];
 
   public DERIVATIVE_ACC_TO_SYNC = Object.keys( this.DERIVATIVE_ACC ).filter(
     ( account ) => !this.EJECTED_ACCOUNTS.includes( account ),
