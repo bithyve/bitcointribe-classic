@@ -1,20 +1,20 @@
 import { useCallback, useMemo } from 'react'
 import ServiceAccountKind from '../../../common/data/enums/ServiceAccountKind'
-import DonationSubAccountInfo from '../../../common/data/models/SubAccountInfo/DonationSubAccountInfo'
+// import DonationSubAccountInfo from '../../../common/data/models/SubAccountInfo/DonationSubAccountInfo'
+import config from '../../../bitcoin/HexaConfig'
+import { AccountType, Wallet } from '../../../bitcoin/utilities/Interface'
+import AccountVisibility from '../../../common/data/enums/AccountVisibility'
+import SubAccountKind from '../../../common/data/enums/SubAccountKind'
 import ExternalServiceSubAccountInfo from '../../../common/data/models/SubAccountInfo/ExternalServiceSubAccountInfo'
 import CheckingSubAccountInfo from '../../../common/data/models/SubAccountInfo/HexaSubAccounts/CheckingSubAccountInfo'
+import LightningSubAccountInfo from '../../../common/data/models/SubAccountInfo/HexaSubAccounts/LightningSubAccountInfo'
 import SavingsSubAccountInfo from '../../../common/data/models/SubAccountInfo/HexaSubAccounts/SavingsSubAccountInfo'
+import TestSubAccountInfo from '../../../common/data/models/SubAccountInfo/HexaSubAccounts/TestSubAccountInfo'
 import FullyImportedWalletSubAccountInfo from '../../../common/data/models/SubAccountInfo/ImportedWalletSubAccounts/FullyImportedWalletSubAccountInfo'
 import WatchOnlyImportedWalletSubAccountInfo from '../../../common/data/models/SubAccountInfo/ImportedWalletSubAccounts/WatchOnlyImportedWalletSubAccountInfo'
 import SubAccountDescribing from '../../../common/data/models/SubAccountInfo/Interfaces'
 import useActiveAccountShells from '../state-selectors/accounts/UseActiveAccountShells'
-import SubAccountKind from '../../../common/data/enums/SubAccountKind'
-import { AccountType, Wallet } from '../../../bitcoin/utilities/Interface'
-import TestSubAccountInfo from '../../../common/data/models/SubAccountInfo/HexaSubAccounts/TestSubAccountInfo'
 import useWallet from '../state-selectors/UseWallet'
-import AccountVisibility from '../../../common/data/enums/AccountVisibility'
-import config from '../../../bitcoin/HexaConfig'
-import LightningSubAccountInfo from '../../../common/data/models/SubAccountInfo/HexaSubAccounts/LightningSubAccountInfo'
 
 const isEnabled = ( accountType: AccountType, wallet: Wallet ) => {
   switch ( accountType ) {
@@ -47,7 +47,7 @@ export default function useNewAccountChoices() {
     [ SubAccountKind.SECURE_ACCOUNT ]: 0,
     [ SubAccountKind.REGULAR_ACCOUNT ]: 0,
     [ SubAccountKind.TEST_ACCOUNT ]: 0,
-    [ SubAccountKind.DONATION_ACCOUNT ]: 0,
+    // [ SubAccountKind.DONATION_ACCOUNT ]: 0,
     [ SubAccountKind.LIGHTNING_ACCOUNT ]: 0,
   }
 
@@ -62,9 +62,9 @@ export default function useNewAccountChoices() {
         case SubAccountKind.SECURE_ACCOUNT:
           hexaAccountCounts[ SubAccountKind.SECURE_ACCOUNT ] += 1
           break
-        case SubAccountKind.DONATION_ACCOUNT:
-          hexaAccountCounts[ SubAccountKind.DONATION_ACCOUNT ] += 1
-          break
+        // case SubAccountKind.DONATION_ACCOUNT:
+        //   hexaAccountCounts[ SubAccountKind.DONATION_ACCOUNT ] += 1
+        //   break
         case SubAccountKind.LIGHTNING_ACCOUNT:
           hexaAccountCounts[ SubAccountKind.LIGHTNING_ACCOUNT ] += 1
           break
@@ -93,13 +93,13 @@ export default function useNewAccountChoices() {
         defaultDescription: 'User Savings Account',
         visibility: isEnabled( AccountType.SAVINGS_ACCOUNT, wallet )? AccountVisibility.DEFAULT: AccountVisibility.HIDDEN
       } ),
-      new DonationSubAccountInfo( {
-        defaultTitle: 'Donation Account',
-        defaultDescription: 'Receive bitcoin donations',
-        doneeName: '',
-        causeName: '',
-        visibility: isEnabled( AccountType.DONATION_ACCOUNT, wallet )? AccountVisibility.DEFAULT: AccountVisibility.HIDDEN,
-      } ),
+      // new DonationSubAccountInfo( {
+      //   defaultTitle: 'Donation Account',
+      //   defaultDescription: 'Receive bitcoin donations',
+      //   doneeName: '',
+      //   causeName: '',
+      //   visibility: isEnabled( AccountType.DONATION_ACCOUNT, wallet )? AccountVisibility.DEFAULT: AccountVisibility.HIDDEN,
+      // } ),
       new TestSubAccountInfo( {
         defaultTitle: 'Test Account',
         defaultDescription: 'Learn Bitcoin',
