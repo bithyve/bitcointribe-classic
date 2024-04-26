@@ -12,7 +12,6 @@ import {
   DeepLinkEncryptionType,
   DeepLinkKind,
   DerivationPurpose,
-  // DonationAccount,
   Gift,
   GiftMetaData,
   GiftStatus,
@@ -31,7 +30,6 @@ import BitcoinUnit from '../../common/data/enums/BitcoinUnit'
 import ServiceAccountKind from '../../common/data/enums/ServiceAccountKind'
 import SyncStatus from '../../common/data/enums/SyncStatus'
 import AccountShell from '../../common/data/models/AccountShell'
-// import DonationSubAccountInfo from '../../common/data/models/SubAccountInfo/DonationSubAccountInfo'
 import ExternalServiceSubAccountInfo from '../../common/data/models/SubAccountInfo/ExternalServiceSubAccountInfo'
 import CheckingSubAccountInfo from '../../common/data/models/SubAccountInfo/HexaSubAccounts/CheckingSubAccountInfo'
 import LightningSubAccountInfo from '../../common/data/models/SubAccountInfo/HexaSubAccounts/LightningSubAccountInfo'
@@ -57,7 +55,6 @@ import {
   transactionReassignmentSucceeded,
   twoFAResetted,
   twoFAValid, updateAccounts, updateAccountShells, updateGift, UPDATE_ACCOUNT_SETTINGS,
-  // UPDATE_DONATION_PREFERENCES,
   VALIDATE_TWO_FA
 } from '../actions/accounts'
 import {
@@ -88,7 +85,6 @@ import { syncPermanentChannelsWorker } from './trustedContacts'
 // to be used by react components(w/ dispatch)
 export function getNextFreeAddress( dispatch: any, account: Account | MultiSigAccount, requester?: ActiveAddressAssignee ) {
   if( !account.isUsable ) return ''
-  // if( account.type === AccountType.DONATION_ACCOUNT ) return account.receivingAddress
 
   const { updatedAccount, receivingAddress } = AccountOperations.getNextFreeExternalAddress( account, requester )
   dispatch( updateAccounts( {
@@ -103,8 +99,6 @@ export function getNextFreeAddress( dispatch: any, account: Account | MultiSigAc
 // to be used by sagas(w/o dispatch)
 export function* getNextFreeAddressWorker( account: Account | MultiSigAccount, requester?: ActiveAddressAssignee ) {
   if( !account.isUsable ) return ''
-  // if( account.type === AccountType.DONATION_ACCOUNT ) return account.receivingAddress
-
   const { updatedAccount, receivingAddress } = yield call( AccountOperations.getNextFreeExternalAddress, account, requester )
   yield put( updateAccounts( {
     accounts: {
@@ -526,27 +520,6 @@ export const validateTwoFAWatcher = createWatcher(
   VALIDATE_TWO_FA
 )
 
-// function* updateDonationPreferencesWorker( { payload } ) {
-//   const { donationAccount, preferences } = payload
-
-//   const { updated, updatedAccount }  = yield call(
-//     AccountUtilities.updateDonationPreferences,
-//     donationAccount,
-//     preferences
-//   )
-
-//   if( updated ) yield put( updateAccountShells( {
-//     accounts: {
-//       [ updatedAccount.id ]: updatedAccount
-//     }
-//   } ) )
-//   else throw new Error( 'Failed to update donation preferences' )
-// }
-
-// export const updateDonationPreferencesWatcher = createWatcher(
-//   updateDonationPreferencesWorker,
-//   UPDATE_DONATION_PREFERENCES
-// )
 
 function* refreshAccountShellsWorker( { payload }: { payload: {
   shells: AccountShell[],
@@ -665,7 +638,6 @@ function* autoSyncShellsWorker( { payload }: { payload: { syncAll?: boolean, har
   )
   const shellsToSync: AccountShell[] = []
   const testShellsToSync: AccountShell[] = [] // Note: should be synched separately due to network difference(testnet)
-  // const donationShellsToSync: AccountShell[] = []
   const lnShellsToSync: AccountShell[] = []
   for ( const shell of shells ) {
     if( syncAll || shell.primarySubAccount.visibility === AccountVisibility.DEFAULT ){
@@ -675,10 +647,6 @@ function* autoSyncShellsWorker( { payload }: { payload: { syncAll?: boolean, har
           case AccountType.TEST_ACCOUNT:
             if( syncAll ) testShellsToSync.push( shell )
             break
-
-          // case AccountType.DONATION_ACCOUNT:
-          //   donationShellsToSync.push( shell )
-          //   break
 
           case AccountType.LIGHTNING_ACCOUNT:
             lnShellsToSync.push( shell )
@@ -804,20 +772,6 @@ export function* generateShellFromAccount ( account: Account | MultiSigAccount )
           customDescription: account.accountDescription,
         } )
         break
-
-      // case AccountType.DONATION_ACCOUNT:
-      //   primarySubAccount = new DonationSubAccountInfo( {
-      //     id: account.id,
-      //     xPub: ( account as DonationAccount ).is2FA? null: yield call( AccountUtilities.generateYpub, account.xpub, network ),
-      //     isUsable: account.isUsable,
-      //     instanceNumber: account.instanceNum,
-      //     customDisplayName: account.accountName,
-      //     customDescription: account.accountDescription,
-      //     doneeName: ( account as DonationAccount ).donee,
-      //     causeName: account.accountName,
-      //     isTFAEnabled: ( account as DonationAccount ).is2FA
-      //   } )
-      //   break
 
       case AccountType.SWAN_ACCOUNT:
       case AccountType.DEPOSIT_ACCOUNT:
@@ -963,31 +917,6 @@ export function* addNewAccount( accountType: AccountType, accountDetails: newAcc
           networkType: config.APP_STAGE === APP_STAGE.DEVELOPMENT? NetworkType.TESTNET: NetworkType.MAINNET,
         } )
         return savingsAccount
-
-      // case AccountType.DONATION_ACCOUNT:
-      //   if( is2FAEnabled )
-      //     if( !wallet.secondaryXpub && !wallet.details2FA ) throw new Error( 'Fail to create savings account; secondary-xpub/details2FA missing' )
-
-      //   const donationInstanceCount = recreationInstanceNumber !== undefined ? recreationInstanceNumber :( accounts[ accountType ] )?.length | 0
-      //   const donationAccount: DonationAccount = yield call( generateDonationAccount, {
-      //     walletId,
-      //     type: accountType,
-      //     instanceNum: donationInstanceCount,
-      //     accountName: 'Donation Account',
-      //     accountDescription: accountName? accountName: 'Receive Donations',
-      //     donationName: accountName,
-      //     donationDescription: accountDescription,
-      //     donee: doneeName? doneeName: wallet.walletName,
-      //     primarySeed,
-      //     derivationPath: yield call( AccountUtilities.getDerivationPath, NetworkType.MAINNET, accountType, donationInstanceCount ),
-      //     is2FA: is2FAEnabled,
-      //     secondaryXpub: is2FAEnabled? wallet.secondaryXpub: null,
-      //     bithyveXpub:  is2FAEnabled? wallet.details2FA?.bithyveXpub: null,
-      //     networkType: config.APP_STAGE === APP_STAGE.DEVELOPMENT? NetworkType.TESTNET: NetworkType.MAINNET,
-      //   } )
-      //   const { setupSuccessful } = yield call( AccountUtilities.setupDonationAccount, donationAccount )
-      //   if( !setupSuccessful ) throw new Error( 'Failed to generate donation account' )
-      //   return donationAccount
 
       case AccountType.SWAN_ACCOUNT:
       case AccountType.DEPOSIT_ACCOUNT:

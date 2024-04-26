@@ -47,8 +47,6 @@ const NewAccountOptionsSection: React.FC<Props> = ( {
           return true
         case SubAccountKind.TRUSTED_CONTACTS:
           return false
-        // case SubAccountKind.DONATION_ACCOUNT:
-        //   return true
         case SubAccountKind.SERVICE:
           return isServiceSubAccountCreationSupported( ( subAccount as ExternalServiceSubAccountInfo ).serviceAccountKind )
         case SubAccountKind.WATCH_ONLY_IMPORTED_WALLET:
@@ -105,8 +103,6 @@ const NewAccountOptionsSection: React.FC<Props> = ( {
           return null
         case SubAccountKind.TRUSTED_CONTACTS:
           return 'COMING SOON'
-        // case SubAccountKind.DONATION_ACCOUNT:
-        //   return 'NEW'
         case SubAccountKind.FNF_ACCOUNT:
           return 'COMING SOON'
         case SubAccountKind.SERVICE:

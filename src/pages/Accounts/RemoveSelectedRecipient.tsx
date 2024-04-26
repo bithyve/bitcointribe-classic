@@ -39,7 +39,6 @@ export default function RemoveSelectedRecipient( props ) {
       'Checking Account': REGULAR_ACCOUNT,
       'Savings Account': SECURE_ACCOUNT,
       'Test Account': TEST_ACCOUNT,
-      // 'Donation Account': DONATION_ACCOUNT,
     }[ selectedContactData.account_name || 'Checking Account' ]
 
     if ( selectedContactData.account_name != null ) {

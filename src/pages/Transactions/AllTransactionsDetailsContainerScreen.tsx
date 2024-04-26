@@ -24,7 +24,6 @@ const getImageByAccountType = ( accountType, primaryAccType? ) => {
     accountType == 'Savings Account' ||
     accountType == 'Test Account' ||
     accountType == 'Checking Account' ||
-    // accountType == 'Donation Account' ||
     accountType === SUB_PRIMARY_ACCOUNT
   ) {
     return (
@@ -35,8 +34,6 @@ const getImageByAccountType = ( accountType, primaryAccType? ) => {
               ? primaryAccType === 'Savings Account'
                 ? require( '../../assets/images/icons/icon_secureaccount.png' )
                 : require( '../../assets/images/icons/icon_regular.png' )
-              : accountType == 'Donation Account'
-                ? require( '../../assets/images/icons/icon_donation_account.png' )
                 : accountType == 'Savings Account'
                   ? require( '../../assets/images/icons/icon_secureaccount.png' )
                   : accountType == 'Test Account'

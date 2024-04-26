@@ -6,7 +6,6 @@ import { default as SmallNavHeaderBackButton, default as SmallNavHeaderCloseButt
 import RequestKeyFromContact from '../../components/RequestKeyFromContact'
 import AccountSettingsEditDisplayPropertiesScreen from '../../pages/Accounts/AccountSettings/AccountSettingsEditDisplayPropertiesScreen'
 import AccountSettingsMainScreen from '../../pages/Accounts/AccountSettings/AccountSettingsMainScreen'
-// import DonationAccountWebViewSettingsScreen from '../../pages/Accounts/AccountSettings/DonationAccountWebViewSettingsScreen'
 import AccountSettingsEditVisibilityScreen from '../../pages/Accounts/AccountSettings/EditVisibilityScreen'
 import AccountSettingsMergeAccountShellsScreen from '../../pages/Accounts/AccountSettings/MergeAccountShellsScreen'
 import ReassignTransactionsMainOptionsScreen from '../../pages/Accounts/AccountSettings/ReassignTransactions/MainOptionsScreen'
@@ -133,7 +132,6 @@ import AddNewAccountStack from '../stacks/accounts/AddNewAccountStack'
 import AccountManagementStack from '../stacks/more-options/AccountManagementStack'
 import WalletSettingsStack from '../stacks/more-options/WalletSettingsStack'
 
-// import AddNewDonationAccountDetailsScreen from '../../pages/Accounts/AddNew/DonationAccount/AddNewDonationAccountDetailsScreen'
 import NewHexaAccountDetailsScreen from '../../pages/Accounts/AddNew/HexaAccount/NewHexaAccountDetailsScreen'
 import NewAccountSelectionContainerScreen from '../../pages/Accounts/AddNew/NewAccountSelectionContainerScreen'
 import NewSwanAccountDetailsScreen from '../../pages/Accounts/AddNew/SwanAccount/NewSwanAccountDetailsScreen'
@@ -505,9 +503,6 @@ function AppStack() {
         headerShown: false
       }} />
       <Stack.Screen name="RestoreSelectedContactsList" component={RestoreSelectedContactsList} />
-      {/* <Stack.Screen name="DonationAccountWebViewSettings" component={DonationAccountWebViewSettingsScreen} options={{
-        headerShown: false
-      }} /> */}
       <Stack.Screen name="SubAccountSettings" component={AccountSettingsMainScreen} options={{
         headerShown: false
       }} />
@@ -791,9 +786,6 @@ function AppStack() {
       <Stack.Screen name="NewSwanAccountDetails" component={NewSwanAccountDetailsScreen} options={{
         title: 'Setup Swan Account'
       }} />
-      {/* <Stack.Screen name="AddNewDonationAccountDetails" component={AddNewDonationAccountDetailsScreen} options={{
-        header: null
-      }} /> */}
       <Stack.Screen name="WalletSettingsRoot" component={WalletSettingsContainerScreen} options={{
         headerShown: false
       }} />

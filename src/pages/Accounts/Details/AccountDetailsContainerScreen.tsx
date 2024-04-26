@@ -24,7 +24,6 @@ import KnowMoreBottomSheet from '../../../components/account-details/AccountDeta
 import NavHeader from '../../../components/account-details/AccountDetailsNavHeader'
 import AccountShellMergeSuccessBottomSheet from '../../../components/bottom-sheets/account-management/AccountShellMergeSuccessBottomSheet'
 import TransactionReassignmentSuccessBottomSheet from '../../../components/bottom-sheets/account-management/TransactionReassignmentSuccessBottomSheet'
-// import DonationWebPageBottomSheet from '../../../components/bottom-sheets/DonationWebPageBottomSheet'
 import ErrorModalContents from '../../../components/ErrorModalContents'
 import ModalContainer from '../../../components/home/ModalContainer'
 import BorderWalletKnowMore from '../../../components/know-more-sheets/BorderWalletKnowMore'
@@ -87,10 +86,6 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
     return ( accountShell.syncStatus===SyncStatus.IN_PROGRESS )
   }, [ accountShell.syncStatus ] )
 
-  // const isShowingDonationButton = useMemo( () => {
-  //   return primarySubAccount.kind === SubAccountKind.DONATION_ACCOUNT
-  // }, [ primarySubAccount.kind ] )
-
   const [ secureAccountAlert, setSecureAccountAlert ] = useState( false )
   const [ secureAccountKnowMore, setSecureAccountKnowMore ] = useState( false )
   const AllowSecureAccount = useSelector(
@@ -136,12 +131,6 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
       accountShellID
     } )
   }
-
-  // function navigateToDonationAccountWebViewSettings( donationAccount ) {
-  //   navigation.navigate( 'DonationAccountWebViewSettings', {
-  //     account: donationAccount,
-  //   } )
-  // }
 
   function performRefreshOnPullDown() {
     dispatch( refreshAccountShells( [ accountShell ], {
@@ -239,19 +228,6 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
       )
     },
   } )
-
-  // const showDonationWebViewSheet = () => {
-  //   return(
-  //     <DonationWebPageBottomSheet
-  //       account={account}
-  //       onClickSetting={() => {
-  //         showWebView( false )
-  //         navigateToDonationAccountWebViewSettings( account )
-  //       }}
-  //       closeModal={() => showWebView( false )}
-  //     />
-  //   )
-  // }
 
   const renderSecureAccountAlertContent = useCallback( () => {
     return (
@@ -374,25 +350,6 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
                   }
                   isTestAccount={primarySubAccount.sourceKind === SourceAccountKind.TEST_ACCOUNT}
                 />
-
-                {/* {isShowingDonationButton && (
-                  <View style={{
-                    alignItems: 'center',
-                    marginTop: 36,
-                  }}>
-                    <ButtonBlue
-                      buttonText={'Donation Webpage'}
-                      handleButtonPress={()=>showWebView( true )}
-                    />
-                    <Button
-                      raised
-                      buttonStyle={ButtonStyles.floatingActionButton}
-                      title="Donation Webpage"
-                      titleStyle={ButtonStyles.actionButtonText}
-                      onPress={() => showWebView( true )}
-                    /> 
-                  </View>
-                )} */}
               </View>
 
             </View>
@@ -431,11 +388,6 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
       <ModalContainer onBackground={()=>setBWShowMore( false )} visible={bwShowMore} closeBottomSheet={() => {setBWShowMore( false )}}>
         <BorderWalletKnowMore titleClicked={()=>setBWShowMore( false )}/>
       </ModalContainer>
-      {/* <ModalContainer onBackground={()=>showWebView( false )} visible={webView} closeBottomSheet={() => { showWebView( false ) }} >
-        <RootSiblingParent>
-          {showDonationWebViewSheet()}
-        </RootSiblingParent>
-      </ModalContainer> */}
       {
         primarySubAccount.type == AccountType.SAVINGS_ACCOUNT && (
           <ModalContainer

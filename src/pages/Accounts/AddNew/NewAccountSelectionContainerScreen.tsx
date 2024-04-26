@@ -103,12 +103,6 @@ const NewAccountSelectionContainerScreen: React.FC<Props> = ( { navigation }: Pr
           } )
           break
 
-        // case SubAccountKind.DONATION_ACCOUNT:
-        //   navigation.navigate( 'AddNewDonationAccountDetails', {
-        //     currentSubAccount: selectedChoice,
-        //   } )
-        //   break
-
         case SubAccountKind.SERVICE:
           switch( ( selectedChoice as ExternalServiceSubAccountInfo ).serviceAccountKind ){
               case ServiceAccountKind.SWAN:

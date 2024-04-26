@@ -12,8 +12,6 @@ export function iconForAccountKind( kind: SubAccountKind ): ImageSourcePropType 
         return require( '../../assets/images/icons/icon_savings.png' )
       case SubAccountKind.TRUSTED_CONTACTS:
         return require( '../../assets/images/icons/icon_wallet.png' )
-      // case SubAccountKind.DONATION_ACCOUNT:
-      //   return require( '../../assets/images/icons/icon_donation_hexa.png' )
       case SubAccountKind.WATCH_ONLY_IMPORTED_WALLET:
         return require( '../../assets/images/icons/icon_import_watch_only_wallet.png' )
       case SubAccountKind.FULLY_IMPORTED_WALLET:

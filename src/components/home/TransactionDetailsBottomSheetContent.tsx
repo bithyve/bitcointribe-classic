@@ -68,8 +68,6 @@ export default function TransactionDetailsBottomSheetContent( props ) {
                 ? primaryAccType === 'Savings Account'
                   ? require( '../../assets/images/icons/icon_secureaccount.png' )
                   : require( '../../assets/images/icons/icon_regular.png' )
-                // : accountType == 'Donation Account'
-                  ? require( '../../assets/images/icons/icon_donation_account.png' )
                   : accountType == 'Savings Account'
                     ? require( '../../assets/images/icons/icon_secureaccount.png' )
                     : accountType == 'Test Account'
