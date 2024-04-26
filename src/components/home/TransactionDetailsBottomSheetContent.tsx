@@ -58,7 +58,6 @@ export default function TransactionDetailsBottomSheetContent( props ) {
       accountType == 'Savings Account' ||
       accountType == 'Test Account' ||
       accountType == 'Checking Account' ||
-      // accountType == 'Donation Account' ||
       accountType === SUB_PRIMARY_ACCOUNT
     ) {
       return (

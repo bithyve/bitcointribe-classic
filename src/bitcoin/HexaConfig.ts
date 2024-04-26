@@ -143,10 +143,6 @@ class HexaConfig {
       series: 10,
       upperBound: 10,
     },
-    // [ AccountType.DONATION_ACCOUNT ]: {
-    //   series: 20,
-    //   upperBound: 10,
-    // },
     [ AccountType.SWAN_ACCOUNT ]: {
       series: 30,
       upperBound: 10,
@@ -246,7 +242,6 @@ class HexaConfig {
     RAMP: this.RAMP,
     SWAN: this.SWAN,
     TRUSTED_CONTACTS: this.TRUSTED_CONTACTS,
-    // DONATION_ACCOUNT: this.DONATION_ACCOUNT,
   };
 
   public EJECTED_ACCOUNTS = [ SUB_PRIMARY_ACCOUNT, WYRE, RAMP, SWAN ];

@@ -80,11 +80,6 @@ interface SubAccountDescribing {
 
 export type HexaSubAccountDescribing = SubAccountDescribing
 
-// export interface DonationSubAccountDescribing extends HexaSubAccountDescribing {
-//   doneeName: string;
-//   causeName: string;
-// }
-
 export interface ExternalServiceSubAccountDescribing
   extends SubAccountDescribing {
   readonly serviceAccountKind: ServiceAccountKind;

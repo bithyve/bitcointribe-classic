@@ -1,15 +1,14 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import Colors from '../../common/Colors'
-import SubAccountKind from '../../common/data/enums/SubAccountKind'
-import CheckingAccountKnowMoreSheetContents from '../know-more-sheets/CheckingAccountKnowMoreSheetContents'
-import SavingsAccountKnowMoreSheetContents from '../know-more-sheets/SavingsAccountKnowMoreSheetContents'
-import TestAccountKnowMoreSheetContents from '../know-more-sheets/TestAccountKnowMoreSheetContents'
-// import DonationAccountKnowMoreSheetContents from '../know-more-sheets/DonationAccountKnowMoreSheetContents'
 import ServiceAccountKind from '../../common/data/enums/ServiceAccountKind'
+import SubAccountKind from '../../common/data/enums/SubAccountKind'
 import ExternalServiceSubAccountInfo from '../../common/data/models/SubAccountInfo/ExternalServiceSubAccountInfo'
 import BottomSheetHandle from '../bottom-sheets/BottomSheetHandle'
+import CheckingAccountKnowMoreSheetContents from '../know-more-sheets/CheckingAccountKnowMoreSheetContents'
+import SavingsAccountKnowMoreSheetContents from '../know-more-sheets/SavingsAccountKnowMoreSheetContents'
 import ServiceAccountKnowMoreSheetContents from '../know-more-sheets/ServiceAccountKnowMoreSheetContents'
+import TestAccountKnowMoreSheetContents from '../know-more-sheets/TestAccountKnowMoreSheetContents'
 
 export type Props = {
   primarySubAccount: any;
@@ -59,13 +58,6 @@ const AccountDetailsKnowMoreBottomSheet: React.FC<Props> = ( {
               containerStyle={styles.contentContainer}
             />
           )
-        // case SubAccountKind.DONATION_ACCOUNT:
-        //   return (
-        //     <DonationAccountKnowMoreSheetContents
-        //       titleClicked={onClose}
-        //       containerStyle={styles.contentContainer}
-        //     />
-        //   )
 
         case SubAccountKind.SERVICE:
           switch( ( primarySubAccount as ExternalServiceSubAccountInfo ).serviceAccountKind ){

@@ -49,8 +49,6 @@ function shadowColorForAccountKind(
         return Colors.checkingAccCard
       case SubAccountKind.SECURE_ACCOUNT:
         return Colors.green
-      // case SubAccountKind.DONATION_ACCOUNT:
-      //   return Colors.kashmirBlue
       case SubAccountKind.BORDER_WALLET:
         return Colors.mango
       case SubAccountKind.SERVICE:
