@@ -184,17 +184,6 @@ export default class AccountUtilities {
     const { nextFreeAddressIndex, nextFreeChangeAddressIndex, xpub, xpriv, networkType } = account
     const network = AccountUtilities.getNetworkByType( networkType )
     const purpose = getPurpose( account.derivationPath, account.type )
-    // const closingExtIndex = nextFreeAddressIndex + ( account.type === AccountType.DONATION_ACCOUNT? config.DONATION_GAP_LIMIT : config.GAP_LIMIT )
-    // for ( let itr = 0; itr <= nextFreeAddressIndex + closingExtIndex; itr++ ) {
-    //   if ( AccountUtilities.getAddressByIndex( xpub, false, itr, network, purpose ) === address )
-    //     return AccountUtilities.getPrivateKeyByIndex( xpriv, false, itr, network )
-    // }
-
-    // const closingIntIndex = nextFreeChangeAddressIndex + ( account.type === AccountType.DONATION_ACCOUNT? config.DONATION_GAP_LIMIT_INTERNAL : config.GAP_LIMIT )
-    // for ( let itr = 0; itr <= closingIntIndex; itr++ ) {
-    //   if ( AccountUtilities.getAddressByIndex( xpub, true, itr, network, purpose ) === address )
-    //     return AccountUtilities.getPrivateKeyByIndex( xpriv, true, itr, network )
-    // }
 
     for( const importedAddress in account.importedAddresses ){
       if( address === importedAddress ) return account.importedAddresses[ importedAddress ].privateKey
