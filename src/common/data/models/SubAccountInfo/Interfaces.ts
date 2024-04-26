@@ -1,13 +1,13 @@
-import SubAccountKind from '../../enums/SubAccountKind'
-import ServiceAccountKind from '../../enums/ServiceAccountKind'
-import UTXOCompatibilityGroup from '../../enums/UTXOCompatibilityGroup'
-import AccountVisibility from '../../enums/AccountVisibility'
 import {
   AccountType,
   Balances,
-  TransactionDetails,
+  TransactionDetails
 } from '../../../../bitcoin/utilities/Interface'
+import AccountVisibility from '../../enums/AccountVisibility'
+import ServiceAccountKind from '../../enums/ServiceAccountKind'
 import SourceAccountKind from '../../enums/SourceAccountKind'
+import SubAccountKind from '../../enums/SubAccountKind'
+import UTXOCompatibilityGroup from '../../enums/UTXOCompatibilityGroup'
 
 interface SubAccountDescribing {
   id: string;
@@ -80,10 +80,10 @@ interface SubAccountDescribing {
 
 export type HexaSubAccountDescribing = SubAccountDescribing
 
-export interface DonationSubAccountDescribing extends HexaSubAccountDescribing {
-  doneeName: string;
-  causeName: string;
-}
+// export interface DonationSubAccountDescribing extends HexaSubAccountDescribing {
+//   doneeName: string;
+//   causeName: string;
+// }
 
 export interface ExternalServiceSubAccountDescribing
   extends SubAccountDescribing {
