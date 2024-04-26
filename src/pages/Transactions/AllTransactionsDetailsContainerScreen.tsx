@@ -24,7 +24,7 @@ const getImageByAccountType = ( accountType, primaryAccType? ) => {
     accountType == 'Savings Account' ||
     accountType == 'Test Account' ||
     accountType == 'Checking Account' ||
-    accountType == 'Donation Account' ||
+    // accountType == 'Donation Account' ||
     accountType === SUB_PRIMARY_ACCOUNT
   ) {
     return (

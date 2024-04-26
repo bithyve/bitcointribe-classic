@@ -1,14 +1,14 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import SubAccountKind from '../../common/data/enums/SubAccountKind'
-import TestAccountKnowMoreSheetContents from '../know-more-sheets/TestAccountKnowMoreSheetContents'
+import { StyleSheet, View } from 'react-native'
 import Colors from '../../common/Colors'
-import SavingsAccountKnowMoreSheetContents from '../know-more-sheets/SavingsAccountKnowMoreSheetContents'
+import SubAccountKind from '../../common/data/enums/SubAccountKind'
 import CheckingAccountKnowMoreSheetContents from '../know-more-sheets/CheckingAccountKnowMoreSheetContents'
-import DonationAccountKnowMoreSheetContents from '../know-more-sheets/DonationAccountKnowMoreSheetContents'
-import BottomSheetHandle from '../bottom-sheets/BottomSheetHandle'
-import ExternalServiceSubAccountInfo from '../../common/data/models/SubAccountInfo/ExternalServiceSubAccountInfo'
+import SavingsAccountKnowMoreSheetContents from '../know-more-sheets/SavingsAccountKnowMoreSheetContents'
+import TestAccountKnowMoreSheetContents from '../know-more-sheets/TestAccountKnowMoreSheetContents'
+// import DonationAccountKnowMoreSheetContents from '../know-more-sheets/DonationAccountKnowMoreSheetContents'
 import ServiceAccountKind from '../../common/data/enums/ServiceAccountKind'
+import ExternalServiceSubAccountInfo from '../../common/data/models/SubAccountInfo/ExternalServiceSubAccountInfo'
+import BottomSheetHandle from '../bottom-sheets/BottomSheetHandle'
 import ServiceAccountKnowMoreSheetContents from '../know-more-sheets/ServiceAccountKnowMoreSheetContents'
 
 export type Props = {
@@ -59,13 +59,13 @@ const AccountDetailsKnowMoreBottomSheet: React.FC<Props> = ( {
               containerStyle={styles.contentContainer}
             />
           )
-        case SubAccountKind.DONATION_ACCOUNT:
-          return (
-            <DonationAccountKnowMoreSheetContents
-              titleClicked={onClose}
-              containerStyle={styles.contentContainer}
-            />
-          )
+        // case SubAccountKind.DONATION_ACCOUNT:
+        //   return (
+        //     <DonationAccountKnowMoreSheetContents
+        //       titleClicked={onClose}
+        //       containerStyle={styles.contentContainer}
+        //     />
+        //   )
 
         case SubAccountKind.SERVICE:
           switch( ( primarySubAccount as ExternalServiceSubAccountInfo ).serviceAccountKind ){
