@@ -1,18 +1,17 @@
-import React, { useState, useMemo } from 'react'
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import React, { useMemo, useState } from 'react'
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
-import RecipientComponent from './RecipientComponent'
-import { ScrollView } from 'react-native-gesture-handler'
-import { REGULAR_ACCOUNT, SECURE_ACCOUNT, TEST_ACCOUNT, DONATION_ACCOUNT } from '../../common/constants/wallet-service-types'
+import Colors from '../../common/Colors'
+import { REGULAR_ACCOUNT, SECURE_ACCOUNT, TEST_ACCOUNT } from '../../common/constants/wallet-service-types'
 import { RecipientDescribing } from '../../common/data/models/interfaces/RecipientDescribing'
+import Fonts from '../../common/Fonts'
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
 import { makeAccountRecipientDescriptionFromUnknownData, makeContactRecipientDescription } from '../../utils/sending/RecipientFactories'
+import RecipientComponent from './RecipientComponent'
 
 export default function RemoveSelectedRecipient( props ) {
   const [ SelectedContactId, setSelectedContactId ] = useState( 0 )
@@ -40,7 +39,7 @@ export default function RemoveSelectedRecipient( props ) {
       'Checking Account': REGULAR_ACCOUNT,
       'Savings Account': SECURE_ACCOUNT,
       'Test Account': TEST_ACCOUNT,
-      'Donation Account': DONATION_ACCOUNT,
+      // 'Donation Account': DONATION_ACCOUNT,
     }[ selectedContactData.account_name || 'Checking Account' ]
 
     if ( selectedContactData.account_name != null ) {

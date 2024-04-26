@@ -1,7 +1,7 @@
 import crypto from 'crypto'
 import AccountVisibility from '../../../common/data/enums/AccountVisibility'
 import { borderWalletAccountInfo } from '../../../store/sagas/accounts'
-import { Account, AccountType, DerivationPurpose, DonationAccount, LNNode, MultiSigAccount, NetworkType } from '../Interface'
+import { Account, AccountType, DerivationPurpose, LNNode, MultiSigAccount, NetworkType } from '../Interface'
 import AccountUtilities from './AccountUtilities'
 
 export const getPurpose = ( derivationPath: string, accountType?: AccountType ): DerivationPurpose => {
@@ -212,84 +212,84 @@ export function generateMultiSigAccount(
   return account
 }
 
-export function generateDonationAccount(
-  {
-    walletId,
-    type,
-    instanceNum,
-    accountName,
-    accountDescription,
-    donationName,
-    donationDescription,
-    donee,
-    primarySeed,
-    derivationPath,
-    is2FA,
-    secondaryXpub,
-    bithyveXpub,
-    networkType,
-  }: {
-    walletId: string,
-    type: AccountType,
-    instanceNum: number,
-    accountName: string,
-    accountDescription: string,
-    donationName: string,
-    donationDescription: string,
-    donee: string,
-    primarySeed: string,
-    derivationPath: string,
-    is2FA?: boolean,
-    secondaryXpub?: string,
-    bithyveXpub?: string,
-    networkType: NetworkType,
-  }
-): DonationAccount {
+// export function generateDonationAccount(
+//   {
+//     walletId,
+//     type,
+//     instanceNum,
+//     accountName,
+//     accountDescription,
+//     donationName,
+//     donationDescription,
+//     donee,
+//     primarySeed,
+//     derivationPath,
+//     is2FA,
+//     secondaryXpub,
+//     bithyveXpub,
+//     networkType,
+//   }: {
+//     walletId: string,
+//     type: AccountType,
+//     instanceNum: number,
+//     accountName: string,
+//     accountDescription: string,
+//     donationName: string,
+//     donationDescription: string,
+//     donee: string,
+//     primarySeed: string,
+//     derivationPath: string,
+//     is2FA?: boolean,
+//     secondaryXpub?: string,
+//     bithyveXpub?: string,
+//     networkType: NetworkType,
+//   }
+// ): DonationAccount {
 
-  let baseAccount: Account | MultiSigAccount
-  if( is2FA ) baseAccount = generateMultiSigAccount( {
-    walletId,
-    type,
-    instanceNum,
-    accountName,
-    accountDescription,
-    primarySeed,
-    derivationPath,
-    secondaryXpub,
-    bithyveXpub,
-    networkType,
-  } )
-  else {
-    baseAccount = {
-      ...generateAccount( {
-        walletId,
-        type,
-        instanceNum,
-        accountName,
-        accountDescription,
-        primarySeed,
-        derivationPath,
-        networkType,
-      } ),
-    }
-  }
+//   let baseAccount: Account | MultiSigAccount
+//   if( is2FA ) baseAccount = generateMultiSigAccount( {
+//     walletId,
+//     type,
+//     instanceNum,
+//     accountName,
+//     accountDescription,
+//     primarySeed,
+//     derivationPath,
+//     secondaryXpub,
+//     bithyveXpub,
+//     networkType,
+//   } )
+//   else {
+//     baseAccount = {
+//       ...generateAccount( {
+//         walletId,
+//         type,
+//         instanceNum,
+//         accountName,
+//         accountDescription,
+//         primarySeed,
+//         derivationPath,
+//         networkType,
+//       } ),
+//     }
+//   }
 
-  const donationAccount: DonationAccount = {
-    ...baseAccount,
-    donationName,
-    donationDescription,
-    donee,
-    configuration: {
-      displayBalance: true,
-      displayIncomingTxs: true,
-      displayOutgoingTxs: true,
-    },
-    disableAccount: false,
-    is2FA,
-  }
+//   const donationAccount: DonationAccount = {
+//     ...baseAccount,
+//     donationName,
+//     donationDescription,
+//     donee,
+//     configuration: {
+//       displayBalance: true,
+//       displayIncomingTxs: true,
+//       displayOutgoingTxs: true,
+//     },
+//     disableAccount: false,
+//     is2FA,
+//   }
 
-  return donationAccount
-}
+//   return donationAccount
+// }
 
 export const upgradeAccountToMultiSig = ( {
   account,

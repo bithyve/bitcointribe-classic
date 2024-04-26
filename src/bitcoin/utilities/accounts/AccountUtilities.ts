@@ -12,7 +12,7 @@ import { SUB_PRIMARY_ACCOUNT } from '../../../common/constants/wallet-service-ty
 import Toast from '../../../components/Toast'
 import { BH_AXIOS, SIGNING_AXIOS } from '../../../services/api'
 import config from '../../HexaConfig'
-import { Account, AccountType, ActiveAddresses, DerivationPurpose, DonationAccount, MultiSigAccount, NetworkType, ScannedAddressKind, Transaction, TransactionType } from '../Interface'
+import { Account, AccountType, ActiveAddresses, DerivationPurpose, MultiSigAccount, NetworkType, ScannedAddressKind, Transaction, TransactionType } from '../Interface'
 import { getPurpose } from './AccountFactory'
 
 
@@ -184,17 +184,17 @@ export default class AccountUtilities {
     const { nextFreeAddressIndex, nextFreeChangeAddressIndex, xpub, xpriv, networkType } = account
     const network = AccountUtilities.getNetworkByType( networkType )
     const purpose = getPurpose( account.derivationPath, account.type )
-    const closingExtIndex = nextFreeAddressIndex + ( account.type === AccountType.DONATION_ACCOUNT? config.DONATION_GAP_LIMIT : config.GAP_LIMIT )
-    for ( let itr = 0; itr <= nextFreeAddressIndex + closingExtIndex; itr++ ) {
-      if ( AccountUtilities.getAddressByIndex( xpub, false, itr, network, purpose ) === address )
-        return AccountUtilities.getPrivateKeyByIndex( xpriv, false, itr, network )
-    }
+    // const closingExtIndex = nextFreeAddressIndex + ( account.type === AccountType.DONATION_ACCOUNT? config.DONATION_GAP_LIMIT : config.GAP_LIMIT )
+    // for ( let itr = 0; itr <= nextFreeAddressIndex + closingExtIndex; itr++ ) {
+    //   if ( AccountUtilities.getAddressByIndex( xpub, false, itr, network, purpose ) === address )
+    //     return AccountUtilities.getPrivateKeyByIndex( xpriv, false, itr, network )
+    // }
 
-    const closingIntIndex = nextFreeChangeAddressIndex + ( account.type === AccountType.DONATION_ACCOUNT? config.DONATION_GAP_LIMIT_INTERNAL : config.GAP_LIMIT )
-    for ( let itr = 0; itr <= closingIntIndex; itr++ ) {
-      if ( AccountUtilities.getAddressByIndex( xpub, true, itr, network, purpose ) === address )
-        return AccountUtilities.getPrivateKeyByIndex( xpriv, true, itr, network )
-    }
+    // const closingIntIndex = nextFreeChangeAddressIndex + ( account.type === AccountType.DONATION_ACCOUNT? config.DONATION_GAP_LIMIT_INTERNAL : config.GAP_LIMIT )
+    // for ( let itr = 0; itr <= closingIntIndex; itr++ ) {
+    //   if ( AccountUtilities.getAddressByIndex( xpub, true, itr, network, purpose ) === address )
+    //     return AccountUtilities.getPrivateKeyByIndex( xpriv, true, itr, network )
+    // }
 
     for( const importedAddress in account.importedAddresses ){
       if( address === importedAddress ) return account.importedAddresses[ importedAddress ].privateKey
@@ -251,51 +251,51 @@ export default class AccountUtilities {
     }
   }
 
-  static signingEssentialsForMultiSig = ( account: MultiSigAccount, address: string ) => {
-    const { networkType } = account
-    const network = AccountUtilities.getNetworkByType( networkType )
+  // static signingEssentialsForMultiSig = ( account: MultiSigAccount, address: string ) => {
+  //   const { networkType } = account
+  //   const network = AccountUtilities.getNetworkByType( networkType )
 
-    const closingExtIndex = account.nextFreeAddressIndex + ( account.type === AccountType.DONATION_ACCOUNT? config.DONATION_GAP_LIMIT : config.GAP_LIMIT )
-    for ( let itr = 0; itr <= closingExtIndex; itr++ ) {
-      const multiSig = AccountUtilities.createMultiSig( {
-        primary: account.xpub,
-        secondary: ( account as MultiSigAccount ).xpubs.secondary,
-        bithyve: ( account as MultiSigAccount ).xpubs.bithyve,
-      }, 2, network, itr, false )
-      if ( multiSig.address === address ) {
-        return {
-          multiSig,
-          primaryPriv: AccountUtilities.generateChildFromExtendedKey( account.xpriv, network, itr, false ),
-          secondaryPriv: account.xprivs.secondary
-            ? AccountUtilities.generateChildFromExtendedKey( account.xprivs.secondary, network, itr, false, true )
-            : null,
-          childIndex: itr,
-        }
-      }
-    }
+    // const closingExtIndex = account.nextFreeAddressIndex + ( account.type === AccountType.DONATION_ACCOUNT? config.DONATION_GAP_LIMIT : config.GAP_LIMIT )
+    // for ( let itr = 0; itr <= closingExtIndex; itr++ ) {
+    //   const multiSig = AccountUtilities.createMultiSig( {
+    //     primary: account.xpub,
+    //     secondary: ( account as MultiSigAccount ).xpubs.secondary,
+    //     bithyve: ( account as MultiSigAccount ).xpubs.bithyve,
+    //   }, 2, network, itr, false )
+    //   if ( multiSig.address === address ) {
+    //     return {
+    //       multiSig,
+    //       primaryPriv: AccountUtilities.generateChildFromExtendedKey( account.xpriv, network, itr, false ),
+    //       secondaryPriv: account.xprivs.secondary
+    //         ? AccountUtilities.generateChildFromExtendedKey( account.xprivs.secondary, network, itr, false, true )
+    //         : null,
+    //       childIndex: itr,
+    //     }
+    //   }
+    // }
 
-    const closingIntIndex = account.nextFreeChangeAddressIndex + ( account.type === AccountType.DONATION_ACCOUNT? config.DONATION_GAP_LIMIT_INTERNAL : config.GAP_LIMIT )
-    for ( let itr = 0; itr <= closingIntIndex; itr++ ) {
-      const multiSig = AccountUtilities.createMultiSig( {
-        primary: account.xpub,
-        secondary: ( account as MultiSigAccount ).xpubs.secondary,
-        bithyve: ( account as MultiSigAccount ).xpubs.bithyve,
-      }, 2, network, itr, true )
-      if ( multiSig.address === address ) {
-        return {
-          multiSig,
-          primaryPriv: AccountUtilities.generateChildFromExtendedKey( account.xpriv, network, itr, true ),
-          secondaryPriv: account.xprivs.secondary
-            ? AccountUtilities.generateChildFromExtendedKey( account.xprivs.secondary, network, itr, true, true )
-            : null,
-          childIndex: itr,
-          internal: true
-        }
-      }
-    }
+    // const closingIntIndex = account.nextFreeChangeAddressIndex + ( account.type === AccountType.DONATION_ACCOUNT? config.DONATION_GAP_LIMIT_INTERNAL : config.GAP_LIMIT )
+    // for ( let itr = 0; itr <= closingIntIndex; itr++ ) {
+    //   const multiSig = AccountUtilities.createMultiSig( {
+    //     primary: account.xpub,
+    //     secondary: ( account as MultiSigAccount ).xpubs.secondary,
+    //     bithyve: ( account as MultiSigAccount ).xpubs.bithyve,
+    //   }, 2, network, itr, true )
+    //   if ( multiSig.address === address ) {
+    //     return {
+    //       multiSig,
+    //       primaryPriv: AccountUtilities.generateChildFromExtendedKey( account.xpriv, network, itr, true ),
+    //       secondaryPriv: account.xprivs.secondary
+    //         ? AccountUtilities.generateChildFromExtendedKey( account.xprivs.secondary, network, itr, true, true )
+    //         : null,
+    //       childIndex: itr,
+    //       internal: true
+    //     }
+    //   }
+    // }
 
-    throw new Error( 'Could not find signing essentials for ' + address )
-  };
+  //   throw new Error( 'Could not find signing essentials for ' + address )
+  // };
 
   static generatePaymentURI = (
     address: string,
@@ -1227,54 +1227,54 @@ export default class AccountUtilities {
     }
   };
 
-  static updateDonationPreferences = async (
-    account: DonationAccount,
-    preferences: {
-      disableAccount?: boolean;
-      configuration?: {
-        displayBalance: boolean;
-        displayIncomingTxs: boolean;
-        displayOutgoingTxs: boolean;
-      };
-      accountDetails?: {
-        donee: string;
-        subject: string;
-        description: string;
-      };
-    },
-  ): Promise<{ updated: boolean, updatedAccount: DonationAccount }> => {
+  // static updateDonationPreferences = async (
+  //   account: DonationAccount,
+  //   preferences: {
+  //     disableAccount?: boolean;
+  //     configuration?: {
+  //       displayBalance: boolean;
+  //       displayIncomingTxs: boolean;
+  //       displayOutgoingTxs: boolean;
+  //     };
+  //     accountDetails?: {
+  //       donee: string;
+  //       subject: string;
+  //       description: string;
+  //     };
+  //   },
+  // ): Promise<{ updated: boolean, updatedAccount: DonationAccount }> => {
 
-    let res: AxiosResponse
-    try {
-      res = await BH_AXIOS.post( 'updatePreferences', {
-        HEXA_ID: config.HEXA_ID,
-        donationId: account.id.slice( 0, 15 ),
-        walletID: account.walletId,
-        preferences,
-      } )
-    } catch ( err ) {
-      if ( err.response ) throw new Error( err.response.data.err )
-      if ( err.code ) throw new Error( err.code )
-    }
+  //   let res: AxiosResponse
+  //   try {
+  //     res = await BH_AXIOS.post( 'updatePreferences', {
+  //       HEXA_ID: config.HEXA_ID,
+  //       donationId: account.id.slice( 0, 15 ),
+  //       walletID: account.walletId,
+  //       preferences,
+  //     } )
+  //   } catch ( err ) {
+  //     if ( err.response ) throw new Error( err.response.data.err )
+  //     if ( err.code ) throw new Error( err.code )
+  //   }
 
-    const { updated } = res.data || res.json
-    if( updated ){
-      if( preferences.disableAccount !== undefined && preferences.disableAccount !== account.disableAccount )
-        account.disableAccount = preferences.disableAccount
+  //   const { updated } = res.data || res.json
+  //   if( updated ){
+  //     if( preferences.disableAccount !== undefined && preferences.disableAccount !== account.disableAccount )
+  //       account.disableAccount = preferences.disableAccount
 
-      if( preferences.configuration )
-        account.configuration = preferences.configuration
+  //     if( preferences.configuration )
+  //       account.configuration = preferences.configuration
 
-      if( preferences.accountDetails ){
-        account.donationName = preferences.accountDetails.subject
-        account.accountDescription = preferences.accountDetails.subject
-        account.donationDescription = preferences.accountDetails.description
-        account.donee = preferences.accountDetails.donee
-      }
-    }
+  //     if( preferences.accountDetails ){
+  //       account.donationName = preferences.accountDetails.subject
+  //       account.accountDescription = preferences.accountDetails.subject
+  //       account.donationDescription = preferences.accountDetails.description
+  //       account.donee = preferences.accountDetails.donee
+  //     }
+  //   }
 
-    return {
-      updated, updatedAccount: account
-    }
-  };
+  //   return {
+  //     updated, updatedAccount: account
+  //   }
+  // };
 }

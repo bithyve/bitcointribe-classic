@@ -15,8 +15,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import BWDetailsIcon from '../../assets/images/svgs/bwdetailsIcon.svg'
 import { AccountType } from '../../bitcoin/utilities/Interface'
 import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
-import ButtonStyles from '../../common/Styles/ButtonStyles'
 import { translations } from '../../common/content/LocContext'
 import ServiceAccountKind from '../../common/data/enums/ServiceAccountKind'
 import SubAccountKind from '../../common/data/enums/SubAccountKind'
@@ -24,12 +22,14 @@ import SwanAccountCreationStatus from '../../common/data/enums/SwanAccountCreati
 import AccountShell from '../../common/data/models/AccountShell'
 import ExternalServiceSubAccountInfo from '../../common/data/models/SubAccountInfo/ExternalServiceSubAccountInfo'
 import SubAccountDescribing from '../../common/data/models/SubAccountInfo/Interfaces'
+import Fonts from '../../common/Fonts'
+import ButtonStyles from '../../common/Styles/ButtonStyles'
 import { clearSwanCache, isSwanVisited, updateSwanStatus } from '../../store/actions/SwanIntegration'
 import getAvatarForSubAccount from '../../utils/accounts/GetAvatarForSubAccountKind'
 import usePrimarySubAccountForShell from '../../utils/hooks/account-utils/UsePrimarySubAccountForShell'
-import LabeledBalanceDisplay from '../LabeledBalanceDisplay'
 import BottomSheetSwanInfo from '../bottom-sheets/swan/BottomSheetSwanInfo'
 import ModalContainer from '../home/ModalContainer'
+import LabeledBalanceDisplay from '../LabeledBalanceDisplay'
 
 export type Props = {
   accountShell: AccountShell;
@@ -49,8 +49,8 @@ function shadowColorForAccountKind(
         return Colors.checkingAccCard
       case SubAccountKind.SECURE_ACCOUNT:
         return Colors.green
-      case SubAccountKind.DONATION_ACCOUNT:
-        return Colors.kashmirBlue
+      // case SubAccountKind.DONATION_ACCOUNT:
+      //   return Colors.kashmirBlue
       case SubAccountKind.BORDER_WALLET:
         return Colors.mango
       case SubAccountKind.SERVICE:
