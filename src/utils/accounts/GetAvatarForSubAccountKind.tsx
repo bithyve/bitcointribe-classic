@@ -1,31 +1,30 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import AccountTest from '../../assets/images/accIcons/acc_test.svg'
+import AccountTestHome from '../../assets/images/accIcons/icon_test.svg'
+import SavingsActive from '../../assets/images/accIcons/savings_small_active.svg'
+import SavingsInactive from '../../assets/images/accIcons/savings_small_inactive.svg'
+import AccountTestActive from '../../assets/images/accIcons/test_small_active.svg'
+import AccountTestInactive from '../../assets/images/accIcons/test_small_inactive.svg'
 import SubAccountKind from '../../common/data/enums/SubAccountKind'
 import ExternalServiceSubAccountInfo from '../../common/data/models/SubAccountInfo/ExternalServiceSubAccountInfo'
 import SubAccountDescribing from '../../common/data/models/SubAccountInfo/Interfaces'
 import getAvatarForServiceAccountKind from './GetAvatarForServiceAccountKind'
-import AccountTestHome from '../../assets/images/accIcons/icon_test.svg'
-import AccountTest from '../../assets/images/accIcons/acc_test.svg'
-import AccountTestActive from '../../assets/images/accIcons/test_small_active.svg'
-import AccountTestInactive from '../../assets/images/accIcons/test_small_inactive.svg'
-import SavingsActive from '../../assets/images/accIcons/savings_small_active.svg'
-import SavingsInactive from '../../assets/images/accIcons/savings_small_inactive.svg'
-import DonationtActive from '../../assets/images/accIcons/donation_small_active.svg'
-import DonationtInavtive from '../../assets/images/accIcons/donation_small_inactive.svg'
+// import DonationtActive from '../../assets/images/accIcons/donation_small_active.svg'
+// import DonationtInavtive from '../../assets/images/accIcons/donation_small_inactive.svg'
+import BorderWalletIcon from '../../assets/images/accIcons/bw.svg'
 import CheckingActive from '../../assets/images/accIcons/checking_small_active.svg'
 import CheckingInactive from '../../assets/images/accIcons/checking_small_inactive.svg'
-import AccountSwan from '../../assets/images/accIcons/acc_swan.svg'
-import BorderWalletIcon from '../../assets/images/accIcons/bw.svg'
 
 import AccountSavingsHome from '../../assets/images/accIcons/icon_savings.svg'
-import AccountDonation from '../../assets/images/accIcons/acc_donation.svg'
+// import AccountDonation from '../../assets/images/accIcons/acc_donation.svg'
 import AccountChecking from '../../assets/images/accIcons/acc_checking.svg'
-import AccountCheckingHome from '../../assets/images/accIcons/icon_checking.svg'
 import AccountSavings from '../../assets/images/accIcons/acc_savings.svg'
-import Wallet from '../../assets/images/accIcons/icon_wallet.svg'
-import Watch from '../../assets/images/accIcons/view.svg'
-import Lightning from '../../assets/images/accIcons/lightning.svg'
+import AccountCheckingHome from '../../assets/images/accIcons/icon_checking.svg'
 import LightningHexa from '../../assets/images/accIcons/icon_ln.svg'
+import Wallet from '../../assets/images/accIcons/icon_wallet.svg'
+import Lightning from '../../assets/images/accIcons/lightning.svg'
+import Watch from '../../assets/images/accIcons/view.svg'
 import Fonts from '../../common/Fonts'
 
 const styles = StyleSheet.create( {
@@ -85,8 +84,8 @@ const getAvatarForSubAccount = (
         return isAccount ? <AccountSavings /> : isHome ? <AccountSavingsHome /> : active ? <SavingsActive /> : <SavingsInactive />
       case SubAccountKind.TRUSTED_CONTACTS:
         return isAccount ? <AccountSavings /> : isHome ? <AccountSavingsHome /> : active ? <SavingsActive /> : <SavingsInactive />
-      case SubAccountKind.DONATION_ACCOUNT:
-        return isAccount ? <AccountDonation /> : isHome ? <AccountDonation /> : active ? <DonationtActive /> : <DonationtInavtive />
+      // case SubAccountKind.DONATION_ACCOUNT:
+      //   return isAccount ? <AccountDonation /> : isHome ? <AccountDonation /> : active ? <DonationtActive /> : <DonationtInavtive />
       case SubAccountKind.WATCH_ONLY_IMPORTED_WALLET:
         return <Watch />
       case SubAccountKind.FULLY_IMPORTED_WALLET:
