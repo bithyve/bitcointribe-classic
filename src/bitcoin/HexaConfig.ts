@@ -6,8 +6,7 @@ import {
   DONATION_ACCOUNT,
   RAMP,
   SUB_PRIMARY_ACCOUNT,
-  SWAN,
-  WYRE
+  SWAN
 } from '../common/constants/wallet-service-types'
 import PersonalNode from '../common/data/models/PersonalNode'
 import { APP_STAGE } from '../common/interfaces/Interfaces'
@@ -19,8 +18,7 @@ import {
   NetworkType,
   RampDerivativeAccount,
   SwanDerivativeAccount,
-  TrustedContactDerivativeAccount,
-  WyreDerivativeAccount,
+  TrustedContactDerivativeAccount
 } from './utilities/Interface'
 
 class HexaConfig {
@@ -209,14 +207,6 @@ class HexaConfig {
     },
   };
 
-  public WYRE: WyreDerivativeAccount = {
-    series: Config.BIT_WYRE_SERIES ? parseInt( Config.BIT_WYRE_SERIES.trim(), 10 ) : 21,
-    instance: {
-      max: Config.BIT_WYRE_INSTANCE_COUNT ? parseInt( Config.BIT_WYRE_INSTANCE_COUNT.trim(), 10 ) : 5,
-      using: 0,
-    },
-  };
-
   public RAMP: RampDerivativeAccount = {
     series: Config.BIT_RAMP_SERIES ? parseInt( Config.BIT_RAMP_SERIES.trim(), 10 ) : 31,
     instance: {
@@ -254,14 +244,13 @@ class HexaConfig {
   public DERIVATIVE_ACC: DerivativeAccounts = {
     SUB_PRIMARY_ACCOUNT: this.SUB_PRIMARY_ACCOUNT,
     FAST_BITCOINS: this.FAST_BITCOINS,
-    WYRE: this.WYRE,
     RAMP: this.RAMP,
     SWAN: this.SWAN,
     TRUSTED_CONTACTS: this.TRUSTED_CONTACTS,
     DONATION_ACCOUNT: this.DONATION_ACCOUNT,
   };
 
-  public EJECTED_ACCOUNTS = [ SUB_PRIMARY_ACCOUNT, DONATION_ACCOUNT, WYRE, RAMP, SWAN ];
+  public EJECTED_ACCOUNTS = [ SUB_PRIMARY_ACCOUNT, DONATION_ACCOUNT, RAMP, SWAN ];
 
   public DERIVATIVE_ACC_TO_SYNC = Object.keys( this.DERIVATIVE_ACC ).filter(
     ( account ) => !this.EJECTED_ACCOUNTS.includes( account ),
