@@ -1,15 +1,15 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import SubAccountKind from '../../common/data/enums/SubAccountKind'
-import TestAccountKnowMoreSheetContents from '../know-more-sheets/TestAccountKnowMoreSheetContents'
+import { StyleSheet, View } from 'react-native'
 import Colors from '../../common/Colors'
-import SavingsAccountKnowMoreSheetContents from '../know-more-sheets/SavingsAccountKnowMoreSheetContents'
+import ServiceAccountKind from '../../common/data/enums/ServiceAccountKind'
+import SubAccountKind from '../../common/data/enums/SubAccountKind'
+import ExternalServiceSubAccountInfo from '../../common/data/models/SubAccountInfo/ExternalServiceSubAccountInfo'
+import BottomSheetHandle from '../bottom-sheets/BottomSheetHandle'
 import CheckingAccountKnowMoreSheetContents from '../know-more-sheets/CheckingAccountKnowMoreSheetContents'
 import DonationAccountKnowMoreSheetContents from '../know-more-sheets/DonationAccountKnowMoreSheetContents'
-import BottomSheetHandle from '../bottom-sheets/BottomSheetHandle'
-import ExternalServiceSubAccountInfo from '../../common/data/models/SubAccountInfo/ExternalServiceSubAccountInfo'
-import ServiceAccountKind from '../../common/data/enums/ServiceAccountKind'
+import SavingsAccountKnowMoreSheetContents from '../know-more-sheets/SavingsAccountKnowMoreSheetContents'
 import ServiceAccountKnowMoreSheetContents from '../know-more-sheets/ServiceAccountKnowMoreSheetContents'
+import TestAccountKnowMoreSheetContents from '../know-more-sheets/TestAccountKnowMoreSheetContents'
 
 export type Props = {
   primarySubAccount: any;
@@ -69,8 +69,6 @@ const AccountDetailsKnowMoreBottomSheet: React.FC<Props> = ( {
 
         case SubAccountKind.SERVICE:
           switch( ( primarySubAccount as ExternalServiceSubAccountInfo ).serviceAccountKind ){
-              case ( ServiceAccountKind.WYRE ):
-                return serviceBottomSheet( ServiceAccountKind.WYRE )
               case ( ServiceAccountKind.RAMP ):
                 return serviceBottomSheet( ServiceAccountKind.RAMP )
               case ( ServiceAccountKind.SWAN ):
