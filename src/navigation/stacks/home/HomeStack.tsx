@@ -4,7 +4,6 @@ import React, { useLayoutEffect } from 'react'
 import Colors from '../../../common/Colors'
 import SmallNavHeaderBackButton from '../../../components/navigation/SmallNavHeaderBackButton'
 import NewRampAccountDetailsScreen from '../../../pages/Accounts/AddNew/RampAccount/NewRampAccountDetailsScreen'
-// import NewWyreAccountDetailsScreen from '../../../pages/Accounts/AddNew/WyreAccount/NewWyreAccountDetailsScreen'
 import GoogleAuthenticatorOTP from '../../../pages/Accounts/GoogleAuthenticatorOTP'
 import NewTwoFASecret from '../../../pages/Accounts/NewTwoFASecret'
 import Receive from '../../../pages/Accounts/Receive'
@@ -13,7 +12,6 @@ import TransactionDetailsContainerScreen from '../../../pages/Accounts/Transacti
 import TwoFASetup from '../../../pages/Accounts/TwoFASetup'
 import TwoFASweepFunds from '../../../pages/Accounts/TwoFASweepFunds'
 import TwoFAValidation from '../../../pages/Accounts/TwoFAValidation'
-import AppWebView from '../../../pages/AppWebView'
 import BorderWalletGridScreen from '../../../pages/borderwallet/BorderWalletGridScreen'
 import ConfirmDownload from '../../../pages/borderwallet/ConfirmDownload'
 import CreatePassPhrase from '../../../pages/borderwallet/CreatePassPhrase'
@@ -165,9 +163,6 @@ const HomeStack = ( { navigation, route } ) => {
       <Stack.Screen name="EnterNodeConfig" component={EnterNodeConfig} options={{
         headerShown: false
       }} />
-      {/* <Stack.Screen name="NewWyreAccountDetails" component={NewWyreAccountDetailsScreen} options={{
-        title: 'Setup Wyre Account'
-      }} /> */}
       <Stack.Screen name="NewRampAccountDetails" component={NewRampAccountDetailsScreen} options={{
         title: 'Setup Ramp Account'
       }} />

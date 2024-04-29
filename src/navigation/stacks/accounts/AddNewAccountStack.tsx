@@ -1,9 +1,8 @@
-import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import React from 'react'
 import AddNewDonationAccountDetailsScreen from '../../../pages/Accounts/AddNew/DonationAccount/AddNewDonationAccountDetailsScreen'
 import NewHexaAccountDetailsScreen from '../../../pages/Accounts/AddNew/HexaAccount/NewHexaAccountDetailsScreen'
 import NewAccountSelectionContainerScreen from '../../../pages/Accounts/AddNew/NewAccountSelectionContainerScreen'
-// import NewWyreAccountDetailsScreen from '../../../pages/Accounts/AddNew/WyreAccount/NewWyreAccountDetailsScreen'
 import NewRampAccountDetailsScreen from '../../../pages/Accounts/AddNew/RampAccount/NewRampAccountDetailsScreen'
 import NewSwanAccountDetailsScreen from '../../../pages/Accounts/AddNew/SwanAccount/NewSwanAccountDetailsScreen'
 import TransactionDetailsContainerScreen from '../../../pages/Accounts/Transactions/TransactionDetailsContainerScreen'
@@ -21,7 +20,6 @@ export default function AddNewAccountStack() {
       <Stack.Screen name="NewHexaAccountDetails" component={NewHexaAccountDetailsScreen} options={{
         title: 'Setup New Account'
       }} />
-      {/* <Stack.Screen name="NewWyreAccountDetails" component={NewWyreAccountDetailsScreen} options={{ title: 'Setup Wyre Account' }} /> */}
       <Stack.Screen name="AccountDetails" component={AccountDetailsStack} options={{
         header: null
       }} />
