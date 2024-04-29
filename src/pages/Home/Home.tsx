@@ -90,7 +90,6 @@ export enum BottomSheetKind {
   ADD_A_WALLET_INFO,
   NOTIFICATIONS_LIST,
   SWAN_STATUS_INFO,
-  WYRE_STATUS_INFO,
   RAMP_STATUS_INFO,
   ERROR,
   CLOUD_ERROR,
@@ -122,12 +121,9 @@ interface HomeStateTypes {
   swanDeepLinkContent: string | null;
   isBalanceLoading: boolean;
   addContactModalOpened: boolean;
-  wyreDeepLinkContent: string | null;
   rampDeepLinkContent: string | null;
   rampFromBuyMenu: boolean | null;
   rampFromDeepLink: boolean | null;
-  wyreFromBuyMenu: boolean | null;
-  wyreFromDeepLink: boolean | null;
   notificationTitle: string | null;
   notificationInfo: string | null;
   notificationNote: string | null;
@@ -154,7 +150,6 @@ interface HomePropsTypes {
   levelHealth: LevelHealthInterface[];
   currentLevel: number;
   keeperInfo: any[];
-  // clearWyreCache: any;
   clearRampCache: any;
   clearSwanCache: any;
   updateSwanStatus: any;
@@ -180,12 +175,9 @@ interface HomePropsTypes {
   secureAccount: any;
   accountShells: AccountShell[];
   setVersion: any;
-  wyreDeepLinkContent: string | null;
   rampDeepLinkContent: string | null;
   rampFromBuyMenu: boolean | null;
   rampFromDeepLink: boolean | null;
-  wyreFromBuyMenu: boolean | null;
-  wyreFromDeepLink: boolean | null;
   setCloudData: any;
   newBHRFlowStarted: any;
   cloudBackupStatus: CloudBackupStatus;
@@ -251,12 +243,9 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
       swanDeepLinkContent: null,
       isBalanceLoading: true,
       addContactModalOpened: false,
-      wyreDeepLinkContent: null,
       rampDeepLinkContent: null,
       rampFromBuyMenu: null,
       rampFromDeepLink: null,
-      wyreFromBuyMenu: null,
-      wyreFromDeepLink: null,
       notificationTitle: null,
       notificationInfo: null,
       notificationNote: null,
@@ -316,16 +305,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
           this.openBottomSheet(BottomSheetKind.RAMP_STATUS_INFO)
         })
         break
-      // case BuyMenuItemKind.WYRE:
-      //   this.props.clearWyreCache()
-      //   this.setState({
-      //     wyreDeepLinkContent: null,
-      //     wyreFromDeepLink: false,
-      //     wyreFromBuyMenu: true
-      //   }, () => {
-      //     this.openBottomSheet(BottomSheetKind.WYRE_STATUS_INFO)
-      //   })
-      //   break
     }
   };
 
@@ -442,22 +421,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
             />
           </>
         )
-      // case BottomSheetKind.WYRE_STATUS_INFO:
-      //   return (
-      //     <>
-      //       <BottomSheetHeader title="" onPress={this.closeBottomSheet} />
-      //       <BottomSheetWyreInfo
-      //         wyreDeepLinkContent={this.state.wyreDeepLinkContent}
-      //         wyreFromBuyMenu={this.state.wyreFromBuyMenu}
-      //         wyreFromDeepLink={this.state.wyreFromDeepLink}
-      //         onClickSetting={() => {
-      //           this.closeBottomSheet()
-      //         }}
-      //         // onPress={this.closeBottomSheet}
-      //         onPress={this.onBackPress}
-      //       />
-      //     </>
-      //   )
 
       case BottomSheetKind.RAMP_STATUS_INFO:
         return (

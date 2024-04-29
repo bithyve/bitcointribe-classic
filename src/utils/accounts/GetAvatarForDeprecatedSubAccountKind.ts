@@ -1,5 +1,4 @@
 import { ImageSourcePropType } from 'react-native'
-import SubAccountKind from '../../common/data/enums/SubAccountKind'
 
 /**
  * TODO: Deprecate this in favor of calling `getIconByAccountKind` with a
@@ -17,8 +16,6 @@ export default function getAvatarForDeprecatedSubAccountKind( accountKind: strin
     return require( '../../assets/images/icons/icon_test.png' )
   } else if ( [ 'Donation Account', 'DONATION_ACCOUNT' ].includes( accountKind ) ) {
     return require( '../../assets/images/icons/icon_donation_hexa.png' )
-  } else if ( [ 'Wyre', 'WYRE' ].includes( accountKind ) ) {
-    return require( '../../assets/images/icons/icon_wyre.png' )
   } else if ( [ 'Ramp', 'RAMP' ].includes( accountKind ) ) {
     return require( '../../assets/images/icons/icon_ramp.png' )
   }

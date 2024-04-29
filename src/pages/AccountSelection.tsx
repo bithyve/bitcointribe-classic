@@ -60,13 +60,6 @@ const accountOptions: AccountOption[] = [
     subtitle: 'Create a donation link in a few clicks. Post it anywhere, get sats in your wallet',
   },
   {
-    id: 5,
-    title: 'F&F Account',
-    type: AccountType.WYRE_ACCOUNT,
-    imageSource: require( '../assets/images/accIcons/icon_F&F.png' ),
-    subtitle: 'A separate account where you receive funds from your contacts',
-  },
-  {
     id: 6,
     title: 'Exchange Account',
     type: AccountType.EXCHANGE_ACCOUNT,

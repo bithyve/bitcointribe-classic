@@ -1,16 +1,16 @@
 import React from 'react'
-import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
-import SubAccountDescribing from '../../../common/data/models/SubAccountInfo/Interfaces'
-import Colors from '../../../common/Colors'
-import SubAccountOptionCard from '../../../components/accounts/SubAccountOptionCard'
+import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { widthPercentageToDP } from 'react-native-responsive-screen'
-import CardStyles from '../../../common/Styles/Cards.js'
-import SubAccountKind from '../../../common/data/enums/SubAccountKind'
-import ServiceAccountKind from '../../../common/data/enums/ServiceAccountKind'
-import ExternalServiceSubAccountInfo from '../../../common/data/models/SubAccountInfo/ExternalServiceSubAccountInfo'
-import useAccountsState from '../../../utils/hooks/state-selectors/accounts/UseAccountsState'
-import Toast from '../../../components/Toast'
+import Colors from '../../../common/Colors'
 import AccountVisibility from '../../../common/data/enums/AccountVisibility'
+import ServiceAccountKind from '../../../common/data/enums/ServiceAccountKind'
+import SubAccountKind from '../../../common/data/enums/SubAccountKind'
+import ExternalServiceSubAccountInfo from '../../../common/data/models/SubAccountInfo/ExternalServiceSubAccountInfo'
+import SubAccountDescribing from '../../../common/data/models/SubAccountInfo/Interfaces'
+import CardStyles from '../../../common/Styles/Cards.js'
+import SubAccountOptionCard from '../../../components/accounts/SubAccountOptionCard'
+import Toast from '../../../components/Toast'
+import useAccountsState from '../../../utils/hooks/state-selectors/accounts/UseAccountsState'
 
 export interface Props {
   choices: SubAccountDescribing[];
@@ -26,7 +26,6 @@ const NewAccountOptionsSection: React.FC<Props> = ( {
   onOptionSelected,
 }: Props ) => {
 
-  const { currentWyreSubAccount } = useAccountsState()
   const { currentRampSubAccount } = useAccountsState()
   const { currentSwanSubAccount } = useAccountsState()
   /**
@@ -78,8 +77,6 @@ const NewAccountOptionsSection: React.FC<Props> = ( {
           return false
         case ServiceAccountKind.SWAN:
           return currentSwanSubAccount == null
-        case ServiceAccountKind.WYRE:
-          return currentWyreSubAccount == null
         case ServiceAccountKind.RAMP:
           return currentRampSubAccount == null
         default:
@@ -127,8 +124,6 @@ const NewAccountOptionsSection: React.FC<Props> = ( {
         case ServiceAccountKind.FNF_ACCOUNT:
           return 'COMING SOON'
         case ServiceAccountKind.SWAN:
-          return 'NEW'
-        case ServiceAccountKind.WYRE:
           return 'NEW'
         case ServiceAccountKind.RAMP:
           return 'NEW'
