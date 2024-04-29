@@ -27,7 +27,6 @@ import TransactionReassignmentSuccessBottomSheet from '../../../components/botto
 import ErrorModalContents from '../../../components/ErrorModalContents'
 import ModalContainer from '../../../components/home/ModalContainer'
 import BorderWalletKnowMore from '../../../components/know-more-sheets/BorderWalletKnowMore'
-import SavingAccountAlertBeforeLevel2 from '../../../components/know-more-sheets/SavingAccountAlertBeforeLevel2'
 import Toast from '../../../components/Toast'
 import { resetStackToAccountDetails } from '../../../navigation/actions/NavigationActions'
 import { fetchExchangeRates, fetchFeeRates, markReadTx, refreshAccountShells } from '../../../store/actions/accounts'
@@ -251,19 +250,6 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
     )
   }, [ secureAccountAlert ] )
 
-  const renderSecureAccountKnowMoreContent = () => {
-    return (
-      <SavingAccountAlertBeforeLevel2
-        titleClicked={()=>{
-          setSecureAccountAlert( true )
-          setSecureAccountKnowMore( false )
-        }}
-        containerStyle={{
-        }}
-      />
-    )
-  }
-
   useEffect( () => {
     // missing fee & exchange rates patch(restore & upgrade)
     if (
@@ -405,7 +391,7 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
         )
       }
 
-      {
+      {/* {
         primarySubAccount.type == AccountType.SAVINGS_ACCOUNT && (
           <ModalContainer onBackground={()=>setSecureAccountKnowMore( false )} visible={secureAccountKnowMore} closeBottomSheet={() => {
             if( !AllowSecureAccount && primarySubAccount.type == AccountType.SAVINGS_ACCOUNT ){
@@ -416,7 +402,7 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
             {renderSecureAccountKnowMoreContent()}
           </ModalContainer>
         )
-      }
+      } */}
 
     </View>
   )

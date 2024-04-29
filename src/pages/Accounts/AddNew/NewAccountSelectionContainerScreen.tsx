@@ -19,7 +19,6 @@ import NavStyles from '../../../common/Styles/NavStyles'
 import ButtonBlue from '../../../components/ButtonBlue'
 import ErrorModalContents from '../../../components/ErrorModalContents'
 import ModalContainer from '../../../components/home/ModalContainer'
-import SavingAccountAlertBeforeLevel2 from '../../../components/know-more-sheets/SavingAccountAlertBeforeLevel2'
 import useNewAccountChoices from '../../../utils/hooks/account-utils/UseNewAccountChoices'
 import NewAccountOptionsSection from './NewAccountOptionsSection'
 
@@ -162,16 +161,6 @@ const NewAccountSelectionContainerScreen: React.FC<Props> = ( { navigation }: Pr
     )
   }, [ secureAccountAlert ] )
 
-  const renderSecureAccountKnowMoreContent = () => {
-    return (
-      <SavingAccountAlertBeforeLevel2
-        titleClicked={()=>setSecureAccountKnowMore( false )}
-        containerStyle={{
-        }}
-      />
-    )
-  }
-
   return (
     <SafeAreaView style={styles.rootContainer}>
       <StatusBar backgroundColor={Colors.backgroundColor} barStyle="dark-content" />
@@ -282,9 +271,9 @@ const NewAccountSelectionContainerScreen: React.FC<Props> = ( { navigation }: Pr
       <ModalContainer onBackground={()=>setSecureAccountAlert( false )} visible={secureAccountAlert} closeBottomSheet={() => {setSecureAccountAlert( false )}} >
         {renderSecureAccountAlertContent()}
       </ModalContainer>
-      <ModalContainer onBackground={()=>setSecureAccountKnowMore( false )} visible={secureAccountKnowMore} closeBottomSheet={() => {setSecureAccountKnowMore( false )}} >
+      {/* <ModalContainer onBackground={()=>setSecureAccountKnowMore( false )} visible={secureAccountKnowMore} closeBottomSheet={() => {setSecureAccountKnowMore( false )}} >
         {renderSecureAccountKnowMoreContent()}
-      </ModalContainer>
+      </ModalContainer> */}
     </SafeAreaView>
   )
 }
