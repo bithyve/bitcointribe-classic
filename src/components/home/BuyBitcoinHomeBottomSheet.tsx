@@ -1,21 +1,18 @@
 import React, { useContext } from 'react'
-import { View, ImageSourcePropType, FlatList, Image, Platform, TouchableOpacity, Text, Linking, StyleSheet } from 'react-native'
+import { FlatList, Image, Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { ListItem } from 'react-native-elements'
-import * as RNLocalize from 'react-native-localize'
-import ListStyles from '../../common/Styles/ListStyles'
-import ImageStyles from '../../common/Styles/ImageStyles'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import Colors from '../../common/Colors'
-import { RFValue } from 'react-native-responsive-fontsize'
-import Fonts from '../../common/Fonts'
-import { LocalizationContext } from '../../common/content/LocContext'
-import BottomInfoBox from '../BottomInfoBox'
-import Ramp from '../../assets/images/svgs/ramp.svg'
-import Wyre from  '../../assets/images/svgs/wyre.svg'
 import LinearGradient from 'react-native-linear-gradient'
+import * as RNLocalize from 'react-native-localize'
+import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import Ramp from '../../assets/images/svgs/ramp.svg'
+import Colors from '../../common/Colors'
+import { LocalizationContext } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
+import ListStyles from '../../common/Styles/ListStyles'
+import BottomInfoBox from '../BottomInfoBox'
 
 export type Props = {
   onMenuItemSelected: ( menuItem: BuyBitcoinBottomSheetMenuItem ) => void;
@@ -25,7 +22,6 @@ export type Props = {
 export enum BuyMenuItemKind {
   FAST_BITCOINS = 'FAST_BITCOINS',
   SWAN = 'SWAN',
-  WYRE = 'WYRE',
   RAMP = 'RAMP'
 }
 
@@ -57,15 +53,6 @@ const BuyBitcoinHomeBottomSheet: React.FC<Props> = ( { onMenuItemSelected, onPre
       hasButton: true,
       link: 'https://support.ramp.network/en/',
     },
-    // {
-    //   title: strings.wyre,
-    //   subtitle: strings.wyreSub,
-    //   kind: BuyMenuItemKind.WYRE,
-    //   getImage: () => <Wyre />,
-    //   disabled: false,
-    //   hasButton: false,
-    //   link: 'https://support.sendwyre.com/hc/en-us',
-    // },
     // {
     //   title: Platform.OS == 'ios' ? 'Buy with FastBitcoins' : 'Buy with FastBitcoins',
     //   subtitle: 'Scan FastBitcoin vouchers',

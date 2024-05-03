@@ -26,7 +26,6 @@ const NewAccountOptionsSection: React.FC<Props> = ( {
   onOptionSelected,
 }: Props ) => {
 
-  const { currentWyreSubAccount } = useAccountsState()
   const { currentRampSubAccount } = useAccountsState()
   const { currentSwanSubAccount } = useAccountsState()
   /**
@@ -76,8 +75,6 @@ const NewAccountOptionsSection: React.FC<Props> = ( {
           return false
         case ServiceAccountKind.SWAN:
           return currentSwanSubAccount == null
-        case ServiceAccountKind.WYRE:
-          return currentWyreSubAccount == null
         case ServiceAccountKind.RAMP:
           return currentRampSubAccount == null
         default:
@@ -123,8 +120,6 @@ const NewAccountOptionsSection: React.FC<Props> = ( {
         case ServiceAccountKind.FNF_ACCOUNT:
           return 'COMING SOON'
         case ServiceAccountKind.SWAN:
-          return 'NEW'
-        case ServiceAccountKind.WYRE:
           return 'NEW'
         case ServiceAccountKind.RAMP:
           return 'NEW'

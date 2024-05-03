@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Accounts, AccountType, ActiveAddressAssignee, Wallet } from '../../../bitcoin/utilities/Interface'
 import AccountShell from '../../../common/data/models/AccountShell'
 import { AccountsState } from '../../../store/reducers/accounts'
@@ -24,11 +24,10 @@ export default function useReceivingAddressFromAccount(
     const assigneeInfo: ActiveAddressAssignee = {
       type: pickAddressFor,
       senderInfo: {
-        name: pickAddressFor === AccountType.WYRE_ACCOUNT? 'Wyre': 'Ramp'
+        name: 'Ramp'
       }
     }
     switch( pickAddressFor ) {
-        case AccountType.WYRE_ACCOUNT:
         case AccountType.RAMP_ACCOUNT:
           const shell = accountShells.find( shell =>  shell.primarySubAccount.type === pickAddressFrom && shell.primarySubAccount.instanceNumber === instance )
           const accountId = shell.primarySubAccount.id

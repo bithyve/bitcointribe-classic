@@ -108,7 +108,6 @@ import {
 import { setVersion } from '../../store/actions/versionHistory'
 import { AccountsState } from '../../store/reducers/accounts'
 import { makeContactRecipientDescription } from '../../utils/sending/RecipientFactories'
-import { CommonActions } from '@react-navigation/native'
 
 export const BOTTOM_SHEET_OPENING_ON_LAUNCH_DELAY: Milliseconds = 500
 export enum BottomSheetState {
@@ -122,7 +121,6 @@ export enum BottomSheetKind {
   ADD_CONTACT_FROM_ADDRESS_BOOK,
   NOTIFICATIONS_LIST,
   SWAN_STATUS_INFO,
-  WYRE_STATUS_INFO,
   RAMP_STATUS_INFO,
   ERROR,
   CLOUD_ERROR,
@@ -163,12 +161,9 @@ interface HomeStateTypes {
   swanDeepLinkContent: string | null;
   isBalanceLoading: boolean;
   addContactModalOpened: boolean;
-  wyreDeepLinkContent: string | null;
   rampDeepLinkContent: string | null;
   rampFromBuyMenu: boolean | null;
   rampFromDeepLink: boolean | null;
-  wyreFromBuyMenu: boolean | null;
-  wyreFromDeepLink: boolean | null;
   releaseNotes: string;
   giftLoading: boolean;
 }
@@ -203,7 +198,6 @@ interface HomePropsTypes {
   initializeHealthSetup: any;
   overallHealth: any;
   keeperInfo: any[];
-  // clearWyreCache: any;
   clearRampCache: any;
   clearSwanCache: any;
   updateSwanStatus: any;
@@ -224,12 +218,9 @@ interface HomePropsTypes {
   cardDataProps: any;
   secureAccount: any;
   setVersion: any;
-  wyreDeepLinkContent: string | null;
   rampDeepLinkContent: string | null;
   rampFromBuyMenu: boolean | null;
   rampFromDeepLink: boolean | null;
-  wyreFromBuyMenu: boolean | null;
-  wyreFromDeepLink: boolean | null;
   setCloudData: any;
   newBHRFlowStarted: any;
   cloudBackupStatus: CloudBackupStatus;
@@ -313,12 +304,9 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
       swanDeepLinkContent: null,
       isBalanceLoading: true,
       addContactModalOpened: false,
-      wyreDeepLinkContent: null,
       rampDeepLinkContent: null,
       rampFromBuyMenu: null,
       rampFromDeepLink: null,
-      wyreFromBuyMenu: null,
-      wyreFromDeepLink: null,
       releaseNotes: '',
     }
     this.currentNotificationId= ''
@@ -1748,7 +1736,6 @@ export default (
     acceptExistingContactRequest,
     rejectTrustedContact,
     initializeHealthSetup,
-    // clearWyreCache,
     clearRampCache,
     clearSwanCache,
     updateSwanStatus,

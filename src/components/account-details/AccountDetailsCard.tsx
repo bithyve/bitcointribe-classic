@@ -55,8 +55,6 @@ function shadowColorForAccountKind(
         switch (
           ( primarySubAccount as ExternalServiceSubAccountInfo ).serviceAccountKind
         ) {
-            case ServiceAccountKind.WYRE:
-              return Colors.danube
             case ServiceAccountKind.RAMP:
               return Colors.riptide
             case ServiceAccountKind.SWAN:

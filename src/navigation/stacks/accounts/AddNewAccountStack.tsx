@@ -19,7 +19,6 @@ export default function AddNewAccountStack() {
       <Stack.Screen name="NewHexaAccountDetails" component={NewHexaAccountDetailsScreen} options={{
         title: 'Setup New Account'
       }} />
-      {/* <Stack.Screen name="NewWyreAccountDetails" component={NewWyreAccountDetailsScreen} options={{ title: 'Setup Wyre Account' }} /> */}
       <Stack.Screen name="AccountDetails" component={AccountDetailsStack} options={{
         header: null
       }} />
