@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
+import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { AccountType } from '../../bitcoin/utilities/Interface'
 import Colors from '../../common/Colors'
 import Fonts from '../../common/Fonts'
-import { RFValue } from 'react-native-responsive-fontsize'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import CardWithRadioBtn from '../../components/CardWithRadioBtn'
-import useActiveAccountShells from '../../utils/hooks/state-selectors/accounts/UseActiveAccountShells'
 import getAvatarForSubAccount from '../../utils/accounts/GetAvatarForSubAccountKind'
-import { ScrollView } from 'react-native-gesture-handler'
+import useActiveAccountShells from '../../utils/hooks/state-selectors/accounts/UseActiveAccountShells'
 
 export type Props = {
   navigation: any;
@@ -75,7 +74,7 @@ export default function AccountSelection( { onClose, onChangeType } ) {
           height: hp( '36%' )
         }}>
           {activeAccounts.map( ( item, index ) => {
-            if ( [ AccountType.TEST_ACCOUNT, AccountType.SWAN_ACCOUNT, AccountType.DONATION_ACCOUNT ].includes( item.primarySubAccount.type ) || !item.primarySubAccount.isUsable || item.primarySubAccount.isTFAEnabled ) return
+            if ( [ AccountType.TEST_ACCOUNT, AccountType.SWAN_ACCOUNT ].includes( item.primarySubAccount.type ) || !item.primarySubAccount.isUsable || item.primarySubAccount.isTFAEnabled ) return
             return(
               <View key={index}>
                 <CardWithRadioBtn

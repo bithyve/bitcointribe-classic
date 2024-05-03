@@ -1,22 +1,22 @@
-import { Account, Accounts, AccountType, DonationAccount, MultiSigAccount, TxPriority, Wallet } from '../../bitcoin/utilities/Interface'
+import { call, delay, put, select } from 'redux-saga/effects'
+import semver from 'semver'
+import { Account, Accounts, AccountType, MultiSigAccount, TxPriority, Wallet } from '../../bitcoin/utilities/Interface'
 import AccountVisibility from '../../common/data/enums/AccountVisibility'
 import AccountShell from '../../common/data/models/AccountShell'
-import { updateAccountSettings, updateAccountShells } from '../actions/accounts'
-import { call, delay, put, select } from 'redux-saga/effects'
-import { AccountsState } from '../reducers/accounts'
 import dbManager from '../../storage/realm/dbManager'
+import { updateAccountSettings, updateAccountShells } from '../actions/accounts'
 import { updateMetaSharesKeeper, updateOldMetaSharesKeeper } from '../actions/BHR'
 import { updateWallet } from '../actions/storage'
-import semver from 'semver'
+import { AccountsState } from '../reducers/accounts'
 
 
 // import { addNewAccountShellsWorker, newAccountsInfo } from './accounts'
-import { addNewAccount, addNewAccountShellsWorker, generateShellFromAccount, newAccountsInfo, syncAccountsWorker } from './accounts'
-import { createWatcher } from '../utils/utilities'
-import { RECREATE_MISSING_ACCOUNTS, SWEEP_MISSING_ACCOUNTS, SYNC_MISSING_ACCOUNTS, updateSynchedMissingAccount } from '../actions/upgrades'
 import AccountOperations from '../../bitcoin/utilities/accounts/AccountOperations'
 import AccountUtilities from '../../bitcoin/utilities/accounts/AccountUtilities'
 import Toast from '../../components/Toast'
+import { RECREATE_MISSING_ACCOUNTS, SWEEP_MISSING_ACCOUNTS, SYNC_MISSING_ACCOUNTS, updateSynchedMissingAccount } from '../actions/upgrades'
+import { createWatcher } from '../utils/utilities'
+import { addNewAccount, addNewAccountShellsWorker, newAccountsInfo, syncAccountsWorker } from './accounts'
 
 export function* applyUpgradeSequence( { storedVersion, newVersion }: {storedVersion: string, newVersion: string} ) {
   if( semver.lt( storedVersion, '2.0.66' ) ) yield call( testAccountEnabler )
@@ -109,7 +109,7 @@ export function* restoreMultiSigTwoFAFlag( ) {
   )
 
   for( const account of Object.values( accountsState.accounts ) ){
-    if( [ AccountType.SAVINGS_ACCOUNT, AccountType.DONATION_ACCOUNT ].includes( account.type ) ){
+    if( [ AccountType.SAVINGS_ACCOUNT].includes( account.type ) ){
       if( ( account as MultiSigAccount ).xpubs && ( account as MultiSigAccount ).xpubs.secondary ){ // level-2 activated multisig account found
         if( !( account as MultiSigAccount ).is2FA ){ // faulty multisig account: missing is2FA flag
           ( account as MultiSigAccount ).is2FA = true
@@ -242,7 +242,7 @@ function* syncMissingAccounts( ) {
       }
 
       for ( const { accountType, accountDetails, recreationInstanceNumber } of accountsToSweepInfo ){
-        const account: Account | MultiSigAccount | DonationAccount = yield call(
+        const account: Account | MultiSigAccount = yield call(
           addNewAccount,
           accountType,
           accountDetails || {

@@ -53,13 +53,6 @@ const accountOptions: AccountOption[] = [
     subtitle: 'An on-chain, 2 of 3 multi-signature wallet. Use for securing larger amounts',
   },
   {
-    id: 4,
-    title: 'Donation Account',
-    type: AccountType.DONATION_ACCOUNT,
-    imageSource: require( '../assets/images/accIcons/icon_donation.png' ),
-    subtitle: 'Create a donation link in a few clicks. Post it anywhere, get sats in your wallet',
-  },
-  {
     id: 5,
     title: 'F&F Account',
     type: AccountType.WYRE_ACCOUNT,
