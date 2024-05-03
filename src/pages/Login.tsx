@@ -107,7 +107,7 @@ export default function Login( props ) {
     ( state ) => state.preferences.fcmTokenValue,
   )
   const { loginMethod }: { loginMethod: LoginMethod } = useSelector((state) => state.storage);
-console.log('loginMethod_login', loginMethod)
+  const {walletId} = useSelector((state) => state.storage.wallet);
   const [ processedLink, setProcessedLink ] = useState( null )
   const [ isDisabledProceed, setIsDisabledProceed ] = useState( false )
   const [ creationFlag, setCreationFlag ] = useState( false )
@@ -279,8 +279,7 @@ console.log('loginMethod_login', loginMethod)
         setTimeout(async () => {
             const { success, signature } = await RNBiometrics.createSignature({
               promptMessage: 'Authenticate',
-              payload: '',
-              // payload: appID,
+              payload: walletId,
               cancelButtonText: 'Use PIN',
             });
             if (success) {
