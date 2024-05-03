@@ -35,7 +35,6 @@ import ToggleContainer from './ToggleContainer'
 
 export enum BottomSheetKind {
   SWAN_STATUS_INFO,
-  WYRE_STATUS_INFO,
   RAMP_STATUS_INFO,
   ADD_A_WALLET_INFO
 }

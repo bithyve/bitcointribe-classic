@@ -1,23 +1,21 @@
 import React, { useRef } from 'react'
-import { View, Image, Text, StyleSheet } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
+import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
-import { RFValue } from 'react-native-responsive-fontsize'
-import { AppBottomSheetTouchableWrapper } from '../AppBottomSheetTouchableWrapper'
-import { ScrollView } from 'react-native-gesture-handler'
 import ServiceAccountKind from '../../common/data/enums/ServiceAccountKind'
+import Fonts from '../../common/Fonts'
 import openLink from '../../utils/OpenLink'
+import { AppBottomSheetTouchableWrapper } from '../AppBottomSheetTouchableWrapper'
 
 export default function ServiceAccountKnowMoreSheetContents( props ) {
   const scrollViewRef = useRef<ScrollView>()
 
   const headerText = () => {
     switch ( props.serviceKind ) {
-        case ServiceAccountKind.WYRE : return 'Wyre'
         case ServiceAccountKind.RAMP: return 'Ramp'
         case ServiceAccountKind.SWAN: return 'Swan Bitcoin'
 
@@ -28,7 +26,6 @@ export default function ServiceAccountKnowMoreSheetContents( props ) {
 
   const firstPara = () => {
     switch ( props.serviceKind ) {
-        case ServiceAccountKind.WYRE : return 'Have queries while purchasing Sats from Wyre? The company has an exhaustive FAQ section'
         case ServiceAccountKind.RAMP: return 'Have queries while purchasing Sats from Ramp? The company has an exhaustive FAQ section'
         case ServiceAccountKind.SWAN: return 'Have queries while purchasing Sats from Swan? The company has an exhaustive FAQ section'
 
@@ -39,7 +36,6 @@ export default function ServiceAccountKnowMoreSheetContents( props ) {
 
   const firstParaUrl = () => {
     switch ( props.serviceKind ) {
-        case ServiceAccountKind.WYRE : return 'https://support.sendwyre.com/hc/en-us/'
         case ServiceAccountKind.RAMP: return 'https://support.ramp.network/en/'
         case ServiceAccountKind.SWAN: return 'https://help.swanbitcoin.com/hc/en-us'
 
@@ -50,7 +46,6 @@ export default function ServiceAccountKnowMoreSheetContents( props ) {
 
   const images = () => {
     switch ( props.serviceKind ) {
-        case ServiceAccountKind.WYRE : return require( '../../assets/images/icons/wyre_bottomsheet.png' )
         case ServiceAccountKind.RAMP: return require( '../../assets/images/icons/ramp_bottomsheet.png' )
         case ServiceAccountKind.SWAN: return require( '../../assets/images/icons/swan_bottomsheet.png' )
 

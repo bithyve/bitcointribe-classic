@@ -219,7 +219,6 @@ export enum DerivativeAccountTypes {
   SUB_PRIMARY_ACCOUNT = 'SUB_PRIMARY_ACCOUNT',
   FAST_BITCOINS = 'FAST_BITCOINS',
   TRUSTED_CONTACTS = 'TRUSTED_CONTACTS',
-  WYRE = 'WYRE',
   RAMP = 'RAMP',
   SWAN = 'SWAN'
 }
@@ -271,21 +270,6 @@ export interface SubPrimaryDerivativeAccount {
     using: number;
   };
   [accounts: number]: SubPrimaryDerivativeAccountElements;
-}
-
-export interface WyreDerivativeAccountElements
-  extends DerivativeAccountElements {
-  accountName: string;
-  accountDescription: string;
-}
-
-export interface WyreDerivativeAccount {
-  series: number;
-  instance: {
-    max: number;
-    using: number;
-  };
-  [accounts: number]: WyreDerivativeAccountElements;
 }
 
 export interface RampDerivativeAccountElements
@@ -951,7 +935,6 @@ export enum AccountType {
   DEPOSIT_ACCOUNT = 'DEPOSIT_ACCOUNT',
   RAMP_ACCOUNT = 'RAMP_ACCOUNT',
   SWAN_ACCOUNT = 'SWAN_ACCOUNT',
-  WYRE_ACCOUNT = 'WYRE_ACCOUNT',
   EXCHANGE_ACCOUNT = 'EXCHANGE_ACCOUNT',
   FNF_ACCOUNT = 'FNF_ACCOUNT',
   LIGHTNING_ACCOUNT = 'LIGHTNING_ACCOUNT',

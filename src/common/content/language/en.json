@@ -265,8 +265,6 @@
     "learnMore": "Learn More",
     "ramp": "Buy with Ramp",
     "rampSub": "Low fee for those big buys",
-    "wyre": "Buy with Wyre",
-    "wyreSub": "Buy any amount",
     "manyWays": "Many ways to stack sats directly in Bitcoin Tribe",
     "Poweredby": "Powered by",
     "Notifications": "Notifications",
@@ -279,12 +277,7 @@
     "rampFail": "Ramp order failed",
     "rampProcessed": "Your order is being processed by Ramp, once successful the purchased bitcoin will be transferred to your Ramp account",
     "rampPaymentFail": "Ramp was not able to process your payment. Please try after sometime or use a different payment method",
-    "wyreMessage": "Wyre enables BTC purchases using Apple Pay, debit card, bank transfer as well as easy transfers using open banking where available. Payment methods available may vary based on your country. \n\nBy proceeding, you understand that Wyre will process the payment and transfer for the purchased bitcoin.",
-    "wyreTitle": "Buy bitcoin\nwith Wyre",
-    "wyreFail": "Wyre order failed",
-    "Ordersuccessful": "Order successful",
-    "wyreProcessed": "Your order is successful, the purchased bitcoin will be transferred to your Wyre account shortly",
-    "wyrePaymentFail": "Wyre was not able to process your payment. Please try after sometime or use a different payment method"
+    "Ordersuccessful": "Order successful"
   },
   "settings": {
     "settingsAndMore": "Settings & More",

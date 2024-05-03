@@ -8,6 +8,5 @@ export const TRUSTED_CONTACTS = 'TRUSTED_CONTACTS'
 
 // Third Party Services
 export const FAST_BITCOINS = 'FAST_BITCOINS'
-export const WYRE = 'WYRE'
 export const RAMP = 'RAMP'
 export const SWAN = 'SWAN'

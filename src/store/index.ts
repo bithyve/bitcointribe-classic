@@ -293,9 +293,6 @@ const rootSaga = function* () {
     createWithdrawalWalletOnSwanWatcher,
     addTempSwanAccountInfoWatcher,
 
-    // Wyre Integration
-    // fetchWyreReservationWatcher,
-
     // Ramp Integration
     fetchRampReservationWatcher,
 

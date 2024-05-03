@@ -61,8 +61,6 @@ const AccountDetailsKnowMoreBottomSheet: React.FC<Props> = ( {
 
         case SubAccountKind.SERVICE:
           switch( ( primarySubAccount as ExternalServiceSubAccountInfo ).serviceAccountKind ){
-              case ( ServiceAccountKind.WYRE ):
-                return serviceBottomSheet( ServiceAccountKind.WYRE )
               case ( ServiceAccountKind.RAMP ):
                 return serviceBottomSheet( ServiceAccountKind.RAMP )
               case ( ServiceAccountKind.SWAN ):
