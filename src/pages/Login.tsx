@@ -25,6 +25,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useDispatch, useSelector } from 'react-redux';
 import BottomSheet from 'reanimated-bottom-sheet';
+import LoginMethod from 'src/common/interfaces/LoginMethod';
 import Relay from '../bitcoin/utilities/Relay';
 import Colors from '../common/Colors';
 import { processDeepLink } from '../common/CommonFunctions';
