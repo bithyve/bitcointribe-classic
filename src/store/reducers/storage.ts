@@ -36,7 +36,6 @@ export default ( state = initialState, action ) => {
           .value()
           
       case SET_LOGIN_METHOD:
-        console.log('action.payload.method', action.payload.method)
         return {
           ...state,
           loginMethod : action.payload.method
