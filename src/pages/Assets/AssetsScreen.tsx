@@ -208,7 +208,7 @@ export default function AssetsScreen(props) {
         </Text>
         <Text style={styles.labelOuterText}>{item.ticker}</Text>
         <Text style={styles.amountText}>
-          {item.balance ? item.balance.settled : item.amount}
+          {item.balance ? numberWithCommas(item.balance.settled) : numberWithCommas(item.amount)}
         </Text>
       </TouchableOpacity>
     )

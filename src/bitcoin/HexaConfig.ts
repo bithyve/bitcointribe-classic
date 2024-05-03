@@ -3,7 +3,6 @@ import * as bitcoinJS from 'bitcoinjs-lib'
 import _ from 'lodash'
 import Config from 'react-native-config'
 import {
-  DONATION_ACCOUNT,
   RAMP,
   SUB_PRIMARY_ACCOUNT,
   SWAN,
@@ -14,13 +13,11 @@ import { APP_STAGE } from '../common/interfaces/Interfaces'
 import {
   AccountType,
   DerivativeAccount,
-  DerivativeAccounts,
-  DonationDerivativeAccount,
-  NetworkType,
+  DerivativeAccounts, NetworkType,
   RampDerivativeAccount,
   SwanDerivativeAccount,
   TrustedContactDerivativeAccount,
-  WyreDerivativeAccount,
+  WyreDerivativeAccount
 } from './utilities/Interface'
 
 class HexaConfig {
@@ -51,8 +48,6 @@ class HexaConfig {
   public SSS_OTP_LENGTH: string = Config.BIT_SSS_OTP_LENGTH ? Config.BIT_SSS_OTP_LENGTH.trim() : '6';
   public REQUEST_TIMEOUT: number = Config.BIT_REQUEST_TIMEOUT ? parseInt( Config.BIT_REQUEST_TIMEOUT.trim(), 10 ) : 15000;
   public GAP_LIMIT: number = Config.BIT_GAP_LIMIT ? parseInt( Config.BIT_GAP_LIMIT.trim(), 10 ) : 5;
-  public DONATION_GAP_LIMIT = Config.BIT_DONATION_GAP_LIMIT? parseInt( Config.BIT_DONATION_GAP_LIMIT.trim(), 10 ) : 50;
-  public DONATION_GAP_LIMIT_INTERNAL = Config.DONATION_GAP_LIMIT_INTERNAL? parseInt( Config.DONATION_GAP_LIMIT_INTERNAL.trim(), 10 ) : 20;
   public DEFAULT_GIFT_VALIDITY = 7 * 24 * 60 * 60 * 1000; // a week for prod and staging app (10 mins for dev app; initialized at constructor)
 
   public DERIVATIVE_GAP_LIMIT = 5;
@@ -144,10 +139,6 @@ class HexaConfig {
     },
     [ AccountType.SAVINGS_ACCOUNT ]: {
       series: 10,
-      upperBound: 10,
-    },
-    [ AccountType.DONATION_ACCOUNT ]: {
-      series: 20,
       upperBound: 10,
     },
     [ AccountType.SWAN_ACCOUNT ]: {
@@ -242,15 +233,6 @@ class HexaConfig {
     },
   };
 
-  public DONATION_ACCOUNT: DonationDerivativeAccount = {
-    series: Config.BIT_DONATION_ACCOUNT_SERIES ? parseInt( Config.BIT_DONATION_ACCOUNT_SERIES.trim(), 10 ) : 101,
-    instance: {
-      max: Config.BIT_DONATION_ACCOUNT_INSTANCE_COUNT ? parseInt( Config.BIT_DONATION_ACCOUNT_INSTANCE_COUNT.trim(), 10 ) : 5,
-      using: 0,
-    },
-  };
-
-
   public DERIVATIVE_ACC: DerivativeAccounts = {
     SUB_PRIMARY_ACCOUNT: this.SUB_PRIMARY_ACCOUNT,
     FAST_BITCOINS: this.FAST_BITCOINS,
@@ -258,10 +240,9 @@ class HexaConfig {
     RAMP: this.RAMP,
     SWAN: this.SWAN,
     TRUSTED_CONTACTS: this.TRUSTED_CONTACTS,
-    DONATION_ACCOUNT: this.DONATION_ACCOUNT,
   };
 
-  public EJECTED_ACCOUNTS = [ SUB_PRIMARY_ACCOUNT, DONATION_ACCOUNT, WYRE, RAMP, SWAN ];
+  public EJECTED_ACCOUNTS = [ SUB_PRIMARY_ACCOUNT, WYRE, RAMP, SWAN ];
 
   public DERIVATIVE_ACC_TO_SYNC = Object.keys( this.DERIVATIVE_ACC ).filter(
     ( account ) => !this.EJECTED_ACCOUNTS.includes( account ),

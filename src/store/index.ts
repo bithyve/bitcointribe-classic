@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 import { createMigrate, persistReducer, persistStore } from 'redux-persist'
 import { all, call, spawn } from 'redux-saga/effects'
+
 import {
   accountCheckWatcher,
   addNewAccountShellsWatcher,
@@ -20,7 +21,6 @@ import {
   testcoinsWatcher,
   txnReadWatcher,
   updateAccountSettingsWatcher,
-  updateDonationPreferencesWatcher,
   validateTwoFAWatcher
 } from './sagas/accounts'
 import {
@@ -147,7 +147,6 @@ import misc from './reducers/misc'
 import nodeSettingsReducer from './reducers/nodeSettings'
 import notificationsReducer from './reducers/notifications'
 import preferencesReducer from './reducers/preferences'
-import rampIntegrationReducer from './reducers/RampIntegration'
 import rgbReducer from './reducers/rgb'
 import sendingReducer from './reducers/sending'
 import setupAndAuthReducer from './reducers/setupAndAuth'
@@ -158,7 +157,6 @@ import upgrades from './reducers/upgrades'
 import upgradeToNewBhr from './reducers/upgradeToNewBhr'
 import VersionHistoryReducer from './reducers/versionHistory'
 import walletRescanningReducer from './reducers/wallet-rescanning'
-import wyreIntegrationReducer from './reducers/WyreIntegration'
 import reduxPersistMigrations from './redux-persist-migrations'
 import {
   fetchRampReservationWatcher
@@ -166,9 +164,6 @@ import {
 import { satCardAcountWatcher } from './sagas/satCardAccount'
 import { changeLoginMethodWatcher, updateUserNameWatcher } from './sagas/storage'
 import { versionHistoryWatcher } from './sagas/versionHistory'
-import {
-  fetchWyreReservationWatcher
-} from './sagas/WyreIntegration'
 
 const config = {
   key: 'root', // key is required
@@ -200,7 +195,6 @@ const rootSaga = function* () {
     resetTwoFAWatcher,
     fetchExchangeRatesWatcher,
     fetchFeeRatesWatcher,
-    updateDonationPreferencesWatcher,
     refreshAccountShellsWatcher,
     addNewAccountShellsWatcher,
     restoreAccountShellsWatcher,
@@ -302,7 +296,7 @@ const rootSaga = function* () {
     addTempSwanAccountInfoWatcher,
 
     // Wyre Integration
-    fetchWyreReservationWatcher,
+    // fetchWyreReservationWatcher,
 
     // Ramp Integration
     fetchRampReservationWatcher,
@@ -360,7 +354,7 @@ const rootSaga = function* () {
             yield call( saga )
             break
           } catch ( e ) {
-            console.log( e )
+            // error
           }
         }
       } )
@@ -381,8 +375,6 @@ const rootReducer = combineReducers( {
   preferences: preferencesReducer,
   swanIntegration: swanIntegrationReducer,
   walletRescanning: walletRescanningReducer,
-  wyreIntegration: wyreIntegrationReducer,
-  rampIntegration: rampIntegrationReducer,
   versionHistory: VersionHistoryReducer,
   cloud: cloudReducer,
   upgradeToNewBhr: upgradeToNewBhr,

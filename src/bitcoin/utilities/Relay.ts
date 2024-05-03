@@ -1,9 +1,9 @@
+import { AxiosResponse } from 'axios'
+import idx from 'idx'
+import { BH_AXIOS } from '../../services/api'
 import config from '../HexaConfig'
 import { Gift, GiftMetaData, INotification, NewWalletImage } from './Interface'
-import idx from 'idx'
 import TrustedContactsOperations from './TrustedContactsOperations'
-import { BH_AXIOS } from '../../services/api'
-import { AxiosResponse } from 'axios'
 
 const { HEXA_ID, RELAY } = config
 export default class Relay {
@@ -93,9 +93,6 @@ export default class Relay {
         walletID,
       } )
     } catch ( err ) {
-      console.log( {
-        err
-      } )
       if ( err.response ) throw new Error( err.response.data.err )
       if ( err.code ) throw new Error( err.code )
     }
@@ -124,11 +121,7 @@ export default class Relay {
           receivers,
           notification,
         } )
-        console.log( 'sendNotifications', {
-          res
-        } )
       } catch ( err ) {
-        // console.log({ err });
         if ( err.response ) throw new Error( err.response.data.err )
         if ( err.code ) throw new Error( err.code )
       }
@@ -143,33 +136,6 @@ export default class Relay {
     }
   };
 
-  public static sendDonationNote = async (
-    donationId: string,
-    txNote: { txId: string; note: string }
-  ): Promise<{
-    added: boolean;
-  }> => {
-    try {
-
-      if ( !txNote || !txNote.txId || !txNote.note )
-        throw new Error( 'Failed to send donation note: txid|note missing' )
-
-      const res: AxiosResponse = await BH_AXIOS.post( `${RELAY}addDonationTxNote`, {
-        HEXA_ID,
-        donationId,
-        txNote,
-      } )
-
-      const { added } = res.data
-      if ( !added ) throw new Error()
-
-      return {
-        added
-      }
-    } catch ( err ) {
-      throw new Error( 'Failed to send donation note' )
-    }
-  };
 
   public static fetchFeeAndExchangeRates = async ( currencyCode ): Promise<{
     exchangeRates: any;
@@ -193,7 +159,6 @@ export default class Relay {
         exchangeRates, averageTxFees
       }
     } catch ( err ) {
-      console.log( 'exrate', err )
       throw new Error( 'Failed fetch fee and exchange rates' )
     }
   };
@@ -267,9 +232,6 @@ export default class Relay {
         timeStamp
       } )
     } catch ( err ) {
-      console.log( {
-        err
-      } )
       if ( err.response ) throw new Error( err.response.data.err )
       if ( err.code ) throw new Error( err.code )
     }

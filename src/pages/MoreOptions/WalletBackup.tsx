@@ -183,7 +183,6 @@ const WalletBackup = ( props, navigation ) => {
         }
       } )
     } )
-    // console.log( 'accountsState on walletbackup====>' + JSON.stringify( accountsState.accountShells ) )
 
     const unsubscribe = props.navigation.addListener( 'focus', () => {
       updateAddressBook()
@@ -694,30 +693,16 @@ const WalletBackup = ( props, navigation ) => {
   const onChangeSeedWordBackUp = () => {
     let isAccountArchived = false
     let isBalanceFilled = false
-    let savingAccountCount = 0
 
     accountsState?.accountShells?.map( ( item, index ) => {
-      if ( item?.primarySubAccount?.type == AccountType.SAVINGS_ACCOUNT ) {
-        savingAccountCount++
-        localPrimarySubAccount = item.primarySubAccount
-        localAccountShell = item
-        setAccountShell( localAccountShell )
-        setPrimarySubAccount( localPrimarySubAccount )
-        if ( item?.primarySubAccount?.balances?.confirmed + item?.primarySubAccount?.balances?.unconfirmed != 0 ) {
-          isBalanceFilled = true
-        } else if ( item?.primarySubAccount?.visibility == AccountVisibility.ARCHIVED ) {
-          isAccountArchived = true
-        }
-      }
       if ( item?.primarySubAccount?.type == AccountType.CHECKING_ACCOUNT ) {
         const nextFreeAddress = getNextFreeAddress( dispatch,
           accountsState.accounts[ item.primarySubAccount.id ] )
         setCheckingAddress( nextFreeAddress )
       }
     } )
-    if ( savingAccountCount > 1 ) {
-      setMultipleAcccountModal( true )
-    } else if ( isBalanceFilled ) {
+  
+    if ( isBalanceFilled ) {
       setEmptyAccountErrorModal( true )
     } else if ( isAccountArchived || currentLevel < 2 )
       setSeedBackupModal( true )
@@ -961,7 +946,7 @@ const WalletBackup = ( props, navigation ) => {
                 goToHistory( obj, 'TYPE' )
               }
             } catch ( err ) {
-              console.log( 'err', err )
+              // error
             }
           }}
           onPressBack={() => {

@@ -1,5 +1,5 @@
 import { AccountType } from '../../../bitcoin/utilities/Interface'
-import { DONATION_ACCOUNT, RAMP, REGULAR_ACCOUNT, SECURE_ACCOUNT, SWAN, TEST_ACCOUNT, WYRE } from '../../../common/constants/wallet-service-types'
+import { RAMP, REGULAR_ACCOUNT, SECURE_ACCOUNT, SWAN, TEST_ACCOUNT, WYRE } from '../../../common/constants/wallet-service-types'
 import AccountShell from '../../../common/data/models/AccountShell'
 
 export const getAccountIcon = ( accountKind, derivativeAccountDetails? ) => {
@@ -7,9 +7,6 @@ export const getAccountIcon = ( accountKind, derivativeAccountDetails? ) => {
   let accountImageSource
   if( derivativeAccountDetails ){
     switch( derivativeAccountDetails.type ){
-        case DONATION_ACCOUNT:
-          accountImageSource = require( '../../../assets/images/icons/icon_donation_hexa.png' )
-          break
         case RAMP:
           accountImageSource = require( '../../../assets/images/icons/icon_ramp.png' )
           break
@@ -46,9 +43,6 @@ export const getAccountTitle = ( accountKind, derivativeAccountDetails ) => {
   let accountTitle
   if( derivativeAccountDetails ){
     switch( derivativeAccountDetails.type ){
-        case DONATION_ACCOUNT:
-          accountTitle = 'Donation Account'
-          break
         case RAMP:
           accountTitle = 'Ramp'
           break
@@ -96,9 +90,6 @@ export const getAccountIconByShell = ( accountShell: AccountShell ) => {
       case AccountType.SAVINGS_ACCOUNT:
         accountImageSource = require( '../../../assets/images/icons/icon_secureaccount.png' )
         break
-      case AccountType.DONATION_ACCOUNT:
-        accountImageSource = require( '../../../assets/images/icons/icon_donation_hexa.png' )
-        break
       case AccountType.RAMP_ACCOUNT:
         accountImageSource = require( '../../../assets/images/icons/icon_ramp.png' )
         break
@@ -129,9 +120,6 @@ export const getAccountTitleByShell = ( accountShell: AccountShell ) => {
         break
       case AccountType.SAVINGS_ACCOUNT:
         accountTitle = 'Savings Account'
-        break
-      case AccountType.DONATION_ACCOUNT:
-        accountTitle = 'Donation Account'
         break
       case AccountType.RAMP_ACCOUNT:
         accountTitle = 'Ramp'

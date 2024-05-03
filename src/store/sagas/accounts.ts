@@ -2,17 +2,16 @@ import * as bip39 from 'bip39'
 import * as bitcoinJS from 'bitcoinjs-lib'
 import { call, put, select } from 'redux-saga/effects'
 import config from '../../bitcoin/HexaConfig'
+import { generateAccount, generateMultiSigAccount } from '../../bitcoin/utilities/accounts/AccountFactory'
+import AccountOperations from '../../bitcoin/utilities/accounts/AccountOperations'
+import AccountUtilities from '../../bitcoin/utilities/accounts/AccountUtilities'
 import {
-  Account,
-  AccountType,
-  Accounts,
-  ActiveAddressAssignee,
+  Account, Accounts, AccountType, ActiveAddressAssignee,
   ActiveAddresses,
   ContactInfo,
   DeepLinkEncryptionType,
   DeepLinkKind,
   DerivationPurpose,
-  DonationAccount,
   Gift,
   GiftMetaData,
   GiftStatus,
@@ -27,14 +26,10 @@ import {
   UnecryptedStreamData,
   Wallet
 } from '../../bitcoin/utilities/Interface'
-import { generateAccount, generateDonationAccount, generateMultiSigAccount } from '../../bitcoin/utilities/accounts/AccountFactory'
-import AccountOperations from '../../bitcoin/utilities/accounts/AccountOperations'
-import AccountUtilities from '../../bitcoin/utilities/accounts/AccountUtilities'
 import BitcoinUnit from '../../common/data/enums/BitcoinUnit'
 import ServiceAccountKind from '../../common/data/enums/ServiceAccountKind'
 import SyncStatus from '../../common/data/enums/SyncStatus'
 import AccountShell from '../../common/data/models/AccountShell'
-import DonationSubAccountInfo from '../../common/data/models/SubAccountInfo/DonationSubAccountInfo'
 import ExternalServiceSubAccountInfo from '../../common/data/models/SubAccountInfo/ExternalServiceSubAccountInfo'
 import CheckingSubAccountInfo from '../../common/data/models/SubAccountInfo/HexaSubAccounts/CheckingSubAccountInfo'
 import LightningSubAccountInfo from '../../common/data/models/SubAccountInfo/HexaSubAccounts/LightningSubAccountInfo'
@@ -43,60 +38,29 @@ import TestSubAccountInfo from '../../common/data/models/SubAccountInfo/HexaSubA
 import SubAccountDescribing from '../../common/data/models/SubAccountInfo/Interfaces'
 import { APP_STAGE } from '../../common/interfaces/Interfaces'
 import {
+  accountChecked, accountSettingsUpdated, accountSettingsUpdateFailed, accountShellMergeFailed,
+  accountShellMergeSucceeded,
+  accountShellRefreshCompleted,
+  accountShellRefreshStarted, ADD_NEW_ACCOUNT_SHELLS, autoSyncShells, AUTO_SYNC_SHELLS,
+  CREATE_BORDER_WALLET,
+  CREATE_SM_N_RESETTFA_OR_XPRIV, exchangeRatesCalculated, FETCH_EXCHANGE_RATES,
+  FETCH_FEE_RATES, generateSecondaryXpriv, GENERATE_GIFTS,
+  GENERATE_SECONDARY_XPRIV, getTestcoins, GET_TESTCOINS, giftCreationSuccess, MARK_ACCOUNT_CHECKED,
+  MARK_READ_TRANSACTION, MergeAccountShellsActionPayload, MERGE_ACCOUNT_SHELLS, newAccountShellsAdded,
+  readTxn, ReassignTransactionsActionPayload, REASSIGN_TRANSACTIONS, recomputeNetBalance,
+  refreshAccountShells, REFRESH_ACCOUNT_SHELLS, resetTwoFA, RESET_TWO_FA,
+  RESTORE_ACCOUNT_SHELLS, secondaryXprivGenerated,
+  setAverageTxFee,
+  setResetTwoFALoader, SYNC_ACCOUNTS, transactionReassignmentFailed,
+  transactionReassignmentSucceeded,
+  twoFAResetted,
+  twoFAValid, updateAccounts, updateAccountShells, updateGift, UPDATE_ACCOUNT_SETTINGS,
+  VALIDATE_TWO_FA
+} from '../actions/accounts'
+import {
   setAllowSecureAccount,
   updateWalletImageHealth
 } from '../actions/BHR'
-import {
-  ADD_NEW_ACCOUNT_SHELLS,
-  AUTO_SYNC_SHELLS,
-  CREATE_BORDER_WALLET,
-  CREATE_SM_N_RESETTFA_OR_XPRIV,
-  FETCH_EXCHANGE_RATES,
-  FETCH_FEE_RATES,
-  GENERATE_GIFTS,
-  GENERATE_SECONDARY_XPRIV,
-  GET_TESTCOINS,
-  MARK_ACCOUNT_CHECKED,
-  MARK_READ_TRANSACTION,
-  MERGE_ACCOUNT_SHELLS,
-  MergeAccountShellsActionPayload,
-  REASSIGN_TRANSACTIONS,
-  REFRESH_ACCOUNT_SHELLS,
-  RESET_TWO_FA,
-  RESTORE_ACCOUNT_SHELLS,
-  ReassignTransactionsActionPayload,
-  SYNC_ACCOUNTS,
-  UPDATE_ACCOUNT_SETTINGS,
-  UPDATE_DONATION_PREFERENCES,
-  VALIDATE_TWO_FA,
-  accountChecked,
-  accountSettingsUpdateFailed,
-  accountSettingsUpdated,
-  accountShellMergeFailed,
-  accountShellMergeSucceeded,
-  accountShellRefreshCompleted,
-  accountShellRefreshStarted,
-  autoSyncShells,
-  exchangeRatesCalculated,
-  generateSecondaryXpriv,
-  getTestcoins,
-  giftCreationSuccess,
-  newAccountShellsAdded,
-  readTxn,
-  recomputeNetBalance,
-  refreshAccountShells,
-  resetTwoFA,
-  secondaryXprivGenerated,
-  setAverageTxFee,
-  setResetTwoFALoader,
-  transactionReassignmentFailed,
-  transactionReassignmentSucceeded,
-  twoFAResetted,
-  twoFAValid,
-  updateAccountShells,
-  updateAccounts,
-  updateGift
-} from '../actions/accounts'
 import { updateWallet } from '../actions/storage'
 import { AccountsState } from '../reducers/accounts'
 import { createWatcher } from '../utils/utilities'
@@ -121,7 +85,6 @@ import { syncPermanentChannelsWorker } from './trustedContacts'
 // to be used by react components(w/ dispatch)
 export function getNextFreeAddress( dispatch: any, account: Account | MultiSigAccount, requester?: ActiveAddressAssignee ) {
   if( !account.isUsable ) return ''
-  if( account.type === AccountType.DONATION_ACCOUNT ) return account.receivingAddress
 
   const { updatedAccount, receivingAddress } = AccountOperations.getNextFreeExternalAddress( account, requester )
   dispatch( updateAccounts( {
@@ -136,8 +99,6 @@ export function getNextFreeAddress( dispatch: any, account: Account | MultiSigAc
 // to be used by sagas(w/o dispatch)
 export function* getNextFreeAddressWorker( account: Account | MultiSigAccount, requester?: ActiveAddressAssignee ) {
   if( !account.isUsable ) return ''
-  if( account.type === AccountType.DONATION_ACCOUNT ) return account.receivingAddress
-
   const { updatedAccount, receivingAddress } = yield call( AccountOperations.getNextFreeExternalAddress, account, requester )
   yield put( updateAccounts( {
     accounts: {
@@ -238,7 +199,7 @@ export async function generateGiftLink( giftToSend: Gift, walletName: string, fc
       updatedGift: giftToSend, deepLink, encryptedChannelKeys, encryptionType: deepLinkEncryptionType, encryptionHint, deepLinkEncryptionOTP: deepLinkEncryptionKey, channelAddress: giftToSend.channelAddress, shortLink, encryptionKey
     }
   } catch( err ){
-    console.log( 'An error occured while generating gift: ', err )
+    // error
   }
 }
 
@@ -472,9 +433,7 @@ function* fetchFeeRatesWorker() {
     if ( !averageTxFeeByNetwork ) console.log( 'Failed to calculate fee rates' )
     else yield put( setAverageTxFee( averageTxFeeByNetwork ) )
   } catch ( err ) {
-    console.log( 'Failed to calculate fee rates', {
-      err
-    } )
+    // error
   }
 }
 
@@ -489,9 +448,7 @@ function* fetchExchangeRatesWorker() {
     if ( !exchangeRates ) console.log( 'Failed to fetch exchange rates' )
     else yield put( exchangeRatesCalculated( exchangeRates ) )
   } catch ( err ) {
-    console.log( 'Failed to fetch fee and exchange rates', {
-      err
-    } )
+  //  error
   }
 }
 
@@ -563,27 +520,6 @@ export const validateTwoFAWatcher = createWatcher(
   VALIDATE_TWO_FA
 )
 
-function* updateDonationPreferencesWorker( { payload } ) {
-  const { donationAccount, preferences } = payload
-
-  const { updated, updatedAccount }  = yield call(
-    AccountUtilities.updateDonationPreferences,
-    donationAccount,
-    preferences
-  )
-
-  if( updated ) yield put( updateAccountShells( {
-    accounts: {
-      [ updatedAccount.id ]: updatedAccount
-    }
-  } ) )
-  else throw new Error( 'Failed to update donation preferences' )
-}
-
-export const updateDonationPreferencesWatcher = createWatcher(
-  updateDonationPreferencesWorker,
-  UPDATE_DONATION_PREFERENCES
-)
 
 function* refreshAccountShellsWorker( { payload }: { payload: {
   shells: AccountShell[],
@@ -702,7 +638,6 @@ function* autoSyncShellsWorker( { payload }: { payload: { syncAll?: boolean, har
   )
   const shellsToSync: AccountShell[] = []
   const testShellsToSync: AccountShell[] = [] // Note: should be synched separately due to network difference(testnet)
-  const donationShellsToSync: AccountShell[] = []
   const lnShellsToSync: AccountShell[] = []
   for ( const shell of shells ) {
     if( syncAll || shell.primarySubAccount.visibility === AccountVisibility.DEFAULT ){
@@ -711,10 +646,6 @@ function* autoSyncShellsWorker( { payload }: { payload: { syncAll?: boolean, har
       switch( shell.primarySubAccount.type ){
           case AccountType.TEST_ACCOUNT:
             if( syncAll ) testShellsToSync.push( shell )
-            break
-
-          case AccountType.DONATION_ACCOUNT:
-            donationShellsToSync.push( shell )
             break
 
           case AccountType.LIGHTNING_ACCOUNT:
@@ -839,20 +770,6 @@ export function* generateShellFromAccount ( account: Account | MultiSigAccount )
           instanceNumber: account.instanceNum,
           customDisplayName: account.accountName,
           customDescription: account.accountDescription,
-        } )
-        break
-
-      case AccountType.DONATION_ACCOUNT:
-        primarySubAccount = new DonationSubAccountInfo( {
-          id: account.id,
-          xPub: ( account as DonationAccount ).is2FA? null: yield call( AccountUtilities.generateYpub, account.xpub, network ),
-          isUsable: account.isUsable,
-          instanceNumber: account.instanceNum,
-          customDisplayName: account.accountName,
-          customDescription: account.accountDescription,
-          doneeName: ( account as DonationAccount ).donee,
-          causeName: account.accountName,
-          isTFAEnabled: ( account as DonationAccount ).is2FA
         } )
         break
 
@@ -1000,31 +917,6 @@ export function* addNewAccount( accountType: AccountType, accountDetails: newAcc
           networkType: config.APP_STAGE === APP_STAGE.DEVELOPMENT? NetworkType.TESTNET: NetworkType.MAINNET,
         } )
         return savingsAccount
-
-      case AccountType.DONATION_ACCOUNT:
-        if( is2FAEnabled )
-          if( !wallet.secondaryXpub && !wallet.details2FA ) throw new Error( 'Fail to create savings account; secondary-xpub/details2FA missing' )
-
-        const donationInstanceCount = recreationInstanceNumber !== undefined ? recreationInstanceNumber :( accounts[ accountType ] )?.length | 0
-        const donationAccount: DonationAccount = yield call( generateDonationAccount, {
-          walletId,
-          type: accountType,
-          instanceNum: donationInstanceCount,
-          accountName: 'Donation Account',
-          accountDescription: accountName? accountName: 'Receive Donations',
-          donationName: accountName,
-          donationDescription: accountDescription,
-          donee: doneeName? doneeName: wallet.walletName,
-          primarySeed,
-          derivationPath: yield call( AccountUtilities.getDerivationPath, NetworkType.MAINNET, accountType, donationInstanceCount ),
-          is2FA: is2FAEnabled,
-          secondaryXpub: is2FAEnabled? wallet.secondaryXpub: null,
-          bithyveXpub:  is2FAEnabled? wallet.details2FA?.bithyveXpub: null,
-          networkType: config.APP_STAGE === APP_STAGE.DEVELOPMENT? NetworkType.TESTNET: NetworkType.MAINNET,
-        } )
-        const { setupSuccessful } = yield call( AccountUtilities.setupDonationAccount, donationAccount )
-        if( !setupSuccessful ) throw new Error( 'Failed to generate donation account' )
-        return donationAccount
 
       case AccountType.SWAN_ACCOUNT:
       case AccountType.DEPOSIT_ACCOUNT:
