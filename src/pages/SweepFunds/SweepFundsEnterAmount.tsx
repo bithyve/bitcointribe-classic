@@ -1,50 +1,33 @@
 import React, { Component } from 'react'
 import {
-  View,
-  Image,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  TextInput,
-  KeyboardAvoidingView,
-  Platform,
-  Keyboard,
-  SafeAreaView,
-  StatusBar,
-  BackHandler,
-  ScrollView,
+  BackHandler, Image, KeyboardAvoidingView,
+  Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View
 } from 'react-native'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import DeviceInfo from 'react-native-device-info'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import DeviceInfo from 'react-native-device-info'
-import BottomSheet from 'reanimated-bottom-sheet'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { UsNumberFormat } from '../../common/utilities'
+import BottomSheet from 'reanimated-bottom-sheet'
+import Colors from '../../common/Colors'
 import { getCurrencyImageName } from '../../common/CommonFunctions/index'
 import {
   REGULAR_ACCOUNT,
-  SECURE_ACCOUNT,
-  TRUSTED_CONTACTS,
-  TEST_ACCOUNT,
+  SECURE_ACCOUNT, TEST_ACCOUNT, TRUSTED_CONTACTS
 } from '../../common/constants/wallet-service-types'
+import Fonts from '../../common/Fonts'
+import { UsNumberFormat } from '../../common/utilities'
 
-import config from '../../bitcoin/HexaConfig'
-import { connect } from 'react-redux'
 import idx from 'idx'
-import ModalHeader from '../../components/ModalHeader'
-import RemoveSelectedAcoount from './RemoveSelectedAccount'
-import BottomInfoBox from '../../components/BottomInfoBox'
-import CurrencyKindToggleSwitch from '../../components/CurrencyKindToggleSwitch'
+import { connect } from 'react-redux'
+import config from '../../bitcoin/HexaConfig'
 import { getCurrencyImageByRegion } from '../../common/CommonFunctions/index'
-import AccountSelectionModalContents from '../Accounts/AccountSelectionModalContents'
+import CurrencyKindToggleSwitch from '../../components/CurrencyKindToggleSwitch'
 import SmallHeaderModal from '../../components/SmallHeaderModal'
+import AccountSelectionModalContents from '../Accounts/AccountSelectionModalContents'
 
 const currencyCode = [
   'BRL',
@@ -77,7 +60,6 @@ interface SweepFundsEnterAmountPropsTypes {
 
 interface SweepFundsEnterAmountStateTypes {
   RegularAccountBalance: any;
-  SavingAccountBalance: any;
   exchangeRates: any[];
   removeItem: any;
   recipients: any[];
@@ -109,7 +91,6 @@ class SweepFundsEnterAmount extends Component<
     super( props )
     this.state = {
       RegularAccountBalance: 0,
-      SavingAccountBalance: 0,
       exchangeRates: null,
       address: this.props.route.params.address,
       removeItem: {
@@ -229,7 +210,6 @@ class SweepFundsEnterAmount extends Component<
         secureBalance,
       },
       RegularAccountBalance: regularBalance,
-      SavingAccountBalance: secureBalance,
     } )
   };
 
@@ -237,7 +217,6 @@ class SweepFundsEnterAmount extends Component<
     const {
       serviceType,
       RegularAccountBalance,
-      SavingAccountBalance,
       switchOn,
       exchangeRates,
       CurrencyCode,
@@ -245,7 +224,6 @@ class SweepFundsEnterAmount extends Component<
     } = this.state
     let balance = 0
     if ( serviceType == REGULAR_ACCOUNT ) balance = RegularAccountBalance
-    if ( serviceType == SECURE_ACCOUNT ) balance = SavingAccountBalance
     if ( serviceType == REGULAR_ACCOUNT )
       balance = spendableBalances.regularBalance
     if ( serviceType == SECURE_ACCOUNT )
@@ -330,7 +308,6 @@ class SweepFundsEnterAmount extends Component<
       address,
       accountData,
       serviceType,
-      SavingAccountBalance,
       RegularAccountBalance,
       removeItem,
       spendableBalances,
@@ -748,7 +725,6 @@ class SweepFundsEnterAmount extends Component<
           renderContent={() => (
             <AccountSelectionModalContents
               RegularAccountBalance={spendableBalances.regularBalance}
-              SavingAccountBalance={spendableBalances.secureBalance}
               onPressBack={() => {
                 ( this.refs.AccountSelectionBottomSheet as any ).snapTo( 0 )
               }}

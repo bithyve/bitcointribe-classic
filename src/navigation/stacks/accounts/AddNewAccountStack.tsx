@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
-import AddNewDonationAccountDetailsScreen from '../../../pages/Accounts/AddNew/DonationAccount/AddNewDonationAccountDetailsScreen'
 import NewHexaAccountDetailsScreen from '../../../pages/Accounts/AddNew/HexaAccount/NewHexaAccountDetailsScreen'
 import NewAccountSelectionContainerScreen from '../../../pages/Accounts/AddNew/NewAccountSelectionContainerScreen'
 import NewRampAccountDetailsScreen from '../../../pages/Accounts/AddNew/RampAccount/NewRampAccountDetailsScreen'
@@ -28,9 +27,6 @@ export default function AddNewAccountStack() {
       }} />
       <Stack.Screen name="NewSwanAccountDetails" component={NewSwanAccountDetailsScreen} options={{
         title: 'Setup Swan Account'
-      }} />
-      <Stack.Screen name="AddNewDonationAccountDetails" component={AddNewDonationAccountDetailsScreen} options={{
-        header: null
       }} />
       <Stack.Screen name="TransactionDetails" component={TransactionDetailsContainerScreen} options={{
         title: 'TransactionDetails'

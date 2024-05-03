@@ -4,20 +4,20 @@ import {
   Image,
   StyleSheet,
   Text,
-  View,
+  View
 } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
   heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
+  widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
 import {
   SUB_PRIMARY_ACCOUNT,
-  TEST_ACCOUNT,
+  TEST_ACCOUNT
 } from '../../common/constants/wallet-service-types'
+import Fonts from '../../common/Fonts'
 import { UsNumberFormat } from '../../common/utilities'
 import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
 import openLink from '../../utils/OpenLink'
@@ -58,7 +58,6 @@ export default function TransactionDetailsBottomSheetContent( props ) {
       accountType == 'Savings Account' ||
       accountType == 'Test Account' ||
       accountType == 'Checking Account' ||
-      accountType == 'Donation Account' ||
       accountType === SUB_PRIMARY_ACCOUNT
     ) {
       return (
@@ -69,8 +68,6 @@ export default function TransactionDetailsBottomSheetContent( props ) {
                 ? primaryAccType === 'Savings Account'
                   ? require( '../../assets/images/icons/icon_secureaccount.png' )
                   : require( '../../assets/images/icons/icon_regular.png' )
-                : accountType == 'Donation Account'
-                  ? require( '../../assets/images/icons/icon_donation_account.png' )
                   : accountType == 'Savings Account'
                     ? require( '../../assets/images/icons/icon_secureaccount.png' )
                     : accountType == 'Test Account'

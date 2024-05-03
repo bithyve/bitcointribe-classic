@@ -219,7 +219,6 @@ export enum DerivativeAccountTypes {
   SUB_PRIMARY_ACCOUNT = 'SUB_PRIMARY_ACCOUNT',
   FAST_BITCOINS = 'FAST_BITCOINS',
   TRUSTED_CONTACTS = 'TRUSTED_CONTACTS',
-  DONATION_ACCOUNT = 'DONATION_ACCOUNT',
   RAMP = 'RAMP',
   SWAN = 'SWAN'
 }
@@ -258,28 +257,6 @@ export interface TrustedContactDerivativeAccount {
   };
   [accounts: number]: TrustedContactDerivativeAccountElements;
 }
-
-export interface DonationDerivativeAccountElements
-  extends DerivativeAccountElements {
-  donee: string;
-  id: string;
-  subject: string;
-  description: string;
-  configuration: {
-    displayBalance: boolean;
-  };
-  disableAccount: boolean;
-}
-
-export interface DonationDerivativeAccount {
-  series: number;
-  instance: {
-    max: number;
-    using: number;
-  };
-  [accounts: number]: DonationDerivativeAccountElements;
-}
-
 export interface SubPrimaryDerivativeAccountElements
   extends DerivativeAccountElements {
   accountName: string;
@@ -329,7 +306,6 @@ export interface DerivativeAccounts {
   [accountType: string]:
     | DerivativeAccount
     | TrustedContactDerivativeAccount
-    | DonationDerivativeAccount
     | SubPrimaryDerivativeAccount;
 }
 
@@ -951,32 +927,11 @@ export interface MultiSigAccount extends Account {
   }
 }
 
-export interface DonationAccount extends Account {
-  donee: string;
-  donationName: string;
-  donationDescription: string;
-  configuration: {
-    displayBalance: boolean;
-    displayIncomingTxs: boolean;
-    displayOutgoingTxs: boolean;
-  };
-  disableAccount: boolean;
-  is2FA: boolean,                       // is2FA enabled
-  xpubs?: {                             // additional xpubs for multi-sig
-    secondary: string,
-    bithyve: string,
-  }
-  xprivs?: {                            // additional xpirvs for multi-sig
-    secondary?: string,
-  },
-}
-
 export enum AccountType {
   TEST_ACCOUNT = 'TEST_ACCOUNT',
   CHECKING_ACCOUNT = 'CHECKING_ACCOUNT',
   CHECKING_ACCOUNT_NATIVE_SEGWIT = 'CHECKING_ACCOUNT_NATIVE_SEGWIT',
   SAVINGS_ACCOUNT = 'SAVINGS_ACCOUNT',
-  DONATION_ACCOUNT = 'DONATION_ACCOUNT',
   DEPOSIT_ACCOUNT = 'DEPOSIT_ACCOUNT',
   RAMP_ACCOUNT = 'RAMP_ACCOUNT',
   SWAN_ACCOUNT = 'SWAN_ACCOUNT',
@@ -988,7 +943,7 @@ export enum AccountType {
 }
 
 export interface Accounts {
-    [accountId: string]: Account | MultiSigAccount | DonationAccount
+    [accountId: string]: Account | MultiSigAccount 
 }
 
 export enum DeepLinkKind {
@@ -1011,7 +966,6 @@ export enum ShortLinkDomain {
   DEFAULT = 'https://app.hexawallet.io',
   CONTACT = 'https://request.bitcointribe.app',
   GIFT = 'https://gift.bitcointribe.app',
-  DONATION = 'https://donation.bitcointribe.app',
 }
 
 export enum DeepLinkEncryptionType {
@@ -1050,19 +1004,16 @@ export enum GiftStatus {
 export enum ShortLinkImage {
   GIFT = 'https://hexawallet.io/wp-content/uploads/2019/07/bitcoingift.png',
   FF = 'https://hexawallet.io/wp-content/uploads/2019/07/faf.png',
-  DONATION = 'https://hexawallet.io/images/donation.png',
 }
 
 export enum ShortLinkTitle {
   GIFT = 'Bitcoin gift',
   FF = 'Friends & Family request',
-  DONATION = 'Bitcoin donation',
 }
 
 export enum ShortLinkDescription {
   GIFT = 'You\'ve received some sats from your contact! Open the link to accept the gift.',
   FF = 'You\'ve received a request to be added as a contact. Accept and transact bitcoin more efficiently.',
-  DONATION = 'You can give sats as a donation with this link. Open the link to donate sats to the cause.',
   KEEPER = 'You\'ve received a request to store a Recovery Key. Accept and help your contact backup their app.'
 }
 

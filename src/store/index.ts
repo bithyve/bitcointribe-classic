@@ -21,7 +21,6 @@ import {
   testcoinsWatcher,
   txnReadWatcher,
   updateAccountSettingsWatcher,
-  updateDonationPreferencesWatcher,
   validateTwoFAWatcher
 } from './sagas/accounts'
 import {
@@ -194,7 +193,6 @@ const rootSaga = function* () {
     resetTwoFAWatcher,
     fetchExchangeRatesWatcher,
     fetchFeeRatesWatcher,
-    updateDonationPreferencesWatcher,
     refreshAccountShellsWatcher,
     addNewAccountShellsWatcher,
     restoreAccountShellsWatcher,
