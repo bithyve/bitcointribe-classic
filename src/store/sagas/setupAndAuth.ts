@@ -222,19 +222,25 @@ function* resetPasswordWorker({ payload }) {
 function* credentialsAuthWorker({ payload }) {
   yield put(switchSetupLoader('authenticating'));
   let key;
+  let encryptedKey;
+  let hash;
+  const {walletId} = yield select((state) => state.storage.wallet);
   try {
     const { method } = payload;
-    let hash = yield call(Cipher.hash, payload.passcode);
-    let encryptedKey = yield call(SecureStore.fetch, hash);
     if (method === LoginMethod.PIN) {
+    hash = yield call(Cipher.hash, payload.passcode);
+    encryptedKey = yield call(SecureStore.fetch, hash);
     key = yield call(Cipher.decrypt, encryptedKey, hash);
     const uint8array = yield call(Cipher.stringToArrayBuffer, key);
     yield call(dbManager.initDb, uint8array);
     } else if (method === LoginMethod.BIOMETRIC) {
-      const res = yield call(SecureStore.verifyBiometricAuth, hash);
+      const res = yield call(SecureStore.verifyBiometricAuth, payload.passcode, walletId);
       if (!res.success) throw new Error('Biometric Auth Failed');
       hash = res.hash;
       encryptedKey = res.encryptedKey;
+      key = yield call(Cipher.decrypt, encryptedKey, hash);
+      const uint8array = yield call(Cipher.stringToArrayBuffer, key);
+      yield call(dbManager.initDb, uint8array);
     }
   } catch (err) {
     console.log('err', err);
