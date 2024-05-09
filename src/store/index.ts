@@ -161,9 +161,8 @@ import reduxPersistMigrations from './redux-persist-migrations'
 import {
   fetchRampReservationWatcher
 } from './sagas/RampIntegration'
-
 import { satCardAcountWatcher } from './sagas/satCardAccount'
-import { updateUserNameWatcher } from './sagas/storage'
+import { changeLoginMethodWatcher, updateUserNameWatcher } from './sagas/storage'
 import { versionHistoryWatcher } from './sagas/versionHistory'
 
 const config = {
@@ -185,6 +184,9 @@ const rootSaga = function* () {
     changeAuthCredWatcher,
     applicationUpdateWatcher,
     resetPinCredWatcher,
+
+    // BioMetrics
+    changeLoginMethodWatcher,
 
     // accounts watchers
     syncAccountsWatcher,
@@ -338,7 +340,7 @@ const rootSaga = function* () {
     satCardAcountWatcher,
     // rgb
     rgbSyncWatcher,
-    receiveRgbAssetWatcher
+    receiveRgbAssetWatcher,
   ]
 
   yield all(

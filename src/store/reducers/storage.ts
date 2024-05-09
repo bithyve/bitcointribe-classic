@@ -1,19 +1,23 @@
 import { chain } from 'icepick'
-import {
-  KEY_FETCHED,
-  UPDATE_WALLET,
-} from '../actions/storage'
+import LoginMethod from 'src/common/interfaces/LoginMethod'
 import { Wallet } from '../../bitcoin/utilities/Interface'
 import { COMPLETED_WALLET_SETUP } from '../actions/setupAndAuth'
+import {
+  KEY_FETCHED,
+  SET_LOGIN_METHOD,
+  UPDATE_WALLET
+} from '../actions/storage'
 
 const initialState: {
   wallet: Wallet;
   key: String;
   walletExists: boolean,
+  loginMethod: LoginMethod;
 } = {
   wallet: null,
   key: '',
-  walletExists: false
+  walletExists: false,
+  loginMethod: LoginMethod.PIN,
 }
 
 export default ( state = initialState, action ) => {
@@ -30,6 +34,12 @@ export default ( state = initialState, action ) => {
         return chain( state )
           .setIn( [ 'walletExists' ], true )
           .value()
+          
+      case SET_LOGIN_METHOD:
+        return {
+          ...state,
+          loginMethod : action.payload.method
+        }
 
   }
   return state

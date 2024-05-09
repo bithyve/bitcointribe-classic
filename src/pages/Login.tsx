@@ -1,8 +1,8 @@
-import firebase from '@react-native-firebase/app'
-import messaging from '@react-native-firebase/messaging'
-import { CommonActions, useFocusEffect } from '@react-navigation/native'
-import JailMonkey from 'jail-monkey'
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import firebase from '@react-native-firebase/app';
+import messaging from '@react-native-firebase/messaging';
+import { useFocusEffect } from '@react-navigation/native';
+import JailMonkey from 'jail-monkey';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import {
   BackHandler,
   Keyboard,
@@ -13,43 +13,46 @@ import {
   Text,
   TouchableOpacity,
   View
-} from 'react-native'
-import DeviceInfo from 'react-native-device-info'
-import LinearGradient from 'react-native-linear-gradient'
-import { RFValue } from 'react-native-responsive-fontsize'
+} from 'react-native';
+import ReactNativeBiometrics from 'react-native-biometrics';
+import DeviceInfo from 'react-native-device-info';
+import { RFValue } from 'react-native-responsive-fontsize';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
-} from 'react-native-responsive-screen'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import { useDispatch, useSelector } from 'react-redux'
-import BottomSheet from 'reanimated-bottom-sheet'
-import Relay from '../bitcoin/utilities/Relay'
-import Colors from '../common/Colors'
-import { processDeepLink } from '../common/CommonFunctions'
-import { LocalizationContext } from '../common/content/LocContext'
-import CloudBackupStatus from '../common/data/enums/CloudBackupStatus'
-import Fonts from '../common/Fonts'
-import AlertModalContents from '../components/AlertModalContents'
-import ErrorModalContents from '../components/ErrorModalContents'
-import BottomInputModalContainer from '../components/home/BottomInputModalContainer'
-import ModalContainer from '../components/home/ModalContainer'
-import LoaderModal from '../components/LoaderModal'
-import Toast from '../components/Toast'
-import { setOpenToApproval } from '../store/actions/BHR'
-import { setCloudBackupStatus } from '../store/actions/cloud'
+} from 'react-native-responsive-screen';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useDispatch, useSelector } from 'react-redux';
+import BottomSheet from 'reanimated-bottom-sheet';
+import LoginMethod from 'src/common/interfaces/LoginMethod';
+import Relay from '../bitcoin/utilities/Relay';
+import Colors from '../common/Colors';
+import { processDeepLink } from '../common/CommonFunctions';
+import { LocalizationContext } from '../common/content/LocContext';
+import CloudBackupStatus from '../common/data/enums/CloudBackupStatus';
+import Fonts from '../common/Fonts';
+import AlertModalContents from '../components/AlertModalContents';
+import ErrorModalContents from '../components/ErrorModalContents';
+import BottomInputModalContainer from '../components/home/BottomInputModalContainer';
+import ModalContainer from '../components/home/ModalContainer';
+import LoaderModal from '../components/LoaderModal';
+import Toast from '../components/Toast';
+import { setOpenToApproval } from '../store/actions/BHR';
+import { setCloudBackupStatus } from '../store/actions/cloud';
 import {
   updateFCMTokens
-} from '../store/actions/notifications'
+} from '../store/actions/notifications';
 import {
   setFCMToken,
   setIsPermissionGiven
-} from '../store/actions/preferences'
-import { credsAuth } from '../store/actions/setupAndAuth'
-import ConfirmSeedWordsModal from './NewBHR/ConfirmSeedWordsModal'
-import SecurityQuestion from './NewBHR/SecurityQuestion'
-import SecuritySeedWord from './NewBHR/SecuritySeedWord'
+} from '../store/actions/preferences';
+import { credsAuth } from '../store/actions/setupAndAuth';
+import ConfirmSeedWordsModal from './NewBHR/ConfirmSeedWordsModal';
+import SecurityQuestion from './NewBHR/SecurityQuestion';
+import SecuritySeedWord from './NewBHR/SecuritySeedWord';
+
+const RNBiometrics = new ReactNativeBiometrics();
 
 export default function Login( props ) {
   const { translations } = useContext( LocalizationContext )
@@ -89,6 +92,7 @@ export default function Login( props ) {
   const [ showPasscodeErrorModal, setPasscodeErrorModal ] = useState( false )
   const [ loaderModal, setloaderModal ] = useState( false )
   const [ errorModal, setErrorModal ] = useState( false )
+  const [canLogin, setCanLogin] = useState(false);
   const [ showAlertModal, setShowAlertModal ]=useState( false )
   const [ confirmSeedWordModal, setConfirmSeedWordModal ] = useState( false )
   const [ info, setInfo ] = useState( '' )
@@ -102,6 +106,8 @@ export default function Login( props ) {
   const existingFCMToken = useSelector(
     ( state ) => state.preferences.fcmTokenValue,
   )
+  const { loginMethod }: { loginMethod: LoginMethod } = useSelector((state) => state.storage);
+  const {walletId} = useSelector((state) => state.storage.wallet);
   const [ processedLink, setProcessedLink ] = useState( null )
   const [ isDisabledProceed, setIsDisabledProceed ] = useState( false )
   const [ creationFlag, setCreationFlag ] = useState( false )
@@ -260,6 +266,31 @@ export default function Login( props ) {
       }
     }, 100 )
   }, [ isAuthenticated, walletExists, processedLink ] )
+
+  useEffect(() => {
+    biometricAuth();
+  }, [loginMethod === LoginMethod.BIOMETRIC]);
+
+  const biometricAuth = async () => {
+    if (loginMethod === LoginMethod.BIOMETRIC) {
+      try {
+        setTimeout(async () => {
+            const { success, signature } = await RNBiometrics.createSignature({
+              promptMessage: 'Authenticate',
+              payload: walletId,
+              cancelButtonText: 'Use PIN',
+            });
+            if (success) {
+              dispatch(credsAuth(signature, LoginMethod.BIOMETRIC));
+            }
+        }, 200);
+      } catch (error) {
+        //
+        console.log(error);
+      }
+    }
+  };
+
   const bootStrapNotifications = async () => {
     dispatch( setIsPermissionGiven( true ) )
     const t0 = performance.now()
@@ -304,7 +335,7 @@ export default function Login( props ) {
 
   const handleLoaderMessages = ( passcode ) => {
     setTimeout( () => {
-      dispatch( credsAuth( passcode ) )
+      dispatch( credsAuth( passcode, LoginMethod.PIN, ) )
     }, 2 )
   }
 
@@ -653,17 +684,11 @@ export default function Login( props ) {
                 handleLoaderMessages( passcode )
               }}
             >
-              <LinearGradient
-                start={{
-                  x: 0, y: 0
-                }} end={{
-                  x: 1, y: 0
-                }}
-                colors={[ Colors.skyBlue, Colors.darkBlue ]}
-                style={styles.proceedButtonView}
+              <View
+                style={[styles.proceedButtonView,{backgroundColor: Colors.blue}]}
               >
                 <Text style={styles.proceedButtonText}>{common.proceed}</Text>
-              </LinearGradient>
+              </View>
             </TouchableOpacity>
           </View>
         </View>

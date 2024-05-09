@@ -105,6 +105,8 @@
 	<string>Allow HEXA to access your reminders</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Our app does not request this permission or utilize this functionality but it is included in our info.plist since our app utilizes the react-native-permissions library, which references this permission in its code.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>$(PRODUCT_NAME) Authentication with TouchId or FaceID</string>
 	<key>NSUbiquitousContainers</key>
 	<dict>
 		<key>iCloud.io.hexawallet.hexa</key>

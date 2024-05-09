@@ -15,7 +15,6 @@ import {
   View
 } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
-import LinearGradient from 'react-native-linear-gradient'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
   heightPercentageToDP as hp,
@@ -299,17 +298,11 @@ const NewWalletName: React.FC<Props> = ( { route, navigation }: Props ) => {
                     }, 1000 )
                   }}
                 >
-                  <LinearGradient colors={[ Colors.blue, Colors.darkBlue ]}
-                    start={{
-                      x: 0, y: 0
-                    }} end={{
-                      x: 1, y: 0
-                    }}
-                    locations={[ 0.2, 1 ]}
-                    style={styles.buttonView}
+                  <View
+                    style={[styles.buttonView,{backgroundColor: Colors.blue}]}
                   >
                     <Text style={styles.buttonText}>{common.proceed}</Text>
-                  </LinearGradient>
+                  </View>
                 </TouchableOpacity>
               </View>
             ) : null}

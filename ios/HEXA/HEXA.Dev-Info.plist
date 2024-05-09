@@ -54,20 +54,17 @@
 	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>whatsapp</string>
-		<string>mailto</string>
+		<string>keeper</string>
+		<string>keeperdev</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NFCReaderUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to use NFC</string>
-	<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
-	<array>
-	<string>D2760000850100</string>
-	<string>D2760000850101</string>
-	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
@@ -99,6 +96,8 @@
 	<string>Our app does not request this permission or utilize this functionality but it is included in our info.plist since our app utilizes the react-native-permissions library, which references this permission in its code.</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>Allow HEXA to access your reminders</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>$(PRODUCT_NAME) Authentication with TouchId or FaceID</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Our app does not request this permission or utilize this functionality but it is included in our info.plist since our app utilizes the react-native-permissions library, which references this permission in its code.</string>
 	<key>NSUbiquitousContainers</key>
@@ -153,10 +152,10 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>LSApplicationQueriesSchemes</key>
+	<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
 	<array>
-			<string>keeper</string>
-			<string>keeperdev</string>
+		<string>D2760000850100</string>
+		<string>D2760000850101</string>
 	</array>
 </dict>
 </plist>

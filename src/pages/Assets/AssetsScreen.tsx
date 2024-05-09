@@ -19,6 +19,7 @@ import {
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import { useDispatch, useSelector } from 'react-redux'
+import { windowHeight } from 'src/common/data/responsiveness/responsive'
 import ActivityIndicatorView from 'src/components/loader/ActivityIndicatorView'
 import RGBIntroModal from 'src/components/rgb/RGBIntroModal'
 import RGBInactive from '../../assets/images/tabs/rgb_inactive.svg'
@@ -428,7 +429,7 @@ export default function AssetsScreen(props) {
           bottomImage={require('../../assets/images/icons/contactPermission.png')}
           showBtn={!syncing && proceed}
           closeModal={()=>{dispatch(setRgbIntroModal(false));setProceed(false)}}
-          height={hp(60)}
+          height={windowHeight < 600? hp(60) : hp(52)}
         />
       </ModalContainer>
       {/* <ModalContainer

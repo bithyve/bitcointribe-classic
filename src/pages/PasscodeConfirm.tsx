@@ -5,9 +5,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
   heightPercentageToDP as hp,
@@ -16,17 +15,52 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { useDispatch, useSelector } from 'react-redux'
+import { AppBottomSheetTouchableWrapper } from 'src/components/AppBottomSheetTouchableWrapper'
+import ModalContainer from 'src/components/home/ModalContainer'
 import Colors from '../common/Colors'
-import Fonts from '../common/Fonts'
 import { LocalizationContext } from '../common/content/LocContext'
-import BottomInfoBox from '../components/BottomInfoBox'
+import Fonts from '../common/Fonts'
 import { storeCreds } from '../store/actions/setupAndAuth'
+
+const RememberPasscode = (props) => {
+  const { translations } = useContext( LocalizationContext )
+  const common = translations[ 'common' ]
+  return(
+    <View style={styles.modalContainer}>
+      <View>
+        <Text style={styles.modalHeaderText}>Remember your passcode</Text>
+      </View>
+      <View>
+      <Text style={styles.modalInfoText}>Your app storage is encrypted by the passcode. You will not be able to log in if you forget the passcode and will have to recover your wallet using the recovery flow</Text>
+      </View>
+      <View
+      style={{
+        ...styles.continueButton,
+        backgroundColor: Colors.blue,
+      }}
+    >
+      <AppBottomSheetTouchableWrapper
+        onPress={props.onContinue}
+        delayPressIn={0}
+      >
+        <Text
+          style={styles.proceedButtonText}
+        >
+          {common.continue}
+        </Text>
+      </AppBottomSheetTouchableWrapper>
+
+      </View>
+    </View>
+  )
+}
 
 export default function PasscodeConfirm( props ) {
   const [ passcode, setPasscode ] = useState( '' )
   const [ confirmPasscode, setConfirmPasscode ] = useState( '' )
   const [ passcodeFlag, setPasscodeFlag ] = useState( true )
   const [ confirmPasscodeFlag, setConfirmPasscodeFlag ] = useState( 0 )
+  const [ passcodeModal, setPasscodeModal ] = useState( false )
   // const iCloud = NativeModules.iCloud
   const { translations } = useContext( LocalizationContext )
   const strings = translations[ 'login' ]
@@ -481,7 +515,7 @@ export default function PasscodeConfirm( props ) {
               </View>
             </View>
           ) : null}
-          {passcode.length != 4 &&
+          {/* {passcode.length != 4 &&
             <View style={ {
               marginTop: 20
             } }>
@@ -491,7 +525,7 @@ export default function PasscodeConfirm( props ) {
                 infoText={'Your app storage is encrypted by the passcode. You will not be able to log in if you forget the passcode and will have to recover your wallet using the recovery flow'}
               />
             </View>
-          }
+          } */}
           {passcode.length == 4 ? (
             <View style={{
               flexDirection: 'row',
@@ -500,15 +534,9 @@ export default function PasscodeConfirm( props ) {
             }}>
               <TouchableOpacity
                 disabled={passcode == confirmPasscode ? false : true}
-                onPress={() => dispatch( storeCreds( passcode ) ) }
+                onPress={() => setPasscodeModal(true) }
               >
-                <LinearGradient colors={[ Colors.blue, Colors.darkBlue ]}
-                  start={{
-                    x: 0, y: 0
-                  }} end={{
-                    x: 1, y: 0
-                  }}
-                  locations={[ 0.2, 1 ]}
+                <View
                   style={{
                     ...styles.proceedButtonView,
                     backgroundColor:
@@ -516,7 +544,7 @@ export default function PasscodeConfirm( props ) {
                   }}
                 >
                   <Text style={styles.proceedButtonText}>{common.proceed}</Text>
-                </LinearGradient>
+                </View>
               </TouchableOpacity>
             </View>
           ) : null}
@@ -660,7 +688,22 @@ export default function PasscodeConfirm( props ) {
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+        <ModalContainer
+        onBackground={()=>{}}
+        closeBottomSheet={() => {}}
+        visible={passcodeModal}
+      >
+        <RememberPasscode 
+          onContinue={()=>{
+            setPasscodeModal(false);
+            setTimeout(()=>{
+              dispatch( storeCreds( passcode ) )
+            }, 100)
+            
+          }}
+          />
+      </ModalContainer>
+      </View>  
     </SafeAreaView>
   )
 }
@@ -777,5 +820,30 @@ const styles = StyleSheet.create( {
     width: wp( '72%' ),
     textAlign:'right',
     marginTop: hp( '1.5%' ),
+  },
+  modalContainer: {
+    padding: 25,
+    backgroundColor:Colors.LIGHT_BACKGROUND
+  },
+  continueButton:{
+    marginTop: hp( '8%' ),
+    height: wp( '13%' ),
+    width: wp( '30%' ),
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 8,
+    alignSelf: 'flex-end'
+  },
+  modalHeaderText: {
+    color: Colors.THEAM_TEXT_COLOR,
+    fontSize: RFValue( 22 ),
+    marginTop: hp( '4%' ),
+    fontFamily: Fonts.Medium
+  },
+  modalInfoText: {
+    color: Colors.THEAM_INFO_TEXT_COLOR,
+    fontSize: RFValue( 12 ),
+    marginTop: hp( '1%' ),
+    fontFamily: Fonts.Regular
   }
 } )
