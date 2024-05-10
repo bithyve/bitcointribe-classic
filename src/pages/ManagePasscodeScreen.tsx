@@ -11,6 +11,7 @@ import Fonts from '../common/Fonts'
 
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen'
 import { useDispatch, useSelector } from 'react-redux'
+import LoginMethod from 'src/common/interfaces/LoginMethod'
 import { translations } from '../common/content/LocContext'
 import HeaderTitle from '../components/HeaderTitle'
 import { credsAuth, switchReLogin } from '../store/actions/setupAndAuth'
@@ -81,7 +82,7 @@ export default function ManagePasscodeScreen( props ) {
       }}>
         <View>
           <Text style={styles.headerInfoText}>
-            {strings.enter_your}{' '}
+            {strings.enter_your}{''}
             <Text style={styles.boldItalicText}>{strings.existingPasscode}</Text>
           </Text>
           <View style={styles.passcodeTextInputView}>
@@ -227,7 +228,7 @@ export default function ManagePasscodeScreen( props ) {
           <TouchableOpacity
             disabled={pin.length == 4 ? false : true}
             onPress={() => {
-              dispatch( credsAuth( pin, true ) )
+              dispatch( credsAuth( pin, LoginMethod.PIN, true ) )
               //props.navigation.navigate('SettingGetNewPin')
               //PinChangeSuccessBottomSheet.current.snapTo(1);
             }}
@@ -484,8 +485,8 @@ const styles = StyleSheet.create( {
     marginBottom: heightPercentageToDP( '4.5%' ),
   },
   boldItalicText: {
-    fontFamily: Fonts.MediumItalic,
-    fontWeight: 'bold',
+    fontFamily: Fonts.Regular,
+    // fontWeight: 'bold',
     fontStyle: 'italic',
   },
   headerTitleText: {
