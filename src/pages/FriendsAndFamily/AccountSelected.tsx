@@ -1,22 +1,19 @@
 import React, { useMemo } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import { AccountType } from '../../bitcoin/utilities/Interface'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import useActiveAccountShells from '../../utils/hooks/state-selectors/accounts/UseActiveAccountShells'
-import getAvatarForSubAccount from '../../utils/accounts/GetAvatarForSubAccountKind'
-import DashedContainerSmall from './DashedContainerSmall'
+import { useSelector } from 'react-redux'
 import GiftCard from '../../assets/images/svgs/icon_gift.svg'
-import {  useSelector } from 'react-redux'
-import useCurrencyCode from '../../utils/hooks/state-selectors/UseCurrencyCode'
+import Colors from '../../common/Colors'
 import { SATOSHIS_IN_BTC } from '../../common/constants/Bitcoin'
 import CurrencyKind from '../../common/data/enums/CurrencyKind'
+import Fonts from '../../common/Fonts'
+import getAvatarForSubAccount from '../../utils/accounts/GetAvatarForSubAccountKind'
+import useCurrencyCode from '../../utils/hooks/state-selectors/UseCurrencyCode'
+import DashedContainerSmall from './DashedContainerSmall'
 
 export type Props = {
   sourcePrimarySubAccount: any;
