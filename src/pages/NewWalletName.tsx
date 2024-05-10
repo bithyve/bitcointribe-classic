@@ -132,7 +132,6 @@ const NewWalletName: React.FC<Props> = ( { route, navigation }: Props ) => {
               note={''}
               onPressProceed={( flag )=>{
                 closeBottomSheet()
-                console.log( 'updateCloudPermission', flag )
                 dispatch( updateCloudPermission( flag ) )
                 navigation.navigate( 'NewWalletQuestion', {
                   walletName,
@@ -140,7 +139,6 @@ const NewWalletName: React.FC<Props> = ( { route, navigation }: Props ) => {
               }}
               onPressIgnore={( flag )=> {
                 closeBottomSheet()
-                console.log( 'updateCloudPermission', flag )
                 dispatch( updateCloudPermission( flag ) )
                 navigation.navigate( 'NewWalletQuestion', {
                   walletName,
@@ -148,7 +146,6 @@ const NewWalletName: React.FC<Props> = ( { route, navigation }: Props ) => {
               }}
               autoClose={()=>{
                 closeBottomSheet()
-                console.log( 'updateCloudPermission', true )
                 // dispatch( updateCloudPermission( true ) )
                 navigation.navigate( 'NewWalletQuestion', {
                   walletName,
@@ -194,7 +191,6 @@ const NewWalletName: React.FC<Props> = ( { route, navigation }: Props ) => {
     setLoaderModal( false )
     if ( signUpStarted )
       setTimeout( () => {
-        console.log( 'TIMEOUT' )
         setLoaderModal( true )
       }, 100 )
   }

@@ -47,7 +47,6 @@ import { Milliseconds } from '../../common/data/typealiases/UnitAliases'
 import Fonts from '../../common/Fonts'
 import BottomSheetRampInfo from '../../components/bottom-sheets/ramp/BottomSheetRampInfo'
 import BottomSheetSwanInfo from '../../components/bottom-sheets/swan/BottomSheetSwanInfo'
-import BottomSheetWyreInfo from '../../components/bottom-sheets/wyre/BottomSheetWyreInfo'
 import ClipboardAutoRead from '../../components/ClipboardAutoRead'
 import ErrorModalContents from '../../components/ErrorModalContents'
 import BuyBitcoinHomeBottomSheet, { BuyBitcoinBottomSheetMenuItem, BuyMenuItemKind } from '../../components/home/BuyBitcoinHomeBottomSheet'
@@ -107,10 +106,8 @@ import {
   syncPermanentChannels
 } from '../../store/actions/trustedContacts'
 import { setVersion } from '../../store/actions/versionHistory'
-import { clearWyreCache } from '../../store/actions/WyreIntegration'
 import { AccountsState } from '../../store/reducers/accounts'
 import { makeContactRecipientDescription } from '../../utils/sending/RecipientFactories'
-import { CommonActions } from '@react-navigation/native'
 
 export const BOTTOM_SHEET_OPENING_ON_LAUNCH_DELAY: Milliseconds = 500
 export enum BottomSheetState {
@@ -124,7 +121,6 @@ export enum BottomSheetKind {
   ADD_CONTACT_FROM_ADDRESS_BOOK,
   NOTIFICATIONS_LIST,
   SWAN_STATUS_INFO,
-  WYRE_STATUS_INFO,
   RAMP_STATUS_INFO,
   ERROR,
   CLOUD_ERROR,
@@ -165,12 +161,9 @@ interface HomeStateTypes {
   swanDeepLinkContent: string | null;
   isBalanceLoading: boolean;
   addContactModalOpened: boolean;
-  wyreDeepLinkContent: string | null;
   rampDeepLinkContent: string | null;
   rampFromBuyMenu: boolean | null;
   rampFromDeepLink: boolean | null;
-  wyreFromBuyMenu: boolean | null;
-  wyreFromDeepLink: boolean | null;
   releaseNotes: string;
   giftLoading: boolean;
 }
@@ -205,7 +198,6 @@ interface HomePropsTypes {
   initializeHealthSetup: any;
   overallHealth: any;
   keeperInfo: any[];
-  clearWyreCache: any;
   clearRampCache: any;
   clearSwanCache: any;
   updateSwanStatus: any;
@@ -226,12 +218,9 @@ interface HomePropsTypes {
   cardDataProps: any;
   secureAccount: any;
   setVersion: any;
-  wyreDeepLinkContent: string | null;
   rampDeepLinkContent: string | null;
   rampFromBuyMenu: boolean | null;
   rampFromDeepLink: boolean | null;
-  wyreFromBuyMenu: boolean | null;
-  wyreFromDeepLink: boolean | null;
   setCloudData: any;
   newBHRFlowStarted: any;
   cloudBackupStatus: CloudBackupStatus;
@@ -315,12 +304,9 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
       swanDeepLinkContent: null,
       isBalanceLoading: true,
       addContactModalOpened: false,
-      wyreDeepLinkContent: null,
       rampDeepLinkContent: null,
       rampFromBuyMenu: null,
       rampFromDeepLink: null,
-      wyreFromBuyMenu: null,
-      wyreFromDeepLink: null,
       releaseNotes: '',
     }
     this.currentNotificationId= ''
@@ -377,7 +363,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
     this.notificationCheck()
     this.openBottomSheetOnLaunch( BottomSheetKind.NOTIFICATIONS_LIST )
     const notificationRejection = this.props.messages.find( value=>value.type == notificationType.FNF_KEEPER_REQUEST_REJECTED && value.additionalInfo && value.additionalInfo.wasExistingContactRequest && value.additionalInfo.channelKey )
-    console.log( 'notificationRejection', notificationRejection )
     if( notificationRejection ) {
       this.props.rejectedExistingContactRequest( notificationRejection.additionalInfo.channelKey )
     }
@@ -385,7 +370,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
 
   notificationCheck = () =>{
     const { messages } = this.props
-    console.log( 'notificationCheck '+JSON.stringify( messages ) )
     if( messages && messages.length ){
       this.updateBadgeCounter()
       messages.sort( function ( left, right ) {
@@ -409,7 +393,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
       }
     }
     const notificationRejection = messages.find( value=>value.type == notificationType.FNF_KEEPER_REQUEST_REJECTED && value.additionalInfo && value.additionalInfo.wasExistingContactRequest && value.additionalInfo.channelKey )
-    console.log( 'notificationRejection', notificationRejection )
     if( notificationRejection ) {
       this.props.rejectedExistingContactRequest( notificationRejection.additionalInfo.channelKey )
     }
@@ -634,8 +617,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
 
       // (optional) Called when Registered Action is pressed and invokeApp is false, if true onNotification will be called (Android)
       onAction: ( notification ) => {
-        console.log( 'ACTION onAction:', notification.action )
-        console.log( 'NOTIFICATION onAction:', notification )
 
         // process the action
       },
@@ -768,7 +749,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
         }
       } catch ( error ) {
         Toast( error.message )
-        console.log( error )
       }
     }
   }
@@ -794,7 +774,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
     // call this once deeplink is detected aswell
     this.handleDeepLinkModal()
     requestAnimationFrame( () => {
-
       this.syncChannel()
       this.closeBottomSheet()
       if( this.props.cloudBackupStatus == CloudBackupStatus.FAILED && this.props.levelHealth.length >= 1 && this.props.cloudPermissionGranted === true ) {
@@ -1044,9 +1023,7 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
     Linking.canOpenURL( url ).then( ( supported ) => {
       if ( supported ) {
         Linking.openURL( url )
-      } else {
-        // console.log("Don't know how to open URI: " + url);
-      }
+      } else {}
     } )
   }
 
@@ -1094,7 +1071,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
   };
 
   onNotificationClicked = async ( value ) => {
-    console.log( 'value', value )
     // if( value.status === 'unread' || value.type === NotificationType.FNF_TRANSACTION )
     // if( value.type !== NotificationType.FNF_KEEPER_REQUEST )
     this.handleNotificationBottomSheetSelection( value )
@@ -1260,16 +1236,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
             this.openBottomSheet( BottomSheetKind.RAMP_STATUS_INFO )
           } )
           break
-        case BuyMenuItemKind.WYRE:
-          this.props.clearWyreCache()
-          this.setState( {
-            wyreDeepLinkContent: null,
-            wyreFromDeepLink: false,
-            wyreFromBuyMenu: true
-          }, () => {
-            this.openBottomSheet( BottomSheetKind.WYRE_STATUS_INFO )
-          } )
-          break
     }
   };
 
@@ -1371,22 +1337,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
               <BottomSheetHeader title="" onPress={this.closeBottomSheet} />
               <BottomSheetSwanInfo
                 swanDeepLinkContent={this.state.swanDeepLinkContent}
-                onClickSetting={() => {
-                  this.closeBottomSheet()
-                }}
-                // onPress={this.closeBottomSheet}
-                onPress={this.onBackPress}
-              />
-            </>
-          )
-        case BottomSheetKind.WYRE_STATUS_INFO:
-          return (
-            <>
-              <BottomSheetHeader title="" onPress={this.closeBottomSheet} />
-              <BottomSheetWyreInfo
-                wyreDeepLinkContent={this.state.wyreDeepLinkContent}
-                wyreFromBuyMenu={this.state.wyreFromBuyMenu}
-                wyreFromDeepLink={this.state.wyreFromDeepLink}
                 onClickSetting={() => {
                   this.closeBottomSheet()
                 }}
@@ -1786,7 +1736,6 @@ export default (
     acceptExistingContactRequest,
     rejectTrustedContact,
     initializeHealthSetup,
-    clearWyreCache,
     clearRampCache,
     clearSwanCache,
     updateSwanStatus,

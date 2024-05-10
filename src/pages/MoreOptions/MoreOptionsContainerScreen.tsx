@@ -2,10 +2,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import moment from 'moment'
 import React, { useContext, useEffect, useState } from 'react'
 import { Dimensions, FlatList, Image, ImageSourcePropType, Linking, StatusBar, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native'
+import ReactNativeBiometrics from 'react-native-biometrics'
 import { ScrollView } from 'react-native-gesture-handler'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen'
 import { useDispatch, useSelector } from 'react-redux'
+import LoginMethod from 'src/common/interfaces/LoginMethod'
+import Toast from 'src/components/Toast'
+import { changeLoginMethod } from 'src/store/actions/storage'
 import CrossButton from '../../assets/images/svgs/icons_close.svg'
 import DocumentPad from '../../assets/images/svgs/icons_document_copy.svg'
 import AccManagement from '../../assets/images/svgs/icon_accounts.svg'
@@ -31,13 +35,15 @@ export type Props = {
   containerStyle: {}
 };
 
+const RNBiometrics = new ReactNativeBiometrics();
+
 interface MenuOption {
   title: string;
   subtitle: string;
   screenName?: string;
   name?: string,
   onOptionPressed?: () => void;
-  // isSwitch: boolean;
+  isSwitch?: boolean;
   imageSource: ImageSourcePropType;
 }
 
@@ -59,7 +65,7 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
 
   const navigationObj: any = useSelector( ( state ) => state.bhr.navigationObj )
   const [ isEnabled, setIsEnabled ] = useState( false )
-  const toggleSwitch = () => setIsEnabled( previousState => !previousState )
+  // const toggleSwitch = () => setIsEnabled( previousState => !previousState )
   const currencyCode = useSelector(
     ( state ) => state.preferences.currencyCode,
   )
@@ -67,13 +73,13 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
   const bhrStrings = translations[ 'bhr' ]
   const common = translations[ 'common' ]
   const menuOptions: MenuOption[] = [
-    // {
-    //   title: 'Use FaceId',
-    //   imageSource: require( '../../assets/images/icons/addressbook.png' ),
-    //   subtitle: 'Unlock your wallet using FaceId',
-    //   // screenName: 'FriendsAndFamily',
-    //   isSwitch: true
-    // },
+    {
+      title: 'Biometrics',
+      imageSource: require( '../../assets/images/icons/addressbook.png' ),
+      subtitle: 'Unlock your wallet using Biometrics',
+      // screenName: 'FriendsAndFamily',
+      isSwitch: true
+    },
     // {
     //   title: 'Dark Mode',
     //   imageSource: require( '../../assets/images/icons/addressbook.png' ),
@@ -157,6 +163,8 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
   const [ onKeeperButtonClick, setOnKeeperButtonClick ] = useState( false )
   const [ modalVisible, setModalVisible ] = useState( false )
   const [ message, setMessage ] = useState( '' )
+  const { loginMethod }: { loginMethod: LoginMethod } = useSelector((state) => state.storage);
+  console.log('loginMethod', loginMethod)
 
   const defaultKeeperObj: {
     shareType: string
@@ -275,6 +283,38 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
           return ( <DocumentPad /> )
         default:
           return null
+    }
+  }
+
+  const onChangeLoginMethod = async () => {
+    try {
+      const { available } = await RNBiometrics.isSensorAvailable();
+      if (available) {
+        if (loginMethod === LoginMethod.PIN) {
+          const { keysExist } = await RNBiometrics.biometricKeysExist();
+          if (keysExist) {
+            await RNBiometrics.createKeys();
+          }
+          const { publicKey } = await RNBiometrics.createKeys();
+          const { success } = await RNBiometrics.simplePrompt({
+            promptMessage: 'Confirm your identity',
+          });
+          if (success) {
+            dispatch(changeLoginMethod(LoginMethod.BIOMETRIC, publicKey));
+          }
+        } else {
+          dispatch(changeLoginMethod(LoginMethod.PIN));
+        }
+      } else {
+        Toast('Biometrics not enabled.\nPlease go to setting and enable it');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const onSwitch = ( name ) => {
+    switch ( name ) {
+      case 'Biometrics': onChangeLoginMethod()
     }
   }
 
@@ -487,24 +527,24 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
                     <Text style={styles.addModalTitleText}>{menuOption.title}</Text>
                     <Text style={styles.addModalInfoText}>{menuOption.subtitle}</Text>
                   </View>
-                  {/* {menuOption.isSwitch &&
+                  {menuOption.isSwitch &&
                 <View style={{
                   alignItems: 'flex-end',
                   marginLeft: 'auto'
                 }}>
                   <Switch
-                    value={isEnabled}
-                    onValueChange={toggleSwitch}
-                    thumbColor={isEnabled ? Colors.blue : Colors.white}
+                    value={loginMethod === LoginMethod.BIOMETRIC}
+                    onValueChange={()=> onSwitch( menuOption.title )}
+                    thumbColor={loginMethod === LoginMethod.BIOMETRIC ? Colors.blue : Colors.white}
                     trackColor={{
                       false: Colors.borderColor, true: Colors.lightBlue
                     }}
                     onTintColor={Colors.blue}
                   />
                 </View>
-                  } */}
+                  }
                 </View>
-                <Image source={require( '../../assets/images/icons/icon_arrow.png' )}
+                {!menuOption.isSwitch && <Image source={require( '../../assets/images/icons/icon_arrow.png' )}
                   style={{
                     width: widthPercentageToDP( '2.5%' ),
                     height: widthPercentageToDP( '2.5%' ),
@@ -512,7 +552,7 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
                     resizeMode: 'contain',
                     tintColor: Colors.theam_icon_color
                   }}
-                />
+                />}
 
               </AppBottomSheetTouchableWrapper>
             }}

@@ -6,7 +6,6 @@ import { default as SmallNavHeaderBackButton, default as SmallNavHeaderCloseButt
 import RequestKeyFromContact from '../../components/RequestKeyFromContact'
 import AccountSettingsEditDisplayPropertiesScreen from '../../pages/Accounts/AccountSettings/AccountSettingsEditDisplayPropertiesScreen'
 import AccountSettingsMainScreen from '../../pages/Accounts/AccountSettings/AccountSettingsMainScreen'
-import DonationAccountWebViewSettingsScreen from '../../pages/Accounts/AccountSettings/DonationAccountWebViewSettingsScreen'
 import AccountSettingsEditVisibilityScreen from '../../pages/Accounts/AccountSettings/EditVisibilityScreen'
 import AccountSettingsMergeAccountShellsScreen from '../../pages/Accounts/AccountSettings/MergeAccountShellsScreen'
 import ReassignTransactionsMainOptionsScreen from '../../pages/Accounts/AccountSettings/ReassignTransactions/MainOptionsScreen'
@@ -15,7 +14,6 @@ import SelectReassignableTransactionsScreen from '../../pages/Accounts/AccountSe
 import ReassignSubAccountSourcesSelectSourcesScreen from '../../pages/Accounts/AccountSettings/ReassignTransactions/SelectSubAccountSourcesScreen'
 import XPubDetailsScreen from '../../pages/Accounts/AccountSettings/XPubDetailsScreen'
 import NewRampAccountDetailsScreen from '../../pages/Accounts/AddNew/RampAccount/NewRampAccountDetailsScreen'
-import NewWyreAccountDetailsScreen from '../../pages/Accounts/AddNew/WyreAccount/NewWyreAccountDetailsScreen'
 import AccountDetailsContainerScreen from '../../pages/Accounts/Details/AccountDetailsContainerScreen'
 import GoogleAuthenticatorOTP from '../../pages/Accounts/GoogleAuthenticatorOTP'
 import NewTwoFASecret from '../../pages/Accounts/NewTwoFASecret'
@@ -54,8 +52,6 @@ import SendRequest from '../../pages/Contacts/SendRequest'
 import ContactsListForAssociateContact from '../../pages/CustodianRequest/ContactsListForAssociateContact'
 import CustodianRequestAccepted from '../../pages/CustodianRequest/CustodianRequestAccepted'
 import CustodianRequestOTP from '../../pages/CustodianRequest/CustodianRequestOTP'
-import PairNewWallet from '../../pages/FastBitcoin/PairNewWallet'
-import VoucherScanner from '../../pages/FastBitcoin/VoucherScanner'
 import CreateGift from '../../pages/FriendsAndFamily/CreateGift'
 import EnterGiftDetails from '../../pages/FriendsAndFamily/EnterGiftDetails'
 import FriendsAndFamilyScreen from '../../pages/FriendsAndFamily/FriendsAndFamilyScreen'
@@ -131,14 +127,11 @@ import UpdateApp from '../../pages/UpdateApp'
 import ConfirmKeys from '../../pages/UpgradeBackupWithKeeper/ConfirmKeys'
 import UpgradeBackup from '../../pages/UpgradeBackupWithKeeper/UpgradeBackup'
 import VersionHistoryScreen from '../../pages/VersionHistoryScreen'
-import WyreIntegrationScreen from '../../pages/WyreIntegration/WyreIntegrationScreen'
-import WyreOrderFormScreen from '../../pages/WyreIntegration/WyreOrderFormScreen'
 import HomeScreen from '../screens/HomeScreen'
 import AddNewAccountStack from '../stacks/accounts/AddNewAccountStack'
 import AccountManagementStack from '../stacks/more-options/AccountManagementStack'
 import WalletSettingsStack from '../stacks/more-options/WalletSettingsStack'
 
-import AddNewDonationAccountDetailsScreen from '../../pages/Accounts/AddNew/DonationAccount/AddNewDonationAccountDetailsScreen'
 import NewHexaAccountDetailsScreen from '../../pages/Accounts/AddNew/HexaAccount/NewHexaAccountDetailsScreen'
 import NewAccountSelectionContainerScreen from '../../pages/Accounts/AddNew/NewAccountSelectionContainerScreen'
 import NewSwanAccountDetailsScreen from '../../pages/Accounts/AddNew/SwanAccount/NewSwanAccountDetailsScreen'
@@ -171,9 +164,9 @@ import NewWalletName from '../../pages/NewWalletName'
 import NewWalletQuestion from '../../pages/NewWalletQuestion'
 import NewRecoveryOwnQuestions from '../../pages/Recovery/NewRecoveryOwnQuestions'
 import RestoreSelectedContactsList from '../../pages/Recovery/RestoreSelectedContactsList'
+import RGBTransactionsList from '../../pages/rgb/RGBTransactionsList'
 import AllTransactionsContainerScreen from '../../pages/Transactions/AllTransactionsContainerScreen'
 import defaultStackScreenNavigationOptions from '../options/DefaultStackScreenNavigationOptions'
-import RGBTransactionsList from '../../pages/rgb/RGBTransactionsList'
 
 
 
@@ -262,10 +255,6 @@ function AppStack() {
       <Stack.Screen name="MoreOptionsContainerScreen" component={MoreOptionsContainerScreen} options={{
         headerShown: false,
       }} />
-
-      <Stack.Screen name="PlaceWyreOrder" component={WyreOrderFormScreen} options={{
-        title: 'Buy with Wyre'
-      }} />
       <Stack.Screen name="PlaceRampOrder" component={RampOrderFormScreen} options={{
         title: 'Buy with Ramp' 
       }} />
@@ -294,9 +283,6 @@ function AppStack() {
       <Stack.Screen name="UpdateApp" component={UpdateApp} options={{
         gestureEnabled: false,
       }} />
-      <Stack.Screen name="WyreIntegrationScreen" component={WyreIntegrationScreen} options={{
-        title: 'Wyre Home'
-      }} />
       <Stack.Screen name="Intermediate" component={Intermediate} options={{
         headerShown: false
       }}/>
@@ -318,9 +304,7 @@ function AppStack() {
       <Stack.Screen name="NewTwoFASecret" component={NewTwoFASecret} />
       <Stack.Screen name="TwoFASweepFunds" component={TwoFASweepFunds} />
       <Stack.Screen name="SendRequest" component={SendRequest} />
-      <Stack.Screen name="VoucherScanner" component={VoucherScanner} />
       <Stack.Screen name="AddContactSendRequest" component={AddContactSendRequest} />
-      <Stack.Screen name="PairNewWallet" component={PairNewWallet} />
       <Stack.Screen name="ManageBackupNewBHR" component={ManageBackupNewBHR} />
       <Stack.Screen name="SecurityQuestionHistoryNewBHR" component={SecurityQuestionHistoryNewBHR} options={( { navigation } ) => {
         return {
@@ -519,9 +503,6 @@ function AppStack() {
         headerShown: false
       }} />
       <Stack.Screen name="RestoreSelectedContactsList" component={RestoreSelectedContactsList} />
-      <Stack.Screen name="DonationAccountWebViewSettings" component={DonationAccountWebViewSettingsScreen} options={{
-        headerShown: false
-      }} />
       <Stack.Screen name="SubAccountSettings" component={AccountSettingsMainScreen} options={{
         headerShown: false
       }} />
@@ -799,17 +780,11 @@ function AppStack() {
       <Stack.Screen name="NewHexaAccountDetails" component={NewHexaAccountDetailsScreen} options={{
         title: 'Setup New Account'
       }} />
-      <Stack.Screen name="NewWyreAccountDetails" component={NewWyreAccountDetailsScreen} options={{
-        title: 'Setup Wyre Account'
-      }} />
       <Stack.Screen name="NewRampAccountDetails" component={NewRampAccountDetailsScreen} options={{
         title: 'Setup Ramp Account'
       }} />
       <Stack.Screen name="NewSwanAccountDetails" component={NewSwanAccountDetailsScreen} options={{
         title: 'Setup Swan Account'
-      }} />
-      <Stack.Screen name="AddNewDonationAccountDetails" component={AddNewDonationAccountDetailsScreen} options={{
-        header: null
       }} />
       <Stack.Screen name="WalletSettingsRoot" component={WalletSettingsContainerScreen} options={{
         headerShown: false

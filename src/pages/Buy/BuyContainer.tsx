@@ -19,13 +19,11 @@ import SwanAccountCreationStatus from '../../common/data/enums/SwanAccountCreati
 import { Milliseconds } from '../../common/data/typealiases/UnitAliases'
 import BottomSheetRampInfo from '../../components/bottom-sheets/ramp/BottomSheetRampInfo'
 import BottomSheetSwanInfo from '../../components/bottom-sheets/swan/BottomSheetSwanInfo'
-import BottomSheetWyreInfo from '../../components/bottom-sheets/wyre/BottomSheetWyreInfo'
 import BuyBitcoinHomeBottomSheet, { BuyBitcoinBottomSheetMenuItem, BuyMenuItemKind } from '../../components/home/BuyBitcoinHomeBottomSheet'
 import ModalContainer from '../../components/home/ModalContainer'
 import NewBuyBitcoinBottomSheet from '../../components/home/NewBuyBitcoinBottomSheet'
 import { clearRampCache } from '../../store/actions/RampIntegration'
 import { clearSwanCache, createTempSwanAccountInfo, updateSwanStatus } from '../../store/actions/SwanIntegration'
-import { clearWyreCache } from '../../store/actions/WyreIntegration'
 import BottomSheetHeader from '../Accounts/BottomSheetHeader'
 import Fonts from './../../common/Fonts'
 export const BOTTOM_SHEET_OPENING_ON_LAUNCH_DELAY: Milliseconds = 800
@@ -36,7 +34,6 @@ export enum BottomSheetState {
 
 export enum BottomSheetKind {
     SWAN_STATUS_INFO,
-    WYRE_STATUS_INFO,
     RAMP_STATUS_INFO,
 }
 
@@ -44,31 +41,24 @@ interface HomeStateTypes {
     bottomSheetState: BottomSheetState;
     currentBottomSheetKind: BottomSheetKind | null;
     swanDeepLinkContent: string | null;
-    wyreDeepLinkContent: string | null;
     rampDeepLinkContent: string | null;
     rampFromBuyMenu: boolean | null;
     rampFromDeepLink: boolean | null;
-    wyreFromBuyMenu: boolean | null;
-    wyreFromDeepLink: boolean | null;
 }
 
 interface HomePropsTypes {
     navigation: any;
     containerView: StyleProp<ViewStyle>;
     wallet: Wallet;
-    clearWyreCache: any;
     clearRampCache: any;
     clearSwanCache: any;
     updateSwanStatus: any;
     createTempSwanAccountInfo: any;
     swanDeepLinkContent: string | null;
     cardDataProps: any;
-    wyreDeepLinkContent: string | null;
     rampDeepLinkContent: string | null;
     rampFromBuyMenu: boolean | null;
     rampFromDeepLink: boolean | null;
-    wyreFromBuyMenu: boolean | null;
-    wyreFromDeepLink: boolean | null;
 }
 class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
     bottomSheetRef = createRef<BottomSheet>();
@@ -103,12 +93,9 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
         bottomSheetState: BottomSheetState.Closed,
         currentBottomSheetKind: null,
         swanDeepLinkContent: null,
-        wyreDeepLinkContent: null,
         rampDeepLinkContent: null,
         rampFromBuyMenu: null,
         rampFromDeepLink: null,
-        wyreFromBuyMenu: null,
-        wyreFromDeepLink: null,
       }
     }
 
@@ -151,16 +138,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
               this.openBottomSheet( BottomSheetKind.RAMP_STATUS_INFO )
             } )
             break
-
-          case BuyMenuItemKind.WYRE:
-            this.setState( {
-              wyreDeepLinkContent: null,
-              wyreFromDeepLink: false,
-              wyreFromBuyMenu: true
-            }, () => {
-              this.openBottomSheet( BottomSheetKind.WYRE_STATUS_INFO )
-            } )
-            break
       }
     };
 
@@ -168,8 +145,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
       kind: BottomSheetKind,
       snapIndex: number | null = null
     ) => {
-      console.log( 'kind', kind )
-      console.log( 'snapIndex', snapIndex )
 
       this.setState(
         {
@@ -199,7 +174,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
     };
 
     renderBottomSheetContent() {
-      console.log( 'this.state.currentBottomSheetKind', this.state.currentBottomSheetKind )
       switch ( this.state.currentBottomSheetKind ) {
 
           case BottomSheetKind.SWAN_STATUS_INFO:
@@ -215,22 +189,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
                 />
               </>
             )
-          case BottomSheetKind.WYRE_STATUS_INFO:
-            return (
-              <>
-                <BottomSheetHeader title="" onPress={this.closeBottomSheet} />
-                <BottomSheetWyreInfo
-                  wyreDeepLinkContent={this.state.wyreDeepLinkContent}
-                  wyreFromBuyMenu={this.state.wyreFromBuyMenu}
-                  wyreFromDeepLink={this.state.wyreFromDeepLink}
-                  onClickSetting={() => {
-                    this.closeBottomSheet()
-                  }}
-                  onPress={this.closeBottomSheet}
-                />
-              </>
-            )
-
           case BottomSheetKind.RAMP_STATUS_INFO:
             return (
               <>
@@ -372,7 +330,6 @@ const mapStateToProps = ( state ) => {
 
 export default (
   connect( mapStateToProps, {
-    clearWyreCache,
     clearRampCache,
     clearSwanCache,
     updateSwanStatus,

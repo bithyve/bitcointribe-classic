@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, ActivityIndicator, Image } from 'react-native'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import React, { useEffect, useState } from 'react'
+import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
-import { REGULAR_ACCOUNT, SECURE_ACCOUNT } from '../../common/constants/wallet-service-types'
-import RadioButton from '../../components/RadioButton'
+import Colors from '../../common/Colors'
+import { REGULAR_ACCOUNT } from '../../common/constants/wallet-service-types'
 import { translations } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
+import RadioButton from '../../components/RadioButton'
 
 export default function AccountSelectionModalContents( props ) {
   const strings  = translations[ 'accounts' ]
   const common  = translations[ 'common' ]
 
   const RegularBalance = props.RegularAccountBalance
-  const SavingBalance = props.SavingAccountBalance
   const [ SelectedAccountType, setSelectedAccountType ] = useState( '' )
   const [ accountData, setAccountData ] = useState( [
     {
@@ -27,20 +25,13 @@ export default function AccountSelectionModalContents( props ) {
       type: REGULAR_ACCOUNT,
       isSelected: false
     },
-    {
-      accountName: 'Savings Account',
-      accountBalance: props.SavingAccountBalance,
-      accountImage: require( '../../assets/images/icons/icon_secureaccount_white.png' ),
-      type: SECURE_ACCOUNT,
-      isSelected: false
-    },
   ] )
 
   useEffect( ()=>{
     accountData[ 0 ].accountBalance = RegularBalance
-    accountData[ 1 ].accountBalance = SavingBalance
+    // accountData[ 1 ].accountBalance = SavingBalance
     setAccountData( accountData )
-  }, [ RegularBalance, SavingBalance ] )
+  }, [ RegularBalance ] )
 
   const onAccountSelection = ( item ) =>{
     for ( let i = 0; i < accountData.length; i++ ) {

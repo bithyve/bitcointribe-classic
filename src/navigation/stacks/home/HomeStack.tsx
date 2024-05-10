@@ -4,7 +4,6 @@ import React, { useLayoutEffect } from 'react'
 import Colors from '../../../common/Colors'
 import SmallNavHeaderBackButton from '../../../components/navigation/SmallNavHeaderBackButton'
 import NewRampAccountDetailsScreen from '../../../pages/Accounts/AddNew/RampAccount/NewRampAccountDetailsScreen'
-import NewWyreAccountDetailsScreen from '../../../pages/Accounts/AddNew/WyreAccount/NewWyreAccountDetailsScreen'
 import GoogleAuthenticatorOTP from '../../../pages/Accounts/GoogleAuthenticatorOTP'
 import NewTwoFASecret from '../../../pages/Accounts/NewTwoFASecret'
 import Receive from '../../../pages/Accounts/Receive'
@@ -31,8 +30,6 @@ import SendRequest from '../../../pages/Contacts/SendRequest'
 import ContactsListForAssociateContact from '../../../pages/CustodianRequest/ContactsListForAssociateContact'
 import CustodianRequestAccepted from '../../../pages/CustodianRequest/CustodianRequestAccepted'
 import CustodianRequestOTP from '../../../pages/CustodianRequest/CustodianRequestOTP'
-import PairNewWallet from '../../../pages/FastBitcoin/PairNewWallet'
-import VoucherScanner from '../../../pages/FastBitcoin/VoucherScanner'
 import Home from '../../../pages/Home/Home'
 import Intermediate from '../../../pages/Intermediate'
 import Launch from '../../../pages/Launch'
@@ -68,8 +65,6 @@ import SweepFundUseExitKey from '../../../pages/SweepFunds/SweepFundUseExitKey'
 import UpdateApp from '../../../pages/UpdateApp'
 import ConfirmKeys from '../../../pages/UpgradeBackupWithKeeper/ConfirmKeys'
 import UpgradeBackup from '../../../pages/UpgradeBackupWithKeeper/UpgradeBackup'
-import WyreIntegrationScreen from '../../../pages/WyreIntegration/WyreIntegrationScreen'
-import WyreOrderFormScreen from '../../../pages/WyreIntegration/WyreOrderFormScreen'
 import defaultStackScreenNavigationOptions from '../../options/DefaultStackScreenNavigationOptions'
 import AccountDetailsStack from '../accounts/AccountDetailsStack'
 import AddNewAccountStack from '../accounts/AddNewAccountStack'
@@ -168,14 +163,8 @@ const HomeStack = ( { navigation, route } ) => {
       <Stack.Screen name="EnterNodeConfig" component={EnterNodeConfig} options={{
         headerShown: false
       }} />
-      <Stack.Screen name="NewWyreAccountDetails" component={NewWyreAccountDetailsScreen} options={{
-        title: 'Setup Wyre Account'
-      }} />
       <Stack.Screen name="NewRampAccountDetails" component={NewRampAccountDetailsScreen} options={{
         title: 'Setup Ramp Account'
-      }} />
-      <Stack.Screen name="PlaceWyreOrder" component={WyreOrderFormScreen} options={{
-        title: 'Buy with Wyre'
       }} />
       <Stack.Screen name="PlaceRampOrder" component={RampOrderFormScreen} options={{
         title: 'Buy with Ramp'
@@ -204,9 +193,6 @@ const HomeStack = ( { navigation, route } ) => {
       <Stack.Screen name="UpdateApp" component={UpdateApp} options={{
         gestureEnabled: false,
       }} />
-      <Stack.Screen name="WyreIntegrationScreen" component={WyreIntegrationScreen} options={{
-        title: 'Wyre Home'
-      }} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Intermediate" component={Intermediate} />
       <Stack.Screen name="CustodianRequestOTP" component={CustodianRequestOTP} />
@@ -226,11 +212,9 @@ const HomeStack = ( { navigation, route } ) => {
       <Stack.Screen name="NewTwoFASecret" component={NewTwoFASecret} />
       <Stack.Screen name="TwoFASweepFunds" component={TwoFASweepFunds} />
       <Stack.Screen name="SendRequest" component={SendRequest} />
-      <Stack.Screen name="VoucherScanner" component={VoucherScanner} />
       <Stack.Screen name="AddContactSendRequest" component={AddContactSendRequest} />
       <Stack.Screen name="QrAndLink" component={QrAndLink} />
       <Stack.Screen name="ContactDetails" component={ContactDetails} />
-      <Stack.Screen name="PairNewWallet" component={PairNewWallet} />
       <Stack.Screen name="ManageBackupNewBHR" component={ManageBackupNewBHR} />
       <Stack.Screen name="SecurityQuestionHistoryNewBHR" component={SecurityQuestionHistoryNewBHR} />
       <Stack.Screen name="TrustedContactHistoryNewBHR" component={TrustedContactHistoryNewBHR} />

@@ -1,10 +1,10 @@
 import React from 'react'
-import { View, ImageSourcePropType, FlatList, Image, Platform, TouchableOpacity } from 'react-native'
+import { FlatList, Image, ImageSourcePropType, Platform, TouchableOpacity, View } from 'react-native'
 import { ListItem } from 'react-native-elements'
-import ListStyles from '../../common/Styles/ListStyles'
-import ImageStyles from '../../common/Styles/ImageStyles'
-import Colors from '../../common/Colors'
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen'
+import Colors from '../../common/Colors'
+import ImageStyles from '../../common/Styles/ImageStyles'
+import ListStyles from '../../common/Styles/ListStyles'
 
 export type Props = {
   onMenuItemSelected: ( menuItem: BuyBitcoinBottomSheetMenuItem ) => void;
@@ -13,7 +13,6 @@ export type Props = {
 export enum BuyMenuItemKind {
   FAST_BITCOINS = 'FAST_BITCOINS',
   SWAN = 'SWAN',
-  WYRE = 'WYRE',
   RAMP = 'RAMP'
 }
 
@@ -31,13 +30,6 @@ const menuItems: BuyBitcoinBottomSheetMenuItem[] = [
     subtitle: 'Scan FastBitcoin vouchers',
     kind: BuyMenuItemKind.RAMP,
     imageSource: require( '../../assets/images/icons/fastbitcoins.png' ),
-    disabled: false
-  },
-  {
-    title: 'GetBittr',
-    subtitle: 'Buy any amount',
-    kind: BuyMenuItemKind.WYRE,
-    imageSource: require( '../../assets/images/icons/icon_getbitter.png' ),
     disabled: false
   },
 //   {

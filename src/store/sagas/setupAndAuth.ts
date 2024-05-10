@@ -4,6 +4,7 @@ import crypto from 'crypto';
 import DeviceInfo from 'react-native-device-info';
 import { call, put, select } from 'redux-saga/effects';
 import semverLte from 'semver/functions/lte';
+import LoginMethod from 'src/common/interfaces/LoginMethod';
 import RGBServices from 'src/services/RGBServices';
 import BHROperations from '../../bitcoin/utilities/BHROperations';
 import {
@@ -14,12 +15,13 @@ import {
   MetaShare,
   Trusted_Contacts,
   UnecryptedStreamData,
-  Wallet,
+  Wallet
 } from '../../bitcoin/utilities/Interface';
 import TrustedContactsOperations from '../../bitcoin/utilities/TrustedContactsOperations';
 import * as Cipher from '../../common/encryption';
 import dbManager from '../../storage/realm/dbManager';
 import * as SecureStore from '../../storage/secure-store';
+import { newAccountShellCreationCompleted } from '../actions/accounts';
 import {
   initializeHealthSetup,
   resetLevelsAfterPasswordChange,
@@ -27,27 +29,19 @@ import {
   updateMetaSharesKeeper,
   updateOldMetaSharesKeeper,
   updateWalletImageHealth,
-  upgradePDF,
+  upgradePDF
 } from '../actions/BHR';
-import { newAccountShellCreationCompleted } from '../actions/accounts';
 import { connectToNode } from '../actions/nodeSettings';
 import { setWalletId } from '../actions/preferences';
 import { setRgbConfig } from '../actions/rgb';
 import {
-  CHANGE_AUTH_CRED,
-  CREDS_AUTH,
-  RESET_PIN,
-  SETUP_WALLET,
-  STORE_CREDS,
-  UPDATE_APPLICATION,
-  completedWalletSetup,
+  CHANGE_AUTH_CRED, completedWalletSetup,
   credsAuthenticated,
   credsChanged,
-  credsStored,
-  pinChangedFailed,
-  switchReLogin,
+  credsStored, CREDS_AUTH, pinChangedFailed, RESET_PIN, SETUP_WALLET,
+  STORE_CREDS, switchReLogin,
   switchSetupLoader,
-  updateApplication,
+  updateApplication, UPDATE_APPLICATION
 } from '../actions/setupAndAuth';
 import { keyFetched, updateWallet } from '../actions/storage';
 import { PermanentChannelsSyncKind, syncPermanentChannels } from '../actions/trustedContacts';
@@ -228,12 +222,26 @@ function* resetPasswordWorker({ payload }) {
 function* credentialsAuthWorker({ payload }) {
   yield put(switchSetupLoader('authenticating'));
   let key;
+  let encryptedKey;
+  let hash;
+  const {walletId} = yield select((state) => state.storage.wallet);
   try {
-    const hash = yield call(Cipher.hash, payload.passcode);
-    const encryptedKey = yield call(SecureStore.fetch, hash);
+    const { method } = payload;
+    if (method === LoginMethod.PIN) {
+    hash = yield call(Cipher.hash, payload.passcode);
+    encryptedKey = yield call(SecureStore.fetch, hash);
     key = yield call(Cipher.decrypt, encryptedKey, hash);
     const uint8array = yield call(Cipher.stringToArrayBuffer, key);
     yield call(dbManager.initDb, uint8array);
+    } else if (method === LoginMethod.BIOMETRIC) {
+      const res = yield call(SecureStore.verifyBiometricAuth, payload.passcode, walletId);
+      if (!res.success) throw new Error('Biometric Auth Failed');
+      hash = res.hash;
+      encryptedKey = res.encryptedKey;
+      key = yield call(Cipher.decrypt, encryptedKey, hash);
+      const uint8array = yield call(Cipher.stringToArrayBuffer, key);
+      yield call(dbManager.initDb, uint8array);
+    }
   } catch (err) {
     console.log('err', err);
     if (payload.reLogin) yield put(switchReLogin(false));
@@ -413,3 +421,5 @@ function* applicationUpdateWorker({
 }
 
 export const applicationUpdateWatcher = createWatcher(applicationUpdateWorker, UPDATE_APPLICATION);
+
+

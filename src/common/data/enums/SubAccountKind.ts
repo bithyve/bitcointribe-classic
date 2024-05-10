@@ -16,7 +16,6 @@ enum SubAccountKind {
    */
   TRUSTED_CONTACTS = 'TRUSTED_CONTACTS',
 
-  DONATION_ACCOUNT = 'DONATION_ACCOUNT',
 
   /**
    * E.g.: Fast Bitcoins = 'Bitcoins', Swan

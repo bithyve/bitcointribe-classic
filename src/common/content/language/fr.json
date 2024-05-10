@@ -217,8 +217,6 @@
       "learnMore": "En savoir plus",
       "ramp": "Acheter avec Ramp",
       "rampSub": "Des frais bas pour les gros achats",
-      "wyre": "Acheter avec Wyre",
-      "wyreSub": "Achetez n'importe quel montant",
       "manyWays": "De nombreuses façons d'obtenir des sats directement dans Bitcoin Tribe",
       "Poweredby": "Alimenté par",
       "Notifications": "Notifications",
@@ -231,12 +229,7 @@
       "rampFail": "La commande Ramp a échoué",
       "rampProcessed": "Votre commande est en cours de traitement par Ramp. Une fois réussie, les bitcoins achetés seront transférés sur votre compte Ramp",
       "rampPaymentFail": "Ramp n'a pas pu traiter votre paiement. Veuillez réessayer après un certain temps ou utiliser un autre mode de paiement",
-      "wyreMessage": "Wyre permet les achats BTC à l'aide d'Apple Pay, d'une carte de débit, d'un virement bancaire ou d'un simple virement par open banking (si disponible). Les méthodes de paiement disponibles peuvent varier en fonction de votre pays.\n\nEn poursuivant, vous comprenez que Wyre traitera le paiement et le transfert du bitcoin acheté.",
-      "wyreTitle": "Acheter des bitcoins\navec Wyre",
-      "wyreFail": "La commande Wyre a échoué",
-      "Ordersuccessful": "Commande réussie",
-      "wyreProcessed": "Votre commande est réussie, le bitcoin acheté sera transféré sur votre compte Wyre sous peu",
-      "wyrePaymentFail": "Wyre n'a pas pu traiter votre paiement. Veuillez réessayer après un certain temps ou utiliser un autre mode de paiement"
+      "Ordersuccessful": "Commande réussie"
   },
   "settings": {
       "settingsAndMore": "Paramètres & Plus",
@@ -409,10 +402,6 @@
       "checking4": "Les transactions de votre compte courant ont des frais inférieurs à ceux du compte d'épargne - conservez le bitcoin ici pour une détention de courte durée ou des dépenses à court terme",
       "checking5": "Faites attention ! Quelqu'un ayant les codes d'accès de votre téléphone et de votre portefeuille Bitcoin Tribe pourrait facilement dépenser ou envoyer des sats depuis votre compte courant. Ne gardez pas ici les sats que vous ne comptez pas utiliser dans l'immédiat",
       "checking6": "Rappel : En raison de la méthode que nous utilisons pour sécuriser votre compte d'épargne, il est moins cher d'envoyer des sats depuis votre compte courant que depuis votre compte d'épargne",
-      "donation1": "Collectez des dons pour les causes de votre choix - de partout dans le monde.",
-      "donation2": "Gérez vous-même votre compte de don sans vous soucier de la technologie impliquée.",
-      "donation3": "Une page Web et un code d'intégration pour le compte génèrent une nouvelle adresse régulièrement, ce qui contribue à la confidentialité de vos transactions sans avoir besoin d'une action de votre part.",
-      "donation4": "Vos supporters peuvent faire un don en payant aux adresses que ces pages génèrent.",
       "saving1": "Lorsque vous aurez complété le niveau 2, vous disposerez d'un autre appareil personnel pour stocker la clé de récupération. Ce même appareil sera utilisé pour créer le deuxième mnémonique nécessaire pour le Compte d'épargne.",
       "saving2": "Cela signifie que votre compte d'épargne est sécurisé même si votre téléphone est complètement compromis",
       "saving3": "Utilisez ce compte pour stocker ou conserver des bitcoins et des sats sur le long terme",
