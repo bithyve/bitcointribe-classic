@@ -217,8 +217,6 @@
       "learnMore": "Saber mais",
       "ramp": "Compre com Ramp",
       "rampSub": "Taxa baixa para grandes compras",
-      "wyre": "Compre com Wyre",
-      "wyreSub": "Compre qualquer quantia",
       "manyWays": "Muitas maneiras de empilhar sats diretamente no Bitcoin Tribe",
       "Poweredby": "Distribuído por",
       "Notifications": "Notificações",
@@ -231,12 +229,7 @@
       "rampFail": "A ordem de Ramp falhou",
       "rampProcessed": "Seu pedido está sendo processado pela Ramp, assim que o bitcoin comprado for bem-sucedido, ele será transferido para sua conta da Rampa",
       "rampPaymentFail": "A Ramp não conseguiu processar o seu pagamento. Tente mais tarde ou use um método de pagamento diferente",
-      "wyreMessage": "Wyre permite compras BTC usando Apple Pay, cartão de débito, transferência bancária, bem como transferências fáceis usando open banking, quando disponível. Os métodos de pagamento disponíveis podem variar de acordo com seu país.\n\nAo prosseguir, você entende que a Wyre processará o pagamento e a transferência do bitcoin adquirido.",
-      "wyreTitle": "Compre bitcoin\ncom Wyre",
-      "wyreFail": "O pedido de Wyre falhou",
-      "Ordersuccessful": "Pedido bem sucedido",
-      "wyreProcessed": "O seu pedido foi bem-sucedido, o bitcoin comprado será transferido para sua conta Wyre em breve",
-      "wyrePaymentFail": "Wyre não conseguiu processar seu pagamento. Tente mais tarde ou use um método de pagamento diferente"
+      "Ordersuccessful": "Pedido bem sucedido"
   },
   "settings": {
       "settingsAndMore": "Configurações e mais",
@@ -410,10 +403,6 @@
       "checking4": "As transações da sua conta corrente têm taxas mais baixas em comparação com a conta poupança - mantenha o bitcoin aqui para manter ou gastar a curto prazo",
       "checking5": "Tome cuidado! Alguém com as senhas do seu telefone e carteira Bitcoin Tribe pode facilmente gastar ou enviar sats da sua conta corrente. Não mantenha sats aqui que você não espera usar em breve",
       "checking6": "Lembrete: devido ao método que usamos para proteger a sua conta poupança, é mais barato enviar sats da sua conta à ordem em comparação com a sua conta poupança",
-      "donation1": "Colete doações para as causas de sua escolha - de todo o mundo.",
-      "donation2": "Autogerencie sua conta de doação sem se preocupar com a tecnologia envolvida.",
-      "donation3": "Uma página da web e um código de incorporação para a conta geram um novo endereço a cada poucos minutos, ajudando com a privacidade de suas transações sem a necessidade de nenhuma entrada sua.",
-      "donation4": "Seus apoiadores podem doar pagando para os endereços que essas páginas geram.",
       "saving1": "Ao concluir o Nível 2, você também terá um dispositivo pessoal usado para armazenar a chave de recuperação. O mesmo dispositivo é usado para criar o segundo mnemônico necessário para a Conta Poupança.",
       "saving2": "Isso significa que sua conta poupança está segura, mesmo se seu telefone estiver completamente comprometido",
       "saving3": "Use esta conta para armazenar ou manter bitcoin e sats de longo prazo",

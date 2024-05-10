@@ -1,20 +1,17 @@
 import React, { useContext, useMemo } from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { ListItem } from 'react-native-elements'
-import { ContactRecipientDescribing } from '../../common/data/models/interfaces/RecipientDescribing'
-import RecipientAvatar from '../RecipientAvatar'
-import ListStyles from '../../common/Styles/ListStyles'
-import ContactTrustKind from '../../common/data/enums/ContactTrustKind'
 import { RFValue } from 'react-native-responsive-fontsize'
-import CountDown from 'react-native-countdown-component'
-import HexaConfig from '../../bitcoin/HexaConfig'
+import { widthPercentageToDP } from 'react-native-responsive-screen'
 import Colors from '../../common/Colors'
+import { LocalizationContext } from '../../common/content/LocContext'
+import { ContactRecipientDescribing } from '../../common/data/models/interfaces/RecipientDescribing'
 import Fonts from '../../common/Fonts'
 import ImageStyles from '../../common/Styles/ImageStyles'
-import { widthPercentageToDP } from 'react-native-responsive-screen'
+import ListStyles from '../../common/Styles/ListStyles'
 import LastSeenActiveIndicator from '../LastSeenActiveIndicator'
+import RecipientAvatar from '../RecipientAvatar'
 import { agoTextForLastSeen } from '../send/LastSeenActiveUtils'
-import {  LocalizationContext } from '../../common/content/LocContext'
 
 export type Props = {
   contact: ContactRecipientDescribing,
@@ -59,14 +56,6 @@ const FriendsAndFamilyContactListItemContent: React.FC<Props> = ( { contact, ind
         flex: 1
       }}>
 
-
-        <ListItem.Title
-          style={styles.listItemTitle}
-          numberOfLines={1}
-        >
-          <Text>{firstNamePieceText}</Text>
-          <Text style={styles.secondNamePieceText}>{secondNamePieceText}</Text>
-        </ListItem.Title>
         <ListItem.Subtitle
           style={styles.lastSeenText}
           numberOfLines={1}
@@ -75,18 +64,27 @@ const FriendsAndFamilyContactListItemContent: React.FC<Props> = ( { contact, ind
           {Number.isFinite( contact.lastSeenActive ) ? (
 
             <Text style={{
-              fontFamily: Fonts.MediumItalic
+              fontFamily: Fonts.Medium,
+              fontWeight:'bold'
             }}>
               {lastSeenDays === 'today'? common.today : lastSeenDays}
             </Text>
           ) : (
             <Text style={{
-              fontFamily: Fonts.MediumItalic
+              fontFamily: Fonts.Medium
             }}>
               {common.unknown}
             </Text>
           )}
         </ListItem.Subtitle>
+        <ListItem.Title
+          style={styles.listItemTitle}
+          numberOfLines={1}
+        >
+          <Text>{firstNamePieceText}</Text>
+          <Text style={styles.secondNamePieceText}>{secondNamePieceText}</Text>
+        </ListItem.Title>
+
 
         {/*
           📝 TODO: Show this when the F&F list is refactored to a

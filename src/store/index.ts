@@ -1,17 +1,28 @@
+import { applyMiddleware, combineReducers, createStore } from 'redux'
+import { createMigrate, persistReducer, persistStore } from 'redux-persist'
+import { all, call, spawn } from 'redux-saga/effects'
+
 import {
-  GoogleDriveLoginWatcher,
-  checkCloudBackupWatcher,
-  checkFileIsAvailableWatcher,
-  cloudWatcher,
-  createFileWatcher,
-  getCloudBackupRecoveryWatcher,
-  readFileWatcher,
-  updateCloudBackupWatcher,
-  updateDataWatcher,
-  updateHealthForCloudStatusWatcher,
-  updateHealthForCloudWatcher,
-  uplaodFileWatcher,
-} from './sagas/cloud'
+  accountCheckWatcher,
+  addNewAccountShellsWatcher,
+  autoSyncShellsWatcher,
+  createBorderWalletWatcher,
+  createSmNResetTFAOrXPrivWatcher,
+  fetchExchangeRatesWatcher,
+  fetchFeeRatesWatcher,
+  generateGiftsWatcher,
+  generateSecondaryXprivWatcher,
+  mergeAccountShellsWatcher,
+  reassignTransactionsWatcher,
+  refreshAccountShellsWatcher,
+  resetTwoFAWatcher,
+  restoreAccountShellsWatcher,
+  syncAccountsWatcher,
+  testcoinsWatcher,
+  txnReadWatcher,
+  updateAccountSettingsWatcher,
+  validateTwoFAWatcher
+} from './sagas/accounts'
 import {
   acceptExistingContactRequestWatcher,
   autoShareLevel2KeepersWatcher,
@@ -45,61 +56,57 @@ import {
   setupHealthWatcher,
   setupLevelHealthWatcher,
   setupPasswordWatcher,
-  sharePDFWatcher,
-  updateHealthLevel2Watcher,
+  sharePDFWatcher, updatedKeeperInfoWatcher, updateHealthLevel2Watcher,
   updateKeeperInfoToChannelWatcher,
   updateSecondaryShardWatcher,
   updateSeedHealthWatcher,
   updateSharesHealthWatcher,
-  updateWalletImageHealthWatcher,
-  updatedKeeperInfoWatcher,
-  upgradeLevelOneKeeperWatcher,
+  updateWalletImageHealthWatcher, upgradeLevelOneKeeperWatcher,
   upgradePDFWorkerWatcher
 } from './sagas/BHR'
 import {
-  accountCheckWatcher,
-  addNewAccountShellsWatcher,
-  autoSyncShellsWatcher,
-  createBorderWalletWatcher,
-  createSmNResetTFAOrXPrivWatcher,
-  fetchExchangeRatesWatcher,
-  fetchFeeRatesWatcher,
-  generateGiftsWatcher,
-  generateSecondaryXprivWatcher,
-  mergeAccountShellsWatcher,
-  reassignTransactionsWatcher,
-  refreshAccountShellsWatcher,
-  resetTwoFAWatcher,
-  restoreAccountShellsWatcher,
-  syncAccountsWatcher,
-  testcoinsWatcher,
-  txnReadWatcher,
-  updateAccountSettingsWatcher,
-  updateDonationPreferencesWatcher,
-  validateTwoFAWatcher,
-} from './sagas/accounts'
+  checkCloudBackupWatcher,
+  checkFileIsAvailableWatcher,
+  cloudWatcher,
+  createFileWatcher,
+  getCloudBackupRecoveryWatcher, GoogleDriveLoginWatcher, readFileWatcher,
+  updateCloudBackupWatcher,
+  updateDataWatcher,
+  updateHealthForCloudStatusWatcher,
+  updateHealthForCloudWatcher,
+  uplaodFileWatcher
+} from './sagas/cloud'
 import {
   accountSyncWatcher,
   executeOrderWatcher,
   getBalancesWatcher,
-  getQuoteWatcher,
+  getQuoteWatcher
 } from './sagas/fbtc'
+import { connectToBitHyveNodeWatcher, connectToNodeWatcher, restorePersonalNodeConfigurationWatcher, savePersonalNodeConfigurationWatcher } from './sagas/nodeSettings'
+import {
+  fetchNotificationsWatcher,
+  getMessageWatcher,
+  pushNotificationPressedWatcher,
+  updateFCMTokensWatcher,
+  updateMessageStatusInAppWatcher,
+  updateMessageStatusWatcher
+} from './sagas/notifications'
+import {
+  receiveRgbAssetWatcher,
+  rgbSyncWatcher
+} from './sagas/rgb'
+import { calculateCustomFeeWatcher, calculateSendMaxFeeWatcher, executeSendStage1Watcher, executeSendStage2Watcher, sendTxNotificationWatcher } from './sagas/sending'
+import {
+  applicationUpdateWatcher,
+  changeAuthCredWatcher, credentialsAuthWatcher, credentialStorageWatcher, resetPinCredWatcher,
+  setupWalletWatcher
+} from './sagas/setupAndAuth'
 import {
   addTempSwanAccountInfoWatcher,
   createWithdrawalWalletOnSwanWatcher,
   fetchSwanAuthenticationUrlWatcher,
   redeemSwanCodeForTokenWatcher
 } from './sagas/SwanIntegration'
-import { all, call, spawn } from 'redux-saga/effects'
-import {
-  applicationUpdateWatcher,
-  changeAuthCredWatcher,
-  credentialStorageWatcher,
-  credentialsAuthWatcher,
-  resetPinCredWatcher,
-  setupWalletWatcher,
-} from './sagas/setupAndAuth'
-import { applyMiddleware, combineReducers, createStore } from 'redux'
 import {
   associateGiftWatcher,
   editTrustedContactWatcher,
@@ -114,70 +121,49 @@ import {
   syncPermanentChannelsWatcher,
   updateWalletNameToChannelWatcher,
   updateWalletNameWatcher,
-  walletCheckInWatcher,
+  walletCheckInWatcher
 } from './sagas/trustedContacts'
+import { recreateMissingAccountsWatcher, sweepMissingAccountsWatcher, syncMissingAccountsWatcher } from './sagas/upgrades'
 import {
   autoShareContactKeeperWatcher,
   autoShareSecondaryWatcher,
   confirmPDFSharedFromUpgradeWatcher,
   initLevelsWatcher,
   setCloudDataForLevelWatcher,
-  updateAvailableKeeperDataWatcher,
+  updateAvailableKeeperDataWatcher
 } from './sagas/upgradeToNewBhr'
-import { calculateCustomFeeWatcher, calculateSendMaxFeeWatcher, executeSendStage1Watcher, executeSendStage2Watcher, sendTxNotificationWatcher } from './sagas/sending'
-import { connectToBitHyveNodeWatcher, connectToNodeWatcher, restorePersonalNodeConfigurationWatcher, savePersonalNodeConfigurationWatcher } from './sagas/nodeSettings'
-import { createMigrate, persistReducer, persistStore } from 'redux-persist'
-import {
-  fetchNotificationsWatcher,
-  getMessageWatcher,
-  pushNotificationPressedWatcher,
-  updateFCMTokensWatcher,
-  updateMessageStatusInAppWatcher,
-  updateMessageStatusWatcher
-} from './sagas/notifications'
-import { recreateMissingAccountsWatcher, sweepMissingAccountsWatcher, syncMissingAccountsWatcher } from './sagas/upgrades'
-import {
-  rgbSyncWatcher,
-  receiveRgbAssetWatcher
-} from './sagas/rgb'
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import VersionHistoryReducer from './reducers/versionHistory'
-import accountsReducer from './reducers/accounts'
-import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2'
-import bhr from './reducers/BHR'
-import cloudReducer from './reducers/cloud'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import createDebugger from 'redux-flipper'
 import createSagaMiddleware from 'redux-saga'
+import thunk from 'redux-thunk'
+import accountsReducer from './reducers/accounts'
+import bhr from './reducers/BHR'
+import cloudReducer from './reducers/cloud'
+import doNotStoreReducer from './reducers/doNotStore'
 import fBTCReducers from './reducers/fbtc'
-import {
-  fetchRampReservationWatcher,
-} from './sagas/RampIntegration'
-import {
-  fetchWyreReservationWatcher,
-} from './sagas/WyreIntegration'
+import misc from './reducers/misc'
 import nodeSettingsReducer from './reducers/nodeSettings'
 import notificationsReducer from './reducers/notifications'
 import preferencesReducer from './reducers/preferences'
-import rampIntegrationReducer from './reducers/RampIntegration'
-import reduxPersistMigrations from './redux-persist-migrations'
+import rgbReducer from './reducers/rgb'
 import sendingReducer from './reducers/sending'
 import setupAndAuthReducer from './reducers/setupAndAuth'
 import storageReducer from './reducers/storage'
 import swanIntegrationReducer from './reducers/SwanIntegration'
-import thunk from 'redux-thunk'
 import trustedContactsReducer from './reducers/trustedContacts'
-import { updateUserNameWatcher } from './sagas/storage'
-import upgradeToNewBhr from './reducers/upgradeToNewBhr'
 import upgrades from './reducers/upgrades'
-import { versionHistoryWatcher } from './sagas/versionHistory'
+import upgradeToNewBhr from './reducers/upgradeToNewBhr'
+import VersionHistoryReducer from './reducers/versionHistory'
 import walletRescanningReducer from './reducers/wallet-rescanning'
-import wyreIntegrationReducer from './reducers/WyreIntegration'
+import reduxPersistMigrations from './redux-persist-migrations'
+import {
+  fetchRampReservationWatcher
+} from './sagas/RampIntegration'
 import { satCardAcountWatcher } from './sagas/satCardAccount'
-import misc from './reducers/misc'
-import doNotStoreReducer from './reducers/doNotStore'
-import rgbReducer from './reducers/rgb'
+import { changeLoginMethodWatcher, updateUserNameWatcher } from './sagas/storage'
+import { versionHistoryWatcher } from './sagas/versionHistory'
 
 const config = {
   key: 'root', // key is required
@@ -199,6 +185,9 @@ const rootSaga = function* () {
     applicationUpdateWatcher,
     resetPinCredWatcher,
 
+    // BioMetrics
+    changeLoginMethodWatcher,
+
     // accounts watchers
     syncAccountsWatcher,
     testcoinsWatcher,
@@ -206,7 +195,6 @@ const rootSaga = function* () {
     resetTwoFAWatcher,
     fetchExchangeRatesWatcher,
     fetchFeeRatesWatcher,
-    updateDonationPreferencesWatcher,
     refreshAccountShellsWatcher,
     addNewAccountShellsWatcher,
     restoreAccountShellsWatcher,
@@ -307,9 +295,6 @@ const rootSaga = function* () {
     createWithdrawalWalletOnSwanWatcher,
     addTempSwanAccountInfoWatcher,
 
-    // Wyre Integration
-    fetchWyreReservationWatcher,
-
     // Ramp Integration
     fetchRampReservationWatcher,
 
@@ -355,7 +340,7 @@ const rootSaga = function* () {
     satCardAcountWatcher,
     // rgb
     rgbSyncWatcher,
-    receiveRgbAssetWatcher
+    receiveRgbAssetWatcher,
   ]
 
   yield all(
@@ -366,7 +351,7 @@ const rootSaga = function* () {
             yield call( saga )
             break
           } catch ( e ) {
-            console.log( e )
+            // error
           }
         }
       } )
@@ -387,8 +372,6 @@ const rootReducer = combineReducers( {
   preferences: preferencesReducer,
   swanIntegration: swanIntegrationReducer,
   walletRescanning: walletRescanningReducer,
-  wyreIntegration: wyreIntegrationReducer,
-  rampIntegration: rampIntegrationReducer,
   versionHistory: VersionHistoryReducer,
   cloud: cloudReducer,
   upgradeToNewBhr: upgradeToNewBhr,

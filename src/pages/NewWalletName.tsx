@@ -15,23 +15,20 @@ import {
   View
 } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
-import LinearGradient from 'react-native-linear-gradient'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
   heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
+  widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { useDispatch, useSelector } from 'react-redux'
 import Colors from '../common/Colors'
-import Fonts from '../common/Fonts'
-import CommonStyles from '../common/Styles/Styles'
 import { LocalizationContext } from '../common/content/LocContext'
+import Fonts from '../common/Fonts'
 import BottomInfoBox from '../components/BottomInfoBox'
 import CloudPermissionModalContents from '../components/CloudPermissionModalContents'
-import HeaderTitle1 from '../components/HeaderTitle1'
-import LoaderModal from '../components/LoaderModal'
+import HeaderTitle from '../components/HeaderTitle'
 import ModalContainer from '../components/home/ModalContainer'
+import LoaderModal from '../components/LoaderModal'
 import { initNewBHRFlow, updateCloudPermission } from '../store/actions/BHR'
 import { setupWallet } from '../store/actions/setupAndAuth'
 import { setVersion } from '../store/actions/versionHistory'
@@ -83,17 +80,34 @@ const NewWalletName: React.FC<Props> = ( { route, navigation }: Props ) => {
   useEffect( () => {
     if ( walletSetupCompleted ) {
       setLoaderModal( false )
-      navigation.dispatch( CommonActions.reset( {
-        index: 0,
-        routes: [ {
-          name: 'HomeNav',
-          key: 'HomeKey',
-          params: {
-            walletName
-          }
-        } ]
-      } ) )
-    }
+      if(Platform.OS==='android'){
+        navigation.dispatch( CommonActions.reset( {
+          index: 0,
+          routes: [
+            {
+              name: 'App',
+              params: {
+                walletName
+              }
+            },
+          ]
+        } ) )
+      }else{
+        setTimeout( () => {
+            navigation.dispatch( CommonActions.reset( {
+              index: 0,
+              routes: [
+                {
+                  name: 'App',
+                  params: {
+                    walletName
+                  }
+                },
+              ]
+            } ) )
+          },100)
+      }
+      }
   }, [ walletSetupCompleted, cloudBackupStatus ] )
 
   const renderLoaderModalContent = useCallback( () => {
@@ -118,7 +132,6 @@ const NewWalletName: React.FC<Props> = ( { route, navigation }: Props ) => {
               note={''}
               onPressProceed={( flag )=>{
                 closeBottomSheet()
-                console.log( 'updateCloudPermission', flag )
                 dispatch( updateCloudPermission( flag ) )
                 navigation.navigate( 'NewWalletQuestion', {
                   walletName,
@@ -126,7 +139,6 @@ const NewWalletName: React.FC<Props> = ( { route, navigation }: Props ) => {
               }}
               onPressIgnore={( flag )=> {
                 closeBottomSheet()
-                console.log( 'updateCloudPermission', flag )
                 dispatch( updateCloudPermission( flag ) )
                 navigation.navigate( 'NewWalletQuestion', {
                   walletName,
@@ -134,7 +146,6 @@ const NewWalletName: React.FC<Props> = ( { route, navigation }: Props ) => {
               }}
               autoClose={()=>{
                 closeBottomSheet()
-                console.log( 'updateCloudPermission', true )
                 // dispatch( updateCloudPermission( true ) )
                 navigation.navigate( 'NewWalletQuestion', {
                   walletName,
@@ -180,7 +191,6 @@ const NewWalletName: React.FC<Props> = ( { route, navigation }: Props ) => {
     setLoaderModal( false )
     if ( signUpStarted )
       setTimeout( () => {
-        console.log( 'TIMEOUT' )
         setLoaderModal( true )
       }, 100 )
   }
@@ -196,22 +206,6 @@ const NewWalletName: React.FC<Props> = ( { route, navigation }: Props ) => {
         <ModalContainer onBackground={() => onBackgroundOfLoader()} visible={loaderModal} closeBottomSheet={null}>
           {renderLoaderModalContent()}
         </ModalContainer>
-        <View style={CommonStyles.headerContainer}>
-          <TouchableOpacity
-            style={CommonStyles.headerLeftIconContainer}
-            onPress={() => {
-              navigation.navigate( 'WalletInitialization' )
-            }}
-          >
-            <View style={CommonStyles.headerLeftIconInnerContainer}>
-              <FontAwesome
-                name="long-arrow-left"
-                color={Colors.homepageButtonColor}
-                size={17}
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
         <KeyboardAvoidingView
           style={{
             flex: 1
@@ -222,7 +216,9 @@ const NewWalletName: React.FC<Props> = ( { route, navigation }: Props ) => {
           <View style={{
             flex: 1
           }} >
-            <HeaderTitle1
+            <HeaderTitle
+              navigation={navigation}
+              backButton={true}
               firstLineTitle={initialMnemonic ? 'Step 7 of Create with Border Wallet' : `${strings.Step1}` }
               secondLineBoldTitle={strings.NameyourWallet}
               secondLineTitle={''}
@@ -302,17 +298,11 @@ const NewWalletName: React.FC<Props> = ( { route, navigation }: Props ) => {
                     }, 1000 )
                   }}
                 >
-                  <LinearGradient colors={[ Colors.blue, Colors.darkBlue ]}
-                    start={{
-                      x: 0, y: 0
-                    }} end={{
-                      x: 1, y: 0
-                    }}
-                    locations={[ 0.2, 1 ]}
-                    style={styles.buttonView}
+                  <View
+                    style={[styles.buttonView,{backgroundColor: Colors.blue}]}
                   >
                     <Text style={styles.buttonText}>{common.proceed}</Text>
-                  </LinearGradient>
+                  </View>
                 </TouchableOpacity>
               </View>
             ) : null}

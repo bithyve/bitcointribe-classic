@@ -10,19 +10,19 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  View,
+  View
 } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
   heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
+  widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import { useDispatch, useSelector } from 'react-redux'
 import Colors from '../common/Colors'
-import Fonts from '../common/Fonts'
 import { LocalizationContext } from '../common/content/LocContext'
+import Fonts from '../common/Fonts'
 import ErrorModalContents from '../components/ErrorModalContents'
 import ModalHeader from '../components/ModalHeader'
 import RadioButton from '../components/RadioButton'
@@ -165,16 +165,13 @@ export default function ContactList( props ) {
     dispatch( setIsPermissionGiven( true ) )
     if ( Platform.OS === 'android' ) {
       const chckContactPermission = await PermissionsAndroid.check( PermissionsAndroid.PERMISSIONS.READ_CONTACTS )
-      //console.log("chckContactPermission",chckContactPermission)
       if ( !chckContactPermission ) {
-        // ( contactPermissionBottomSheet as any ).current.snapTo( 1 )
         setPermissionsModal( true )
       } else {
         getContactPermission()
       }
     } else if ( Platform.OS === 'ios' ) {
       if( ( await ExpoContacts.requestPermissionsAsync() ).status === 'undetermined' ){
-        // ( contactPermissionBottomSheet as any ).current.snapTo( 1 )
         setPermissionsModal( true )
       }
       else {

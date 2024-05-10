@@ -14,7 +14,7 @@ import DeviceInfo from 'react-native-device-info'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
   heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
+  widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import BottomSheet from 'reanimated-bottom-sheet'
@@ -27,7 +27,7 @@ import {
   REGULAR_ACCOUNT,
   SECURE_ACCOUNT,
   TEST_ACCOUNT,
-  TRUSTED_CONTACTS,
+  TRUSTED_CONTACTS
 } from '../../common/constants/wallet-service-types'
 import { UsNumberFormat } from '../../common/utilities'
 
@@ -58,7 +58,6 @@ interface SweepFundsPropsTypes {
 
 interface SweepFundsStateTypes {
   RegularAccountBalance: any;
-  SavingAccountBalance: any;
   exchangeRates: any[];
   removeItem: any;
   recipients: any[];
@@ -73,7 +72,6 @@ class SweepFunds extends Component<SweepFundsPropsTypes, SweepFundsStateTypes> {
     super( props )
     this.state = {
       RegularAccountBalance: 0,
-      SavingAccountBalance: 0,
       exchangeRates: null,
       address: this.props.route.params.address,
       removeItem: {
@@ -177,7 +175,6 @@ class SweepFunds extends Component<SweepFundsPropsTypes, SweepFundsStateTypes> {
         secureBalance,
       },
       RegularAccountBalance: regularBalance,
-      SavingAccountBalance: secureBalance,
     } )
   };
 
@@ -186,7 +183,6 @@ class SweepFunds extends Component<SweepFundsPropsTypes, SweepFundsStateTypes> {
       address,
       accountData,
       spendableBalances,
-      SavingAccountBalance,
       RegularAccountBalance,
       removeItem,
     } = this.state
@@ -299,8 +295,8 @@ class SweepFunds extends Component<SweepFundsPropsTypes, SweepFundsStateTypes> {
                     {item.type == REGULAR_ACCOUNT
                       ? RegularAccountBalance
                       : item.type == SECURE_ACCOUNT
-                        ? SavingAccountBalance
-                        : '' + 'sats'}
+                        // : '' + 'sats'
+                    }
                   </Text>
                 </View>
               )

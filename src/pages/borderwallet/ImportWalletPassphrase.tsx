@@ -11,19 +11,22 @@ import {
   View
 } from 'react-native'
 import deviceInfoModule from 'react-native-device-info'
-import LinearGradient from 'react-native-linear-gradient'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
 import { Wallet } from '../../bitcoin/utilities/Interface'
 import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
 import { translations } from '../../common/content/LocContext'
 import { hp, wp } from '../../common/data/responsiveness/responsive'
+import Fonts from '../../common/Fonts'
+import ModalContainer from '../../components/home/ModalContainer'
 import LoaderModal from '../../components/LoaderModal'
 import Toast from '../../components/Toast'
-import ModalContainer from '../../components/home/ModalContainer'
 import { recoverWalletUsingMnemonic, restoreSeedWordFailed, setBorderWalletBackup } from '../../store/actions/BHR'
 import SeedHeaderComponent from '../NewBHR/SeedHeaderComponent'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { completedWalletSetup } from 'src/store/actions/setupAndAuth'
+import { setVersion } from 'src/store/actions/versionHistory'
+import { CommonActions } from '@react-navigation/native'
 
 const ImportWalletPassphrase = ( props ) => {
   const loaderMessage = {
@@ -74,15 +77,24 @@ const ImportWalletPassphrase = ( props ) => {
     }
   }, [ restoreSeedData ] )
 
-  //   useEffect( () => {
-  //     setLoaderModal( false )
-  //     if ( wallet && !isAccountCreation ) {
-  //       dispatch( completedWalletSetup() )
-  //       AsyncStorage.setItem( 'walletRecovered', 'true' )
-  //       dispatch( setVersion( 'Restored' ) )
-  //       props.navigation.navigate( 'HomeNav' )
-  //     }
-  //   }, [ wallet, isAccountCreation ] )
+    useEffect( () => {
+      setLoaderModal( false )
+      setTimeout( () => {
+        if ( wallet && !isAccountCreation ) {
+          dispatch( completedWalletSetup() )
+          AsyncStorage.setItem( 'walletRecovered', 'true' )
+          dispatch( setVersion( 'Restored' ) )
+          props.navigation.dispatch( CommonActions.reset( {
+            index: 0,
+            routes: [
+              {
+                name: 'App',
+              },
+            ]
+          } ) )
+        }
+      }, 100 )
+    }, [ wallet, isAccountCreation ] )
 
   const onPressNext = () => {
     if( passphrase === '' || confirmPassphrase === '' ) {
@@ -198,17 +210,11 @@ const ImportWalletPassphrase = ( props ) => {
           <TouchableOpacity
             activeOpacity={0.6}
             onPress={onPressNext}>
-            <LinearGradient colors={[ Colors.blue, Colors.darkBlue ]}
-              start={{
-                x: 0, y: 0
-              }} end={{
-                x: 1, y: 0
-              }}
-              locations={[ 0.2, 1 ]}
+            <View
               style={styles.buttonView}
             >
               <Text style={styles.buttonText}>Next</Text>
-            </LinearGradient>
+            </View>
           </TouchableOpacity>
         </View>
       </View>

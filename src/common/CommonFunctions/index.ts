@@ -3,10 +3,11 @@ import dynamicLinks from '@react-native-firebase/dynamic-links'
 import crypto from 'crypto'
 import { Alert, Linking } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
-import config from '../../bitcoin/HexaConfig'
+import { default as config, default as HexaConfig } from '../../bitcoin/HexaConfig'
 import BHROperations from '../../bitcoin/utilities/BHROperations'
 import { Accounts, DeepLinkEncryptionType, DeepLinkKind, LevelHealthInterface, LevelInfo, NewWalletImage, QRCodeTypes, ShortLinkDescription, ShortLinkDomain, ShortLinkImage, ShortLinkTitle, TrustedContactRelationTypes, Trusted_Contacts } from '../../bitcoin/utilities/Interface'
 import TrustedContactsOperations from '../../bitcoin/utilities/TrustedContactsOperations'
+import Toast from '../../components/Toast'
 import { encrypt } from '../encryption'
 import { getVersions } from '../utilities'
 
@@ -147,7 +148,6 @@ export const CloudData = async ( database, accountShells, activePersonalNode, ve
     STATE_DATA: {
     },
   }
-  // console.log("DATABASE", database);
   let CloudDataJson = {
   }
   if ( database && database.SERVICES ) {
@@ -165,9 +165,7 @@ export const CloudData = async ( database, accountShells, activePersonalNode, ve
       walletImage,
       keeperInfo: [],
     }
-    // console.log("walletImage", walletImage);
     encryptedCloudDataJson = await encrypt( CloudDataJson, key )
-    // console.log('encryptedDatabase', encryptedCloudDataJson);
     return encryptedCloudDataJson
   }
 }
@@ -434,10 +432,13 @@ export const generateDeepLink = async( { deepLinkKind, encryptionType, encryptio
     `https://bitcointribe.app/${appType}/${deepLinkKind}/${walletName}/${encryptedChannelKeys}/${encryptionType}-${encryptionHint}/${extraData.channelAddress}/${extraData.amount}/${extraData.note}/${extraData.themeId}/v${appVersion}`
   } else {
     deepLink =
-    `https://bitcointribe.app/${appType}/${deepLinkKind}/${walletName}/${encryptedChannelKeys}/${encryptionType}-${encryptionHint}/v${appVersion}${currentLevel != undefined ? '/'+ currentLevel: ''}`
+    `https://bitcointribe.app/${appType}/${deepLinkKind}/${walletName}/${encryptedChannelKeys}/${encryptionType}-${encryptionHint}/${extraData.channelAddress}/v${appVersion}${currentLevel != undefined ? '/'+ currentLevel: ''}`
   }
-
   let shortLink = ''
+  let id =  DeviceInfo.getBundleId();
+  if(typeof id !== 'string'){
+    id = HexaConfig.ENVIRONMENT === 'dev'? HexaConfig.BUNDLE_ID_DEV: HexaConfig.BUNDLE_ID_PROD
+  }
   if( generateShortLink ) {
     try {
       const url = deepLink.replace( /\s+/g, '' )
@@ -455,15 +456,15 @@ export const generateDeepLink = async( { deepLinkKind, encryptionType, encryptio
         link: url,
         domainUriPrefix: domain,
         android: {
-          packageName: DeviceInfo.getBundleId(),
-          fallbackUrl: url,
+          packageName: id,
+          fallbackUrl: HexaConfig.PLAYSTORE_LINK,
         },
         ios: {
+          bundleId: id,
           fallbackUrl: url,
-          bundleId: DeviceInfo.getBundleId()
         },
         navigation: {
-          forcedRedirectEnabled:  false
+          forcedRedirectEnabled: false
         },
         social: {
           descriptionText: getLinkDescription( deepLinkKind ),
@@ -472,7 +473,6 @@ export const generateDeepLink = async( { deepLinkKind, encryptionType, encryptio
         }
       }, dynamicLinks.ShortLinkType.UNGUESSABLE )
     } catch ( error ) {
-      console.log( error )
       shortLink = ''
     }
   }
@@ -492,13 +492,6 @@ export const processDeepLink = ( deepLink: string ) => {
           deepLink
         }
       }
-
-    if ( splits.includes( 'wyre' ) ) {
-      if( splits.includes( 'failed' ) ) {
-        Alert.alert( 'Wyre purchase failed', 'Please try again after sometime.' )
-      }
-      return
-    }
 
     // hexa links GiftQR
     // if ( splits[ 3 ] !== config.APP_STAGE ){
@@ -536,6 +529,7 @@ export const processDeepLink = ( deepLink: string ) => {
             isExistingContact: [ DeepLinkKind.RECIPROCAL_KEEPER, DeepLinkKind.EXISTING_CONTACT ].includes( ( splits[ 4 ] as DeepLinkKind ) ),
             isQR: false,
             deepLinkKind: splits[ 4 ],
+            channelAddress: splits[ 8 ],
             version,
           }
           return {
@@ -592,10 +586,9 @@ export const processDeepLink = ( deepLink: string ) => {
         // console.log('WhatsApp Opened');
       } )
       .catch( () => {
-        //
+        Toast( 'Error in Scanning QR Code' )
       } )
     return
-
   }
 }
 

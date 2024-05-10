@@ -1,13 +1,14 @@
 package io.hexawallet.hexa
 import android.util.Log
 import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.bridge.ReactContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Promise
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import org.rgbtools.BitcoinNetwork
+import android.os.Handler
+import android.os.Looper
 
 import kotlin.math.log
 
@@ -30,6 +31,15 @@ class RGBModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
     }
 
     @ReactMethod
+    fun restoreKeys(network: String, mnemonic: String, promise: Promise) {
+        val rgbNetwork = if(network == "TESTNET") BitcoinNetwork.TESTNET else BitcoinNetwork.MAINNET
+        val keys = org.rgbtools.restoreKeys(rgbNetwork, mnemonic)
+        val gson = Gson()
+        val json = gson.toJson(keys)
+        promise.resolve(json.toString())
+    }
+
+    @ReactMethod
     fun getAddress(mnemonic:String, network: String, promise: Promise) {
         val address = BdkHelper.getAddress()
         promise.resolve(address)
@@ -42,8 +52,13 @@ class RGBModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
 
     @ReactMethod
     fun sync( mnemonic:String, network: String, promise: Promise){
-        val isSynced = BdkHelper.sync()
-        promise.resolve(isSynced)
+        Thread {
+            Looper.prepare()
+            Handler(Looper.getMainLooper()).post {
+                val isSynced = BdkHelper.sync()
+                promise.resolve(isSynced)            }
+            Looper.loop()
+        }.start()
     }
 
     @ReactMethod
@@ -73,7 +88,13 @@ class RGBModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
 
     @ReactMethod
     fun syncRgbAssets( mnemonic:String, pubKey:String, network: String, promise: Promise){
-        promise.resolve(RGBHelper.syncRgbAssets())
+        Thread {
+            Looper.prepare()
+            Handler(Looper.getMainLooper()).post {
+                promise.resolve(RGBHelper.syncRgbAssets())
+            }
+            Looper.loop()
+        }.start()
     }
 
     @ReactMethod
@@ -155,18 +176,40 @@ class RGBModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
 
     @ReactMethod
     fun refreshAsset(assetId: String, promise: Promise){
-        val rgbUtxo = RGBHelper.getUnspents()
-        val bitcoinUtxo = BdkHelper.getUnspents()
-        val jsonObject = JsonObject()
-        jsonObject.addProperty("rgb", Gson().toJson(rgbUtxo))
-        jsonObject.addProperty("bitcoin", Gson().toJson(bitcoinUtxo))
-        promise.resolve(jsonObject.toString())
+        Thread {
+            Looper.prepare()
+            Handler(Looper.getMainLooper()).post {
+                val rgbUtxo = RGBHelper.getUnspents()
+                val bitcoinUtxo = BdkHelper.getUnspents()
+                val jsonObject = JsonObject()
+                jsonObject.addProperty("rgb", Gson().toJson(rgbUtxo))
+                jsonObject.addProperty("bitcoin", Gson().toJson(bitcoinUtxo))
+                promise.resolve(jsonObject.toString())            }
+            Looper.loop()
+        }.start()
+    }
+    @ReactMethod
+    fun isValidBlindedUtxo(invoice:String,promise: Promise){
+        val response = RGBHelper.isValidBlindedUtxo(invoice)
+        promise.resolve(response)
     }
 
     @ReactMethod
     fun backup(backupPath: String, password: String, promise: Promise){
-        val response = RGBHelper.backup(backupPath, password)
-        Log.d(TAG, "backup: response=$response")
+        val response = RGBHelper.backup(backupPath, password, reactApplicationContext)
         promise.resolve(response.toString())
+    }
+
+    @ReactMethod
+    fun isBackupRequired(promise: Promise){
+        val response = RGBHelper.getBackupInfo()
+        promise.resolve(response)
+    }
+
+    @ReactMethod
+    fun restore(mnemonic: String,promise: Promise){
+        val response = RGBHelper.restore(mnemonic, reactApplicationContext)
+        Log.d(TAG, "restore: $response")
+        promise.resolve(response)
     }
 }

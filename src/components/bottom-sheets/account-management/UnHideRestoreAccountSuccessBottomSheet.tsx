@@ -22,12 +22,29 @@ export type Props = {
 
 const renderAccount = ( accountInfo, accountVisibility ) => {
   return (
-    <View style={styles.destinationWrapper}>
-      <View style={styles.avatarWrapper}>
+    <View style={{
+      flexDirection: 'row',
+      borderRadius: 8,
+      marginBottom: wp( 5 ),
+      height: hp( 12 ),
+      padding: 10,
+      backgroundColor: Colors.backgroundColor1,
+      alignItems: 'center'
+    }}>
+      <View style={{
+        width: '20%',
+        alignItems: 'center',
+        justifyContent: 'center'
+
+      }}>
         {getAvatarForSubAccount( accountInfo, false, true )}
       </View>
 
-      <View style={styles.destinationInfoWrapper}>
+      <View style={{
+        width: '80%',
+      }}>
+
+
         <ListItem.Content style={{
           flex: 1,
         }}>

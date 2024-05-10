@@ -1,15 +1,17 @@
 import React from 'react'
-import { FlatList, Image, ImageSourcePropType, SafeAreaView, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { FlatList, ImageSourcePropType, SafeAreaView, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { ListItem } from 'react-native-elements'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 import Colors from '../../../../common/Colors'
+import ListStyles from '../../../../common/Styles/ListStyles'
+// import ImageStyles from '../../../../common/Styles/ImageStyles'
+import IconSettings from '../../../../assets/images/svgs/icon_accntSettings.svg'
 import { translations } from '../../../../common/content/LocContext'
 import { hp } from '../../../../common/data/responsiveness/responsive'
-import ImageStyles from '../../../../common/Styles/ImageStyles'
-import ListStyles from '../../../../common/Styles/ListStyles'
 import CommonStyles from '../../../../common/Styles/Styles'
 import HeaderTitle from '../../../../components/HeaderTitle'
+
 
 export type Props = {
   navigation: any;
@@ -33,7 +35,7 @@ const PanAccountSettingsContainerScreen: React.FC<Props> = ( { navigation, }: Pr
     {
       title: strings[ 'ShowAllAccounts' ],
       subtitle: strings[ 'ShowAllAccountsSub' ],
-      imageSource: require( '../../../../assets/images/icons/account-visibility/icon_visible.png' ),
+      imageSource: '',
       screenName: 'EnterPasscode',
     },
   ]
@@ -52,11 +54,12 @@ const PanAccountSettingsContainerScreen: React.FC<Props> = ( { navigation, }: Pr
         bottomDivider
         onPress={() => { handleListItemPress( menuOption ) }}
       >
-        <Image
+        {/* <Image
           source={menuOption.imageSource}
           style={ImageStyles.thumbnailImageMedium}
           resizeMode="contain"
-        />
+        /> */}
+        <IconSettings/>
 
         <ListItem.Content style={ListStyles.listItemContentContainer}>
           <ListItem.Title style={ListStyles.listItemTitle}>{menuOption.title}</ListItem.Title>
@@ -79,7 +82,7 @@ const PanAccountSettingsContainerScreen: React.FC<Props> = ( { navigation, }: Pr
         <TouchableOpacity
           style={CommonStyles.headerLeftIconContainer}
           onPress={() => {
-            navigation.goBack()
+            navigation.pop()
           }}
         >
           <View style={CommonStyles.headerLeftIconInnerContainer}>

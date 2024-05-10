@@ -145,7 +145,6 @@ export const initialState: AccountsState = {
   accountShellMergeSource: null,
   accountShellMergeDestination: null,
 
-  // currentWyreSubAccount: null,
   // currentRampSubAccount: null,
   // currentSwanSubAccount: null,
 

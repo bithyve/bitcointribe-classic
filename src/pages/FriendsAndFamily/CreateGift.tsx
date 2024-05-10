@@ -39,7 +39,6 @@ import {
 import { calculateSendMaxFee, sourceAccountSelectedForSending } from '../../store/actions/sending'
 
 import idx from 'idx'
-import LinearGradient from 'react-native-linear-gradient'
 import { RFValue } from 'react-native-responsive-fontsize'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
@@ -189,8 +188,6 @@ const CreateGift = ( { route, navigation }: Props ) => {
 
   const isAmountInvalid = useMemo( () => {
     let giftAmount = currentSatsAmountFormValue
-    console.log( giftAmount )
-
     const numberOfGifts = numbersOfGift ? Number( numbersOfGift ) : 1
     if ( prefersBitcoin ) {
       if ( !includeFees && averageLowTxFee ) giftAmount += averageLowTxFee
@@ -344,7 +341,6 @@ const CreateGift = ( { route, navigation }: Props ) => {
           if ( satCard ) {
             setShowVerification( true )
           } else {
-            console.log( 'condn', condn )
             const giftInstances = Number( numbersOfGift )
             const giftAmountInSats = prefersBitcoin
               ? Number( amount )
@@ -418,25 +414,21 @@ const CreateGift = ( { route, navigation }: Props ) => {
         }}
 
       >
-        <LinearGradient colors={[ Colors.blue, Colors.darkBlue ]}
-          start={{
-            x: 0, y: 0
-          }} end={{
-            x: 1, y: 0
-          }}
-          locations={[ 0.2, 1 ]}
+        <View
           style={
             isDisabled
               ? {
                 ...styles.disabledButtonView,
+                backgroundColor: Colors.blue
               }
               : {
                 ...styles.buttonView,
+                backgroundColor: Colors.blue
               }
           }
         >
           <Text style={styles.buttonText}>{text}</Text>
-        </LinearGradient>
+        </View>
       </TouchableOpacity>
     )
   }

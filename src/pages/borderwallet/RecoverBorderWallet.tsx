@@ -4,12 +4,16 @@ import { CommonActions } from '@react-navigation/native'
 import * as bip39 from 'bip39'
 import React, { useEffect, useState } from 'react'
 import {
-  ActivityIndicator,
+  Alert,
+  NativeModules,
+  Platform,
   SafeAreaView,
   StatusBar,
-  View,
+  View
 } from 'react-native'
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
+import RGBIntroModal from 'src/components/rgb/RGBIntroModal'
+import RGBServices from 'src/services/RGBServices'
 import { Wallet } from '../../bitcoin/utilities/Interface'
 import Colors from '../../common/Colors'
 import { translations } from '../../common/content/LocContext'
@@ -23,6 +27,8 @@ import { completedWalletSetup } from '../../store/actions/setupAndAuth'
 import { setVersion } from '../../store/actions/versionHistory'
 import SeedHeaderComponent from '../NewBHR/SeedHeaderComponent'
 import RestoreSeedPageComponent from '../RestoreHexaWithKeeper/RestoreSeedPageComponent'
+
+const GoogleDrive = NativeModules.GoogleDrive
 
 const RecoverBorderWallet = ( props ) => {
   const [ showSeedError, setShowSeedError ] = useState( false )
@@ -59,13 +65,48 @@ const RecoverBorderWallet = ( props ) => {
       dispatch( completedWalletSetup() )
       AsyncStorage.setItem( 'walletRecovered', 'true' )
       dispatch( setVersion( 'Restored' ) )
-      props.navigation.dispatch( CommonActions.reset( {
-        index: 0,
-        routes: [ {
-          name: 'HomeNav',
-          key: 'HomeKey'
-        } ],
-      } ) )
+      try {
+        if(Platform.OS === 'android') {
+          Alert.alert(
+            'Restore RGB',
+            'Do you want to restore state of your RGB assets?',
+            [
+              {
+                text: 'No',
+                onPress: () => goToApp(),
+                style: 'cancel',
+              },
+              {
+                text: 'YES',
+                onPress: async () => {
+                  setShowLoader(true)
+                  await GoogleDrive.setup()
+                  const login = await GoogleDrive.login()
+                  if( login.error ) {
+                    Toast( login.error )
+                  } else {
+                    setShowLoader(true)
+                    setTimeout(async () => {
+                    const config = await  RGBServices.restoreKeys( mnemonic )
+                    RGBServices.initiate( config.mnemonic, config.xpub  )
+                    await RGBServices.restore( mnemonic )
+                    goToApp()
+                  }, 300)
+                  }
+                },
+                style: 'default',
+              },
+            ],
+            {
+              cancelable: true,
+            },
+          )
+        } else {
+          goToApp()
+        }
+      } catch ( error ) {
+        console.log( error )
+      }
     }
   }, [ wallet ] )
 
@@ -77,6 +118,18 @@ const RecoverBorderWallet = ( props ) => {
       } )
     }
   }, [ restoreSeedData ] )
+
+  const goToApp = () => {
+    props.navigation.dispatch( CommonActions.reset( {
+      index: 0,
+      routes: [
+        {
+          name: 'App',
+        }
+      ],
+    } ) )
+    setShowLoader(false)
+  }
 
   const renderSeedErrorModal = () => {
     return (
@@ -90,14 +143,17 @@ const RecoverBorderWallet = ( props ) => {
   }
 
   const recoverWalletViaSeed = ( mnemonic: string ) => {
+    setShowLoader(true)
     const isValidMnemonic = bip39.validateMnemonic( mnemonic )
     if( isValidMnemonic ) {
       props.navigation.navigate( 'BorderWalletGridScreen', {
         mnemonic,
         isNewWallet: false
       } )
+      setShowLoader(false)
     } else {
       Toast( 'Invalid mnemonic' )
+      setShowLoader(false)
     }
     // setShowLoader( true )
     // setMnemonic( mnemonic )
@@ -120,7 +176,6 @@ const RecoverBorderWallet = ( props ) => {
     setLoaderModal( false )
     if ( seedRecovered )
       setTimeout( () => {
-        console.log( 'TIMEOUT' )
         setLoaderModal( true )
       }, 1000 )
   }
@@ -128,7 +183,7 @@ const RecoverBorderWallet = ( props ) => {
     <View style={{
       flex: 1, backgroundColor: Colors.backgroundColor
     }}>
-      {
+      {/* {
         showLoader &&
         <View style={{
           position: 'absolute',
@@ -142,7 +197,7 @@ const RecoverBorderWallet = ( props ) => {
         }}>
           <ActivityIndicator size="large" color={Colors.babyGray} />
         </View>
-      }
+      } */}
       <SafeAreaView
         style={{
           flex: 0, backgroundColor: Colors.backgroundColor
@@ -216,6 +271,21 @@ const RecoverBorderWallet = ( props ) => {
         // bottomImage={require( '../../assets/images/icons/errorImage.png' )}
         />
       </ModalContainer>
+      <ModalContainer
+          onBackground={() => { }}
+          closeBottomSheet={() => { }}
+          visible={showLoader}
+        >
+          <RGBIntroModal
+            title={'Recovery in Progress'}
+            info={'RGB protocol allows you to issue and manage fungible (coins) and non-fungible (collectibles) assets on the bitcoin network'}
+            otherText={'Syncing assets with RGB nodes'}
+            proceedButtonText={'Continue'}
+            isIgnoreButton={false}
+            isBottomImage={true}
+            bottomImage={require('../../assets/images/icons/contactPermission.png')}
+          />
+        </ModalContainer>
     </View>
   )
 }

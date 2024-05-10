@@ -1,36 +1,27 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import idx from 'idx'
 import React, { Component } from 'react'
 import {
-  View,
-  StyleSheet,
-  StatusBar,
-  Linking,
-  Alert,
-  Platform,
-  AppState,
+  AppState, Linking, Platform, StatusBar, StyleSheet, View
 } from 'react-native'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import Video from 'react-native-video'
-import Colors from '../common/Colors'
-import BottomSheet from 'reanimated-bottom-sheet'
 import DeviceInfo from 'react-native-device-info'
+import {
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen'
+import Video from 'react-native-video'
+import { connect } from 'react-redux'
+import BottomSheet from 'reanimated-bottom-sheet'
+import { predefinedMainnetNodes, predefinedTestnetNodes } from '../bitcoin/electrum/predefinedNodes'
+import { default as TestElectrumClient, default as TestnetElectrumClient } from '../bitcoin/electrum/test-client'
+import { NetworkType } from '../bitcoin/utilities/Interface'
+import Colors from '../common/Colors'
+import { processDeepLink } from '../common/CommonFunctions'
+import { LocalizationContext } from '../common/content/LocContext'
 import ErrorModalContents from '../components/ErrorModalContents'
 import ModalHeader from '../components/ModalHeader'
 import {
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import { connect } from 'react-redux'
-import idx from 'idx'
-import { processDeepLink } from '../common/CommonFunctions'
-import {
-  getMessages,
+  getMessages
 } from '../store/actions/notifications'
-import { LocalizationContext } from '../common/content/LocContext'
-import ElectrumClient from '../bitcoin/electrum/client'
-import PersonalNode from '../common/data/models/PersonalNode'
-import TestElectrumClient from '../bitcoin/electrum/test-client'
-import { predefinedMainnetNodes, predefinedTestnetNodes } from '../bitcoin/electrum/predefinedNodes'
-import TestnetElectrumClient from '../bitcoin/electrum/test-client'
-import { NetworkType } from '../bitcoin/utilities/Interface'
 // import RestClient from '../services/rest/RestClient'
 import config from '../bitcoin/HexaConfig'
 
@@ -42,7 +33,6 @@ type LaunchScreenProps = {
   walletId: any;
   walletExists: Boolean,
   torEnabled: boolean,
-  personalNodes: PersonalNode[],
 }
 
 type LaunchScreenState = { }
@@ -57,16 +47,11 @@ class Launch extends Component<LaunchScreenProps, LaunchScreenState> {
   constructor( props ) {
     super( props )
     this.errorBottomSheet = React.createRef()
-    // console.log( ':LAUNCH' )
   }
 
+
   componentDidMount = async() => {
-    this.setupElectrumClients()
-    AppState.addEventListener( 'change', this.handleAppStateChange )
-    Linking.addEventListener( 'url', this.handleDeepLinkEvent )
-    Linking.getInitialURL().then( ( url )=> this.handleDeepLinkEvent( {
-      url
-    } ) )
+    TestElectrumClient.connect()
     setTimeout( ()=>{
       this.postSplashScreenActions()
     }, 4000 )
@@ -78,7 +63,6 @@ class Launch extends Component<LaunchScreenProps, LaunchScreenState> {
    }
 
    handleDeepLinking = async ( url: string | null ) => {
-     //console.log( 'Launch::handleDeepLinkEvent::URL: ', url )
      if ( url == null ) {
        return
      }
@@ -86,14 +70,6 @@ class Launch extends Component<LaunchScreenProps, LaunchScreenState> {
    }
 
 
-  componentWillUnmount = () => {
-    if( this.appStateSubscribe ){
-      this.appStateSubscribe.remove()
-    }
-    if( this.linkStateSubscribe ){
-      this.linkStateSubscribe.remove()
-    }
-  };
 
   handleAppStateChange = ( nextAppState ) => {
     // no need to trigger login screen if accounts are not synced yet
@@ -107,7 +83,6 @@ class Launch extends Component<LaunchScreenProps, LaunchScreenState> {
         this.props.getMessages()
       }
       const url = await Linking.getInitialURL()
-      //console.log( 'url', url )
 
       const hasCreds = await AsyncStorage.getItem( 'hasCreds' )
       // enable tor status
@@ -117,15 +92,14 @@ class Launch extends Component<LaunchScreenProps, LaunchScreenState> {
         const now: any = new Date()
         const diff = Math.abs( now - this.props.lastSeen )
         const isHomePageOpen = Number( diff ) < Number( 20000 )
-        console.log( 'diff', diff, isHomePageOpen )
         if( isHomePageOpen ){
           if ( !this.url ){
-            this.props.navigation.replace( 'Home', {
+            this.props.navigation.replace( 'App', {
               screen: 'Home',
             } )
           } else {
             const processedLink = await processDeepLink( this.url )
-            this.props.navigation.replace( 'Home', {
+            this.props.navigation.replace( 'App', {
               screen: 'Home',
               params: {
                 trustedContactRequest: processedLink ? processedLink.trustedContactRequest: null,
@@ -150,7 +124,6 @@ class Launch extends Component<LaunchScreenProps, LaunchScreenState> {
       }
 
     } catch ( err ) {
-      console.log( 'err', err );
       ( this.errorBottomSheet as any ).current.snapTo( 1 )
     }
   };
@@ -241,10 +214,9 @@ const mapStateToProps = ( state ) => {
     walletId: idx( state, ( _ ) => _.preferences.walletId ),
     walletExists: idx( state, ( _ ) => _.storage.walletExists ),
     torEnabled: idx( state, ( _ ) => _.preferences.torEnabled ),
-    personalNodes: idx( state, ( _ ) => _.nodeSettings.personalNodes )
   }
 }
 
 export default connect( mapStateToProps, {
-  getMessages
+  getMessages,
 } )( Launch )

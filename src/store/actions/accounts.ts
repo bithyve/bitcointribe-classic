@@ -1,5 +1,5 @@
 import { Action } from 'redux'
-import { Account, Accounts, ContactInfo, DonationAccount, Gift, GridType } from '../../bitcoin/utilities/Interface'
+import { Account, Accounts, ContactInfo, Gift, GridType } from '../../bitcoin/utilities/Interface'
 import AccountVisibility from '../../common/data/enums/AccountVisibility'
 import AccountShell from '../../common/data/models/AccountShell'
 import SubAccountDescribing from '../../common/data/models/SubAccountInfo/Interfaces'
@@ -25,8 +25,6 @@ export const FETCH_DERIVATIVE_ACC_BALANCE_TX =
 export const REMOVE_TWO_FA = 'REMOVE_TWO_FA'
 export const VALIDATE_TWO_FA = 'VALIDATE_TWO_FA'
 export const AVERAGE_TX_FEE = 'AVERAGE_TX_FEE'
-export const SETUP_DONATION_ACCOUNT = 'SETUP_DONATION_ACCOUNT'
-export const UPDATE_DONATION_PREFERENCES = 'UPDATE_DONATION_PREFERENCES'
 export const ADD_NEW_ACCOUNT_SHELLS = 'ADD_NEW_ACCOUNT_SHELLS'
 export const RESTORE_ACCOUNT_SHELLS = 'RESTORE_ACCOUNT_SHELLS'
 export const ADD_NEW_SECONDARY_SUBACCOUNT = 'ADD_NEW_SECONDARY_SUBACCOUNT'
@@ -291,53 +289,6 @@ export const setAverageTxFee = ( averageTxFees ) => {
   }
 }
 
-export const setupDonationAccount = (
-  serviceType: string,
-  donee: string,
-  subject: string,
-  description: string,
-  configuration: {
-    displayBalance: boolean;
-  },
-  disableAccount?: boolean
-) => {
-  return {
-    type: SETUP_DONATION_ACCOUNT,
-    payload: {
-      serviceType,
-      donee,
-      subject,
-      description,
-      configuration,
-      disableAccount,
-    },
-  }
-}
-
-export const updateDonationPreferences = (
-  donationAccount: DonationAccount,
-  preferences: {
-    disableAccount?: boolean;
-    configuration?: {
-      displayBalance: boolean;
-      displayIncomingTxs: boolean;
-      displayOutgoingTxs: boolean;
-    };
-    accountDetails?: {
-      donee: string;
-      subject: string;
-      description: string;
-    };
-  }
-) => {
-  return {
-    type: UPDATE_DONATION_PREFERENCES,
-    payload: {
-      donationAccount, preferences
-    },
-  }
-}
-
 export const remapAccountShells = ( services ) => {
   return {
     type: REMAP_ACCOUNT_SHELLS, payload: {
@@ -573,7 +524,6 @@ export const EXCHANGE_RATE_CALCULATED = 'EXCHANGE_RATE_CALCULATED'
 export const SECONDARY_XPRIV_GENERATED = 'SECONDARY_XPRIV_GENERATED'
 export const TWO_FA_VALID = 'TWO_FA_VALID'
 export const TWO_FA_RESETTED = 'TWO_FA_RESETTED'
-export const SETTED_DONATION_ACC = 'SETTED_DONATION_ACC'
 export const UPDATE_ACCOUNTS = 'UPDATE_ACCOUNTS'
 export const UPDATE_ACCOUNT_SHELLS = 'UPDATE_ACCOUNT_SHELLS'
 export const NEW_ACCOUNT_SHELLS_ADDED = 'NEW_ACCOUNT_SHELLS_ADDED'

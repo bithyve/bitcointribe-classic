@@ -1,31 +1,22 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  SafeAreaView,
-  Text,
-  StatusBar,
-  ScrollView,
+  SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View
 } from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-  widthPercentageToDP,
-  heightPercentageToDP,
+  heightPercentageToDP, heightPercentageToDP as hp,
+  widthPercentageToDP, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import Colors from '../../common/Colors'
+import { LocalizationContext } from '../../common/content/LocContext'
 import Fonts from '../../common/Fonts'
 import CommonStyles from '../../common/Styles/Styles'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { RFValue } from 'react-native-responsive-fontsize'
-import { LocalizationContext } from '../../common/content/LocContext'
-import HeaderTitle1 from '../../components/HeaderTitle1'
+import HeaderTitle from '../../components/HeaderTitle'
 import CoveredQRCodeScanner from '../../components/qr-code-scanning/CoveredQRCodeScanner'
-import BottomInfoBox from '../../components/BottomInfoBox'
-import LndConnectUtils from '../../utils/ln/LndConnectUtils'
 import Toast from '../../components/Toast'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import LndConnectUtils from '../../utils/ln/LndConnectUtils'
 
 const styles = StyleSheet.create( {
   viewContainer: {
@@ -95,6 +86,10 @@ const styles = StyleSheet.create( {
     shadowRadius: 6,
     elevation: 6,
   },
+  divider:{
+    width:'100%',
+    height:20
+  }
 } )
 
 
@@ -109,7 +104,6 @@ export default function ScanNodeConfig( { navigation } ) {
       const url = scannedData.split( 'config=' )[ 1 ]
       LndConnectUtils.procesBtcPayConfig( url ).then(
         res=> {
-          console.log( res )
           const {
             uri,
             macaroon,
@@ -127,7 +121,6 @@ export default function ScanNodeConfig( { navigation } ) {
           }
         }
       ).catch( e=> {
-        console.log( e )
         Toast( 'Error fetching config' )
 
       } )
@@ -181,7 +174,7 @@ export default function ScanNodeConfig( { navigation } ) {
           flexGrow: 1
         }}
         keyboardShouldPersistTaps='handled'>
-        <HeaderTitle1
+        <HeaderTitle
           firstLineTitle={'Set up Lighting Account'}
           secondLineTitle={strings.Connectyournode}
           infoTextNormal={''}
@@ -189,7 +182,7 @@ export default function ScanNodeConfig( { navigation } ) {
           infoTextNormal1={''}
           step={''}
         />
-
+        <View style={styles.divider}/>
         <CoveredQRCodeScanner
           onCodeScanned={handleBarcodeRecognized}
           containerStyle={{

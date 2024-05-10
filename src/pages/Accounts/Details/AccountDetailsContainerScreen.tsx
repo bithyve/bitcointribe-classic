@@ -5,9 +5,8 @@ import {
   RefreshControl,
   SectionList,
   StyleSheet,
-  View,
+  View
 } from 'react-native'
-import { RootSiblingParent } from 'react-native-root-siblings'
 import { useDispatch, useSelector } from 'react-redux'
 import config from '../../../bitcoin/HexaConfig'
 import { AccountType } from '../../../bitcoin/utilities/Interface'
@@ -20,19 +19,18 @@ import SubAccountKind from '../../../common/data/enums/SubAccountKind'
 import SyncStatus from '../../../common/data/enums/SyncStatus'
 import AccountShell from '../../../common/data/models/AccountShell'
 import TransactionDescribing from '../../../common/data/models/Transactions/Interfaces'
-import ButtonBlue from '../../../components/ButtonBlue'
-import ErrorModalContents from '../../../components/ErrorModalContents'
 import AccountDetailsCard from '../../../components/account-details/AccountDetailsCard'
 import KnowMoreBottomSheet from '../../../components/account-details/AccountDetailsKnowMoreBottomSheet'
 import NavHeader from '../../../components/account-details/AccountDetailsNavHeader'
-import DonationWebPageBottomSheet from '../../../components/bottom-sheets/DonationWebPageBottomSheet'
 import AccountShellMergeSuccessBottomSheet from '../../../components/bottom-sheets/account-management/AccountShellMergeSuccessBottomSheet'
 import TransactionReassignmentSuccessBottomSheet from '../../../components/bottom-sheets/account-management/TransactionReassignmentSuccessBottomSheet'
+import ErrorModalContents from '../../../components/ErrorModalContents'
 import ModalContainer from '../../../components/home/ModalContainer'
 import BorderWalletKnowMore from '../../../components/know-more-sheets/BorderWalletKnowMore'
-import SavingAccountAlertBeforeLevel2 from '../../../components/know-more-sheets/SavingAccountAlertBeforeLevel2'
+import Toast from '../../../components/Toast'
 import { resetStackToAccountDetails } from '../../../navigation/actions/NavigationActions'
 import { fetchExchangeRates, fetchFeeRates, markReadTx, refreshAccountShells } from '../../../store/actions/accounts'
+import { resetElectrumNotConnectedErr } from '../../../store/actions/nodeSettings'
 import { sourceAccountSelectedForSending } from '../../../store/actions/sending'
 import useAccountShellMergeCompletionEffect from '../../../utils/hooks/account-effects/UseAccountShellMergeCompletionEffect'
 import useTransactionReassignmentCompletedEffect from '../../../utils/hooks/account-effects/UseTransactionReassignmentCompletedEffect'
@@ -59,9 +57,7 @@ const sectionListItemKeyExtractor = ( index ) => String( index )
 
 const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } ) => {
   const dispatch = useDispatch()
-
   const accountShellID = route.params?.accountShellID
-
   useLayoutEffect( () => {
     navigation.setOptions( {
       header: () => (
@@ -83,21 +79,21 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
 
   const [ showMore, setShowMore ] = useState( false )
   const [ bwShowMore, setBWShowMore ] = useState( false )
+  const isBorderWallet = primarySubAccount.type === AccountType.BORDER_WALLET
 
   const isRefreshing = useMemo( () => {
     return ( accountShell.syncStatus===SyncStatus.IN_PROGRESS )
   }, [ accountShell.syncStatus ] )
-
-  const isShowingDonationButton = useMemo( () => {
-    return primarySubAccount.kind === SubAccountKind.DONATION_ACCOUNT
-  }, [ primarySubAccount.kind ] )
 
   const [ secureAccountAlert, setSecureAccountAlert ] = useState( false )
   const [ secureAccountKnowMore, setSecureAccountKnowMore ] = useState( false )
   const AllowSecureAccount = useSelector(
     ( state ) => state.bhr.AllowSecureAccount,
   )
-  const isBorderWallet = primarySubAccount.type === AccountType.BORDER_WALLET
+  const electrumClientConnectionStatus = useSelector(
+    ( state ) => state.nodeSettings.electrumClientConnectionStatus
+  )
+
   const {
     present: presentBottomSheet,
     dismiss: dismissBottomSheet,
@@ -130,17 +126,8 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
   }
 
   function navigateToAccountSettings() {
-    navigation.navigate( 'SubAccountSettings', {
-      screen: 'AccountSettingsMain',
-      params: {
-        accountShellID
-      }
-    } )
-  }
-
-  function navigateToDonationAccountWebViewSettings( donationAccount ) {
-    navigation.navigate( 'DonationAccountWebViewSettings', {
-      account: donationAccount,
+    navigation.navigate( 'AccountSettingsMain', {
+      accountShellID
     } )
   }
 
@@ -149,6 +136,15 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
       hardRefresh: true,
     } ) )
   }
+
+
+  useEffect( () => {
+    if ( electrumClientConnectionStatus?.setElectrumNotConnectedErr ) {
+      Toast( `${electrumClientConnectionStatus.setElectrumNotConnectedErr}` )
+      dispatch( resetElectrumNotConnectedErr() )
+    }
+  }, [ electrumClientConnectionStatus?.setElectrumNotConnectedErr ] )
+
 
   useEffect( () => {
     return () => {
@@ -232,19 +228,6 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
     },
   } )
 
-  const showDonationWebViewSheet = () => {
-    return(
-      <DonationWebPageBottomSheet
-        account={account}
-        onClickSetting={() => {
-          showWebView( false )
-          navigateToDonationAccountWebViewSettings( account )
-        }}
-        closeModal={() => showWebView( false )}
-      />
-    )
-  }
-
   const renderSecureAccountAlertContent = useCallback( () => {
     return (
       <ErrorModalContents
@@ -267,19 +250,6 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
     )
   }, [ secureAccountAlert ] )
 
-  const renderSecureAccountKnowMoreContent = () => {
-    return (
-      <SavingAccountAlertBeforeLevel2
-        titleClicked={()=>{
-          setSecureAccountAlert( true )
-          setSecureAccountKnowMore( false )
-        }}
-        containerStyle={{
-        }}
-      />
-    )
-  }
-
   useEffect( () => {
     // missing fee & exchange rates patch(restore & upgrade)
     if (
@@ -296,11 +266,8 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
   const onSendBittonPress = () => {
     dispatch( sourceAccountSelectedForSending( accountShell ) )
 
-    navigation.navigate( 'Send', {
-      screen: 'SendRoot',
-      params: {
-        subAccountKind: primarySubAccount.kind,
-      }
+    navigation.navigate( 'SendRoot', {
+      subAccountKind: primarySubAccount.kind,
     } )
   }
 
@@ -369,25 +336,6 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
                   }
                   isTestAccount={primarySubAccount.sourceKind === SourceAccountKind.TEST_ACCOUNT}
                 />
-
-                {isShowingDonationButton && (
-                  <View style={{
-                    alignItems: 'center',
-                    marginTop: 36,
-                  }}>
-                    <ButtonBlue
-                      buttonText={'Donation Webpage'}
-                      handleButtonPress={()=>showWebView( true )}
-                    />
-                    {/* <Button
-                      raised
-                      buttonStyle={ButtonStyles.floatingActionButton}
-                      title="Donation Webpage"
-                      titleStyle={ButtonStyles.actionButtonText}
-                      onPress={() => showWebView( true )}
-                    /> */}
-                  </View>
-                )}
               </View>
 
             </View>
@@ -426,11 +374,6 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
       <ModalContainer onBackground={()=>setBWShowMore( false )} visible={bwShowMore} closeBottomSheet={() => {setBWShowMore( false )}}>
         <BorderWalletKnowMore titleClicked={()=>setBWShowMore( false )}/>
       </ModalContainer>
-      <ModalContainer onBackground={()=>showWebView( false )} visible={webView} closeBottomSheet={() => { showWebView( false ) }} >
-        <RootSiblingParent>
-          {showDonationWebViewSheet()}
-        </RootSiblingParent>
-      </ModalContainer>
       {
         primarySubAccount.type == AccountType.SAVINGS_ACCOUNT && (
           <ModalContainer
@@ -448,7 +391,7 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
         )
       }
 
-      {
+      {/* {
         primarySubAccount.type == AccountType.SAVINGS_ACCOUNT && (
           <ModalContainer onBackground={()=>setSecureAccountKnowMore( false )} visible={secureAccountKnowMore} closeBottomSheet={() => {
             if( !AllowSecureAccount && primarySubAccount.type == AccountType.SAVINGS_ACCOUNT ){
@@ -459,7 +402,7 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
             {renderSecureAccountKnowMoreContent()}
           </ModalContainer>
         )
-      }
+      } */}
 
     </View>
   )

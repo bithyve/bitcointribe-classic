@@ -1,10 +1,9 @@
 import BottomSheet from '@gorhom/bottom-sheet'
 import PushNotificationIOS from '@react-native-community/push-notification-ios'
 import messaging from '@react-native-firebase/messaging'
-import { CommonActions } from '@react-navigation/native'
 import idx from 'idx'
 import moment from 'moment'
-import React, { PureComponent, createRef } from 'react'
+import React, { createRef, PureComponent } from 'react'
 import {
   Alert,
   AppState,
@@ -19,7 +18,7 @@ import * as RNLocalize from 'react-native-localize'
 import PushNotification from 'react-native-push-notification'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  heightPercentageToDP, widthPercentageToDP,
+  heightPercentageToDP, widthPercentageToDP
 } from 'react-native-responsive-screen'
 import { connect } from 'react-redux'
 import { v4 as uuid } from 'uuid'
@@ -27,11 +26,9 @@ import {
   AccountType,
   DeepLinkEncryptionType,
   KeeperInfoInterface,
-  LevelHealthInterface,
-  QRCodeTypes,
+  LevelHealthInterface, notificationType, QRCodeTypes,
   Trusted_Contacts,
-  Wallet,
-  notificationType,
+  Wallet
 } from '../../bitcoin/utilities/Interface'
 import Relay from '../../bitcoin/utilities/Relay'
 import TrustedContactsOperations from '../../bitcoin/utilities/TrustedContactsOperations'
@@ -39,41 +36,30 @@ import Colors from '../../common/Colors'
 import {
   getCurrencyImageByRegion,
   processDeepLink,
-  processRequestQR,
+  processRequestQR
 } from '../../common/CommonFunctions/index'
-import Fonts from '../../common/Fonts'
 import CloudBackupStatus from '../../common/data/enums/CloudBackupStatus'
 import ContactTrustKind from '../../common/data/enums/ContactTrustKind'
 import SwanAccountCreationStatus from '../../common/data/enums/SwanAccountCreationStatus'
 import AccountShell from '../../common/data/models/AccountShell'
 import { ContactRecipientDescribing } from '../../common/data/models/interfaces/RecipientDescribing'
 import { Milliseconds } from '../../common/data/typealiases/UnitAliases'
+import Fonts from '../../common/Fonts'
+import BottomSheetRampInfo from '../../components/bottom-sheets/ramp/BottomSheetRampInfo'
+import BottomSheetSwanInfo from '../../components/bottom-sheets/swan/BottomSheetSwanInfo'
 import ClipboardAutoRead from '../../components/ClipboardAutoRead'
 import ErrorModalContents from '../../components/ErrorModalContents'
+import BuyBitcoinHomeBottomSheet, { BuyBitcoinBottomSheetMenuItem, BuyMenuItemKind } from '../../components/home/BuyBitcoinHomeBottomSheet'
+import HomeHeader from '../../components/home/home-header_update'
+import ModalContainer from '../../components/home/ModalContainer'
+import { NotificationType } from '../../components/home/NotificationType'
 import NotificationInfoContents from '../../components/NotificationInfoContents'
 import NotificationListContent from '../../components/NotificationListContent'
 import Toast from '../../components/Toast'
-import BottomSheetRampInfo from '../../components/bottom-sheets/ramp/BottomSheetRampInfo'
-import BottomSheetSwanInfo from '../../components/bottom-sheets/swan/BottomSheetSwanInfo'
-import BottomSheetWyreInfo from '../../components/bottom-sheets/wyre/BottomSheetWyreInfo'
-import BuyBitcoinHomeBottomSheet, { BuyBitcoinBottomSheetMenuItem, BuyMenuItemKind } from '../../components/home/BuyBitcoinHomeBottomSheet'
-import ModalContainer from '../../components/home/ModalContainer'
-import { NotificationType } from '../../components/home/NotificationType'
-import HomeHeader from '../../components/home/home-header_update'
 import BottomSheetHeader from '../../pages/Accounts/BottomSheetHeader'
 import AddContactAddressBook from '../../pages/Contacts/AddContactAddressBook'
 import AcceptGift from '../../pages/FriendsAndFamily/AcceptGift'
 import TrustedContactRequestContent from '../../pages/Home/TrustedContactRequestContent'
-import {
-  acceptExistingContactRequest,
-  initializeHealthSetup,
-  rejectedExistingContactRequest,
-  updateCloudPermission,
-  updateSecondaryShard
-} from '../../store/actions/BHR'
-import { clearRampCache } from '../../store/actions/RampIntegration'
-import { clearSwanCache, createTempSwanAccountInfo, updateSwanStatus } from '../../store/actions/SwanIntegration'
-import { clearWyreCache } from '../../store/actions/WyreIntegration'
 import {
   addTransferDetails,
   fetchExchangeRates,
@@ -81,7 +67,15 @@ import {
   recomputeNetBalance,
   setShowAllAccount
 } from '../../store/actions/accounts'
+import {
+  acceptExistingContactRequest,
+  initializeHealthSetup,
+  rejectedExistingContactRequest,
+  updateCloudPermission,
+  updateSecondaryShard
+} from '../../store/actions/BHR'
 import { setCloudData } from '../../store/actions/cloud'
+import { updateLinkingURL } from '../../store/actions/doNotStore'
 import {
   getMessages,
   notificationPressed,
@@ -90,7 +84,7 @@ import {
   updateFCMTokens,
   updateMessageStatus,
   updateMessageStatusInApp,
-  updateNotificationList,
+  updateNotificationList
 } from '../../store/actions/notifications'
 import {
   setCardData,
@@ -99,17 +93,17 @@ import {
   setIsPermissionGiven,
   setSecondaryDeviceAddress,
   updateLastSeen,
-  updatePreference,
+  updatePreference
 } from '../../store/actions/preferences'
+import { clearRampCache } from '../../store/actions/RampIntegration'
 import { credsAuthenticated } from '../../store/actions/setupAndAuth'
+import { clearSwanCache, createTempSwanAccountInfo, updateSwanStatus } from '../../store/actions/SwanIntegration'
 import {
-  InitTrustedContactFlowKind,
-  PermanentChannelsSyncKind,
   fetchGiftFromTemporaryChannel,
-  initializeTrustedContact,
-  rejectGift,
+  initializeTrustedContact, InitTrustedContactFlowKind,
+  PermanentChannelsSyncKind, rejectGift,
   rejectTrustedContact,
-  syncPermanentChannels,
+  syncPermanentChannels
 } from '../../store/actions/trustedContacts'
 import { setVersion } from '../../store/actions/versionHistory'
 import { AccountsState } from '../../store/reducers/accounts'
@@ -127,7 +121,6 @@ export enum BottomSheetKind {
   ADD_CONTACT_FROM_ADDRESS_BOOK,
   NOTIFICATIONS_LIST,
   SWAN_STATUS_INFO,
-  WYRE_STATUS_INFO,
   RAMP_STATUS_INFO,
   ERROR,
   CLOUD_ERROR,
@@ -168,13 +161,11 @@ interface HomeStateTypes {
   swanDeepLinkContent: string | null;
   isBalanceLoading: boolean;
   addContactModalOpened: boolean;
-  wyreDeepLinkContent: string | null;
   rampDeepLinkContent: string | null;
   rampFromBuyMenu: boolean | null;
   rampFromDeepLink: boolean | null;
-  wyreFromBuyMenu: boolean | null;
-  wyreFromDeepLink: boolean | null;
   releaseNotes: string;
+  giftLoading: boolean;
 }
 
 interface HomePropsTypes {
@@ -207,7 +198,6 @@ interface HomePropsTypes {
   initializeHealthSetup: any;
   overallHealth: any;
   keeperInfo: any[];
-  clearWyreCache: any;
   clearRampCache: any;
   clearSwanCache: any;
   updateSwanStatus: any;
@@ -228,12 +218,9 @@ interface HomePropsTypes {
   cardDataProps: any;
   secureAccount: any;
   setVersion: any;
-  wyreDeepLinkContent: string | null;
   rampDeepLinkContent: string | null;
   rampFromBuyMenu: boolean | null;
   rampFromDeepLink: boolean | null;
-  wyreFromBuyMenu: boolean | null;
-  wyreFromDeepLink: boolean | null;
   setCloudData: any;
   newBHRFlowStarted: any;
   cloudBackupStatus: CloudBackupStatus;
@@ -262,6 +249,9 @@ interface HomePropsTypes {
   notificationPressed: any;
   clipboardAccess: boolean;
   recomputeNetBalance: any;
+  updateLinkingURL:( s:string )=>void;
+  linkingURL: string;
+  shouldListen:boolean;
 }
 
 class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
@@ -306,7 +296,7 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
       notificationIgnoreText:null,
       isIgnoreButton: false,
       currentMessage: null,
-
+      giftLoading: false,
       errorMessageHeader: '',
       errorMessage: '',
       selectedContact: [],
@@ -314,12 +304,9 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
       swanDeepLinkContent: null,
       isBalanceLoading: true,
       addContactModalOpened: false,
-      wyreDeepLinkContent: null,
       rampDeepLinkContent: null,
       rampFromBuyMenu: null,
       rampFromDeepLink: null,
-      wyreFromBuyMenu: null,
-      wyreFromDeepLink: null,
       releaseNotes: '',
     }
     this.currentNotificationId= ''
@@ -360,19 +347,11 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
   }
 
   navigateToQRScreen = () => {
-    this.props.navigation.navigate( 'HomeNav', {
-      screen: this.props.route.name,
-      params: {
-        screen: 'QRScanner',
-        params: {
-          screen: 'QRRoot',
-          params: {
-            onCodeScanned:  this.onCodeScanned,
-          }
-        }
-      }
+    this.props.navigation.navigate( 'QRRoot', {
+      onCodeScanned:  this.onCodeScanned,
     } )
-  };
+  }
+
 
   onPressNotifications = async () => {
     this.readAllNotifications()
@@ -384,7 +363,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
     this.notificationCheck()
     this.openBottomSheetOnLaunch( BottomSheetKind.NOTIFICATIONS_LIST )
     const notificationRejection = this.props.messages.find( value=>value.type == notificationType.FNF_KEEPER_REQUEST_REJECTED && value.additionalInfo && value.additionalInfo.wasExistingContactRequest && value.additionalInfo.channelKey )
-    console.log( 'notificationRejection', notificationRejection )
     if( notificationRejection ) {
       this.props.rejectedExistingContactRequest( notificationRejection.additionalInfo.channelKey )
     }
@@ -392,7 +370,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
 
   notificationCheck = () =>{
     const { messages } = this.props
-    console.log( 'notificationCheck '+JSON.stringify( messages ) )
     if( messages && messages.length ){
       this.updateBadgeCounter()
       messages.sort( function ( left, right ) {
@@ -416,7 +393,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
       }
     }
     const notificationRejection = messages.find( value=>value.type == notificationType.FNF_KEEPER_REQUEST_REJECTED && value.additionalInfo && value.additionalInfo.wasExistingContactRequest && value.additionalInfo.channelKey )
-    console.log( 'notificationRejection', notificationRejection )
     if( notificationRejection ) {
       this.props.rejectedExistingContactRequest( notificationRejection.additionalInfo.channelKey )
     }
@@ -474,6 +450,10 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
           this.moveToContactDetails( message.additionalInfo.channelKey, 'Contact' )
           break
         case NotificationType.FNF_REQUEST_REJECTED:
+          this.closeBottomSheet()
+          this.props.navigation.popToTop()
+          this.props.navigation.navigate( 'FriendsAndFamily')
+          break
         case NotificationType.FNF_KEEPER_REQUEST_ACCEPTED:
           this.moveToContactDetails( message.additionalInfo.channelKey, 'I am the Keeper of' )
           break
@@ -552,6 +532,9 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
   onAppStateChange = async ( nextAppState ) => {
     const { appState } = this.state
     const { isPermissionSet, setIsPermissionGiven } = this.props
+    if( this.props.linkingURL ){
+      this.props.updateLinkingURL( '' )
+    }
     try {
       if ( appState === nextAppState ) return
       if ( isPermissionSet ) {
@@ -569,9 +552,9 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
               value: false,
             } )
             this.props.updateLastSeen( new Date() )
-            CommonActions.navigate( {
-              name: 'Intermediate'
-            } )
+            // CommonActions.navigate( {
+            //   name: 'Intermediate'
+            // } )
           }
         }
       )
@@ -634,8 +617,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
 
       // (optional) Called when Registered Action is pressed and invokeApp is false, if true onNotification will be called (Android)
       onAction: ( notification ) => {
-        console.log( 'ACTION onAction:', notification.action )
-        console.log( 'NOTIFICATION onAction:', notification )
 
         // process the action
       },
@@ -697,28 +678,28 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
   }
 
   handleDeepLinkEvent = async ( { url } ) => {
+    if(url.includes('backup')){
+      this.props.navigation.navigate("BackupWithKeeper")
+      return;
+    }   
     const { navigation } = this.props
     const isFocused = navigation.isFocused()
     // If the user is on one of Home's nested routes, and a
     // deep link is opened, we will navigate back to Home first.
-    if ( !isFocused )
-      navigation.dispatch(
-        CommonActions.reset( {
-          index: 0,
-          routes: [ {
-            name: 'Home',
-            key: 'HomeKey',
-            params: {
-              unhandledDeepLinkURL: url
-            }
-          } ],
-        } )
-      )
-    else this.handleDeepLinking( url )
+    if ( !isFocused ){
+      navigation.popToTop()
+      navigation.navigate( 'Home',{screen:'HomeTab'} )
+      this.handleDeepLinking( url )
+    } else {
+      this.handleDeepLinking( url )
+    }
   };
 
+
   handleDeepLinking = async ( url ) => {
-    if ( url === null ) return
+    if ( !url ) return
+    if( this.props.linkingURL.trim() === url.trim() ) return
+    this.props.updateLinkingURL( url )
     const { trustedContactRequest, swanRequest, giftRequest, campaignId } = await processDeepLink( url )
     if( trustedContactRequest ){
       this.setState( {
@@ -768,12 +749,15 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
         }
       } catch ( error ) {
         Toast( error.message )
-        console.log( error )
       }
     }
   }
 
   componentDidMount = async() => {
+    const shouldListen = this.props.route.name === 'HomeTab'
+    if( !shouldListen ){
+      return
+    }
     const {
       navigation,
       initializeHealthSetup,
@@ -784,10 +768,12 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
       'change',
       this.onAppStateChange
     )
+    this.linkStateListener = Linking.addEventListener( 'url', this.handleDeepLinkEvent )
+    Linking.getInitialURL().then( this.handleDeepLinking )
+
+    // call this once deeplink is detected aswell
+    this.handleDeepLinkModal()
     requestAnimationFrame( () => {
-      // Keeping autoSync disabled
-      // credsAuthenticated( false )
-      //console.log( 'isAuthenticated*****', this.props.isAuthenticated )
       this.syncChannel()
       this.closeBottomSheet()
       if( this.props.cloudBackupStatus == CloudBackupStatus.FAILED && this.props.levelHealth.length >= 1 && this.props.cloudPermissionGranted === true ) {
@@ -806,29 +792,24 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
       this.setUpFocusListener()
       //this.getNewTransactionNotifications()
 
-      this.linkStateListener = Linking.addEventListener( 'url', this.handleDeepLinkEvent )
-      Linking.getInitialURL().then( this.handleDeepLinking )
 
-      // call this once deeplink is detected aswell
-      this.handleDeepLinkModal()
 
       // set FCM token(if haven't already)
       this.storeFCMToken()
 
-      const unhandledDeepLinkURL = this.props.route.params?.unhandledDeepLinkURL
+      // const unhandledDeepLinkURL = this.props.route.params?.unhandledDeepLinkURL
 
-      if ( unhandledDeepLinkURL ) {
-        navigation.setParams( {
-          unhandledDeepLinkURL: null,
-        } )
-        this.handleDeepLinking( unhandledDeepLinkURL )
-      }
+      // if ( unhandledDeepLinkURL ) {
+      //   navigation.setParams( {
+      //     unhandledDeepLinkURL: null,
+      //   } )
+      //   this.handleDeepLinking( unhandledDeepLinkURL )
+      // }
       this.props.setVersion()
       this.props.fetchExchangeRates( this.props.currencyCode )
       this.props.fetchFeeRates()
       this.props.recomputeNetBalance()
     } )
-
   };
 
    storeFCMToken = async () => {
@@ -971,17 +952,21 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
   };
 
   cleanupListeners() {
-    this.focusListener?.()
+    try{
+      this.focusListener?.()
 
-    if ( typeof this.appStateListener === 'function' ) {
-      this.appStateListener.remove()
-    }
-    if ( typeof this.linkStateListener === 'function' ) {
-      this.linkStateListener.remove()
-    }
-    clearTimeout( this.openBottomSheetOnLaunchTimeout )
-    if ( this.firebaseNotificationListener ) {
-      this.firebaseNotificationListener()
+      if ( this.appStateListener ) {
+        this.appStateListener.remove()
+      }
+      if ( this.linkStateListener ) {
+        this.linkStateListener.remove()
+      }
+      clearTimeout( this.openBottomSheetOnLaunchTimeout )
+      if ( this.firebaseNotificationListener ) {
+        this.firebaseNotificationListener()
+      }
+    }catch( err ){
+      //
     }
   }
 
@@ -1038,9 +1023,7 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
     Linking.canOpenURL( url ).then( ( supported ) => {
       if ( supported ) {
         Linking.openURL( url )
-      } else {
-        // console.log("Don't know how to open URI: " + url);
-      }
+      } else {}
     } )
   }
 
@@ -1088,7 +1071,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
   };
 
   onNotificationClicked = async ( value ) => {
-    console.log( 'value', value )
     // if( value.status === 'unread' || value.type === NotificationType.FNF_TRANSACTION )
     // if( value.type !== NotificationType.FNF_KEEPER_REQUEST )
     this.handleNotificationBottomSheetSelection( value )
@@ -1119,7 +1101,8 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
         trustedContactRequest.channelKey = channelKeys[ 0 ]
         trustedContactRequest.contactsSecondaryChannelKey = channelKeys[ 1 ]
       } catch( err ){
-        Toast( 'Invalid key' )
+        Toast( 'Invalid key', true, true )
+        this.onToogleGiftLoading()
         return
       }
 
@@ -1138,7 +1121,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
               isCurrentLevel0
             } )
             // TODO: navigate post approval (from within saga)
-            navigation.navigate( 'Home' )
             if ( trustedContactRequest.isContactGift ) {
               this.setState( {
                 trustedContactRequest: {
@@ -1150,10 +1132,14 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
                 1
               )
             }
+            setTimeout( ()=>{
+              navigation.goBack()
+            }, 3000 )
           }
         } )
       }
     } catch ( error ) {
+      this.onToogleGiftLoading()
       Alert.alert( 'Incompatible request, updating your app might help' )
     }
   };
@@ -1162,38 +1148,25 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
     try {
       this.closeBottomSheet()
       const { trustedContactRequest } = this.state
-      let channelKeys: string[]
-      try{
-        switch( trustedContactRequest.encryptionType ){
-            case DeepLinkEncryptionType.DEFAULT:
-              channelKeys = trustedContactRequest.encryptedChannelKeys.split( '-' )
-              break
-
-            case DeepLinkEncryptionType.NUMBER:
-            case DeepLinkEncryptionType.EMAIL:
-            case DeepLinkEncryptionType.OTP:
-              const decryptedKeys = TrustedContactsOperations.decryptViaPsuedoKey( trustedContactRequest.encryptedChannelKeys, key )
-              channelKeys = decryptedKeys.split( '-' )
-              break
-        }
-
-        trustedContactRequest.channelKey = channelKeys[ 0 ]
-        trustedContactRequest.contactsSecondaryChannelKey = channelKeys[ 1 ]
-      } catch( err ){
-        Toast( 'Invalid key' )
-        return
-      }
       this.props.rejectTrustedContact( {
-        channelKey: trustedContactRequest.channelKey, isExistingContact: trustedContactRequest.isExistingContact
+        channelKey: trustedContactRequest.channelAddress, isExistingContact: trustedContactRequest.isExistingContact
       } )
     } catch ( error ) {
       Alert.alert( 'Incompatible request, updating your app might help' )
     }
   };
 
+  onToogleGiftLoading=()=>{
+    this.setState( ( prevState )=>{
+      return {
+        ...prevState,
+        giftLoading:!prevState.giftLoading
+      }
+    } )
+  }
+
   onGiftRequestAccepted = ( key? ) => {
     try {
-      // this.closeBottomSheet()
       const { giftRequest } = this.state
       let decryptionKey: string
       try{
@@ -1201,7 +1174,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
             case DeepLinkEncryptionType.DEFAULT:
               decryptionKey = giftRequest.encryptedChannelKeys
               break
-
             case DeepLinkEncryptionType.OTP:
             case DeepLinkEncryptionType.LONG_OTP:
             case DeepLinkEncryptionType.SECRET_PHRASE:
@@ -1209,12 +1181,13 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
               break
         }
       } catch( err ){
-        Toast( 'Invalid key' )
+        Toast( 'Invalid key', true, true )
+        this.onToogleGiftLoading()
         return
       }
-
       this.props.fetchGiftFromTemporaryChannel( giftRequest.channelAddress, decryptionKey )
     } catch ( error ) {
+      this.onToogleGiftLoading()
       Alert.alert( 'Incompatible request, updating your app might help' )
     }
   };
@@ -1222,9 +1195,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
   onGiftRequestRejected = ( ) => {
     try {
       this.closeBottomSheet()
-      this.props.navigation.setParams( {
-        unhandledDeepLinkURL: null,
-      } )
       const { giftRequest } = this.state
       this.props.rejectGift( giftRequest.channelAddress )
     } catch ( error ) {
@@ -1264,16 +1234,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
             rampFromBuyMenu: true
           }, () => {
             this.openBottomSheet( BottomSheetKind.RAMP_STATUS_INFO )
-          } )
-          break
-        case BuyMenuItemKind.WYRE:
-          this.props.clearWyreCache()
-          this.setState( {
-            wyreDeepLinkContent: null,
-            wyreFromDeepLink: false,
-            wyreFromBuyMenu: true
-          }, () => {
-            this.openBottomSheet( BottomSheetKind.WYRE_STATUS_INFO )
           } )
           break
     }
@@ -1377,22 +1337,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
               <BottomSheetHeader title="" onPress={this.closeBottomSheet} />
               <BottomSheetSwanInfo
                 swanDeepLinkContent={this.state.swanDeepLinkContent}
-                onClickSetting={() => {
-                  this.closeBottomSheet()
-                }}
-                // onPress={this.closeBottomSheet}
-                onPress={this.onBackPress}
-              />
-            </>
-          )
-        case BottomSheetKind.WYRE_STATUS_INFO:
-          return (
-            <>
-              <BottomSheetHeader title="" onPress={this.closeBottomSheet} />
-              <BottomSheetWyreInfo
-                wyreDeepLinkContent={this.state.wyreDeepLinkContent}
-                wyreFromBuyMenu={this.state.wyreFromBuyMenu}
-                wyreFromDeepLink={this.state.wyreFromDeepLink}
                 onClickSetting={() => {
                   this.closeBottomSheet()
                 }}
@@ -1605,6 +1549,7 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
               onPressAccept={this.onTrustedContactRequestAccepted}
               onPressReject={this.onTrustedContactRejected}
               version={giftRequest.version}
+              giftLoading={this.state.giftLoading}
             />
           )
 
@@ -1689,24 +1634,7 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
             currentLevel={currentLevel}
           />
           <ModalContainer
-            onBackground={() => {
-              if ( this.state.currentBottomSheetKind === BottomSheetKind.GIFT_REQUEST ) {
-                console.log( 'bgState' )
-              } else if ( this.state.currentBottomSheetKind === BottomSheetKind.TRUSTED_CONTACT_REQUEST ) {
-                console.log( 'bgState' )
-              } else {
-                const perviousState = this.state.currentBottomSheetKind
-                this.setState( {
-                  currentBottomSheetKind: null
-                } )
-                setTimeout( () => {
-                  this.setState( {
-                    currentBottomSheetKind: perviousState
-                  }
-                  )
-                }, 200 )
-              }
-            }}
+            onBackground={()=>{}}
             visible={this.state.currentBottomSheetKind != null}
             closeBottomSheet={() => {}}
           >
@@ -1795,6 +1723,7 @@ const mapStateToProps = ( state ) => {
     IsCurrentLevel0: idx( state, ( _ ) => _.bhr.IsCurrentLevel0 ),
     walletId: idx( state, ( _ ) => _.storage.wallet.walletId ),
     clipboardAccess: idx( state, ( _ ) => _.misc.clipboardAccess ),
+    linkingURL: state.doNotStore.linkingURL,
   }
 }
 
@@ -1807,7 +1736,6 @@ export default (
     acceptExistingContactRequest,
     rejectTrustedContact,
     initializeHealthSetup,
-    clearWyreCache,
     clearRampCache,
     clearSwanCache,
     updateSwanStatus,
@@ -1837,7 +1765,8 @@ export default (
     updateSecondaryShard,
     rejectedExistingContactRequest,
     notificationPressed,
-    recomputeNetBalance
+    recomputeNetBalance,
+    updateLinkingURL
   } )( Home )
 )
 

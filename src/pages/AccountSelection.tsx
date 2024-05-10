@@ -1,35 +1,23 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import {
-  StyleSheet,
-  View,
-  SafeAreaView,
-  TouchableOpacity,
-  ScrollView,
-  StatusBar,
-  Text,
-  Keyboard,
-  TouchableWithoutFeedback,
-  Image,
-  ImageSourcePropType,
-  Modal,
-  ImageBackground
-} from 'react-native'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import Fonts from '../common/Fonts'
-import Colors from '../common/Colors'
-import CommonStyles from '../common/Styles/Styles'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import { RFValue } from 'react-native-responsive-fontsize'
-import HeaderTitle from '../components/HeaderTitle'
-import { useDispatch, useSelector } from 'react-redux'
-import ButtonBlue from '../components/ButtonBlue'
-import { ActivityIndicator } from 'react-native-paper'
-import { AccountType } from '../bitcoin/utilities/Interface'
-import { translations } from '../common/content/LocContext'
 import { NavigationProp, ParamListBase, RouteProp } from '@react-navigation/native'
+import React, { useCallback, useState } from 'react'
+import {
+  Image, ImageBackground, ImageSourcePropType, Keyboard, Modal, SafeAreaView, ScrollView,
+  StatusBar, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View
+} from 'react-native'
+import { ActivityIndicator } from 'react-native-paper'
+import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { useDispatch, useSelector } from 'react-redux'
+import { AccountType } from '../bitcoin/utilities/Interface'
+import Colors from '../common/Colors'
+import { translations } from '../common/content/LocContext'
+import Fonts from '../common/Fonts'
+import CommonStyles from '../common/Styles/Styles'
+import ButtonBlue from '../components/ButtonBlue'
+import HeaderTitle from '../components/HeaderTitle'
 
 interface AccountOption {
     id: number;
@@ -63,20 +51,6 @@ const accountOptions: AccountOption[] = [
     type: AccountType.SAVINGS_ACCOUNT,
     imageSource: require( '../assets/images/accIcons/icon_savings.png' ),
     subtitle: 'An on-chain, 2 of 3 multi-signature wallet. Use for securing larger amounts',
-  },
-  {
-    id: 4,
-    title: 'Donation Account',
-    type: AccountType.DONATION_ACCOUNT,
-    imageSource: require( '../assets/images/accIcons/icon_donation.png' ),
-    subtitle: 'Create a donation link in a few clicks. Post it anywhere, get sats in your wallet',
-  },
-  {
-    id: 5,
-    title: 'F&F Account',
-    type: AccountType.WYRE_ACCOUNT,
-    imageSource: require( '../assets/images/accIcons/icon_F&F.png' ),
-    subtitle: 'A separate account where you receive funds from your contacts',
   },
   {
     id: 6,

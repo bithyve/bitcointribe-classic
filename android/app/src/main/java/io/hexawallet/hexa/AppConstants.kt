@@ -14,10 +14,11 @@ object AppConstants {
     lateinit var bdkDir: File
     lateinit var rgbDir: File
     lateinit var bdkDBPath: File
+    const val backupName = "%s.rgb_backup"
 
     const val testnetElectrumURL = "ssl://electrum.iriswallet.com:50013"
 
-    const val proxyConsignmentEndpoint = "rpcs://proxy.iriswallet.com/json-rpc"
+    const val proxyConsignmentEndpoint = "rpcs://proxy.iriswallet.com/0.2/json-rpc"
     const val rgbDefaultPrecision: UByte = 0U
     const val rgbBlindDuration = 86400U
 

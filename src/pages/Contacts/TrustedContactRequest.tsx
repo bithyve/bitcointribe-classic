@@ -1,25 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
-  View,
-  Image,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  TextInput,
-  KeyboardAvoidingView,
-  Platform,
-  Keyboard,
+  ActivityIndicator, Image, Keyboard, KeyboardAvoidingView,
+  Platform, StyleSheet, Text, TextInput, View
 } from 'react-native'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import { ScrollView } from 'react-native-gesture-handler'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
-import { ScrollView } from 'react-native-gesture-handler'
 import { DeepLinkEncryptionType } from '../../bitcoin/utilities/Interface'
+import Colors from '../../common/Colors'
+import Fonts from '../../common/Fonts'
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
 import PassCodeTextBox from '../../components/PassCodeTextBox'
 
 export default function TrustedContactRequest( props ) {
@@ -204,65 +196,64 @@ export default function TrustedContactRequest( props ) {
         //             onPressNumber( value, 5 )
         //             this.textInput6.focus()
 
-        //           }
-        //         }}
-        //         onKeyPress={( e ) => {
-        //           if ( e.nativeEvent.key === 'Backspace' && i == 0 ) {
-        //             this.textInput.focus()
-        //             onPressNumber( '', 0 )
-        //           }
-        //           if ( e.nativeEvent.key === 'Backspace' && i == 1 ) {
-        //             this.textInput.focus()
-        //             onPressNumber( '', 1 )
-        //           }
-        //           if ( e.nativeEvent.key === 'Backspace' && i == 2 ) {
-        //             this.textInput2.focus()
-        //             onPressNumber( '', 2 )
-        //           }
-        //           if ( e.nativeEvent.key === 'Backspace' && i == 3 ) {
-        //             this.textInput3.focus()
-        //             onPressNumber( '', 3 )
-        //           }
-        //           if ( e.nativeEvent.key === 'Backspace' && i == 4 ) {
-        //             this.textInput4.focus()
-        //             onPressNumber( '', 4 )
-        //           }
-        //           if ( e.nativeEvent.key === 'Backspace' && i == 5 ) {
-        //             this.textInput5.focus()
-        //             onPressNumber( '', 5 )
-        //           }
-        //         }}
-        //         onFocus={() => {
-        //           // if ( Platform.OS == 'ios' ) {
-        //           props.bottomSheetRef.current?.expand()
-        //           setIsDisabled( true )
-        //           // }
-        //         }}
-        //         onBlur={() => {
-        //           // if ( Platform.OS == 'ios' ) {
-        //           if (
-        //             ( passcodeArray.length == 0 ||
-        //                 passcodeArray.length == 6 ) &&
-        //               i == 5
-        //           ) {
-        //             props.bottomSheetRef.current?.snapTo( 1 )
-        //             setIsDisabled( false )
-        //           }
-        //           // }
-        //         }}
-        //         autoCorrect={false}
-        //         autoCompleteType="off"
-        //         //value={passcodeArray[i] && passcodeArray[i].length ? passcodeArray[i] : ""}
-        //       />
-        //     )
-        //   } )}
-        // </View>
+      //           }
+      //         }}
+      //         onKeyPress={( e ) => {
+      //           if ( e.nativeEvent.key === 'Backspace' && i == 0 ) {
+      //             this.textInput.focus()
+      //             onPressNumber( '', 0 )
+      //           }
+      //           if ( e.nativeEvent.key === 'Backspace' && i == 1 ) {
+      //             this.textInput.focus()
+      //             onPressNumber( '', 1 )
+      //           }
+      //           if ( e.nativeEvent.key === 'Backspace' && i == 2 ) {
+      //             this.textInput2.focus()
+      //             onPressNumber( '', 2 )
+      //           }
+      //           if ( e.nativeEvent.key === 'Backspace' && i == 3 ) {
+      //             this.textInput3.focus()
+      //             onPressNumber( '', 3 )
+      //           }
+      //           if ( e.nativeEvent.key === 'Backspace' && i == 4 ) {
+      //             this.textInput4.focus()
+      //             onPressNumber( '', 4 )
+      //           }
+      //           if ( e.nativeEvent.key === 'Backspace' && i == 5 ) {
+      //             this.textInput5.focus()
+      //             onPressNumber( '', 5 )
+      //           }
+      //         }}
+      //         onFocus={() => {
+      //           // if ( Platform.OS == 'ios' ) {
+      //           props.bottomSheetRef.current?.expand()
+      //           setIsDisabled( true )
+      //           // }
+      //         }}
+      //         onBlur={() => {
+      //           // if ( Platform.OS == 'ios' ) {
+      //           if (
+      //             ( passcodeArray.length == 0 ||
+      //                 passcodeArray.length == 6 ) &&
+      //               i == 5
+      //           ) {
+      //             props.bottomSheetRef.current?.snapTo( 1 )
+      //             setIsDisabled( false )
+      //           }
+      //           // }
+      //         }}
+      //         autoCorrect={false}
+      //         autoCompleteType="off"
+      //         //value={passcodeArray[i] && passcodeArray[i].length ? passcodeArray[i] : ""}
+      //       />
+      //     )
+      //   } )}
+      // </View>
       )
     }
   }
 
   const checkForValidation = ( text ) => {
-    console.log( 'TEXT', text.charAt( 0 ) + text.substring( 8 ), props.hint )
     if ( props.inputType == DeepLinkEncryptionType.NUMBER ) {
       if ( text.length == 0 ) {
         setWrongInputError( '' )
@@ -481,7 +472,7 @@ export default function TrustedContactRequest( props ) {
                     ? PhoneNumber
                     : props.inputType === DeepLinkEncryptionType.EMAIL
                       ? EmailId
-                      : null
+                      : passcode
                 props.onPressReject( key )
               }}
               style={{
@@ -542,11 +533,11 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
     borderRadius: 8,
     elevation: 10,
-    shadowColor: Colors.shadowBlue,
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 15, height: 15
-    },
+    // shadowColor: Colors.shadowBlue,
+    // shadowOpacity: 1,
+    // shadowOffset: {
+    //   width: 15, height: 15
+    // },
     alignSelf: 'center',
     marginLeft: wp( '8%' ),
   },

@@ -13,17 +13,16 @@ import {
   View
 } from 'react-native'
 import deviceInfoModule from 'react-native-device-info'
-import LinearGradient from 'react-native-linear-gradient'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
 import { Wallet } from '../../bitcoin/utilities/Interface'
 import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
 import { translations } from '../../common/content/LocContext'
 import { hp, wp } from '../../common/data/responsiveness/responsive'
+import Fonts from '../../common/Fonts'
+import ModalContainer from '../../components/home/ModalContainer'
 import LoaderModal from '../../components/LoaderModal'
 import Toast from '../../components/Toast'
-import ModalContainer from '../../components/home/ModalContainer'
 import { recoverWalletUsingMnemonic, restoreSeedWordFailed, setBorderWalletBackup } from '../../store/actions/BHR'
 import { completedWalletSetup } from '../../store/actions/setupAndAuth'
 import { setVersion } from '../../store/actions/versionHistory'
@@ -79,18 +78,21 @@ const CreatePassPhrase = ( props ) => {
 
   useEffect( () => {
     setLoaderModal( false )
-    if ( wallet && !isAccountCreation ) {
-      dispatch( completedWalletSetup() )
-      AsyncStorage.setItem( 'walletRecovered', 'true' )
-      dispatch( setVersion( 'Restored' ) )
-      props.navigation.dispatch( CommonActions.reset( {
-        index: 0,
-        routes: [ {
-          name: 'HomeNav',
-          key: 'HomeKey'
-        } ],
-      } ) )
-    }
+    setTimeout( () => {
+      if ( wallet && !isAccountCreation ) {
+        dispatch( completedWalletSetup() )
+        AsyncStorage.setItem( 'walletRecovered', 'true' )
+        dispatch( setVersion( 'Restored' ) )
+        props.navigation.dispatch( CommonActions.reset( {
+          index: 0,
+          routes: [
+            {
+              name: 'App'
+            }
+          ],
+        } ) )
+      }
+    },100)
   }, [ wallet, isAccountCreation ] )
 
   const onPressNext = () => {
@@ -207,17 +209,11 @@ const CreatePassPhrase = ( props ) => {
           <TouchableOpacity
             activeOpacity={0.6}
             onPress={onPressNext}>
-            <LinearGradient colors={[ Colors.blue, Colors.darkBlue ]}
-              start={{
-                x: 0, y: 0
-              }} end={{
-                x: 1, y: 0
-              }}
-              locations={[ 0.2, 1 ]}
+            <View
               style={styles.buttonView}
             >
               <Text style={styles.buttonText}>Next</Text>
-            </LinearGradient>
+            </View>
           </TouchableOpacity>
         </View>
       </View>

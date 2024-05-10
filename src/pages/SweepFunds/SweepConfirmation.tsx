@@ -7,12 +7,12 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
   heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
+  widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -126,7 +126,6 @@ class SweepConfirmation extends Component<
   calculateTotalAmount = () => {
     const { accountData } = this.state
     const sum = accountData.reduce( ( a, b ) => a + ( b[ 'balance' ] || 0 ), 0 )
-    console.log( 'SUM', sum )
     return UsNumberFormat( sum )
   };
 

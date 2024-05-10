@@ -62,7 +62,7 @@
     "contact": "contact requests"
   },
   "login": {
-    "welcome": "Welcome back!",
+    "welcome": "Welcome Back!",
     "enter_your": "Please enter your ",
     "ForgotPasscode": "Forgot passcode?",
     "EncryptionKeyNotSet": "Encryption Key not set",
@@ -112,7 +112,7 @@
   }
     ],
     "Hello": "Hello!",
-    "create": "Create a login",
+    "create": "Please enter a",
     "reEnter": "Re-enter the",
     "to": "to",
     "verifylogin": "verify and login",
@@ -265,8 +265,6 @@
     "learnMore": "Learn More",
     "ramp": "Buy with Ramp",
     "rampSub": "Low fee for those big buys",
-    "wyre": "Buy with Wyre",
-    "wyreSub": "Buy any amount",
     "manyWays": "Many ways to stack sats directly in Bitcoin Tribe",
     "Poweredby": "Powered by",
     "Notifications": "Notifications",
@@ -279,12 +277,7 @@
     "rampFail": "Ramp order failed",
     "rampProcessed": "Your order is being processed by Ramp, once successful the purchased bitcoin will be transferred to your Ramp account",
     "rampPaymentFail": "Ramp was not able to process your payment. Please try after sometime or use a different payment method",
-    "wyreMessage": "Wyre enables BTC purchases using Apple Pay, debit card, bank transfer as well as easy transfers using open banking where available. Payment methods available may vary based on your country. \n\nBy proceeding, you understand that Wyre will process the payment and transfer for the purchased bitcoin.",
-    "wyreTitle": "Buy bitcoin\nwith Wyre",
-    "wyreFail": "Wyre order failed",
-    "Ordersuccessful": "Order successful",
-    "wyreProcessed": "Your order is successful, the purchased bitcoin will be transferred to your Wyre account shortly",
-    "wyrePaymentFail": "Wyre was not able to process your payment. Please try after sometime or use a different payment method"
+    "Ordersuccessful": "Order successful"
   },
   "settings": {
     "settingsAndMore": "Settings & More",
@@ -385,7 +378,7 @@
     "creatnew": "Create New",
     "AddNew": "Add New",
     "appear": "Your contacts appear here when\nadded to Bitcoin Tribe wallet",
-    "Associate": "Associate a contact",
+    "Associate": "Associate Contact",
     "Select": "Select a contact from your phone's address book",
     "erroraAccessing": "Error while accessing your contacts ",
     "openSetting": "Open Setting",
@@ -466,10 +459,6 @@
     "checking4": "Transactions from your Checking Account have lower fees compared to the Savings Account - keep bitcoin here for short-term holding or spending",
     "checking5": "Be careful! Someone having your phone's and Bitcoin Tribe wallet’s passcodes, could easily spend or send sats out of your Checking Account. Don't keep sats here you don't expect to use soon",
     "checking6": "Reminder: Due to the method we use to secure your Savings account, it is cheaper to send sats from your Checking Account compared to your Savings account",
-    "donation1": "Collect donations for the causes of your choice - from all over the world.",
-    "donation2": "Self-manage your Donation Account without worrying about the tech involved.",
-    "donation3": "A web page and embed code for the account generates a new address every few minutes, helping with privacy of your transactions without needing any input from you.",
-    "donation4": "Your supporters can donate by paying to the addresses these pages generate.",
     "saving1": "When you complete Level 2, you also have a personal device that you have used to store recovery key. The same device is used to create the second mnemonic needed for the Savings Account.",
     "saving2": "This means that your Savings Account is secure even if your phone is completely compromised",
     "saving3": "Use this account to store, or hold bitcoin and sats long term",

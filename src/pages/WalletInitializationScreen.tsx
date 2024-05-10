@@ -11,20 +11,18 @@ import {
 } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
+  widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { useDispatch } from 'react-redux'
 import BorderWallet from '../assets/images/svgs/borderWallet.svg'
 import Colors from '../common/Colors'
-import Fonts from '../common/Fonts'
 import { LocalizationContext } from '../common/content/LocContext'
 import { hp } from '../common/data/responsiveness/responsive'
-import BottomInfoBox from '../components/BottomInfoBox'
+import Fonts from '../common/Fonts'
 import GenerateEntropyGridModal from '../components/border-wallet/GenerateEntropyGridModal'
+import BottomInfoBox from '../components/BottomInfoBox'
 import ModalContainer from '../components/home/ModalContainer'
-import { setDownloadedBackupData } from '../store/actions/BHR'
-import { setCloudDataRecovery, setIsFileReading } from '../store/actions/cloud'
 import openLink from '../utils/OpenLink'
 
 const WalletInitializationScreen = props => {
@@ -34,7 +32,7 @@ const WalletInitializationScreen = props => {
   const [ generateEntropyGrid, setGenerateEntropyGrid ] = useState( false )
   return (
     <SafeAreaView style={{
-      flex: 1, backgroundColor: Colors.backgroundColor
+      flex: 1, backgroundColor: Colors.LIGHT_BACKGROUND
     }}>
       <StatusBar backgroundColor={Colors.white} barStyle="dark-content" />
       <ScrollView>
@@ -68,7 +66,7 @@ const WalletInitializationScreen = props => {
             <View style={styles.arrowIconView}>
               <MaterialIcons
                 name="arrow-forward-ios"
-                color={Colors.borderColor}
+                color={Colors.gray12}
                 size={15}
                 style={{
                   alignSelf: 'center'
@@ -99,7 +97,7 @@ const WalletInitializationScreen = props => {
             <View style={styles.arrowIconView}>
               <MaterialIcons
                 name="arrow-forward-ios"
-                color={Colors.borderColor}
+                color={Colors.gray12}
                 size={15}
                 style={{
                   alignSelf: 'center'
@@ -127,7 +125,7 @@ const WalletInitializationScreen = props => {
             <View style={styles.arrowIconView}>
               <MaterialIcons
                 name="arrow-forward-ios"
-                color={Colors.borderColor}
+                color={Colors.gray12}
                 size={15}
                 style={{
                   alignSelf: 'center'
@@ -145,7 +143,7 @@ const WalletInitializationScreen = props => {
             <Text style={styles.headerTitleText}>{`${strings.Existing} Wallet`}</Text>
             <Text style={styles.headerInfoText}>
               {/* {strings.previously} */}
-              {'Use Backup Phrase if you have 12/24 word Backup Phrase. Recovery Keys are for legacy users'}
+              {'Use Backup phrase if you have 12/24-word Backup or else try using Border wallet'}
             </Text>
           </View>
           <TouchableOpacity
@@ -166,7 +164,7 @@ const WalletInitializationScreen = props => {
             <View style={styles.arrowIconView}>
               <MaterialIcons
                 name="arrow-forward-ios"
-                color={Colors.borderColor}
+                color={Colors.gray12}
                 size={15}
                 style={{
                   alignSelf: 'center'
@@ -174,7 +172,7 @@ const WalletInitializationScreen = props => {
               />
             </View>
           </TouchableOpacity>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={async () => {
               dispatch( setDownloadedBackupData( [] ) )
               dispatch( setCloudDataRecovery( null ) )
@@ -202,7 +200,7 @@ const WalletInitializationScreen = props => {
                 }}
               />
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity
             onPress={() => props.navigation.navigate( 'RegenerateEntropyGrid', {
               navigation: props.navigation
@@ -231,6 +229,7 @@ const WalletInitializationScreen = props => {
             </View>
           </TouchableOpacity>
         </View>
+        <View style={styles.footer}/>
       </ScrollView>
       <BottomInfoBox
         backgroundColor={Colors.white}
@@ -238,7 +237,7 @@ const WalletInitializationScreen = props => {
         infoText={
           `${strings.proceeding} `
         }
-        linkText={strings.TermsService}
+        italicTextTC={strings.TermsService}
         onPress={() => openLink( 'https://bitcointribe.app/terms-of-service/' )}
       />
       <ModalContainer onBackground={() =>setGenerateEntropyGrid( false )}
@@ -258,16 +257,16 @@ let styles = StyleSheet.create( {
     fontSize: RFValue( 22 ),
     marginLeft: 15,
     marginRight: 15,
-    fontFamily: Fonts.Regular,
+    fontFamily: Fonts.Medium,
   },
   headerInfoText: {
     color: Colors.THEAM_INFO_TEXT_COLOR,
     fontSize: RFValue( 12 ),
     marginLeft: 15,
-    marginRight: 15,
+    marginRight: 10,
     fontWeight: 'normal',
     marginTop: 5,
-    fontFamily: Fonts.Regular,
+    fontFamily: Fonts.Medium,
     lineHeight: RFValue( 16 ),
   },
   NewWalletTouchableView: {
@@ -275,18 +274,10 @@ let styles = StyleSheet.create( {
     paddingLeft: wp( '3%' ),
     paddingRight: wp( '3%' ),
     height: wp( '16%' ),
-    backgroundColor: Colors.backgroundColor1,
+    backgroundColor: Colors.bgColor,
     borderRadius: 10,
     marginLeft: wp( '5%' ),
     marginRight: wp( '5%' ),
-    // shadowOffset: {
-    //   width: 5,
-    //   height: 5,
-    // },
-    // shadowOpacity: 1,
-    // shadowRadius: 5,
-    // shadowColor: Colors.borderColor,
-    elevation: 6,
   },
   iconImage: {
     resizeMode: 'contain',
@@ -302,7 +293,7 @@ let styles = StyleSheet.create( {
   touchableText: {
     color: Colors.THEAM_TEXT_COLOR,
     fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Regular,
+    fontFamily: Fonts.Medium,
   },
   arrowIconView: {
     marginLeft: 10,
@@ -314,5 +305,9 @@ let styles = StyleSheet.create( {
     paddingLeft: wp( '3%' ),
     marginTop: wp( '5%' ),
     marginBottom: wp( '5%' )
+  },
+  footer:{
+    height:50,
+    width:'100%'
   }
 } )
