@@ -191,13 +191,13 @@ const CreateGift = ( { route, navigation }: Props ) => {
     const numberOfGifts = numbersOfGift ? Number( numbersOfGift ) : 1
     if ( prefersBitcoin ) {
       if ( !includeFees && averageLowTxFee ) giftAmount += averageLowTxFee
-      return giftAmount * numberOfGifts > spendableBalance
+      return giftAmount * numberOfGifts < spendableBalance
     } else {
       const giftAmountInFiat = giftAmount ? giftAmount : 1
       const spendableBalanceInFiat = parseFloat(
         convertSatsToFiat( spendableBalance )
       )
-      return giftAmountInFiat * numberOfGifts > spendableBalanceInFiat
+      return giftAmountInFiat * numberOfGifts < spendableBalanceInFiat
     }
   }, [
     currentSatsAmountFormValue,
@@ -336,7 +336,7 @@ const CreateGift = ( { route, navigation }: Props ) => {
 
     return (
       <TouchableOpacity
-        disabled={isDisabled}
+        // disabled={isDisabled}
         onPress={() => {
           if ( satCard ) {
             setShowVerification( true )
