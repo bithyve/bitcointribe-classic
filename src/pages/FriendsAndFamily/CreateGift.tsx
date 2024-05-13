@@ -188,12 +188,8 @@ const CreateGift = ( { route, navigation }: Props ) => {
 
   const isAmountInvalid = useMemo( () => {
     let giftAmount = currentSatsAmountFormValue
-    console.log('giftAmount', giftAmount)
     const numberOfGifts = numbersOfGift ? Number( numbersOfGift ) : 1
-    console.log('numberOfGifts', numberOfGifts)
-    console.log('prefersBitcoin', prefersBitcoin)
     if ( prefersBitcoin ) {
-      console.log('averageLowTxFee', averageLowTxFee)
       if ( !includeFees && averageLowTxFee ) giftAmount += averageLowTxFee
       return giftAmount * numberOfGifts > spendableBalance
     } else {
@@ -212,7 +208,7 @@ const CreateGift = ( { route, navigation }: Props ) => {
     numbersOfGift,
     currencyKind,
   ] )
-console.log('isAmountInvalid', isAmountInvalid)
+
   useEffect( () => {
     if (
       accountsState.selectedGiftId &&
