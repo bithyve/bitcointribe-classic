@@ -336,7 +336,7 @@ const CreateGift = ( { route, navigation }: Props ) => {
 
     return (
       <TouchableOpacity
-        disabled={isDisabled}
+        // disabled={isDisabled}
         onPress={() => {
           if ( satCard ) {
             setShowVerification( true )
