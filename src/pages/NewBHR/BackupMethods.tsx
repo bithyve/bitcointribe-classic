@@ -111,7 +111,7 @@ export default function BackupMethods( { navigation } ) {
       } )
     }
   }
-console.log('wallet', wallet)
+  
   useEffect( () => {
     if ( navigationObj.selectedKeeper && btnPress ) {
       const navigationParams = {
