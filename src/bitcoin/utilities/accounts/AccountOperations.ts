@@ -1,6 +1,6 @@
+import axios from 'axios'
 import * as bip32 from 'bip32'
 import * as bitcoinJS from 'bitcoinjs-lib'
-
 import {
   Account, Accounts, AccountType, ActiveAddressAssignee,
   ActiveAddresses,
@@ -731,6 +731,33 @@ export default class AccountOperations {
     }
   };
 
+  static mockFeeRates = () => {
+    // final safety net, enables send flow and consequently the usability of custom fee during fee-info failure scenarios
+
+    // high fee: 10 minutes
+    const highFeeBlockEstimate = 1;
+    const high = {
+      feePerByte: 50,
+      estimatedBlocks: highFeeBlockEstimate,
+    };
+
+    // medium fee: 30 mins
+    const mediumFeeBlockEstimate = 3;
+    const medium = {
+      feePerByte: 25,
+      estimatedBlocks: mediumFeeBlockEstimate,
+    };
+
+    // low fee: 60 mins
+    const lowFeeBlockEstimate = 6;
+    const low = {
+      feePerByte: 12,
+      estimatedBlocks: lowFeeBlockEstimate,
+    };
+    const feeRatesByPriority = { high, medium, low };
+    return feeRatesByPriority;
+  };
+
   static estimateFeeRatesViaElectrum = async () => {
     try {
       // high fee: 10 minutes
@@ -815,6 +842,7 @@ export default class AccountOperations {
         return AccountOperations.estimateFeeRatesViaElectrum();
       } catch (err) {
         console.log({ err });
+        return AccountOperations.mockFeeRates();
       }
     }
   };
