@@ -5,16 +5,16 @@ import React, { useEffect, useState } from 'react';
 import { NativeModules, Platform, SafeAreaView, StatusBar, View } from 'react-native';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import BottomSheet from 'reanimated-bottom-sheet';
-import Toast from 'src/components/Toast';
 import RGBIntroModal from 'src/components/rgb/RGBIntroModal';
+import Toast from 'src/components/Toast';
 import RGBServices from 'src/services/RGBServices';
 import { Wallet } from '../../bitcoin/utilities/Interface';
 import Colors from '../../common/Colors';
 import { translations } from '../../common/content/LocContext';
 import AlertModalContents from '../../components/AlertModalContents';
 import ErrorModalContents from '../../components/ErrorModalContents';
-import LoaderModal from '../../components/LoaderModal';
 import ModalContainer from '../../components/home/ModalContainer';
+import LoaderModal from '../../components/LoaderModal';
 import { recoverWalletUsingMnemonic, restoreSeedWordFailed } from '../../store/actions/BHR';
 import { completedWalletSetup } from '../../store/actions/setupAndAuth';
 import { setVersion } from '../../store/actions/versionHistory';
@@ -123,6 +123,7 @@ const RestoreSeedWordsContent = (props) => {
     setRgbRestoreModal(false);
     setLoaderModal(false);
     setShowLoader(false);
+    Toast('Recover Wallet process completed.', true)
     props.navigation.dispatch(
       CommonActions.reset({
         index: 0,
@@ -147,7 +148,7 @@ const RestoreSeedWordsContent = (props) => {
   };
 
   const recoverWalletViaSeed = (mnemonic: string) => {
-    // setShowLoader(true);
+    setShowLoader(true);
     setMnemonic(mnemonic);
     setTimeout(() => {
       const isValidMnemonic = bip39.validateMnemonic(mnemonic);
@@ -157,7 +158,7 @@ const RestoreSeedWordsContent = (props) => {
         setShowAlertModal(true);
         return;
       }
-      setShowLoader(false);
+      setShowLoader(true);
       setLoaderModal(true);
       setTimeout(() => {
         dispatch(recoverWalletUsingMnemonic(mnemonic));
