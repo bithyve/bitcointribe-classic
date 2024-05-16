@@ -7,7 +7,6 @@ import bs58check from 'bs58check'
 import idx from 'idx'
 import _ from 'lodash'
 import { generateRandomString } from '../../../common/CommonFunctions'
-import { SATOSHIS_IN_BTC } from '../../../common/constants/Bitcoin'
 import { SUB_PRIMARY_ACCOUNT } from '../../../common/constants/wallet-service-types'
 import Toast from '../../../components/Toast'
 import { BH_AXIOS, SIGNING_AXIOS } from '../../../services/api'
@@ -184,6 +183,17 @@ export default class AccountUtilities {
     const { nextFreeAddressIndex, nextFreeChangeAddressIndex, xpub, xpriv, networkType } = account
     const network = AccountUtilities.getNetworkByType( networkType )
     const purpose = getPurpose( account.derivationPath, account.type )
+    const closingExtIndex = nextFreeAddressIndex + config.GAP_LIMIT
+    for (let itr = 0; itr <= nextFreeAddressIndex + closingExtIndex; itr++) {
+      if (AccountUtilities.getAddressByIndex(xpub, false, itr, network, purpose) === address)
+        return AccountUtilities.getPrivateKeyByIndex(xpriv, false, itr, network);
+    }
+
+    const closingIntIndex = nextFreeChangeAddressIndex + config.GAP_LIMIT
+    for (let itr = 0; itr <= closingIntIndex; itr++) {
+      if (AccountUtilities.getAddressByIndex(xpub, true, itr, network, purpose) === address)
+        return AccountUtilities.getPrivateKeyByIndex(xpriv, true, itr, network);
+    }
 
     for( const importedAddress in account.importedAddresses ){
       if( address === importedAddress ) return account.importedAddresses[ importedAddress ].privateKey
