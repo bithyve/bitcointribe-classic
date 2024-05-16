@@ -979,30 +979,38 @@ export default class AccountUtilities {
   }
 
   // test-account specific utilities
-  static getTestcoins = async ( recipientAddress: string, network: bitcoinJS.networks.Network ): Promise<{
+  static getTestcoins = async (
+    recipientAddress: string,
+    network: bitcoinJS.networks.Network
+  ): Promise<{
     txid: any;
     funded: any;
   }> => {
-    if ( network === bitcoinJS.networks.bitcoin ) {
-      throw new Error( 'Invalid network: failed to fund via testnet' )
+    if (network === bitcoinJS.networks.bitcoin) {
+      throw new Error('Invalid network: failed to fund via testnet');
     }
-    const amount = 10000 / SATOSHIS_IN_BTC
     try {
-      const res = await BH_AXIOS.post( `${config.RELAY}testnetFaucet`, {
-        HEXA_ID: config.HEXA_ID,
-        recipientAddress,
-        amount,
-      } )
-      const { txid, funded } = res.data || res.json
+      const res = await axios.post(
+        `https://bithyve-dev-relay.el.r.appspot.com/testnetFaucet`,
+        {
+          recipientAddress,
+        },
+        {
+          headers: {
+            'HEXA-ID': config.HEXA_ID,
+          },
+        }
+      );
+      const { txid, funded } = res.data || res.json;
       return {
         txid,
         funded,
-      }
-    } catch ( err ) {
-      if ( err.response ) throw new Error( err.response.data.err )
-      if ( err.code ) throw new Error( err.code )
+      };
+    } catch (err) {
+      if (err.response) throw new Error(err.response.data.err);
+      if (err.code) throw new Error(err.code);
     }
-  }
+  };
 
   // 2FA-account specific utilities
   static setupTwoFA = async ( walletID: string ): Promise<{
