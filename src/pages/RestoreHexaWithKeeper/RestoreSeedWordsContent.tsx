@@ -69,40 +69,6 @@ const RestoreSeedWordsContent = (props) => {
             goToApp()
           }, 500);
         }
-        // Alert.alert(
-        //   'Restore RGB',
-        //   'Do you want to restore state of your RGB assets?',
-        //   [
-        //     {
-        //       text: 'No',
-        //       onPress: () => goToApp(),
-        //       style: 'cancel',
-        //     },
-        //     {
-        //       text: 'YES',
-        //       onPress: async () => {
-        //         setShowLoader(true)
-        //         await GoogleDrive.setup()
-        //         const login = await GoogleDrive.login()
-        //         if (login.error) {
-        //           Toast(login.error)
-        //         } else {
-        //           setShowLoader(true)
-        //           setTimeout(async () => {
-        //             const config = await RGBServices.restoreKeys(mnemonic)
-        //             RGBServices.initiate(config.mnemonic, config.xpub)
-        //             await RGBServices.restore(mnemonic)
-        //             goToApp()
-        //           }, 300)
-        //         }
-        //       },
-        //       style: 'default',
-        //  }
-        //   ],
-        //   {
-        //     cancelable: true,
-        //   },
-        // )
       } catch (error) {
         setLoaderModal(false);
         console.log(error);
