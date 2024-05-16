@@ -120,7 +120,6 @@ const RestoreSeedWordsContent = (props) => {
       const isValidMnemonic = bip39.validateMnemonic(mnemonic);
       if (!isValidMnemonic) {
         setShowLoader(false);
-        // Alert.alert( 'Invalid mnemonic, try again!' )
         setShowAlertModal(true);
         return;
       }

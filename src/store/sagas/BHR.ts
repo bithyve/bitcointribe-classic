@@ -455,7 +455,6 @@ function* recoverWalletFromIcloudWorker( { payload } ) {
   } catch ( err ) {
     yield put( switchS3LoadingStatus( 'restoreWallet' ) )
     yield put( walletRecoveryFailed( true ) )
-    // Alert.alert('Wallet recovery failed!', err.message);
   }
   yield put( switchS3LoadingStatus( 'restoreWallet' ) )
 }
@@ -488,7 +487,6 @@ function* recoverWalletWithoutIcloudWorker( { payload } ) {
   } catch ( err ) {
     yield put( switchS3LoadingStatus( 'restoreWallet' ) )
     yield put( walletRecoveryFailed( true ) )
-    // Alert.alert('Wallet recovery failed!', err.message);
   }
   yield put( switchS3LoadingStatus( 'restoreWallet' ) )
 }
@@ -552,7 +550,6 @@ function* recoverWalletWorker( { payload } ) {
       if( !image ){
         const getWI = yield call( BHROperations.fetchWalletImage, walletId )
         if( getWI.status == 200 ) image = idx( getWI, _ => _.data.walletImage )
-        // if( !image ) Alert.alert( 'External mnemonic, wallet image not found' )
         if( !image )yield put( restoreSeedWordFailed( 'restoreSeedDataFailed' ) )
       }
     } else {
