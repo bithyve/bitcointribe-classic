@@ -5,6 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { RFValue } from 'react-native-responsive-fontsize'
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen'
 import { useDispatch, useSelector } from 'react-redux'
+import { resetStackToAccountDetails } from 'src/navigation/actions/NavigationActions'
 import { MultiSigAccount, NetworkType, TxPriority } from '../../../bitcoin/utilities/Interface'
 import Colors from '../../../common/Colors'
 import { translations } from '../../../common/content/LocContext'
@@ -31,7 +32,6 @@ import useAccountSendST2CompletionEffect from '../../../utils/sending/UseAccount
 import SendConfirmationContent from '../SendConfirmationContent'
 import SelectedRecipientsCarousel from './SelectedRecipientsCarousel'
 import TransactionPriorityMenu from './TransactionPriorityMenu'
-import { resetStackToAccountDetails } from 'src/navigation/actions/NavigationActions'
 
 export type Props = {
   navigation: NavigationProp<ParamListBase>;

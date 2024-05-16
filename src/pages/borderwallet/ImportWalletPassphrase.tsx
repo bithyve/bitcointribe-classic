@@ -1,3 +1,5 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { CommonActions } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
 import {
   Alert,
@@ -13,6 +15,8 @@ import {
 import deviceInfoModule from 'react-native-device-info'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
+import { completedWalletSetup } from 'src/store/actions/setupAndAuth'
+import { setVersion } from 'src/store/actions/versionHistory'
 import { Wallet } from '../../bitcoin/utilities/Interface'
 import Colors from '../../common/Colors'
 import { translations } from '../../common/content/LocContext'
@@ -23,10 +27,6 @@ import LoaderModal from '../../components/LoaderModal'
 import Toast from '../../components/Toast'
 import { recoverWalletUsingMnemonic, restoreSeedWordFailed, setBorderWalletBackup } from '../../store/actions/BHR'
 import SeedHeaderComponent from '../NewBHR/SeedHeaderComponent'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { completedWalletSetup } from 'src/store/actions/setupAndAuth'
-import { setVersion } from 'src/store/actions/versionHistory'
-import { CommonActions } from '@react-navigation/native'
 
 const ImportWalletPassphrase = ( props ) => {
   const loaderMessage = {
@@ -84,6 +84,7 @@ const ImportWalletPassphrase = ( props ) => {
           dispatch( completedWalletSetup() )
           AsyncStorage.setItem( 'walletRecovered', 'true' )
           dispatch( setVersion( 'Restored' ) )
+          Toast('Recover Wallet process completed.', true)
           props.navigation.dispatch( CommonActions.reset( {
             index: 0,
             routes: [

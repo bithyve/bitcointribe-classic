@@ -24,7 +24,6 @@ import { syncRgb } from '../../store/actions/rgb';
 
 export default function IssueScreen(props) {
   const issueType = props.route.params?.issueType;
-  console.log('props', props)
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -255,7 +254,7 @@ export default function IssueScreen(props) {
           </View>
         </View>
       </KeyboardAwareScrollView>
-      <ModalContainer onBackground={() => {}} closeBottomSheet={() => {}} visible={requesting}>
+      <ModalContainer onBackground={() => { }} closeBottomSheet={() => { }} visible={requesting}>
         <RGBIntroModal
           title={'Creating Asset'}
           info={
@@ -274,9 +273,9 @@ export default function IssueScreen(props) {
         />
       </ModalContainer>
       <ModalContainer
-        onBackground={() => setSuccessModal(false)}
+        onBackground={() => { }}
         visible={successModal}
-        closeBottomSheet={() => {}}
+        closeBottomSheet={() => { }}
       >
         <ErrorModalContents
           modalRef={ErrorBottomSheet}
@@ -297,9 +296,9 @@ export default function IssueScreen(props) {
         />
       </ModalContainer>
       <ModalContainer
-        onBackground={() => setFailedModal(false)}
+        onBackground={()=>{}}
         visible={failedModal}
-        closeBottomSheet={() => {}}
+        closeBottomSheet={()=> {}}
       >
         <ErrorModalContents
           modalRef={ErrorBottomSheet}

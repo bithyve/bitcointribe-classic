@@ -40,7 +40,6 @@ export default function RestoreByCloudQRCodeContents( props ) {
         setProcessButtonText( 'Try again' )
       }, 2 )
       errorBottomSheetRef.current.snapTo( 1 )
-      //Alert.alert('Invalid QR', 'Please try again');
       return
     }
     const startNumber1 = qrData.substring( 2, 3 )

@@ -111,7 +111,7 @@ export default function BackupMethods( { navigation } ) {
       } )
     }
   }
-console.log('wallet', wallet)
+  
   useEffect( () => {
     if ( navigationObj.selectedKeeper && btnPress ) {
       const navigationParams = {
@@ -131,70 +131,9 @@ console.log('wallet', wallet)
   async function onPressBackupRGB() {
     try {
       if(Platform.OS === 'android') {
-
-      // Alert.alert(
-      //   'Select a Google Account',
-      //   'This account will be used to upload the RGB backup data file. The file is encrypted with your Backup Phrase.',
-      //   [
-      //     {
-      //       text: 'Cancel',
-      //       onPress: () => {},
-      //       style: 'cancel',
-      //     },
-      //     {
-      //       text: 'Continue',
-      //       onPress: async () => {
-      //         setGoogleVisibleModal(true)
-      //         await GoogleDrive.setup()
-      //         const login = await GoogleDrive.login()
-      //         if( login.error ) {
-      //           Toast( login.error )
-      //           setGoogleVisibleModal(false)
-      //         } else {
-      //           await RGBServices.backup( '', wallet.primaryMnemonic )
-      //           dispatch( updateLastBackedUp() )
-      //           setGoogleVisibleModal(false)
-      //           Toast('Backuped successfully')
-      //         }
-      //       },
-      //       style: 'default',
-      //     },
-      //   ],
-      //   {
-      //     cancelable: true,
-      //   },
-      // )
       setRgbBackupModal(true)
       } else {
         setRgbBackupIOSModal(true)
-        // Alert.alert(
-        //   '',
-        //   'This step will upload the RGB backup data file on your iCloud. The file is encrypted with your Backup Phrase.',
-        //   [
-        //     {
-        //       text: 'Cancel',
-        //       onPress: () => {},
-        //       style: 'cancel',
-        //     },
-        //     {
-        //       text: 'Continue',
-        //       onPress: async () => {
-        //         const response = await RGBServices.backup( '', wallet.primaryMnemonic )
-        //         if( response.error ) {
-        //           Toast( response.error )
-        //           setGoogleVisibleModal(false)
-        //         } else {
-        //           dispatch( updateLastBackedUp() )
-        //           Toast('Backuped successfully')
-        //         }
-        //       },
-        //       style: 'default',
-        //     },
-        //   ],
-        //   {
-        //     cancelable: true,
-        //   },
-        // )
       }
     } catch ( error ) {
       // error

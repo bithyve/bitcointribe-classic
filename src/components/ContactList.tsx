@@ -114,7 +114,6 @@ export default function ContactList( props ) {
   const getContact = () => {
     ExpoContacts.getContactsAsync().then( async ( { data } ) => {
       if ( !data.length ) {
-        //Alert.alert('No contacts found!');
         setErrorMessage(
           strings.Nocontacts,
         )
