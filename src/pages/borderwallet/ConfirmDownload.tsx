@@ -42,10 +42,6 @@ const ConfirmDownload = ( props ) => {
   const onPressContinue = () => {
     if( isAccountCreation || isImportAccount ){
       dispatch( createBorderWallet( mnemonic, initialMnemonic, gridType, passphrase ) )
-      //TO-DO- BW bind this to account creation redux state
-      // Alert.alert( 'Wallet Created!', 'Border Wallet has been succssefully created', [ {
-      //   text: 'Ok', onPress: ()=> {  props.navigation.navigate( 'Home' )}
-      // } ] )
       setTimeout( ()=>{
         props.navigation.dispatch( CommonActions.reset( {
           index: 0,
