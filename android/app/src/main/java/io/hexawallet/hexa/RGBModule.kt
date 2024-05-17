@@ -190,7 +190,7 @@ class RGBModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
     }
     @ReactMethod
     fun isValidBlindedUtxo(invoice:String,promise: Promise){
-        val response = RGBHelper.isValidBlindedUtxo(invoice)
+        val response = RGBHelper.isValidInvoice(invoice)
         promise.resolve(response)
     }
 
@@ -211,5 +211,11 @@ class RGBModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
         val response = RGBHelper.restore(mnemonic, reactApplicationContext)
         Log.d(TAG, "restore: $response")
         promise.resolve(response)
+    }
+
+    @ReactMethod
+    fun resetData(promise: Promise){
+        AppConstants.rgbDir.delete()
+        promise.resolve(true)
     }
 }

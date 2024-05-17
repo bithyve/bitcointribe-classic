@@ -14,7 +14,8 @@ import com.google.gson.JsonObject
 import org.rgbtools.AssetCfa
 import org.rgbtools.AssetNia
 import org.rgbtools.Balance
-import org.rgbtools.BlindedUtxo
+import org.rgbtools.Invoice
+import org.rgbtools.Utxo
 import org.rgbtools.ReceiveData
 import org.rgbtools.Recipient
 import org.rgbtools.RefreshFilter
@@ -95,10 +96,10 @@ object RGBHelper {
                     //updateBitcoinAsset()
                     callback()
                 }
-                is RgbLibException.InvalidBlindedUtxo ->
-                    throw Exception("Invalid blinded utxo")
-                is RgbLibException.InvalidBlindedUtxo ->
-                    throw Exception("Blinded utxo already used")
+//                is RgbLibException.InvalidBlindedUtxo ->
+//                    throw Exception("Invalid blinded utxo")
+//                is RgbLibException.InvalidBlindedUtxo ->
+//                    throw Exception("Blinded utxo already used")
                 else -> throw e
             }
         }
@@ -146,7 +147,7 @@ object RGBHelper {
             else listOf()
         val refresh = RGBWalletRepository.wallet.refresh(RGBWalletRepository.online, assetID, filter)
         Log.d(TAG, "refresh: $refresh")
-        return refresh
+        return true
     }
 
     fun send(
@@ -164,7 +165,7 @@ object RGBHelper {
             0u
         ) }
         val jsonObject = JsonObject()
-        jsonObject.addProperty("txid", txid)
+        jsonObject.addProperty("txid", txid.txid)
         return jsonObject.toString()
     }
 
@@ -278,7 +279,7 @@ object RGBHelper {
         val keys = restoreKeys(RGBWalletRepository.rgbNetwork, mnemonic)
         return File(
             context.filesDir,
-            AppConstants.backupName.format(keys.xpubFingerprint)
+            AppConstants.backupName.format(keys.accountXpubFingerprint)
         )
     }
 
@@ -365,20 +366,18 @@ object RGBHelper {
             driveClient.files().get(lastBackup.id).executeMediaAndDownloadTo(outputStream)
             return restoreBackup(backupFile.absolutePath, password, AppConstants.rgbDir.absolutePath).toString()
         }catch (e: Exception){
-            Log.d(TAG, "Exception: ${e}")
+            Log.d(TAG, "Exception: $e")
             return ""
         }
     }
 
-    fun isValidBlindedUtxo(invoice: String): Boolean {
+    fun isValidInvoice(invoice: String): Boolean {
         return try {
-            BlindedUtxo(invoice)
+            Invoice(invoice)
             true
-        } catch (e: RgbLibException.InvalidBlindedUtxo){
+        } catch (e: RgbLibException.InvalidInvoice){
             false
         }
     }
-
-
 
 }

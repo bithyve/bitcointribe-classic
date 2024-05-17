@@ -17,7 +17,7 @@ struct Constants{
   static let proxyURL = "https://proxy.iriswallet.com/json-rpc"
   static let proxyConsignmentEndpoint = "rpcs://proxy.iriswallet.com/0.2/json-rpc"
   static let satsForRgb = 9000
-  static let defaultFeeRate = 2.0
+  static let defaultFeeRate = 50.0
   static let rgbBlindDuration = UInt32(86400)
   static let backupName = "%@.rgb_backup"
 

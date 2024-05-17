@@ -34,7 +34,8 @@ import CloudKit
       let data: [String: Any] = [
         "mnemonic": keys.mnemonic,
         "xpub": keys.xpub,
-        "xpubFingerprint": keys.xpubFingerprint,
+        "xpubFingerprint": keys.accountXpubFingerprint,
+        "accountXpub": keys.accountXpub,
         "rgbDir": rgbURL.absoluteString,
         "bdkDir":bdkURL.absoluteString
       ]
@@ -53,7 +54,8 @@ import CloudKit
         let data: [String: Any] = [
           "mnemonic": keys.mnemonic,
           "xpub": keys.xpub,
-          "xpubFingerprint": keys.xpubFingerprint,
+          "accountXpubFingerprint": keys.accountXpubFingerprint,
+          "accountXpub": keys.accountXpub,
           "rgbDir": rgbURL.absoluteString,
           "bdkDir":bdkURL.absoluteString
         ]
@@ -82,7 +84,7 @@ import CloudKit
       jsonObject["precision"] = metaData.precision
       jsonObject["name"] = metaData.name
       jsonObject["ticker"] = metaData.ticker
-      jsonObject["description"] = metaData.description
+      jsonObject["description"] = metaData.details
       jsonObject["timestamp"] = metaData.timestamp
       jsonObject["assetType"] = "\(metaData.assetIface)"
       //jsonObject["parentId"] = metaData.parentId
@@ -171,7 +173,7 @@ import CloudKit
         jsonObject["issuedSupply"] = asset.issuedSupply
         jsonObject["timestamp"] = asset.timestamp
         jsonObject["addedAt"] = asset.addedAt
-        jsonObject["dataPaths"] = asset.dataPaths
+        jsonObject["dataPaths"] = asset.media
         jsonObject["AssetIface"] = "\(asset.assetIface)"
         jsonArray.append(jsonObject)
       }
@@ -183,24 +185,24 @@ import CloudKit
           "settled": asset.balance.settled,
           "spendable": asset.balance.spendable,
         ]
-        jsonRgb121Object["description"] = asset.description
+        jsonRgb121Object["description"] = asset.details
         jsonRgb121Object["name"] = asset.name
         jsonRgb121Object["precision"] = asset.precision
         jsonRgb121Object["issuedSupply"] = asset.issuedSupply
         jsonRgb121Object["timestamp"] = asset.timestamp
         jsonRgb121Object["addedAt"] = asset.addedAt
-        jsonRgb121Object["dataPaths"] = asset.dataPaths
+        jsonRgb121Object["dataPaths"] = asset.media
         jsonRgb121Object["AssetIface"] = "\(asset.assetIface)"
         
         var jsonDataPaths: [[String: Any]] = []
         
-        asset.dataPaths.forEach { Media in
-          let jsonDatapath: [String: Any] = [
-            "mime": Media.mime,
-            "filePath": Media.filePath
-          ]
-          jsonDataPaths.append(jsonDatapath)
-        }
+//        asset.dataPaths.forEach { Media in
+//          let jsonDatapath: [String: Any] = [
+//            "mime": Media.mime,
+//            "filePath": Media.filePath
+//          ]
+//          jsonDataPaths.append(jsonDatapath)
+//        }
         jsonRgb121Object["dataPaths"] = jsonDataPaths
         jsonRgb121Array.append(jsonRgb121Object)
       }
@@ -227,7 +229,7 @@ import CloudKit
           .InsufficientAllocationSlots:
         try createUTXOs(error: error)
         return try callback()
-      case .InvalidBlindedUtxo(let details):
+      case .InvalidInvoice(let details):
         if details == "Invalid blinded utxo" {
           throw NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid blinded utxo"])
         } else if details == "Blinded utxo already used" {
@@ -431,19 +433,19 @@ import CloudKit
   @objc func issueRgb121Asset(name: String, description: String, supply: String, filePath: String, callback: @escaping ((String) -> Void)) -> Void{
     do{
       return try handleMissingFunds {
-        let asset = try self.rgbManager.rgbWallet?.issueAssetCfa(online: self.rgbManager.online!, name: name, description: description, precision: 0, amounts: [UInt64(UInt64(supply)!)], filePath: filePath)
+        let asset = try self.rgbManager.rgbWallet?.issueAssetCfa(online: self.rgbManager.online!, name: name, details: description, precision: 0, amounts: [UInt64(UInt64(supply)!)], filePath: filePath)
         var dataPaths: [[String: Any]] = []
-        asset!.dataPaths.forEach { Media in
-          let jsonDatapath: [String: Any] = [
-            "mime": Media.mime,
-            "filePath": Media.filePath
-          ]
-          dataPaths.append(jsonDatapath)
-        }
+//        asset!.dataPaths.forEach { Media in
+//          let jsonDatapath: [String: Any] = [
+//            "mime": Media.mime,
+//            "filePath": Media.filePath
+//          ]
+//          dataPaths.append(jsonDatapath)
+//        }
         let data: [String: Any] = [
           "assetId": asset?.assetId,
           "name": asset?.name,
-          "description": asset?.description,
+          "description": asset?.details,
           "precision": asset?.precision,
           "futureBalance": asset?.balance.future,
           "settledBalance": asset?.balance.settled,
@@ -462,14 +464,14 @@ import CloudKit
   @objc func sendAsset(assetId: String, blindedUTXO: String, amount: String, consignmentEndpoints: String, callback: @escaping ((String) -> Void)) -> Void{
     do{
       var recipientMap: [String: [Recipient]] = [:]
-      let recipient = Recipient(blindedUtxo: blindedUTXO, scriptData: nil, amount: UInt64(amount)!, transportEndpoints: [consignmentEndpoints])
+      let recipient = Recipient(recipientId: blindedUTXO, witnessData: nil, amount: UInt64(amount)!, transportEndpoints: [consignmentEndpoints])
       recipientMap[assetId] = [recipient]
       let response = try handleMissingFunds {
         return try self.rgbManager.rgbWallet?.send(online: self.rgbManager.online!, recipientMap: recipientMap, donation: false, feeRate: Float(Constants.defaultFeeRate), minConfirmations: 0)
       }
       print(response)
       let data: [String: Any] = [
-        "txid": response
+        "txid": response?.txid
       ]
       let json = Utility.convertToJSONString(params: data)
       callback(json)
@@ -559,13 +561,13 @@ import CloudKit
   @objc func backup(path: String, password: String,callback: @escaping ((String) -> Void)) -> Void{
     do{
       let keys = try restoreKeys(bitcoinNetwork: BitcoinNetwork.testnet, mnemonic: password)
-      let filePath = Utility.getBackupPath(fileName: keys.xpubFingerprint)
+      let filePath = Utility.getBackupPath(fileName: keys.accountXpubFingerprint)
       let fileName = String(format: Constants.backupName, password)
       let response = try self.rgbManager.rgbWallet?.backup(backupPath: filePath?.path ?? "", password: password)
       //      print("backup \(TAG) \(String(describing: response))")
       
       var data: [String: Any] = [:]
-      uploadBackupOnCloud(recordID: keys.xpubFingerprint, filePath: filePath!, completion: {
+      uploadBackupOnCloud(recordID: keys.accountXpubFingerprint, filePath: filePath!, completion: {
         (error, isError) in
         if isError {
           print("Error: \(error ?? "Unknown error")")
@@ -610,7 +612,7 @@ import CloudKit
   @objc func restore(mnemonic: String,callback: @escaping ((String) -> Void)) -> Void{
     do{
       let keys = try restoreKeys(bitcoinNetwork: BitcoinNetwork.testnet, mnemonic: mnemonic)
-      fetchRecordFromICloud(recordID: keys.xpubFingerprint, completion: {
+      fetchRecordFromICloud(recordID: keys.accountXpubFingerprint, completion: {
         (error, isError, url) in
         if isError {
           callback(error!)
@@ -632,7 +634,7 @@ import CloudKit
   
   @objc func isValidBlindedUtxo(invoiceData: String,callback: @escaping ((Bool) -> Void)) -> Void{
     do{
-      try BlindedUtxo(blindedUtxo: invoiceData)
+      try Invoice(invoiceString: invoiceData)
       callback(true)
     }
     catch{
