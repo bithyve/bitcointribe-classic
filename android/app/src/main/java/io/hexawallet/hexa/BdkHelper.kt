@@ -65,7 +65,6 @@ object BdkHelper {
                     .psbt
             BDKWalletRepository.wallet.sign(psbt,null)
             BDKWalletRepository.blockchain.broadcast(psbt.extractTx())
-
             return psbt.txid()
         } catch (e: BdkException.InsufficientFunds) {
             throw Exception("Insufficient sats")
