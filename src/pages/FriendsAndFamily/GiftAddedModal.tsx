@@ -1,21 +1,17 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Platform, Keyboard, Alert } from 'react-native'
-import BottomInfoBox from '../../components/BottomInfoBox'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import { AccountType, DeepLinkEncryptionType, Gift, NetworkType, ScannedAddressKind } from '../../bitcoin/utilities/Interface'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import React from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Illustration from '../../assets/images/svgs/illustration.svg'
-import idx from 'idx'
+import Colors from '../../common/Colors'
+import AccountShell from '../../common/data/models/AccountShell'
+import Fonts from '../../common/Fonts'
+import BottomInfoBox from '../../components/BottomInfoBox'
 import getAvatarForSubAccount from '../../utils/accounts/GetAvatarForSubAccountKind'
 import useAccountShellForID from '../../utils/hooks/state-selectors/accounts/UseAccountShellForID'
-import AccountShell from '../../common/data/models/AccountShell'
 
 
 export type Props = {
@@ -56,33 +52,20 @@ export default function GiftAddedModal( { onCancel, formattedUnitText, renderBut
       >
         <FontAwesome name="close" color={Colors.white} size={19} />
       </TouchableOpacity>
-      {/* <View> */}
       <View style={{
         marginLeft: wp( 6 ), marginBottom: hp( 2 )
       }}>
         <Text style={styles.modalTitleText}>Gift Sats Added to Account</Text>
-        {/* <Text style={{
-          ...styles.modalInfoText,
-        }}>Lorem ipsum dolor Lorem dolor sit amet</Text> */}
-
       </View>
       <View
         style={{
           width: '90%',
-          // height: '54%',
           backgroundColor: Colors.white,
-          // shadowOpacity: 0.06,
-          // shadowOffset: {
-          //   width: 10, height: 10
-          // },
-          // shadowRadius: 10,
-          // elevation: 2,
           alignSelf: 'center',
           borderRadius: wp( 2 ),
           marginVertical: hp( 2 ),
           paddingVertical: hp( 2 ),
           paddingHorizontal: wp( 4 ),
-
           flexDirection: 'row',
           alignItems: 'center'
         }}>
@@ -123,7 +106,6 @@ export default function GiftAddedModal( { onCancel, formattedUnitText, renderBut
         marginHorizontal: wp( 6 )
       }}>
         {renderButton( 'View Account' )}
-        {/* {renderButton( 'Confirm', true )} */}
       </View>
     </>
   )
