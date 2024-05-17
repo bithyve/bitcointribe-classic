@@ -486,16 +486,8 @@ const styles = StyleSheet.create( {
   },
   boldItalicText: {
     fontFamily: Fonts.Regular,
-    // fontWeight: 'bold',
     fontStyle: 'italic',
   },
-  // headerTitleText: {
-  //   color: Colors.blue,
-  //   fontSize: RFValue( 25 ),
-  //   marginLeft: 20,
-  //   marginTop: heightPercentageToDP( '10%' ),
-  //   fontFamily: Fonts.Regular,
-  // },
   headerInfoText: {
     marginTop: heightPercentageToDP( '2%' ),
     color: Colors.textColorGrey,
