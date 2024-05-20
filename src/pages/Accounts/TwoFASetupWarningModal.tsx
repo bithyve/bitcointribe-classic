@@ -1,19 +1,15 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
+  StyleSheet, Text, View
 } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen';
 import Colors from '../../common/Colors';
 import Fonts from '../../common/Fonts';
-import BottomInfoBox from '../../components/BottomInfoBox';
 import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper';
+import BottomInfoBox from '../../components/BottomInfoBox';
 
 export default function TwoFASetupWarningModal(props) {
   return (
