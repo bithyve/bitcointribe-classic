@@ -75,9 +75,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '100%',
     paddingBottom: hp('2%'),
-    elevation: 10,
-    shadowOpacity: 10,
-    shadowOffset: { width: 0, height: 2 },
   },
   manageBackupButtonText: {
     color: Colors.blue,
