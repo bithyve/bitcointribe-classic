@@ -143,15 +143,6 @@ export default function SendConfirmationContent( props ) {
 }
 
 const styles = StyleSheet.create( {
-  // box: {
-  //   backgroundColor: Colors.backgroundColor1,
-  //   marginRight: wp( '5%' ),
-  //   marginLeft: wp( '5%' ),
-  //   marginBottom: hp( '3%' ),
-  //   borderRadius: 10,
-  //   justifyContent: 'center',
-  //   padding: wp( '5%' ),
-  // },
   successModalHeaderView: {
     marginBottom: hp( '1%' ),
     marginTop: hp( '1%' ),
@@ -166,42 +157,6 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 11 ),
     fontFamily: Fonts.Regular,
   },
-  // successModalAmountView: {
-  //   marginRight: wp( '10%' ),
-  //   marginLeft: wp( '10%' ),
-  // },
-  // successModalWalletNameText: {
-  //   color: Colors.black,
-  //   fontSize: RFValue( 25 ),
-  //   fontFamily: Fonts.Regular,
-  //   textAlign: 'center',
-  //   paddingRight: 10,
-  //   flex: 1,
-  // },
-  // successModalAmountImage: {
-  //   width: wp( '15%' ),
-  //   height: wp( '15%' ),
-  //   marginRight: 15,
-  //   marginLeft: 10,
-  //   // marginBottom: wp("1%"),
-  //   resizeMode: 'contain',
-  // },
-  // successModalAmountText: {
-  //   color: Colors.black,
-  //   fontFamily: Fonts.Regular,
-  //   fontSize: RFValue( 21 ),
-  //   marginLeft: 5,
-  // },
-  // successModalAmountUnitText: {
-  //   color: Colors.borderColor,
-  //   fontFamily: Fonts.Regular,
-  //   fontSize: RFValue( 11 ),
-  // },
-  // successModalAmountInfoView: {
-  //   flex: 0.4,
-  //   marginRight: wp( '10%' ),
-  //   marginLeft: wp( '10%' ),
-  // },
   successModalButtonView: {
     height: wp( '13%' ),
     width: wp( '35%' ),
@@ -217,48 +172,4 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 13 ),
     fontFamily: Fonts.Medium,
   },
-  // separator: {
-  //   height: 2,
-  //   marginLeft: wp( '2%' ),
-  //   marginRight: wp( '2%' ),
-  //   backgroundColor: Colors.borderColor,
-  // },
-  // sendSuccessView: {
-  //   marginRight: wp( '8%' ),
-  //   marginLeft: wp( '8%' ),
-  //   marginBottom: wp( '1%' ),
-  //   flexDirection: 'row',
-  // },
-  // sendSuccessInfoTitle: {
-  //   color: Colors.textColorGrey,
-  //   fontFamily: Fonts.Regular,
-  //   fontSize: RFValue( 11 ),
-  // },
-  // contactProfileView: {
-  //   flexDirection: 'row',
-  //   alignItems: 'center',
-  //   marginTop: hp( '1.7%' ),
-  // },
-  // contactProfileImage: {
-  //   borderRadius: 60 / 2,
-  //   width: 60,
-  //   height: 60,
-  //   resizeMode: 'cover',
-  //   shadowColor: Colors.shadowBlue,
-  //   shadowOpacity: 1,
-  //   shadowOffset: {
-  //     width: 15, height: 15
-  //   },
-  // },
-  // contactNameText: {
-  //   color: Colors.textColorGrey,
-  //   fontSize: RFValue( 20 ),
-  //   fontFamily: Fonts.Regular,
-  //   marginLeft: 25,
-  // },
-  // contactIconImage: {
-  //   width: 20,
-  //   height: 20,
-  //   resizeMode: 'cover',
-  // },
 } )
