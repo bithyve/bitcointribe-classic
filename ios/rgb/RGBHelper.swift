@@ -6,19 +6,16 @@
 //
 
 import Foundation
-import BitcoinDevKit
 import CloudKit
 
 @objc class RGBHelper : NSObject {
   
   var rgbManager : RgbManager
-  var bdkManager : BDKManager
   
   var TAG = "TRIBE-RGB"
   
   override init() {
     self.rgbManager = RgbManager.shared
-    self.bdkManager = BDKManager.shared
   }
   
   func getRgbNetwork(network: String)->BitcoinNetwork{
@@ -30,14 +27,12 @@ import CloudKit
     let keys = generateKeys(bitcoinNetwork: network)
     if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
       let rgbURL = documentDirectory.appendingPathComponent(Constants.rgbDirName)
-      let bdkURL = documentDirectory.appendingPathComponent(Constants.bdkDirName)
       let data: [String: Any] = [
         "mnemonic": keys.mnemonic,
         "xpub": keys.xpub,
         "xpubFingerprint": keys.accountXpubFingerprint,
         "accountXpub": keys.accountXpub,
         "rgbDir": rgbURL.absoluteString,
-        "bdkDir":bdkURL.absoluteString
       ]
       let json = Utility.convertToJSONString(params: data)
       callback(json)
@@ -50,14 +45,12 @@ import CloudKit
       let keys = try restoreKeys(bitcoinNetwork: network, mnemonic: mnemonic)
       if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
         let rgbURL = documentDirectory.appendingPathComponent(Constants.rgbDirName)
-        let bdkURL = documentDirectory.appendingPathComponent(Constants.bdkDirName)
         let data: [String: Any] = [
           "mnemonic": keys.mnemonic,
           "xpub": keys.xpub,
           "accountXpubFingerprint": keys.accountXpubFingerprint,
           "accountXpub": keys.accountXpub,
           "rgbDir": rgbURL.absoluteString,
-          "bdkDir":bdkURL.absoluteString
         ]
         let json = Utility.convertToJSONString(params: data)
         callback(json)
@@ -248,10 +241,9 @@ import CloudKit
       switch rgbError {
       case .InsufficientBitcoins(let needed, let available):
         do {
-          BDKHelper.sync(wallet: self.bdkManager.bdkWallet!)
           let address = try self.rgbManager.rgbWallet!.getAddress()
           print("Calling create UTXOs address= \(address)")
-          let txid = try BDKHelper.sendToAddress(address: address, amount: UInt64(Constants.satsForRgb), fee: Float(Constants.defaultFeeRate), wallet: self.bdkManager.bdkWallet!)
+          let txid = ""
           print("Calling create UTXOs txid= \(txid)")
         } catch let error{
           throw NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: error.localizedDescription])
@@ -318,56 +310,22 @@ import CloudKit
   //
   
   @objc func getAddress(btcNetwotk: String, mnemonic: String, callback: @escaping ((String) -> Void)) {
-    if let wallet = BDKHelper.getWallet(mnemonic: mnemonic, network: btcNetwotk) {
-      let address = BDKHelper.getAddress(wallet: wallet)
-      callback(address)
-    } else {
-      callback("")
-    }
+    callback("")
   }
   
   @objc func getBalance(btcNetwotk: String, mnemonic: String, callback: @escaping ((String) -> Void)) {
-    if let wallet = BDKHelper.getWallet(mnemonic: mnemonic, network: btcNetwotk) {
-      let balance = BDKHelper.getBalance(wallet: wallet)
-      callback(balance)
-    } else {
-      callback("{}")
-    }
+    callback("balance")
   }
   
-  @objc func getTransactions(btcNetwotk: String, mnemonic: String, callback: @escaping ((String) -> Void)) {
-    if let wallet = BDKHelper.getWallet(mnemonic: mnemonic, network: btcNetwotk) {
-      let txns = BDKHelper.getTransactions(wallet: wallet)
-      print(txns)
-      callback(txns)
-    } else {
-      callback("")
-    }
-  }
   
   @objc func sync(btcNetwotk: String, mnemonic: String, callback: @escaping ((String) -> Void)) {
-    if let wallet = BDKHelper.getWallet(mnemonic: mnemonic, network: btcNetwotk) {
-      let synched = BDKHelper.sync(wallet: wallet)
-      callback(String(synched))
-    } else {
-      callback(String(false))
-    }
+    callback("")
   }
   
   @objc func syncRgbAssets(btcNetwotk: String, mnemonic: String, callback: @escaping ((String) -> Void)) {
     
   }
   
-  @objc func sendBtc(btcNetwotk: String, mnemonic: String, address: String, amount: String, feeRate: Float, callback: @escaping ((String) -> Void)) {
-    do{
-      let wallet = try BDKHelper.getWallet(mnemonic: mnemonic, network: btcNetwotk)
-      let txid = try BDKHelper.sendToAddress(address: address, amount: UInt64(amount)!, fee: feeRate, wallet: wallet!)
-      callback("{txid: \(txid)}")
-    } catch {
-      print(error)
-      callback("{txid: null}")
-    }
-  }
   
   @objc func receiveAsset(btcNetwotk: String, mnemonic: String,callback: @escaping ((String) -> Void)){
     let response = genReceiveData(mnemonic: mnemonic, btcNetwork: btcNetwotk)
@@ -402,9 +360,7 @@ import CloudKit
   
   @objc func initiate(btcNetwotk: String, mnemonic: String, pubkey: String, callback: @escaping ((String) -> Void)) -> Void{
     self.rgbManager = RgbManager.shared
-    self.bdkManager = BDKManager.shared
     let result =  self.rgbManager.initialize(bitcoinNetwork: btcNetwotk, pubkey: pubkey, mnemonic: mnemonic)
-    self.bdkManager.initialize(mnemonic: mnemonic, network: btcNetwotk)
     callback(result)
   }
   
