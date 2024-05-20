@@ -244,14 +244,14 @@ object RGBHelper {
         if (e is RgbLibException.InsufficientBitcoins) {
             Log.d(TAG, "Sending funds to RGB wallet...")
             try {
-                BdkHelper.sync()
-                val txid =
-                    BdkHelper.sendToAddress(
-                        getAddress(),
-                        AppConstants.satsForRgb,
-                        AppConstants.defaultFeeRate
-                    )
-                Log.d(TAG, "createUTXOs: txid=${txid}")
+//                BdkHelper.sync()
+//                val txid =
+//                    BdkHelper.sendToAddress(
+//                        getAddress(),
+//                        AppConstants.satsForRgb,
+//                        AppConstants.defaultFeeRate
+//                    )
+//                Log.d(TAG, "createUTXOs: txid=${txid}")
             } catch (e: Exception) {
                 throw Exception("Insufficient sats for RGB")
             }
