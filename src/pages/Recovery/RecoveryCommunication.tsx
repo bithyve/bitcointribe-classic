@@ -125,7 +125,6 @@ export default function RecoveryCommunication( props ) {
     setContactInfo( contactInfoTemp )
   }, [] )
 
-  // REQUEST_DETAILS ? Alert.alert('OTP', REQUEST_DETAILS.OTP) : null;
   REQUEST_DETAILS && !trustedQR
     ? setTrustedQR(
       JSON.stringify( {

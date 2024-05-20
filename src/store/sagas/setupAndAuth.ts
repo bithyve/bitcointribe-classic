@@ -315,7 +315,6 @@ function* changeAuthCredWorker({ payload }) {
       err,
     });
     yield put(pinChangedFailed(true));
-    // Alert.alert('Pin change failed!', err.message);
     yield put(credsChanged('not-changed'));
   }
 }
@@ -338,7 +337,6 @@ function* resetPinWorker({ payload }) {
       err,
     });
     yield put(pinChangedFailed(true));
-    // Alert.alert('Pin change failed!', err.message);
     yield put(credsChanged('not-changed'));
   }
 }

@@ -1,30 +1,25 @@
+import idx from 'idx'
 import React, { useEffect, useMemo, useState } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Platform, Keyboard, Alert, ActivityIndicator } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import { useDispatch, useSelector } from 'react-redux'
 import { AccountType } from '../../bitcoin/utilities/Interface'
 import Colors from '../../common/Colors'
+import BitcoinUnit from '../../common/data/enums/BitcoinUnit'
+import AccountShell from '../../common/data/models/AccountShell'
 import Fonts from '../../common/Fonts'
-import { RFValue } from 'react-native-responsive-fontsize'
-import idx from 'idx'
+import { giftAccepted, refreshAccountShells } from '../../store/actions/accounts'
+import { associateGift } from '../../store/actions/trustedContacts'
 import usePrimarySubAccountForShell from '../../utils/hooks/account-utils/UsePrimarySubAccountForShell'
 import useSpendableBalanceForAccountShell from '../../utils/hooks/account-utils/UseSpendableBalanceForAccountShell'
 import useFormattedUnitText from '../../utils/hooks/formatting/UseFormattedUnitText'
-import AccountShell from '../../common/data/models/AccountShell'
-import BitcoinUnit from '../../common/data/enums/BitcoinUnit'
-import useActiveAccountShells from '../../utils/hooks/state-selectors/accounts/UseActiveAccountShells'
-import AccountSelection from './AccountSelection'
-import { associateGift } from '../../store/actions/trustedContacts'
-import { resetStackToAccountDetails, } from '../../navigation/actions/NavigationActions'
 import AccountSelected from './AccountSelected'
+import AccountSelection from './AccountSelection'
 import GiftAddedModal from './GiftAddedModal'
-import { giftAccepted, refreshAccountShells } from '../../store/actions/accounts'
 // import useAccountShellFromNavigation from '../../utils/hooks/state-selectors/accounts/UseAccountShellFromNavigation'
-import useAccountShellForID from '../../utils/hooks/state-selectors/accounts/UseAccountShellForID'
-import { updateTempAccID } from '../../store/actions/doNotStore'
 
 export type Props = {
   navigation: any;
@@ -215,7 +210,6 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
-    elevation: 10,
     alignSelf: 'center',
     marginLeft: wp( '8%' ),
   },
@@ -331,11 +325,6 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
-    shadowColor: Colors.shadowBlue,
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 15, height: 15
-    },
     backgroundColor: Colors.blue,
   },
   availableToSpendText: {

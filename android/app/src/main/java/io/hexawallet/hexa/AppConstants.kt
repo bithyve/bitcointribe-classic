@@ -27,7 +27,7 @@ object AppConstants {
     const val bdkStopGap = 10
 
     const val satsForRgb = 9000UL
-    const val defaultFeeRate = 1.5F
+    const val defaultFeeRate = 50.0F
 
 
     @JvmStatic

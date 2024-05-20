@@ -174,7 +174,6 @@ function* cloudWorker( { payload } ) {
             yield delay( 200 )
             const message = Platform.OS == 'ios' ? `${getiCloudErrorMessage( isCloudBackupCompleted.errorCode )}` : 'Google Drive backup failed'
             yield put( setCloudErrorMessage( message ) )
-          //Alert.alert( 'Error', message )
           }
         }
       } else{

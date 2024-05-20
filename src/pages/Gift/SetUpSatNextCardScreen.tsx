@@ -159,7 +159,6 @@ export default function SetUpSatNextCardScreen( props ) {
             address, pubkey, balance
           }
         }else if ( activeSlotUsage.status === 'UNUSED' ){
-          // Alert.alert('Sorry the current slot is not setup yet!')
           throw new Error( 'Sorry the current slot is not setup yet!' )
         }else{
           throw new Error( 'Active slot cannot be unsealed' )

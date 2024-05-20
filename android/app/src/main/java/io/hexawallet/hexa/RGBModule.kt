@@ -41,12 +41,11 @@ class RGBModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
 
     @ReactMethod
     fun getAddress(mnemonic:String, network: String, promise: Promise) {
-        val address = BdkHelper.getAddress()
+        val address = ""
         promise.resolve(address)
     }
     @ReactMethod
     fun initiate(network: String, mnemonic:String, xpub: String, promise: Promise){
-        BDKWalletRepository.initialize(mnemonic, network)
         promise.resolve(RGBWalletRepository.initialize(network,mnemonic,xpub))
     }
 
@@ -55,36 +54,22 @@ class RGBModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
         Thread {
             Looper.prepare()
             Handler(Looper.getMainLooper()).post {
-                val isSynced = BdkHelper.sync()
-                promise.resolve(isSynced)            }
+                //val isSynced = BdkHelper.sync()
+                promise.resolve(true)            }
             Looper.loop()
         }.start()
     }
 
     @ReactMethod
     fun getBalance( mnemonic:String,network: String, promise: Promise){
-        promise.resolve(BdkHelper.getBalance())
+        promise.resolve("")
     }
 
     @ReactMethod
     fun getTransactions( mnemonic:String,network: String, promise: Promise){
-        promise.resolve(BdkHelper.getTransactions())
+        promise.resolve("")
     }
 
-    @ReactMethod
-    fun sendBtc( mnemonic: String, network: String, address: String, amount: String, feeRate: Float, promise: Promise){
-        try {
-            val txid = BdkHelper.sendToAddress(address, amount.toULong(), feeRate)
-            val jsonObject = JsonObject()
-            jsonObject.addProperty("txid", txid)
-            promise.resolve(jsonObject.toString())
-        }catch (e: Exception) {
-            val message = e.message
-            val jsonObject = JsonObject()
-            jsonObject.addProperty("error", message)
-            promise.resolve(jsonObject.toString())
-        }
-    }
 
     @ReactMethod
     fun syncRgbAssets( mnemonic:String, pubKey:String, network: String, promise: Promise){
@@ -167,10 +152,10 @@ class RGBModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
     @ReactMethod
     fun getUnspents(promise: Promise){
         val rgbUtxo = RGBHelper.getUnspents()
-        val bitcoinUtxo = BdkHelper.getUnspents()
+        //val bitcoinUtxo = BdkHelper.getUnspents()
         val jsonObject = JsonObject()
         jsonObject.addProperty("rgb", Gson().toJson(rgbUtxo))
-        jsonObject.addProperty("bitcoin", Gson().toJson(bitcoinUtxo))
+        //jsonObject.addProperty("bitcoin", Gson().toJson(bitcoinUtxo))
         promise.resolve(jsonObject.toString())
     }
 
@@ -180,17 +165,17 @@ class RGBModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
             Looper.prepare()
             Handler(Looper.getMainLooper()).post {
                 val rgbUtxo = RGBHelper.getUnspents()
-                val bitcoinUtxo = BdkHelper.getUnspents()
+                //val bitcoinUtxo = BdkHelper.getUnspents()
                 val jsonObject = JsonObject()
                 jsonObject.addProperty("rgb", Gson().toJson(rgbUtxo))
-                jsonObject.addProperty("bitcoin", Gson().toJson(bitcoinUtxo))
+                //jsonObject.addProperty("bitcoin", Gson().toJson(bitcoinUtxo))
                 promise.resolve(jsonObject.toString())            }
             Looper.loop()
         }.start()
     }
     @ReactMethod
     fun isValidBlindedUtxo(invoice:String,promise: Promise){
-        val response = RGBHelper.isValidBlindedUtxo(invoice)
+        val response = RGBHelper.isValidInvoice(invoice)
         promise.resolve(response)
     }
 
@@ -211,5 +196,11 @@ class RGBModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
         val response = RGBHelper.restore(mnemonic, reactApplicationContext)
         Log.d(TAG, "restore: $response")
         promise.resolve(response)
+    }
+
+    @ReactMethod
+    fun resetData(promise: Promise){
+        AppConstants.rgbDir.delete()
+        promise.resolve(true)
     }
 }

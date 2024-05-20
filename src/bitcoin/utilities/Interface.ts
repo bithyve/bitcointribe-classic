@@ -862,6 +862,7 @@ export interface RGBConfig {
   xpubFingerprint: string,
   bdkDir: string,
   rgbDir: string
+  accountXpub: string
 }
 
 export interface Account {

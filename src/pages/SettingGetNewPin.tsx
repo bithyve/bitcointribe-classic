@@ -806,8 +806,8 @@ const styles = StyleSheet.create( {
     fontFamily: Fonts.Medium,
   },
   boldItalicText: {
-    fontFamily: Fonts.MediumItalic,
-    fontWeight: 'bold',
+    fontFamily: Fonts.Regular,
+    // fontWeight: 'bold',
     fontStyle: 'italic',
   },
   headerTitleText: {

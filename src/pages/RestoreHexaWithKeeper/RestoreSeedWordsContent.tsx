@@ -5,16 +5,16 @@ import React, { useEffect, useState } from 'react';
 import { NativeModules, Platform, SafeAreaView, StatusBar, View } from 'react-native';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import BottomSheet from 'reanimated-bottom-sheet';
-import Toast from 'src/components/Toast';
 import RGBIntroModal from 'src/components/rgb/RGBIntroModal';
+import Toast from 'src/components/Toast';
 import RGBServices from 'src/services/RGBServices';
 import { Wallet } from '../../bitcoin/utilities/Interface';
 import Colors from '../../common/Colors';
 import { translations } from '../../common/content/LocContext';
 import AlertModalContents from '../../components/AlertModalContents';
 import ErrorModalContents from '../../components/ErrorModalContents';
-import LoaderModal from '../../components/LoaderModal';
 import ModalContainer from '../../components/home/ModalContainer';
+import LoaderModal from '../../components/LoaderModal';
 import { recoverWalletUsingMnemonic, restoreSeedWordFailed } from '../../store/actions/BHR';
 import { completedWalletSetup } from '../../store/actions/setupAndAuth';
 import { setVersion } from '../../store/actions/versionHistory';
@@ -69,40 +69,6 @@ const RestoreSeedWordsContent = (props) => {
             goToApp()
           }, 500);
         }
-        // Alert.alert(
-        //   'Restore RGB',
-        //   'Do you want to restore state of your RGB assets?',
-        //   [
-        //     {
-        //       text: 'No',
-        //       onPress: () => goToApp(),
-        //       style: 'cancel',
-        //     },
-        //     {
-        //       text: 'YES',
-        //       onPress: async () => {
-        //         setShowLoader(true)
-        //         await GoogleDrive.setup()
-        //         const login = await GoogleDrive.login()
-        //         if (login.error) {
-        //           Toast(login.error)
-        //         } else {
-        //           setShowLoader(true)
-        //           setTimeout(async () => {
-        //             const config = await RGBServices.restoreKeys(mnemonic)
-        //             RGBServices.initiate(config.mnemonic, config.xpub)
-        //             await RGBServices.restore(mnemonic)
-        //             goToApp()
-        //           }, 300)
-        //         }
-        //       },
-        //       style: 'default',
-        //  }
-        //   ],
-        //   {
-        //     cancelable: true,
-        //   },
-        // )
       } catch (error) {
         setLoaderModal(false);
         console.log(error);
@@ -123,6 +89,7 @@ const RestoreSeedWordsContent = (props) => {
     setRgbRestoreModal(false);
     setLoaderModal(false);
     setShowLoader(false);
+    Toast('Recover Wallet process completed.', true)
     props.navigation.dispatch(
       CommonActions.reset({
         index: 0,
@@ -147,17 +114,16 @@ const RestoreSeedWordsContent = (props) => {
   };
 
   const recoverWalletViaSeed = (mnemonic: string) => {
-    // setShowLoader(true);
+    setShowLoader(true);
     setMnemonic(mnemonic);
     setTimeout(() => {
       const isValidMnemonic = bip39.validateMnemonic(mnemonic);
       if (!isValidMnemonic) {
         setShowLoader(false);
-        // Alert.alert( 'Invalid mnemonic, try again!' )
         setShowAlertModal(true);
         return;
       }
-      setShowLoader(false);
+      setShowLoader(true);
       setLoaderModal(true);
       setTimeout(() => {
         dispatch(recoverWalletUsingMnemonic(mnemonic));
@@ -179,21 +145,6 @@ const RestoreSeedWordsContent = (props) => {
         backgroundColor: Colors.backgroundColor,
       }}
     >
-      {/* {
-        showLoader &&
-        <View style={{
-          position: 'absolute',
-          left: 0,
-          right: 0,
-          top: 0,
-          bottom: 0,
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 10
-        }}>
-          <ActivityIndicator size="large" color={Colors.babyGray} />
-        </View>
-      } */}
       <SafeAreaView
         style={{
           flex: 0,
