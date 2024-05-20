@@ -3,46 +3,34 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0DF76F60FB9FB773D6F11699 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336309BA1AAAEB9081B313A /* ExpoModulesProvider.swift */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		186115562BFB6A580050E000 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1FFF37032AA1D883008EA5DA /* AppDelegate.mm */; };
 		1FFF37042AA1D883008EA5DA /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1FFF37032AA1D883008EA5DA /* AppDelegate.mm */; };
-		1FFF37062AA1D893008EA5DA /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1FFF37052AA1D893008EA5DA /* AppDelegate.mm */; };
-		1FFF37082AA1D89B008EA5DA /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1FFF37072AA1D89B008EA5DA /* AppDelegate.mm */; };
 		3562B0122B61530700C0B9EF /* rgb_libFFI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3562B0112B61530700C0B9EF /* rgb_libFFI.xcframework */; };
 		3562B0132B61530700C0B9EF /* rgb_libFFI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3562B0112B61530700C0B9EF /* rgb_libFFI.xcframework */; };
-		3562B0142B61530700C0B9EF /* rgb_libFFI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3562B0112B61530700C0B9EF /* rgb_libFFI.xcframework */; };
 		3562B0162B61532B00C0B9EF /* RgbLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3562B0152B61532B00C0B9EF /* RgbLib.swift */; };
 		3562B0172B61532B00C0B9EF /* RgbLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3562B0152B61532B00C0B9EF /* RgbLib.swift */; };
-		3562B0182B61532B00C0B9EF /* RgbLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3562B0152B61532B00C0B9EF /* RgbLib.swift */; };
 		356354B82ACD787500C156AF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356354B12ACD787500C156AF /* Constants.swift */; };
 		356354B92ACD787500C156AF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356354B12ACD787500C156AF /* Constants.swift */; };
-		356354BA2ACD787500C156AF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356354B12ACD787500C156AF /* Constants.swift */; };
 		356354BB2ACD787500C156AF /* RgbManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356354B22ACD787500C156AF /* RgbManager.swift */; };
 		356354BC2ACD787500C156AF /* RgbManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356354B22ACD787500C156AF /* RgbManager.swift */; };
-		356354BD2ACD787500C156AF /* RgbManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356354B22ACD787500C156AF /* RgbManager.swift */; };
 		356354BE2ACD787500C156AF /* RGBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356354B42ACD787500C156AF /* RGBHelper.swift */; };
 		356354BF2ACD787500C156AF /* RGBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356354B42ACD787500C156AF /* RGBHelper.swift */; };
-		356354C02ACD787500C156AF /* RGBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356354B42ACD787500C156AF /* RGBHelper.swift */; };
 		356354C42ACD787500C156AF /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356354B62ACD787500C156AF /* Utility.swift */; };
 		356354C52ACD787500C156AF /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356354B62ACD787500C156AF /* Utility.swift */; };
-		356354C62ACD787500C156AF /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356354B62ACD787500C156AF /* Utility.swift */; };
 		356354C72ACD787500C156AF /* RGBModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 356354B72ACD787500C156AF /* RGBModule.m */; };
 		356354C82ACD787500C156AF /* RGBModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 356354B72ACD787500C156AF /* RGBModule.m */; };
-		356354C92ACD787500C156AF /* RGBModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 356354B72ACD787500C156AF /* RGBModule.m */; };
 		4929D5DDD981494BB7FF83DD /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63D24441726E4404BC7B7B2E /* Montserrat-Regular.ttf */; };
 		4D38330326009EDE00F82BDB /* iCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = CCF1689125FB8FCF0038E126 /* iCloud.m */; };
 		4D38330426009F8900F82BDB /* iCloudHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF1688F25FB8FC50038E126 /* iCloudHelper.swift */; };
 		4D3833052600A08900F82BDB /* HexaWalletBackup.json in Resources */ = {isa = PBXBuildFile; fileRef = CCF1689425FB8FE60038E126 /* HexaWalletBackup.json */; };
-		4D3833072600BD0A00F82BDB /* iCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = CCF1689125FB8FCF0038E126 /* iCloud.m */; };
-		4D3833082600BD0A00F82BDB /* iCloudHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF1688F25FB8FC50038E126 /* iCloudHelper.swift */; };
-		4D3833092600BD1400F82BDB /* HexaWalletBackup.json in Resources */ = {isa = PBXBuildFile; fileRef = CCF1689425FB8FE60038E126 /* HexaWalletBackup.json */; };
 		4DA9C91C25CBC3DA00454AF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 619CF234250654F600A8E6DF /* GoogleService-Info.plist */; };
-		4DA9C91D25CBC3E100454AF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 619CF22F250654D100A8E6DF /* GoogleService-Info.plist */; };
 		6111482F2506463F00ED433D /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6111482E2506463F00ED433D /* CloudKit.framework */; };
 		611148352506478E00ED433D /* PdfGenerate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611148312506478E00ED433D /* PdfGenerate.swift */; };
 		6111483A250647BD00ED433D /* PdfPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 61114839250647BD00ED433D /* PdfPassword.m */; };
@@ -52,44 +40,28 @@
 		6182F77B250B23D7005B6ECE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6111482E2506463F00ED433D /* CloudKit.framework */; };
 		6182F77E250B23D7005B6ECE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		6182F77F250B23D7005B6ECE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		6182F7A3250B2742005B6ECE /* PdfPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 61114839250647BD00ED433D /* PdfPassword.m */; };
-		6182F7A4250B2742005B6ECE /* PdfGenerate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611148312506478E00ED433D /* PdfGenerate.swift */; };
-		6182F7A5250B2742005B6ECE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		6182F7A7250B2742005B6ECE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6111482E2506463F00ED433D /* CloudKit.framework */; };
-		6182F7AA250B2742005B6ECE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		6182F7AB250B2742005B6ECE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		61B5223F25076DF5002F73B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 619CF232250654E300A8E6DF /* GoogleService-Info.plist */; };
 		68FF04C186598B551572E840 /* libPods-HEXA Dev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B51D6FCAE29200D31301ADFE /* libPods-HEXA Dev.a */; };
 		6D02694291194CBD9EB24B7D /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EBDAB1C01FE4D629B1A7C39 /* Montserrat-MediumItalic.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9DFB7500BB9F4E4AAAACF109 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5676B1BA3B1B4E3F9D29308A /* Montserrat-Medium.ttf */; };
 		AA11C3A22548270900B032D1 /* HEXA.Dev-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA11C3A12548270900B032D1 /* HEXA.Dev-Info.plist */; };
-		AA11C3A42548271A00B032D1 /* HEXA.Stage-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA11C3A32548271A00B032D1 /* HEXA.Stage-Info.plist */; };
 		B3881CB8798EC7B9E014156F /* libPods-HEXA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A7CB37BA9502CF189AC1F45 /* libPods-HEXA.a */; };
 		CCF1689025FB8FC50038E126 /* iCloudHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF1688F25FB8FC50038E126 /* iCloudHelper.swift */; };
 		CCF1689225FB8FCF0038E126 /* iCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = CCF1689125FB8FCF0038E126 /* iCloud.m */; };
 		CCF1689525FB8FE60038E126 /* HexaWalletBackup.json in Resources */ = {isa = PBXBuildFile; fileRef = CCF1689425FB8FE60038E126 /* HexaWalletBackup.json */; };
 		D45D423F823D4B4F96F81CDC /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD2C9FFB56CD431FBFFABD4B /* Montserrat-Italic.ttf */; };
-		EB01814ADA60C1AAE80592C9 /* libPods-HEXA Stage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5CA33679351410597FFE38 /* libPods-HEXA Stage.a */; };
 		F450099E299BB94B009F3355 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63D24441726E4404BC7B7B2E /* Montserrat-Regular.ttf */; };
 		F45009A0299BB959009F3355 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD2C9FFB56CD431FBFFABD4B /* Montserrat-Italic.ttf */; };
 		F45009A2299BB961009F3355 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EBDAB1C01FE4D629B1A7C39 /* Montserrat-MediumItalic.ttf */; };
 		F45009A3299BB965009F3355 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5676B1BA3B1B4E3F9D29308A /* Montserrat-Medium.ttf */; };
 		F49AA80D26A0284D0097D815 /* BackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F49AA80B26A0284D0097D815 /* BackgroundViewController.m */; };
 		F49AA80E26A0284D0097D815 /* BackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F49AA80B26A0284D0097D815 /* BackgroundViewController.m */; };
-		F49AA80F26A0284D0097D815 /* BackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F49AA80B26A0284D0097D815 /* BackgroundViewController.m */; };
 		F49AA81026A0284D0097D815 /* BackgroundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F49AA80C26A0284D0097D815 /* BackgroundViewController.xib */; };
 		F49AA81126A0284D0097D815 /* BackgroundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F49AA80C26A0284D0097D815 /* BackgroundViewController.xib */; };
-		F49AA81226A0284D0097D815 /* BackgroundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F49AA80C26A0284D0097D815 /* BackgroundViewController.xib */; };
-		F4FBDE50299CCE9F00B3E6E2 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63D24441726E4404BC7B7B2E /* Montserrat-Regular.ttf */; };
-		F4FBDE52299CCEA900B3E6E2 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD2C9FFB56CD431FBFFABD4B /* Montserrat-Italic.ttf */; };
-		F4FBDE55299CCEB300B3E6E2 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5676B1BA3B1B4E3F9D29308A /* Montserrat-Medium.ttf */; };
-		F4FBDE56299CCEB800B3E6E2 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EBDAB1C01FE4D629B1A7C39 /* Montserrat-MediumItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* HEXATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HEXATests.m; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Bitcoin Tribe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bitcoin Tribe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = HEXA/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = HEXA/AppDelegate.m; sourceTree = "<group>"; };
@@ -99,8 +71,6 @@
 		158EFB7281D64BD3B2F784B3 /* FiraSans-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-MediumItalic.ttf"; path = "../src/assets/fonts/FiraSans-MediumItalic.ttf"; sourceTree = "<group>"; };
 		1BDE786A62844DE89D7EE379 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		1FFF37032AA1D883008EA5DA /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = HEXA/AppDelegate.mm; sourceTree = "<group>"; };
-		1FFF37052AA1D893008EA5DA /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = HEXA/AppDelegate.mm; sourceTree = "<group>"; };
-		1FFF37072AA1D89B008EA5DA /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = HEXA/AppDelegate.mm; sourceTree = "<group>"; };
 		227A2A160AEE42F4999170A1 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		23E8C76F1A8A9DE072DBA888 /* Pods-HEXA Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HEXA Dev.debug.xcconfig"; path = "Target Support Files/Pods-HEXA Dev/Pods-HEXA Dev.debug.xcconfig"; sourceTree = "<group>"; };
 		262894C9A21E4EE48406A1D0 /* FiraSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-Bold.ttf"; path = "../src/assets/fonts/FiraSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -114,7 +84,6 @@
 		356354B62ACD787500C156AF /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		356354B72ACD787500C156AF /* RGBModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RGBModule.m; sourceTree = "<group>"; };
 		39CE481CEF614843B40E1EC5 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBold.ttf"; path = "../src/assets/fonts/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
-		3FFEF1B9BF600668C2770DB5 /* Pods-HEXA Stage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HEXA Stage.debug.xcconfig"; path = "Target Support Files/Pods-HEXA Stage/Pods-HEXA Stage.debug.xcconfig"; sourceTree = "<group>"; };
 		466F94D18D9449A8957F3610 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Regular.ttf"; path = "../src/assets/fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		4D3784CB53EE4E7D914C42B4 /* FiraSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-SemiBold.ttf"; path = "../src/assets/fonts/FiraSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		5395FCDF04064C3DBEEE4A64 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
@@ -130,7 +99,6 @@
 		6111483C25064A4F00ED433D /* Hexa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Hexa.entitlements; path = HEXA/Hexa.entitlements; sourceTree = "<group>"; };
 		617379E825066B5200D4DA9C /* HEXA-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HEXA-Bridging-Header.h"; sourceTree = "<group>"; };
 		6182F796250B23D7005B6ECE /* Bitcoin Tribe Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bitcoin Tribe Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6182F7C2250B2742005B6ECE /* Bitcoin Tribe Stag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bitcoin Tribe Stag.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		619CF22F250654D100A8E6DF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "GoogleServicesPlist/Staging/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		619CF232250654E300A8E6DF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "GoogleServicesPlist/Production/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		619CF234250654F600A8E6DF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "GoogleServicesPlist/Development/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -152,7 +120,6 @@
 		9E29DABD5A154C1997E9AD44 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-BoldItalic.ttf"; path = "../src/assets/fonts/OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		A35E966FF3B347CFA2E0CBE5 /* FiraSans-BookItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-BookItalic.ttf"; path = "../src/assets/fonts/FiraSans-BookItalic.ttf"; sourceTree = "<group>"; };
 		AA11C3A12548270900B032D1 /* HEXA.Dev-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "HEXA.Dev-Info.plist"; path = "HEXA/HEXA.Dev-Info.plist"; sourceTree = "<group>"; };
-		AA11C3A32548271A00B032D1 /* HEXA.Stage-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "HEXA.Stage-Info.plist"; path = "HEXA/HEXA.Stage-Info.plist"; sourceTree = "<group>"; };
 		AD12BB582E724B3887BFFE64 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Light.ttf"; path = "../src/assets/fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		B51D6FCAE29200D31301ADFE /* libPods-HEXA Dev.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HEXA Dev.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1B0A87F089E485685570E93 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -164,12 +131,10 @@
 		CCF1689425FB8FE60038E126 /* HexaWalletBackup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = HexaWalletBackup.json; path = iCloud/HexaWalletBackup.json; sourceTree = "<group>"; };
 		D242AB8F3F014E068BE8C13D /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		DAD1674B7394413A82B21AF7 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiboldItalic.ttf"; path = "../src/assets/fonts/OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
-		DBD776D50B4B4FBD08A02435 /* Pods-HEXA Stage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HEXA Stage.release.xcconfig"; path = "Target Support Files/Pods-HEXA Stage/Pods-HEXA Stage.release.xcconfig"; sourceTree = "<group>"; };
 		DF7107F6EA2D4846A469A116 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Semibold.ttf"; path = "../src/assets/fonts/OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		E2EDF28037624796A9996D82 /* FiraSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-Italic.ttf"; path = "../src/assets/fonts/FiraSans-Italic.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		ED5CA33679351410597FFE38 /* libPods-HEXA Stage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HEXA Stage.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE6F36351DD345FAB2CDA5DE /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		F336309BA1AAAEB9081B313A /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-HEXA/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		F49AA80A26A0284D0097D815 /* BackgroundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackgroundViewController.h; sourceTree = "<group>"; };
@@ -200,36 +165,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6182F7A6250B2742005B6ECE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3562B0142B61530700C0B9EF /* rgb_libFFI.xcframework in Frameworks */,
-				6182F7A7250B2742005B6ECE /* CloudKit.framework in Frameworks */,
-				EB01814ADA60C1AAE80592C9 /* libPods-HEXA Stage.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* HEXATests */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F21AD99517003FC87E /* HEXATests.m */,
-				00E356F01AD99517003FC87E /* Supporting Files */,
-			);
-			path = HEXATests;
-			sourceTree = "<group>";
-		};
-		00E356F01AD99517003FC87E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F11AD99517003FC87E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* HEXA */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,7 +183,6 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA11C3A12548270900B032D1 /* HEXA.Dev-Info.plist */,
-				AA11C3A32548271A00B032D1 /* HEXA.Stage-Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				617379E825066B5200D4DA9C /* HEXA-Bridging-Header.h */,
@@ -261,7 +198,6 @@
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				5A7CB37BA9502CF189AC1F45 /* libPods-HEXA.a */,
 				B51D6FCAE29200D31301ADFE /* libPods-HEXA Dev.a */,
-				ED5CA33679351410597FFE38 /* libPods-HEXA Stage.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -289,27 +225,16 @@
 			name = HEXA;
 			sourceTree = "<group>";
 		};
-		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Libraries;
-			sourceTree = "<group>";
-		};
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
 				356354B02ACD787500C156AF /* rgb */,
 				1FFF37032AA1D883008EA5DA /* AppDelegate.mm */,
-				1FFF37052AA1D893008EA5DA /* AppDelegate.mm */,
-				1FFF37072AA1D89B008EA5DA /* AppDelegate.mm */,
 				F49AA80A26A0284D0097D815 /* BackgroundViewController.h */,
 				F49AA80B26A0284D0097D815 /* BackgroundViewController.m */,
 				F49AA80C26A0284D0097D815 /* BackgroundViewController.xib */,
 				CCF1688E25FB8F990038E126 /* iCloud */,
 				13B07FAE1A68108700A75B9A /* HEXA */,
-				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* HEXATests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				9FD0418BDBDF3D36477ED773 /* Pods */,
@@ -326,7 +251,6 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* Bitcoin Tribe.app */,
 				6182F796250B23D7005B6ECE /* Bitcoin Tribe Dev.app */,
-				6182F7C2250B2742005B6ECE /* Bitcoin Tribe Stag.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -338,8 +262,6 @@
 				782E06BA412FAC8BD733053D /* Pods-HEXA.release.xcconfig */,
 				23E8C76F1A8A9DE072DBA888 /* Pods-HEXA Dev.debug.xcconfig */,
 				782C977DCCF70ED50DF374E6 /* Pods-HEXA Dev.release.xcconfig */,
-				3FFEF1B9BF600668C2770DB5 /* Pods-HEXA Stage.debug.xcconfig */,
-				DBD776D50B4B4FBD08A02435 /* Pods-HEXA Stage.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -428,8 +350,6 @@
 			dependencies = (
 			);
 			name = HEXA;
-			packageProductDependencies = (
-			);
 			productName = HEXA;
 			productReference = 13B07F961A680F5B00A75B9A /* Bitcoin Tribe.app */;
 			productType = "com.apple.product-type.application";
@@ -453,36 +373,8 @@
 			dependencies = (
 			);
 			name = "HEXA Dev";
-			packageProductDependencies = (
-			);
 			productName = HEXA;
 			productReference = 6182F796250B23D7005B6ECE /* Bitcoin Tribe Dev.app */;
-			productType = "com.apple.product-type.application";
-		};
-		6182F79E250B2742005B6ECE /* HEXA Stage */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6182F7BF250B2742005B6ECE /* Build configuration list for PBXNativeTarget "HEXA Stage" */;
-			buildPhases = (
-				454CE80D489D54A57853C18B /* [CP] Check Pods Manifest.lock */,
-				4D260BB12613190A001DA4F9 /* Start Packager */,
-				6182F7A1250B2742005B6ECE /* Sources */,
-				6182F7A6250B2742005B6ECE /* Frameworks */,
-				6182F7A9250B2742005B6ECE /* Resources */,
-				4D38330D2600BF0500F82BDB /* Bundle React Native code and images */,
-				E5A02DBA22BA388F5357F55F /* ShellScript */,
-				55FBAF50B76AE6B342398165 /* [CP] Embed Pods Frameworks */,
-				0E9FEB7C6F20E7C55D5CC7D4 /* [CP] Copy Pods Resources */,
-				FC821F170F25BF469061A2CC /* [CP-User] [RNFB] Core Configuration */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "HEXA Stage";
-			packageProductDependencies = (
-			);
-			productName = HEXA;
-			productReference = 6182F7C2250B2742005B6ECE /* Bitcoin Tribe Stag.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -496,10 +388,6 @@
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1170;
 					};
-					6182F79E250B2742005B6ECE = {
-						DevelopmentTeam = Y5TCB759QL;
-						ProvisioningStyle = Manual;
-					};
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "HEXA" */;
@@ -511,15 +399,12 @@
 				Base,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
-			packageReferences = (
-			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* HEXA */,
 				6182F772250B23D7005B6ECE /* HEXA Dev */,
-				6182F79E250B2742005B6ECE /* HEXA Stage */,
 			);
 		};
 /* End PBXProject section */
@@ -558,23 +443,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6182F7A9250B2742005B6ECE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F4FBDE56299CCEB800B3E6E2 /* Montserrat-MediumItalic.ttf in Resources */,
-				F4FBDE55299CCEB300B3E6E2 /* Montserrat-Medium.ttf in Resources */,
-				F4FBDE52299CCEA900B3E6E2 /* Montserrat-Italic.ttf in Resources */,
-				F4FBDE50299CCE9F00B3E6E2 /* Montserrat-Regular.ttf in Resources */,
-				4D3833092600BD1400F82BDB /* HexaWalletBackup.json in Resources */,
-				AA11C3A42548271A00B032D1 /* HEXA.Stage-Info.plist in Resources */,
-				6182F7AA250B2742005B6ECE /* LaunchScreen.storyboard in Resources */,
-				6182F7AB250B2742005B6ECE /* Images.xcassets in Resources */,
-				F49AA81226A0284D0097D815 /* BackgroundViewController.xib in Resources */,
-				4DA9C91D25CBC3E100454AF7 /* GoogleService-Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -591,56 +459,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd $PROJECT_DIR/..\nexport NODE_BINARY=node\n./node_modules/react-native/scripts/react-native-xcode.sh\n";
-		};
-		0E9FEB7C6F20E7C55D5CC7D4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HEXA Stage/Pods-HEXA Stage-resources.sh",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HEXA Stage/Pods-HEXA Stage-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		22893F297E797E0E834CABF9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -716,46 +534,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		454CE80D489D54A57853C18B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-HEXA Stage-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4D260BB12613190A001DA4F9 /* Start Packager */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Start Packager";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
-		};
 		4D3833062600A16700F82BDB /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -792,24 +570,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd $PROJECT_DIR/..\nexport NODE_BINARY=node\n./node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		4D38330D2600BF0500F82BDB /* Bundle React Native code and images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle React Native code and images";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd $PROJECT_DIR/..\nexport NODE_BINARY=node\n./node_modules/react-native/scripts/react-native-xcode.sh\n";
-		};
 		50D0EB7EFE6F32951068039A /* [CP-User] [RNFB] Core Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -822,30 +582,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\nset -e\n\n_MAX_LOOKUPS=2;\n_SEARCH_RESULT=''\n_RN_ROOT_EXISTS=''\n_CURRENT_LOOKUPS=1\n_JSON_ROOT=\"'react-native'\"\n_JSON_FILE_NAME='firebase.json'\n_JSON_OUTPUT_BASE64='e30=' # { }\n_CURRENT_SEARCH_DIR=${PROJECT_DIR}\n_PLIST_BUDDY=/usr/libexec/PlistBuddy\n_TARGET_PLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n_DSYM_PLIST=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n# plist arrays\n_PLIST_ENTRY_KEYS=()\n_PLIST_ENTRY_TYPES=()\n_PLIST_ENTRY_VALUES=()\n\nfunction setPlistValue {\n  echo \"info:      setting plist entry '$1' of type '$2' in file '$4'\"\n  ${_PLIST_BUDDY} -c \"Add :$1 $2 '$3'\" $4 || echo \"info:      '$1' already exists\"\n}\n\nfunction getFirebaseJsonKeyValue () {\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$1'); puts output[$_JSON_ROOT]['$2']\"\n  else\n    echo \"\"\n  fi;\n}\n\nfunction jsonBoolToYesNo () {\n  if [[ $1 == \"false\" ]]; then\n    echo \"NO\"\n  elif [[ $1 == \"true\" ]]; then\n    echo \"YES\"\n  else echo \"NO\"\n  fi\n}\n\necho \"info: -> RNFB build script started\"\necho \"info: 1) Locating ${_JSON_FILE_NAME} file:\"\n\nif [[ -z ${_CURRENT_SEARCH_DIR} ]]; then\n  _CURRENT_SEARCH_DIR=$(pwd)\nfi;\n\nwhile true; do\n  _CURRENT_SEARCH_DIR=$(dirname \"$_CURRENT_SEARCH_DIR\")\n  if [[ \"$_CURRENT_SEARCH_DIR\" == \"/\" ]] || [[ ${_CURRENT_LOOKUPS} -gt ${_MAX_LOOKUPS} ]]; then break; fi;\n  echo \"info:      ($_CURRENT_LOOKUPS of $_MAX_LOOKUPS) Searching in '$_CURRENT_SEARCH_DIR' for a ${_JSON_FILE_NAME} file.\"\n  _SEARCH_RESULT=$(find \"$_CURRENT_SEARCH_DIR\" -maxdepth 2 -name ${_JSON_FILE_NAME} -print | /usr/bin/head -n 1)\n  if [[ ${_SEARCH_RESULT} ]]; then\n    echo \"info:      ${_JSON_FILE_NAME} found at $_SEARCH_RESULT\"\n    break;\n  fi;\n  _CURRENT_LOOKUPS=$((_CURRENT_LOOKUPS+1))\ndone\n\nif [[ ${_SEARCH_RESULT} ]]; then\n  _JSON_OUTPUT_RAW=$(cat \"${_SEARCH_RESULT}\")\n  _RN_ROOT_EXISTS=$(ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$_JSON_OUTPUT_RAW'); puts output[$_JSON_ROOT]\" || echo '')\n\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    if ! python3 --version >/dev/null 2>&1; then echo \"python3 not found, firebase.json file processing error.\" && exit 1; fi\n    _JSON_OUTPUT_BASE64=$(python3 -c 'import json,sys,base64;print(base64.b64encode(bytes(json.dumps(json.loads(open('\"'${_SEARCH_RESULT}'\"', '\"'rb'\"').read())['${_JSON_ROOT}']), '\"'utf-8'\"')).decode())' || echo \"e30=\")\n  fi\n\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n\n  # config.app_data_collection_default_enabled\n  _APP_DATA_COLLECTION_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_data_collection_default_enabled\")\n  if [[ $_APP_DATA_COLLECTION_ENABLED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseDataCollectionDefaultEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_DATA_COLLECTION_ENABLED\")\")\n  fi\n\n  # config.analytics_auto_collection_enabled\n  _ANALYTICS_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_auto_collection_enabled\")\n  if [[ $_ANALYTICS_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_COLLECTION\")\")\n  fi\n\n  # config.analytics_collection_deactivated\n  _ANALYTICS_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_collection_deactivated\")\n  if [[ $_ANALYTICS_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_DEACTIVATED\")\")\n  fi\n\n  # config.analytics_idfv_collection_enabled\n  _ANALYTICS_IDFV_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_idfv_collection_enabled\")\n  if [[ $_ANALYTICS_IDFV_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_IDFV_COLLECTION\")\")\n  fi\n\n  # config.analytics_default_allow_ad_personalization_signals\n  _ANALYTICS_PERSONALIZATION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_default_allow_ad_personalization_signals\")\n  if [[ $_ANALYTICS_PERSONALIZATION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_PERSONALIZATION\")\")\n  fi\n\n  # config.google_analytics_automatic_screen_reporting_enabled\n  _ANALYTICS_AUTO_SCREEN_REPORTING=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"google_analytics_automatic_screen_reporting_enabled\")\n  if [[ $_ANALYTICS_AUTO_SCREEN_REPORTING ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseAutomaticScreenReportingEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_SCREEN_REPORTING\")\")\n  fi\n\n  # config.perf_auto_collection_enabled\n  _PERF_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_auto_collection_enabled\")\n  if [[ $_PERF_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_enabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_AUTO_COLLECTION\")\")\n  fi\n\n  # config.perf_collection_deactivated\n  _PERF_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_collection_deactivated\")\n  if [[ $_PERF_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_deactivated\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_DEACTIVATED\")\")\n  fi\n\n  # config.messaging_auto_init_enabled\n  _MESSAGING_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"messaging_auto_init_enabled\")\n  if [[ $_MESSAGING_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseMessagingAutoInitEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_MESSAGING_AUTO_INIT\")\")\n  fi\n\n  # config.in_app_messaging_auto_colllection_enabled\n  _FIAM_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"in_app_messaging_auto_collection_enabled\")\n  if [[ $_FIAM_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseInAppMessagingAutomaticDataCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_FIAM_AUTO_INIT\")\")\n  fi\n\n  # config.app_check_token_auto_refresh\n  _APP_CHECK_TOKEN_AUTO_REFRESH=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_check_token_auto_refresh\")\n  if [[ $_APP_CHECK_TOKEN_AUTO_REFRESH ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseAppCheckTokenAutoRefreshEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_CHECK_TOKEN_AUTO_REFRESH\")\")\n  fi\n\n  # config.crashlytics_disable_auto_disabler - undocumented for now - mainly for debugging, document if becomes useful\n  _CRASHLYTICS_AUTO_DISABLE_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"crashlytics_disable_auto_disabler\")\n  if [[ $_CRASHLYTICS_AUTO_DISABLE_ENABLED == \"true\" ]]; then\n    echo \"Disabled Crashlytics auto disabler.\" # do nothing\n  else\n    _PLIST_ENTRY_KEYS+=(\"FirebaseCrashlyticsCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"NO\")\n  fi\nelse\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n  echo \"warning:   A firebase.json file was not found, whilst this file is optional it is recommended to include it to configure firebase services in React Native Firebase.\"\nfi;\n\necho \"info: 2) Injecting Info.plist entries: \"\n\n# Log out the keys we're adding\nfor i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n  echo \"    ->  $i) ${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\"\ndone\n\nfor plist in \"${_TARGET_PLIST}\" \"${_DSYM_PLIST}\" ; do\n  if [[ -f \"${plist}\" ]]; then\n\n    # paths with spaces break the call to setPlistValue. temporarily modify\n    # the shell internal field separator variable (IFS), which normally\n    # includes spaces, to consist only of line breaks\n    oldifs=$IFS\n    IFS=\"\n\"\n\n    for i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n      setPlistValue \"${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\" \"${plist}\"\n    done\n\n    # restore the original internal field separator value\n    IFS=$oldifs\n  else\n    echo \"warning:   A Info.plist build output file was not found (${plist})\"\n  fi\ndone\n\necho \"info: <- RNFB build script finished\"\n";
-		};
-		55FBAF50B76AE6B342398165 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HEXA Stage/Pods-HEXA Stage-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Flipper-DoubleConversion/double-conversion.framework/double-conversion",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Flipper-Glog/glog.framework/glog",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/double-conversion.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/glog.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HEXA Stage/Pods-HEXA Stage-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		5836A22B9F406A4447892D91 /* [CP-User] [RNFB] Core Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -980,54 +716,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HEXA Dev/Pods-HEXA Dev-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E5A02DBA22BA388F5357F55F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HEXA/Pods-HEXA-resources.sh",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-HEXA Dev-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HEXA/Pods-HEXA-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FC821F170F25BF469061A2CC /* [CP-User] [RNFB] Core Configuration */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "[CP-User] [RNFB] Core Configuration";
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\nset -e\n\n_MAX_LOOKUPS=2;\n_SEARCH_RESULT=''\n_RN_ROOT_EXISTS=''\n_CURRENT_LOOKUPS=1\n_JSON_ROOT=\"'react-native'\"\n_JSON_FILE_NAME='firebase.json'\n_JSON_OUTPUT_BASE64='e30=' # { }\n_CURRENT_SEARCH_DIR=${PROJECT_DIR}\n_PLIST_BUDDY=/usr/libexec/PlistBuddy\n_TARGET_PLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n_DSYM_PLIST=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n# plist arrays\n_PLIST_ENTRY_KEYS=()\n_PLIST_ENTRY_TYPES=()\n_PLIST_ENTRY_VALUES=()\n\nfunction setPlistValue {\n  echo \"info:      setting plist entry '$1' of type '$2' in file '$4'\"\n  ${_PLIST_BUDDY} -c \"Add :$1 $2 '$3'\" $4 || echo \"info:      '$1' already exists\"\n}\n\nfunction getFirebaseJsonKeyValue () {\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$1'); puts output[$_JSON_ROOT]['$2']\"\n  else\n    echo \"\"\n  fi;\n}\n\nfunction jsonBoolToYesNo () {\n  if [[ $1 == \"false\" ]]; then\n    echo \"NO\"\n  elif [[ $1 == \"true\" ]]; then\n    echo \"YES\"\n  else echo \"NO\"\n  fi\n}\n\necho \"info: -> RNFB build script started\"\necho \"info: 1) Locating ${_JSON_FILE_NAME} file:\"\n\nif [[ -z ${_CURRENT_SEARCH_DIR} ]]; then\n  _CURRENT_SEARCH_DIR=$(pwd)\nfi;\n\nwhile true; do\n  _CURRENT_SEARCH_DIR=$(dirname \"$_CURRENT_SEARCH_DIR\")\n  if [[ \"$_CURRENT_SEARCH_DIR\" == \"/\" ]] || [[ ${_CURRENT_LOOKUPS} -gt ${_MAX_LOOKUPS} ]]; then break; fi;\n  echo \"info:      ($_CURRENT_LOOKUPS of $_MAX_LOOKUPS) Searching in '$_CURRENT_SEARCH_DIR' for a ${_JSON_FILE_NAME} file.\"\n  _SEARCH_RESULT=$(find \"$_CURRENT_SEARCH_DIR\" -maxdepth 2 -name ${_JSON_FILE_NAME} -print | /usr/bin/head -n 1)\n  if [[ ${_SEARCH_RESULT} ]]; then\n    echo \"info:      ${_JSON_FILE_NAME} found at $_SEARCH_RESULT\"\n    break;\n  fi;\n  _CURRENT_LOOKUPS=$((_CURRENT_LOOKUPS+1))\ndone\n\nif [[ ${_SEARCH_RESULT} ]]; then\n  _JSON_OUTPUT_RAW=$(cat \"${_SEARCH_RESULT}\")\n  _RN_ROOT_EXISTS=$(ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$_JSON_OUTPUT_RAW'); puts output[$_JSON_ROOT]\" || echo '')\n\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    if ! python3 --version >/dev/null 2>&1; then echo \"python3 not found, firebase.json file processing error.\" && exit 1; fi\n    _JSON_OUTPUT_BASE64=$(python3 -c 'import json,sys,base64;print(base64.b64encode(bytes(json.dumps(json.loads(open('\"'${_SEARCH_RESULT}'\"', '\"'rb'\"').read())['${_JSON_ROOT}']), '\"'utf-8'\"')).decode())' || echo \"e30=\")\n  fi\n\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n\n  # config.app_data_collection_default_enabled\n  _APP_DATA_COLLECTION_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_data_collection_default_enabled\")\n  if [[ $_APP_DATA_COLLECTION_ENABLED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseDataCollectionDefaultEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_DATA_COLLECTION_ENABLED\")\")\n  fi\n\n  # config.analytics_auto_collection_enabled\n  _ANALYTICS_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_auto_collection_enabled\")\n  if [[ $_ANALYTICS_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_COLLECTION\")\")\n  fi\n\n  # config.analytics_collection_deactivated\n  _ANALYTICS_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_collection_deactivated\")\n  if [[ $_ANALYTICS_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_DEACTIVATED\")\")\n  fi\n\n  # config.analytics_idfv_collection_enabled\n  _ANALYTICS_IDFV_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_idfv_collection_enabled\")\n  if [[ $_ANALYTICS_IDFV_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_IDFV_COLLECTION\")\")\n  fi\n\n  # config.analytics_default_allow_ad_personalization_signals\n  _ANALYTICS_PERSONALIZATION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_default_allow_ad_personalization_signals\")\n  if [[ $_ANALYTICS_PERSONALIZATION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_PERSONALIZATION\")\")\n  fi\n\n  # config.google_analytics_automatic_screen_reporting_enabled\n  _ANALYTICS_AUTO_SCREEN_REPORTING=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"google_analytics_automatic_screen_reporting_enabled\")\n  if [[ $_ANALYTICS_AUTO_SCREEN_REPORTING ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseAutomaticScreenReportingEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_SCREEN_REPORTING\")\")\n  fi\n\n  # config.perf_auto_collection_enabled\n  _PERF_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_auto_collection_enabled\")\n  if [[ $_PERF_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_enabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_AUTO_COLLECTION\")\")\n  fi\n\n  # config.perf_collection_deactivated\n  _PERF_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_collection_deactivated\")\n  if [[ $_PERF_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_deactivated\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_DEACTIVATED\")\")\n  fi\n\n  # config.messaging_auto_init_enabled\n  _MESSAGING_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"messaging_auto_init_enabled\")\n  if [[ $_MESSAGING_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseMessagingAutoInitEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_MESSAGING_AUTO_INIT\")\")\n  fi\n\n  # config.in_app_messaging_auto_colllection_enabled\n  _FIAM_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"in_app_messaging_auto_collection_enabled\")\n  if [[ $_FIAM_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseInAppMessagingAutomaticDataCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_FIAM_AUTO_INIT\")\")\n  fi\n\n  # config.app_check_token_auto_refresh\n  _APP_CHECK_TOKEN_AUTO_REFRESH=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_check_token_auto_refresh\")\n  if [[ $_APP_CHECK_TOKEN_AUTO_REFRESH ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseAppCheckTokenAutoRefreshEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_CHECK_TOKEN_AUTO_REFRESH\")\")\n  fi\n\n  # config.crashlytics_disable_auto_disabler - undocumented for now - mainly for debugging, document if becomes useful\n  _CRASHLYTICS_AUTO_DISABLE_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"crashlytics_disable_auto_disabler\")\n  if [[ $_CRASHLYTICS_AUTO_DISABLE_ENABLED == \"true\" ]]; then\n    echo \"Disabled Crashlytics auto disabler.\" # do nothing\n  else\n    _PLIST_ENTRY_KEYS+=(\"FirebaseCrashlyticsCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"NO\")\n  fi\nelse\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n  echo \"warning:   A firebase.json file was not found, whilst this file is optional it is recommended to include it to configure firebase services in React Native Firebase.\"\nfi;\n\necho \"info: 2) Injecting Info.plist entries: \"\n\n# Log out the keys we're adding\nfor i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n  echo \"    ->  $i) ${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\"\ndone\n\nfor plist in \"${_TARGET_PLIST}\" \"${_DSYM_PLIST}\" ; do\n  if [[ -f \"${plist}\" ]]; then\n\n    # paths with spaces break the call to setPlistValue. temporarily modify\n    # the shell internal field separator variable (IFS), which normally\n    # includes spaces, to consist only of line breaks\n    oldifs=$IFS\n    IFS=\"\n\"\n\n    for i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n      setPlistValue \"${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\" \"${plist}\"\n    done\n\n    # restore the original internal field separator value\n    IFS=$oldifs\n  else\n    echo \"warning:   A Info.plist build output file was not found (${plist})\"\n  fi\ndone\n\necho \"info: <- RNFB build script finished\"\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1056,39 +744,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FFF37062AA1D893008EA5DA /* AppDelegate.mm in Sources */,
 				4D38330426009F8900F82BDB /* iCloudHelper.swift in Sources */,
 				4D38330326009EDE00F82BDB /* iCloud.m in Sources */,
 				356354BF2ACD787500C156AF /* RGBHelper.swift in Sources */,
 				356354C82ACD787500C156AF /* RGBModule.m in Sources */,
 				6182F777250B23D7005B6ECE /* PdfPassword.m in Sources */,
 				F49AA80E26A0284D0097D815 /* BackgroundViewController.m in Sources */,
+				186115562BFB6A580050E000 /* AppDelegate.mm in Sources */,
 				356354BC2ACD787500C156AF /* RgbManager.swift in Sources */,
 				3562B0172B61532B00C0B9EF /* RgbLib.swift in Sources */,
 				356354C52ACD787500C156AF /* Utility.swift in Sources */,
 				6182F778250B23D7005B6ECE /* PdfGenerate.swift in Sources */,
 				6182F779250B23D7005B6ECE /* main.m in Sources */,
 				356354B92ACD787500C156AF /* Constants.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6182F7A1250B2742005B6ECE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1FFF37082AA1D89B008EA5DA /* AppDelegate.mm in Sources */,
-				4D3833072600BD0A00F82BDB /* iCloud.m in Sources */,
-				4D3833082600BD0A00F82BDB /* iCloudHelper.swift in Sources */,
-				356354C02ACD787500C156AF /* RGBHelper.swift in Sources */,
-				356354C92ACD787500C156AF /* RGBModule.m in Sources */,
-				6182F7A3250B2742005B6ECE /* PdfPassword.m in Sources */,
-				F49AA80F26A0284D0097D815 /* BackgroundViewController.m in Sources */,
-				356354BD2ACD787500C156AF /* RgbManager.swift in Sources */,
-				3562B0182B61532B00C0B9EF /* RgbLib.swift in Sources */,
-				356354C62ACD787500C156AF /* Utility.swift in Sources */,
-				6182F7A4250B2742005B6ECE /* PdfGenerate.swift in Sources */,
-				6182F7A5250B2742005B6ECE /* main.m in Sources */,
-				356354BA2ACD787500C156AF /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1605,90 +1273,6 @@
 			};
 			name = Release;
 		};
-		6182F7C0250B2742005B6ECE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3FFEF1B9BF600668C2770DB5 /* Pods-HEXA Stage.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Staging";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = HEXA/Hexa.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 634;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = Y5TCB759QL;
-				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "HEXA/HEXA.Stage-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Bitcoin Tribe stag";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(SDKROOT)/usr/lib/swift",
-					"$(inherited)",
-				);
-				MARKETING_VERSION = 2.4.3;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = io.hexawallet.hexa.staging;
-				PRODUCT_NAME = "Bitcoin Tribe Stag";
-				PROVISIONING_PROFILE_SPECIFIER = "Hexa Staging Dev";
-				SWIFT_OBJC_BRIDGING_HEADER = "HEXA-Bridging-Header.h";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Debug;
-		};
-		6182F7C1250B2742005B6ECE /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DBD776D50B4B4FBD08A02435 /* Pods-HEXA Stage.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Staging";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = HEXA/Hexa.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 634;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = Y5TCB759QL;
-				INFOPLIST_FILE = "HEXA/HEXA.Stage-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Bitcoin Tribe stag";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(SDKROOT)/usr/lib/swift",
-					"$(inherited)",
-				);
-				MARKETING_VERSION = 2.4.3;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = io.hexawallet.hexa.staging;
-				PRODUCT_NAME = "Bitcoin Tribe Stag";
-				PROVISIONING_PROFILE_SPECIFIER = "Hexa Staging Dev";
-				SWIFT_OBJC_BRIDGING_HEADER = "HEXA-Bridging-Header.h";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Release;
-		};
 		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1831,15 +1415,6 @@
 			buildConfigurations = (
 				6182F794250B23D7005B6ECE /* Debug */,
 				6182F795250B23D7005B6ECE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6182F7BF250B2742005B6ECE /* Build configuration list for PBXNativeTarget "HEXA Stage" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6182F7C0250B2742005B6ECE /* Debug */,
-				6182F7C1250B2742005B6ECE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
