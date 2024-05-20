@@ -32,11 +32,9 @@
   },
   "xcodeSchemes": {
     "Debug": [
-      "HEXA Stage",
       "HEXA Dev"
     ],
     "Release": [
-      "HEXA Stage",
       "HEXA Dev"
     ],
     "projectDirectory": "iOS"
