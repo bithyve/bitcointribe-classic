@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import BitcoinUnit from '../../../common/data/enums/BitcoinUnit'
 import SubAccountKind from '../../../common/data/enums/SubAccountKind'
 import TransactionDescribing from '../../../common/data/models/Transactions/Interfaces'
