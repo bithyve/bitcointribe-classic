@@ -1384,14 +1384,6 @@ const styles = StyleSheet.create( {
     color: Colors.textColorGrey,
     paddingBottom:5
   },
-  headerTitleText: {
-    color: Colors.blue,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 14 ),
-    // marginBottom: wp( '1%' ),
-    alignSelf: 'center',
-    marginHorizontal: wp( 2 )
-  },
   modalContainer: {
     backgroundColor: Colors.backgroundColor,
     alignSelf: 'center',
@@ -1409,12 +1401,6 @@ const styles = StyleSheet.create( {
     paddingTop: 10,
     // marginHorizontal: 20,
     marginBottom: 15,
-    shadowOpacity: 0.06,
-    shadowOffset: {
-      width: 10, height: 10
-    },
-    shadowRadius: 10,
-    elevation: 6,
   },
   contactTextBold: {
     marginLeft: 10,
@@ -1437,23 +1423,9 @@ const styles = StyleSheet.create( {
     fontFamily: Fonts.Regular,
     color: Colors.textColorGrey,
   },
-  filterButton: {
-    height: wp( '8%' ),
-    width: wp( '12%' ),
-    marginLeft: 'auto',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
   headerImageView: {
     width: wp( '17%' ),
     height: wp( '17%' ),
-    elevation: 10,
-    shadowColor: Colors.borderColor,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 2, height: 2
-    },
     backgroundColor: Colors.white,
     justifyContent: 'center',
     alignItems: 'center',
@@ -1476,18 +1448,6 @@ const styles = StyleSheet.create( {
     textAlign: 'center',
     fontSize: RFValue( 17 ),
   },
-  buttonInnerView: {
-    flexDirection: 'row',
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: wp( '30%' ),
-  },
-  buttonImage: {
-    width: wp( '10%' ),
-    height: wp( '10%' ),
-    resizeMode: 'contain',
-  },
   buttonSubText: {
     marginTop: hp( 0.4 ),
     color: Colors.white,
@@ -1502,19 +1462,10 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 15 ),
     letterSpacing: 0.01,
     fontFamily: Fonts.Medium,
-    // marginLeft: 10,
-    // marginRight: 10,
     marginLeft: 0,
     marginRight: 0,
     width: wp( '46%' ),
     textAlign: 'center'
-  },
-  buttonInfo: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 9 ),
-    fontFamily: Fonts.Regular,
-    marginTop: 5,
-    marginLeft: 10,
   },
   bottomButton: {
     backgroundColor: Colors.lightBlue,
@@ -1526,9 +1477,6 @@ const styles = StyleSheet.create( {
     borderWidth: 0.5,
     borderColor: Colors.borderColor,
     alignSelf: 'center',
-  },
-  backArrowView: {
-    height: 30, width: 30, justifyContent: 'center'
   },
   headerRowContainer: {
     flexDirection: 'row', alignItems: 'center', paddingHorizontal: wp( 3 )
@@ -1564,19 +1512,6 @@ const styles = StyleSheet.create( {
     fontFamily: Fonts.Medium,
     fontSize: RFValue( 10 ),
     marginLeft: 2,
-  },
-  scrollViewContainer: {
-    margin: wp( '3%' ),
-    backgroundColor: Colors.white,
-    borderRadius: 10,
-    height: wp( '20%' ),
-    width: wp( '90%' ),
-    paddingLeft: wp( '3%' ),
-    paddingRight: wp( '3%' ),
-    alignSelf: 'center',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
   },
   selectOptionContainer: {
     margin: wp( '3%' ),
