@@ -246,23 +246,6 @@ export default function AddContactAddressBook( props ) {
   )
   const [ isTC, setIsTC ] = useState( false )
 
-  // const isTrustedContact = useCallback(
-  //   ( selectedContact ) => {
-  //     const contactName = `${selectedContact.firstName} ${selectedContact.lastName ? selectedContact.lastName : ''
-  //     }`
-  //       .toLowerCase()
-  //       .trim()
-
-  //     const trustedContact = trustedContacts[ contactName ]
-  //     if ( trustedContact && trustedContact.symmetricKey ) {
-  //       // Trusted channel exists
-  //       return true
-  //     }
-  //     return false
-  //   },
-  //   [ trustedContacts ],
-  // )
-
   const findIndexOfLetter = ( letter ) => {
     return filterContactData.findIndex( ( contact ) => {
       let firstCharacter = contact.name.trim()[ 0 ].toUpperCase()
@@ -514,22 +497,6 @@ export default function AddContactAddressBook( props ) {
                           textAlign: 'center'
                         }}
                       >{strings.cannotSelect}</Text>
-                      {/* <AppBottomSheetTouchableWrapper
-                      onPress={() => getContactPermission()}
-                      style={{
-                        // height: wp( '8%' ),
-                        marginTop: hp( 1.8 ),
-                        paddingLeft: wp( '8%' ),
-                      }}
-                    >
-                      <Text
-                        style={{
-                          ...styles.proceedButtonText,
-                        }}
-                      >
-                        Grant Permission
-                      </Text>
-                    </AppBottomSheetTouchableWrapper> */}
                     </View>
                   }
                   renderItem={( { item, index } ) => {
@@ -681,26 +648,6 @@ export default function AddContactAddressBook( props ) {
 }
 
 const styles = StyleSheet.create( {
-  statusIndicatorView: {
-    flexDirection: 'row',
-    marginLeft: 'auto',
-    marginHorizontal: wp( '6%' ),
-    marginBottom: hp( 2 )
-  },
-  statusIndicatorActiveView: {
-    height: 5,
-    width: 25,
-    backgroundColor: Colors.blue,
-    borderRadius: 10,
-    marginLeft: 5,
-  },
-  statusIndicatorInactiveView: {
-    height: 5,
-    width: 5,
-    backgroundColor: Colors.lightBlue,
-    borderRadius: 10,
-    marginLeft: 5,
-  },
   proceedButtonText: {
     color: Colors.blue,
     fontSize: RFValue( 12 ),
@@ -722,21 +669,6 @@ const styles = StyleSheet.create( {
     marginLeft: wp( '4%' ),
     marginRight: wp( '4%' ),
   },
-  modalHeaderTitleText: {
-    color: Colors.blue,
-    fontSize: RFValue( 18 ),
-    fontFamily: Fonts.Regular,
-  },
-  modalHeaderInfoText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 12 ),
-    fontFamily: Fonts.Regular,
-  },
-  TitleText: {
-    color: Colors.blue,
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Regular,
-  },
   buttonText: {
     color: Colors.white,
     fontFamily: Fonts.Medium,
@@ -750,32 +682,8 @@ const styles = StyleSheet.create( {
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    // elevation: 10,
     marginBottom: 20,
     marginRight:30
-  },
-  selectedContactView: {
-    width: wp( '42%' ),
-    height: wp( '12%' ),
-    backgroundColor: Colors.lightBlue,
-    borderRadius: 10,
-    padding: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  selectedContactNameText: {
-    color: Colors.white,
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Regular
-  },
-  selectedContactContainer: {
-    height: wp( '20%' ),
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    marginLeft: 20,
-    marginRight: 20,
   },
   contactView: {
     height: hp( 6 ),
