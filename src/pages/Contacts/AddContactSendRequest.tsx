@@ -5,30 +5,23 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  StyleSheet,
   TouchableOpacity,
   View
 } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
-import { RFValue } from 'react-native-responsive-fontsize'
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { useDispatch, useSelector } from 'react-redux'
 import { DeepLinkEncryptionType, DeepLinkKind, QRCodeTypes, TrustedContact, Trusted_Contacts, Wallet } from '../../bitcoin/utilities/Interface'
 import TrustedContactsOperations from '../../bitcoin/utilities/TrustedContactsOperations'
 import Colors from '../../common/Colors'
 import { generateDeepLink, getDeepLinkKindFromContactsRelationType } from '../../common/CommonFunctions'
-import Fonts from '../../common/Fonts'
-import CommonStyles from '../../common/Styles/Styles'
 import { LocalizationContext } from '../../common/content/LocContext'
+import CommonStyles from '../../common/Styles/Styles'
 import BottomInfoBox from '../../components/BottomInfoBox'
+import ModalContainer from '../../components/home/ModalContainer'
 import RequestKeyFromContact from '../../components/RequestKeyFromContact'
 import Toast from '../../components/Toast'
-import ModalContainer from '../../components/home/ModalContainer'
-import { InitTrustedContactFlowKind, initializeTrustedContact, updateTrustedContacts } from '../../store/actions/trustedContacts'
+import { initializeTrustedContact, InitTrustedContactFlowKind, updateTrustedContacts } from '../../store/actions/trustedContacts'
 import { AccountsState } from '../../store/reducers/accounts'
 import useTrustedContacts from '../../utils/hooks/state-selectors/trusted-contacts/UseTrustedContacts'
 import ChangeSelection from '../FriendsAndFamily/ChangeSelection'
@@ -137,15 +130,6 @@ export default function AddContactSendRequest( props ) {
   useEffect( ()=> {
     getContact()
   }, [] )
-
-  // useEffect( () => {
-  //   if( giftId && encryptLinkWith === DeepLinkEncryptionType.OTP ) {
-  //     // TODO: remove alert and show OTP on the UI
-  //     // setIsOTPType( true )
-  //     // setShareOtpWithTrustedContactModel( true )
-  //     if( encryptionKey ) Alert.alert( 'OTP: ', encryptionKey )
-  //   }
-  // }, [ encryptionKey ] )
 
   useEffect( ()=> {
     if ( !Contact ) return
@@ -473,48 +457,3 @@ export default function AddContactSendRequest( props ) {
     </SafeAreaView>
   )
 }
-const styles = StyleSheet.create( {
-  contactProfileView: {
-    flexDirection: 'row',
-    marginLeft: 20,
-    marginRight: 20,
-    alignItems: 'center',
-    marginTop: hp( '1.7%' ),
-  },
-  contactProfileImage: {
-    borderRadius: 60 / 2,
-    width: 60,
-    height: 60,
-    resizeMode: 'cover',
-    shadowColor: Colors.shadowBlue,
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 15, height: 15
-    },
-  },
-  contactNameText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 20 ),
-    fontFamily: Fonts.Regular,
-    marginLeft: 25,
-  },
-  buttonInnerView: {
-    flexDirection: 'row',
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: wp( '30%' ),
-  },
-  buttonImage: {
-    width: 20,
-    height: 20,
-    resizeMode: 'contain',
-    tintColor: Colors.white,
-  },
-  buttonText: {
-    color: Colors.white,
-    fontSize: RFValue( 12 ),
-    fontFamily: Fonts.Regular,
-    marginLeft: 10,
-  },
-} )
