@@ -451,100 +451,12 @@ export default function AddContactAddressBook( props ) {
           </View>
         </View>
         }
-        {/* <View style={{
-          flexDirection: 'row'
-        }}>
-          <AppBottomSheetTouchableWrapper
-            onPress={() => onPressBack()}
-            style={{
-              height: 30, width: 30, justifyContent: 'center'
-            }}
-          >
-            <FontAwesome name="long-arrow-left" color={Colors.blue} size={17} />
-          </AppBottomSheetTouchableWrapper>
-          <View style={{
-            justifyContent: 'center', flex: 1
-          }}>
-            <Text style={styles.modalHeaderTitleText}>
-              {props.modalTitle ? props.modalTitle : 'Associate a contact'}
-            </Text>
-            <Text style={styles.modalHeaderInfoText}>
-              {'Select a contact from your phone\'s address book'}
-            </Text>
-          </View>
-          <AppBottomSheetTouchableWrapper
-            onPress={() => {
-              onSkipContinue()
-            }}
-            style={{
-              height: wp( '8%' ),
-              width: wp( '22%' ),
-              flexDirection: 'row',
-              alignItems: 'center',
-              backgroundColor: Colors.blue,
-              justifyContent: 'center',
-              borderRadius: 8,
-              alignSelf: 'center',
-            }}
-          >
-            <Text
-              style={{
-                color: Colors.white,
-                fontSize: RFValue( 12 ),
-                fontFamily: Fonts.Regular,
-              }}
-            >
-              Skip
-            </Text>
-          </AppBottomSheetTouchableWrapper>
-        </View> */}
-
-        {/* </View> */}
-
         <View style={{
           flex: 1
         }}>
-          {/* <View
-          style={{
-            paddingLeft: wp( '5%' ),
-            paddingRight: wp( '5%' ),
-            paddingTop: wp( '5%' ),
-          }}
-        >
-          <Text style={styles.modalHeaderInfoText}>
-            {'Add contacts from your Address Book, or add a new contact'}
-          </Text>
-        </View> */}
           <View style={{
             height: '95%', ...props.style
           }}>
-            {/* <View style={styles.selectedContactContainer}>
-            {selectedContacts.length > 0
-              ? selectedContacts.map( ( value, index ) => {
-                return (
-                  <View key={index} style={styles.selectedContactView}>
-                    <Text style={styles.selectedContactNameText}>
-                      {value.name ? value.name.split( ' ' )[ 0 ] : ''}{' '}
-                      <Text style={{
-                        fontFamily: Fonts.Medium
-                      }}>
-                        {value.name ? value.name.split( ' ' )[ 1 ] : ''}
-                      </Text>
-                    </Text>
-                    <AppBottomSheetTouchableWrapper
-                      onPress={() => onCancel( value )}
-                    >
-                      <AntDesign
-                        name="close"
-                        size={17}
-                        color={Colors.white}
-                      />
-                    </AppBottomSheetTouchableWrapper>
-                  </View>
-                )
-              } )
-              : null}
-          </View> */}
             <View style={[ styles.searchBoxContainer ]}>
               <View style={styles.searchBoxIcon}>
                 <Icon
@@ -647,17 +559,6 @@ export default function AddContactAddressBook( props ) {
                           onpress={() => onContactSelect( index )}
                         />
                         <Text style={styles.contactText}>
-                          {/* {item.name && item.name.split( ' ' )[ 0 ]
-                          ? item.name.split( ' ' )[ 0 ]
-                          : ''}{' '}
-                        <Text style={{
-                          fontFamily: Fonts.Medium
-                        }}>
-                          {item.name && item.name.split( ' ' )[ 1 ]
-                            ? item.name.split( ' ' )[ 1 ]
-                            : ''}
-                        </Text> */}
-
                           {item.name && item.name.split( ' ' ).map( ( x, index ) => {
                             const i = item.name.split( ' ' ).length
                             return (
@@ -741,36 +642,8 @@ export default function AddContactAddressBook( props ) {
                 </AppBottomSheetTouchableWrapper>
               }
 
-              {/* {
-              <View style={styles.statusIndicatorView}>
-
-                <View style={styles.statusIndicatorActiveView} />
-                <View style={styles.statusIndicatorInactiveView} />
-                <View style={styles.statusIndicatorInactiveView} />
-              </View>
-
-            } */}
-
             </View>
             {/* )} */}
-            {/* <ModalContainer onBackground={()=>setErrModal( false )} visible={permissionErrModal} closeBottomSheet={() => { setErrModal( false ) }}>
-            <ErrorModalContents
-              title={strings.erroraAccessing}
-              info={errorMessage}
-              proceedButtonText={strings.openSetting}
-              isIgnoreButton={true}
-              onPressProceed={() => {
-                Linking.openURL( 'app-settings:' )
-                setErrModal( false )
-              }}
-              onPressIgnore={() => {
-                setErrModal( false )
-
-              }}
-              isBottomImage={true}
-              bottomImage={require( '../../assets/images/icons/errorImage.png' )}
-            />
-          </ModalContainer> */}
             <ModalContainer onBackground={() => setModal( false )} visible={permissionModal} closeBottomSheet={() => { }}>
               <ErrorModalContents
               // modalRef={contactPermissionBottomSheet}
