@@ -7,8 +7,9 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { RFValue } from 'react-native-responsive-fontsize';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import BottomSheet from 'reanimated-bottom-sheet';
+import { AccountType, NetworkType } from 'src/bitcoin/utilities/Interface';
 import ErrorModalContents from 'src/components/ErrorModalContents';
 import ModalContainer from 'src/components/home/ModalContainer';
 import InProgressModal from 'src/components/loader/InProgressModal';
@@ -35,7 +36,8 @@ export default function IssueScreen(props) {
   const [failedModal, setFailedModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [ErrorBottomSheet] = useState(React.createRef<BottomSheet>());
-
+  const { averageTxFees, accounts } = useSelector( state => state.accounts )
+  
   async function IssueAssetClick() {
     Keyboard.dismiss();
     try {
@@ -70,6 +72,7 @@ export default function IssueScreen(props) {
           setRequesting(true);
           setTimeout(async () => {
             const newAsset = await RGBServices.issueRgb20Asset(ticker, name, totalAmount);
+            console.log('newAsset',newAsset)
             setRequesting(false);
             if (newAsset.assetId) {
               // props.navigation.goBack()
@@ -88,6 +91,31 @@ export default function IssueScreen(props) {
       Toast(`Failed ${error}`);
       setFailedModal(true)
       console.log('error', error);
+    }
+  }
+
+  const handleCreateUtxos = async () => {
+    try {
+      setRequesting(true)
+      let accountId = ''
+      const accountType = RGBServices.NETWORK === NetworkType.TESTNET ? AccountType.TEST_ACCOUNT : AccountType.CHECKING_ACCOUNT_NATIVE_SEGWIT
+      for (const id in accounts) {
+        const account = accounts[id];
+        if (account.type === accountType) {
+          accountId = id;
+          break;
+        }
+      }
+      const account = accounts[accountId];
+      const response = await RGBServices.createUtxos(account, averageTxFees[RGBServices.NETWORK])
+      if(response.created) {
+        IssueAssetClick()
+      }
+      setRequesting(false)
+    } catch (error) {
+      setRequesting(false)
+      props.navigation.goBack()
+      Toast( `${error.message}` )
     }
   }
 
@@ -203,6 +231,7 @@ export default function IssueScreen(props) {
               onChangeText={(text) => {
                 setTicker(text.toUpperCase());
               }}
+              maxLength={8}
               numberOfLines={1}
               editable={!requesting}
               autoCapitalize={'characters'}
@@ -306,20 +335,19 @@ export default function IssueScreen(props) {
           info={
             'Asset creation unsuccessful due to insufficient funds. Please add more Bitcoin to your wallet to cover the creation fees and try again.'
           }
-          note={'Note : '}
-          noteNextLine={'Click on add funds below and receive faucet in the Test account'}
-          proceedButtonText={'Receive Sats'}
+          // note={'Note : '}
+          // noteNextLine={'Click on add funds below and receive faucet in the Test account'}
+          proceedButtonText={'Create UTXOs'}
           isIgnoreButton={true}
-          cancelButtonText={'Try again'}
+          cancelButtonText={'Cancel'}
           onPressIgnore={() => {
             setFailedModal(false);
           }}
           onPressProceed={() => {
-            // props.navigation.navigate('AccountSettingsMain',{
-            //   accountShell.id
-            // } )
             setFailedModal(false);
-            setLoading(true)
+            setTimeout(()=>{
+              handleCreateUtxos()
+            },100)
           }}
           isBottomImage={true}
           bottomImage={require('../../assets/images/icons/errorImage.png')}

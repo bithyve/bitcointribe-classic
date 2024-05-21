@@ -1,3 +1,4 @@
+import BottomSheet from '@gorhom/bottom-sheet'
 import React, { useEffect, useState } from 'react'
 import {
   ActivityIndicator,
@@ -18,61 +19,90 @@ import {
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { useDispatch, useSelector } from 'react-redux'
+import { AccountType, NetworkType } from 'src/bitcoin/utilities/Interface'
+import ErrorModalContents from 'src/components/ErrorModalContents'
+import Toast from 'src/components/Toast'
+import ModalContainer from 'src/components/home/ModalContainer'
+import RGBServices from 'src/services/RGBServices'
+import { setReceiveData } from 'src/store/actions/rgb'
 import useAccountsState from 'src/utils/hooks/state-selectors/accounts/UseAccountsState'
 import Colors from '../../common/Colors'
 import Fonts from '../../common/Fonts'
 import NavStyles from '../../common/Styles/NavStyles'
 import CommonStyles from '../../common/Styles/Styles'
-import BottomInfoBox from '../../components/BottomInfoBox'
-
-
-
-import BottomSheet from '@gorhom/bottom-sheet'
-import { useDispatch, useSelector } from 'react-redux'
-import ErrorModalContents from 'src/components/ErrorModalContents'
-import Toast from 'src/components/Toast'
-import ModalContainer from 'src/components/home/ModalContainer'
-import { receiveRgbAsset } from 'src/store/actions/rgb'
-import { RGB_ASSET_TYPE } from '../../bitcoin/utilities/Interface'
 import { translations } from '../../common/content/LocContext'
+import BottomInfoBox from '../../components/BottomInfoBox'
 import CopyThisText from '../../components/CopyThisText'
 import QRCode from '../../components/QRCode'
 
 export default function RGBReceive( props ) {
-  const strings = translations[ 'accounts' ]
   const common = translations[ 'common' ]
-  const assetType: RGB_ASSET_TYPE = props.route.params?.assetType || RGB_ASSET_TYPE.BITCOIN
   const dispatch = useDispatch()
-  const [ receivingAddress, setReceivingAddress ] = useState( null )
-  const [ paymentURI, setPaymentURI ] = useState( null )
-  const { nextFreeAddress } = useSelector( state => state.rgb )
-  const { loading, isError, message, data } = useSelector( state => state.rgb.receiveAssets )
+  const { isError, message, data } = useSelector( state => state.rgb.receiveAssets )
+  const { averageTxFees, accounts } = useSelector( state => state.accounts )
+  const [loading, setLoading] = useState(true)
   const [ requesting, setRequesting ] = useState( true )
   const [failedModal, setFailedModal] = useState(false);
   const [ErrorBottomSheet] = useState(React.createRef<BottomSheet>());
   const accountsState = useAccountsState()
 
   useEffect( () => {
-    runOnMountOrTryAgain()
+    setTimeout(() => {
+      init()
+    }, 500);
   }, [] )
 
-  const runOnMountOrTryAgain=()=>{
-    dispatch( receiveRgbAsset() )
+  const init= async ()=>{
+    try {
+      setLoading(true)
+      const invoiceData = await RGBServices.receiveAsset()
+      if (invoiceData.error) {
+        if(invoiceData.error==='Insufficient sats for RGB'){
+          setTimeout(()=>{
+            setFailedModal(true);
+           },2000)
+        } else{
+          Toast( invoiceData.error )
+        } 
+      } else {
+      setLoading(false)
+        dispatch(setReceiveData({
+            message: '',
+            loading: false,
+            isError: false,
+            data: invoiceData,
+          }));
+      }
+    } catch (error) {
+      setLoading(false)
+    }
   }
 
-  useEffect( () => {
-    if ( assetType == RGB_ASSET_TYPE.RGB20 ) {
-      if ( !loading && isError ) {
-        if(message==='Insufficient sats for RGB'){
-         setTimeout(()=>{
-          setFailedModal(true);
-         },2000)
-        }else{
-          Toast( message )
-        }        
+  const handleCreateUtxos = async () => {
+    try {
+      setLoading(true)
+      let accountId = ''
+      const accountType = RGBServices.NETWORK === NetworkType.TESTNET ? AccountType.TEST_ACCOUNT : AccountType.CHECKING_ACCOUNT_NATIVE_SEGWIT
+      for (const id in accounts) {
+        const account = accounts[id];
+        if (account.type === accountType) {
+          accountId = id;
+          break;
+        }
       }
+      const account = accounts[accountId];
+      const response = await RGBServices.createUtxos(account, averageTxFees[RGBServices.NETWORK])
+      if(response.created) {
+        init()
+      }
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      props.navigation.goBack()
+      Toast( `${error.message}` )
     }
-  }, [ isError, loading ] )
+  }
 
   const handleReceiveBitcoin=()=>{
     let accId = '';
@@ -145,7 +175,7 @@ export default function RGBReceive( props ) {
               <BottomInfoBox
                 backgroundColor={Colors.white}
                 title={common.note}
-                infoText={assetType === RGB_ASSET_TYPE.BITCOIN ? strings.Itwouldtake: 'Blinded UTXO in this invoice will expire after 24 hours '}
+                infoText={'Blinded UTXO in this invoice will expire after 24 hours '}
               />
             </View>
           </View>
@@ -164,17 +194,17 @@ export default function RGBReceive( props ) {
           }
           note={'Note:'}
           noteNextLine={'Your total asset balance is too low for this action. Please add more Bitcoin to your account.'}
-          proceedButtonText={'Receive Bitcoin'}
+          proceedButtonText={'Create UTXOs'}
           isIgnoreButton={true}
-          cancelButtonText={'Try again'}
+          cancelButtonText={'Cancel'}
           onPressIgnore={() => {
             setFailedModal(false);
-            runOnMountOrTryAgain();
+            props.navigation.goBack()
           }}
           onPressProceed={() => {
             setFailedModal(false);
             setTimeout(()=>{
-              handleReceiveBitcoin()
+              handleCreateUtxos()
             },100)
           }}
           isBottomImage={true}
