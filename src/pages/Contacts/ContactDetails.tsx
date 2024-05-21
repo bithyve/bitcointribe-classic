@@ -336,57 +336,7 @@ class ContactDetails extends PureComponent<
         showQRScanner: false, showQRClicked: false
       } )
     }
-
-    // this.updateContactDetailsUI()
   }
-
-  // updateContactDetailsUI = () => {
-  //   const { SHARES_TRANSFER_DETAILS } = this.props.DECENTRALIZED_BACKUP
-  //   const { trustedContacts, WALLET_SETUP } = this.props
-  //   if ( this.Contact.firstName && SHARES_TRANSFER_DETAILS[ this.index ] ) {
-  //     const contactName = `${this.Contact.firstName} ${
-  //       this.Contact.lastName ? this.Contact.lastName : ''
-  //     }`
-  //       .toLowerCase()
-  //       .trim()
-
-  //     if ( contactName === 'secondary device' ) return
-
-  //     if ( !trustedContacts.tc.trustedContacts[ contactName ] ) return
-
-  //     this.createDeepLink()
-
-  //     const { publicKey, otp } = trustedContacts.tc.trustedContacts[
-  //       contactName
-  //     ]
-
-  //     let info = ''
-  //     if ( this.Contact.phoneNumbers && this.Contact.phoneNumbers.length ) {
-  //       const phoneNumber = this.Contact.phoneNumbers[ 0 ].number
-  //       let number = phoneNumber.replace( /[^0-9]/g, '' ) // removing non-numeric characters
-  //       number = number.slice( number.length - 10 ) // last 10 digits only
-  //       info = number
-  //     } else if ( this.Contact.emails && this.Contact.emails.length ) {
-  //       info = this.Contact.emails[ 0 ].email
-  //     } else if ( otp ) {
-  //       info = otp
-  //     }
-
-  //     this.setState( {
-  //       trustedQR: JSON.stringify( {
-  //         isGuardian: true,
-  //         requester: WALLET_SETUP.walletName,
-  //         publicKey,
-  //         info,
-  //         uploadedAt:
-  //           trustedContacts.tc.trustedContacts[ contactName ].ephemeralChannel
-  //             .initiatedAt,
-  //         type: 'trustedGuardian',
-  //         ver: DeviceInfo.getVersion(),
-  //       } ),
-  //     } )
-  //   }
-  // };
 
   onPressSend = () => {
     const recipient = this.props.trustedContactRecipients.find( recipient => recipient.id === this.contact.id )
@@ -500,50 +450,6 @@ class ContactDetails extends PureComponent<
     } )
     return sortedHistory
   };
-
-  // TODO: have index independent history
-  // updateHistory = ( shareHistory ) => {
-  //   const updatedTrustedContactHistory = [ ...this.state.trustedContactHistory ]
-  //   if ( shareHistory[ this.index ].createdAt )
-  //     updatedTrustedContactHistory[ 0 ].date = shareHistory[ this.index ].createdAt
-  //   if ( shareHistory[ this.index ].inTransit )
-  //     updatedTrustedContactHistory[ 1 ].date = shareHistory[ this.index ].inTransit
-  //   if ( shareHistory[ this.index ].accessible )
-  //     updatedTrustedContactHistory[ 2 ].date =
-  //       shareHistory[ this.index ].accessible
-  //   if ( shareHistory[ this.index ].notAccessible )
-  //     updatedTrustedContactHistory[ 3 ].date =
-  //       shareHistory[ this.index ].notAccessible
-  //   if ( shareHistory[ this.index ].inSent )
-  //     updatedTrustedContactHistory[ 4 ].date = shareHistory[ this.index ].inSent
-  //   this.setState( {
-  //     trustedContactHistory: updatedTrustedContactHistory,
-  //   } )
-  // };
-
-  // saveInTransitHistory = async ( type ) => {
-  //   const shareHistory = JSON.parse( await AsyncStorage.getItem( 'shareHistory' ) )
-  //   if ( shareHistory ) {
-  //     const updatedShareHistory = [ ...shareHistory ]
-  //     if ( type == 'inTransit' ) {
-  //       updatedShareHistory[ this.index ] = {
-  //         ...updatedShareHistory[ this.index ],
-  //         inTransit: Date.now(),
-  //       }
-  //     }
-  //     if ( type == 'isSent' ) {
-  //       updatedShareHistory[ this.index ] = {
-  //         ...updatedShareHistory[ this.index ],
-  //         inSent: Date.now(),
-  //       }
-  //     }
-  //     this.updateHistory( updatedShareHistory )
-  //     await AsyncStorage.setItem(
-  //       'shareHistory',
-  //       JSON.stringify( updatedShareHistory )
-  //     )
-  //   }
-  // };
 
   SelectOption = ( Id ) => {
     if ( Id === this.state.SelectedOption ) {
@@ -683,16 +589,6 @@ class ContactDetails extends PureComponent<
       )
     }
   };
-
-  // SendModalFunction = () => {
-  //   return (
-  //     <ModalHeader
-  //       onPressHeader={() => {
-  //         ( this.shareBottomSheet as any ).current.snapTo( 0 )
-  //       }}
-  //     />
-  //   )
-  // };
 
   renderSendViaLinkContents = () => {
     return (
@@ -1134,35 +1030,6 @@ class ContactDetails extends PureComponent<
           <View style={{
             flex: 0.97
           }}>
-            {/* <ScrollView style={{
-              flex: 1
-            }}>
-              {[ 1, 2, 3, 4, 5 ].map( ( value, index ) => {
-                return (
-                  <View key={index} style={styles.scrollViewContainer}>
-                    <View>
-                      <View
-                        style={{
-                          backgroundColor: Colors.backgroundColor,
-                          height: wp( '4%' ),
-                          width: wp( '40%' ),
-                          borderRadius: 10,
-                        }}
-                      />
-                      <View
-                        style={{
-                          backgroundColor: Colors.backgroundColor,
-                          height: wp( '4%' ),
-                          width: wp( '30%' ),
-                          marginTop: 5,
-                          borderRadius: 10,
-                        }}
-                      />
-                    </View>
-                  </View>
-                )
-              } )}
-            </ScrollView> */}
             <BottomInfoBox
               backgroundColor={Colors.white}
               title={this.common[
@@ -1195,16 +1062,6 @@ class ContactDetails extends PureComponent<
                       >
                         {value.title}
                       </Text>
-                      {/* <Text
-                          style={{
-                            color: Colors.textColorGrey,
-                            fontSize: RFValue(10),
-                            fontFamily: Fonts.Regular,
-                            marginTop: 5,
-                          }}
-                        >
-                          {value.info}
-                        </Text> */}
                       <Text style={styles.dateTextStyle}>{value.date}</Text>
                     </TouchableOpacity>
                   )
@@ -1448,19 +1305,6 @@ class ContactDetails extends PureComponent<
             }}
           />
         </ModalContainer>
-        {/* <BottomSheet
-          enabledInnerScrolling={true}
-          enabledGestureInteraction={false}
-          ref={this.shareBottomSheet as any}
-          snapPoints={[
-            Platform.OS == 'ios' && DeviceInfo.hasNotch() ? 0 : 0,
-            Platform.OS == 'ios' && DeviceInfo.hasNotch()
-              ? hp( '90%' )
-              : hp( '85%' ),
-          ]}
-          renderContent={this.SendShareModalFunction}
-          renderHeader={this.SendModalFunction}
-        /> */}
         {this.state.showLoader ? <Loader /> : null}
       </View>
     )
