@@ -121,7 +121,6 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>FiraSans-Light.ttf</string>
 		<string>Montserrat-Italic.ttf</string>
 		<string>Montserrat-Medium.ttf</string>
 		<string>Montserrat-MediumItalic.ttf</string>
