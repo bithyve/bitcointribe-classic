@@ -194,29 +194,6 @@ const styles = StyleSheet.create( {
     marginRight: 20,
     flexWrap: 'wrap',
   },
-  qrModalImage: {
-    width: wp( '100%' ),
-    height: wp( '100%' ),
-    borderRadius: 20,
-  },
-  otpText: {
-    color: Colors.black,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 23 ),
-  },
-  otpTextView: {
-    height: wp( '12%' ),
-    width: wp( '12%' ),
-    backgroundColor: Colors.backgroundColor,
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  otpView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: hp( '5%' ),
-  },
   separator: {
     height: 1,
     backgroundColor: Colors.borderColor,
@@ -232,11 +209,5 @@ const styles = StyleSheet.create( {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-  },
-  timerText: {
-    color: Colors.blue,
-    fontSize: RFValue( 19 ),
-    fontFamily: Fonts.Regular,
-    marginLeft: 10,
   },
 } )
