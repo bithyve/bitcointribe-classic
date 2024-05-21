@@ -93,7 +93,6 @@
 		6111483C25064A4F00ED433D /* Hexa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Hexa.entitlements; path = HEXA/Hexa.entitlements; sourceTree = "<group>"; };
 		617379E825066B5200D4DA9C /* HEXA-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HEXA-Bridging-Header.h"; sourceTree = "<group>"; };
 		6182F796250B23D7005B6ECE /* Bitcoin Tribe Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bitcoin Tribe Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		619CF22F250654D100A8E6DF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "GoogleServicesPlist/Staging/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		619CF232250654E300A8E6DF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "GoogleServicesPlist/Production/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		619CF234250654F600A8E6DF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "GoogleServicesPlist/Development/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6287601172D675E8A1D16B71 /* Pods-HEXA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HEXA.debug.xcconfig"; path = "Target Support Files/Pods-HEXA/Pods-HEXA.debug.xcconfig"; sourceTree = "<group>"; };
@@ -154,7 +153,6 @@
 		13B07FAE1A68108700A75B9A /* HEXA */ = {
 			isa = PBXGroup;
 			children = (
-				619CF22F250654D100A8E6DF /* GoogleService-Info.plist */,
 				619CF234250654F600A8E6DF /* GoogleService-Info.plist */,
 				619CF232250654E300A8E6DF /* GoogleService-Info.plist */,
 				6111483C25064A4F00ED433D /* Hexa.entitlements */,
