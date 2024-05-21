@@ -1,16 +1,13 @@
 import React, { useContext } from 'react'
 import {
-  View,
-  Image,
-  Text,
-  StyleSheet,
+  StyleSheet, Text, View
 } from 'react-native'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
+import Colors from '../../common/Colors'
 import { LocalizationContext } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
 
 export default function ServerErrorModal( props ) {
   const { translations } = useContext( LocalizationContext )
@@ -18,10 +15,6 @@ export default function ServerErrorModal( props ) {
   return ( <View style={{
     ...styles.modalContentContainer
   }}>
-    {/* <View style={{
-      height: '100%'
-    }}> */}
-
     <View style={styles.successModalHeaderView}>
       <Text style={{
         color: props.headerTextColor ? props.headerTextColor : Colors.blue,
@@ -70,7 +63,6 @@ export default function ServerErrorModal( props ) {
                     </AppBottomSheetTouchableWrapper>
       }
     </View>
-    {/* </View> */}
   </View>
   )
 }
@@ -102,18 +94,9 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
-    elevation: 10,
-    shadowColor: Colors.shadowBlue,
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 15, height: 15
-    },
     backgroundColor: Colors.blue,
     alignSelf: 'center',
     marginLeft: wp( '8%' ),
-  },
-  successModalImage: {
-    width: wp( '30%' ), height: wp( '25%' ), marginLeft: 'auto', resizeMode: 'stretch', marginRight: -5
   },
   proceedButtonText: {
     color: Colors.white,

@@ -1,25 +1,17 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState } from 'react'
 import {
-  View,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  TouchableOpacity,
-  ScrollView,
-  SafeAreaView,
-  StatusBar,
+  ActivityIndicator, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View
 } from 'react-native'
-import Fonts from '../../common/Fonts'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import QRCode from '../../components/QRCode'
-import CopyThisText from '../../components/CopyThisText'
-import Colors from '../../common/Colors'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import Colors from '../../common/Colors'
+import Fonts from '../../common/Fonts'
 import NavStyles from '../../common/Styles/NavStyles'
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
+import CopyThisText from '../../components/CopyThisText'
+import QRCode from '../../components/QRCode'
 
 const NewTwoFASecret = props => {
   const [ receivingAddress, setReceivingAddress ] = useState( '2N6ubBgDNrs9NnJGSF3gQBUwM7SwQtGQs2g' )
@@ -117,12 +109,7 @@ const NewTwoFASecret = props => {
             marginBottom: hp( '0.2%' ),
           }}
         >
-          {/* <BottomInfoBox
-            title={'Note'}
-            infoText={
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna'
-            }
-          /> */}
+          {/* Note view */}
         </View>
       </View>
     </SafeAreaView>

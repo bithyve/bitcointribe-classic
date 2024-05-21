@@ -4,7 +4,6 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { widthPercentageToDP } from 'react-native-responsive-screen'
 import { useDispatch } from 'react-redux'
 import { NetworkType } from '../../../bitcoin/utilities/Interface'
 import Colors from '../../../common/Colors'
@@ -16,7 +15,6 @@ import { ContactRecipientDescribing, RecipientDescribing } from '../../../common
 import { Satoshis } from '../../../common/data/typealiases/UnitAliases'
 import Fonts from '../../../common/Fonts'
 import ButtonStyles from '../../../common/Styles/ButtonStyles'
-import FormStyles from '../../../common/Styles/FormStyles'
 import ModalContainer from '../../../components/home/ModalContainer'
 import { resetStackToAccountDetails } from '../../../navigation/actions/NavigationActions'
 import { clearTransfer } from '../../../store/actions/accounts'
@@ -293,26 +291,10 @@ const styles = StyleSheet.create( {
     alignContent: 'center',
     justifyContent: 'center',
   },
-
-  textInputFieldWrapper: {
-    ...FormStyles.textInputContainer,
-    marginBottom: widthPercentageToDP( '1.5%' ),
-    width: widthPercentageToDP( '70%' ),
-    height: widthPercentageToDP( '13%' ),
-    alignItems: 'center',
-  },
-
   textInputContainer: {
     flex: 1,
     height: '100%',
     flexDirection: 'column',
-  },
-
-  textInputContent: {
-    height: '100%',
-    color: Colors.textColorGrey,
-    fontFamily: Fonts.Medium,
-    fontSize: RFValue( 13 ),
   },
 } )
 

@@ -539,36 +539,6 @@ const CreateGift = ( { route, navigation }: Props ) => {
             }
           />
         </View>
-        {/* <View style={{
-          marginBottom: hp( 4 ),
-          marginHorizontal: wp( 7 ),
-          flexDirection: 'row'
-        }}>
-          <TouchableOpacity
-            onPress={() => setAddfNf( !addfNf )}
-            style={{
-              flexDirection: 'row'
-            }}
-          >
-
-            <View style={styles.imageView}>
-              {addfNf &&
-              <CheckMark style={{
-                marginLeft: 6,
-                marginTop: 6
-              }}/>
-              }
-            </View>
-            <Text style={{
-              color: Colors.textColorGrey,
-              fontSize: RFValue( 12 ),
-              fontFamily: Fonts.Regular,
-              marginHorizontal: wp( 3 )
-            }}>
-          Add recipient to Friends and Family
-            </Text>
-          </TouchableOpacity>
-        </View> */}
         <View
           style={{
             marginLeft: wp( 4 ),
@@ -576,7 +546,6 @@ const CreateGift = ( { route, navigation }: Props ) => {
           }}
         >
           {renderButton( 'Send Gift', addfNf ? 'Add F&F and Send' : 'Send Gift' )}
-          {/* {renderButton( 'Add F&F and Send' )}   */}
         </View>
       </View>
     )
@@ -916,9 +885,6 @@ const CreateGift = ( { route, navigation }: Props ) => {
           >
             Create Multiple Gift Sats
           </Text>
-          {/* <Text style={{
-          color: Colors.gray3, fontSize: RFValue( 12 ), fontFamily: Fonts.Regular
-        }}>Lorem ipsum dolor Lorem dolor sit amet, consectetur dolor sit</Text> */}
         </View>
         <AdvanceGiftOptions
           title={'No. of Gifts'}
@@ -926,32 +892,11 @@ const CreateGift = ( { route, navigation }: Props ) => {
           stateToUpdate={'gift'}
           imageToShow={require( '../../assets/images/icons/gift.png' )}
         />
-        {/* <View>
-        <Text style={{
-          color: Colors.blue, fontSize: RFValue( 18 ), fontFamily: Fonts.Regular
-        }}>Customize Gift</Text>
-        <Text style={{
-          color: Colors.gray3, fontSize: RFValue( 12 ), fontFamily: Fonts.Regular
-        }}>Lorem ipsum dolor Lorem dolor sit amet, consectetur dolor sit</Text>
-      </View>
-      <AdvanceGiftOptions
-        title={'Time Lock'}
-        infoText={'Lorem ipsum dolor Lorem dolor sit amet, consectetur dolor sit'}
-        stateToUpdate={'timeLock'}
-        imageToShow={require( '../../assets/images/icons/time.png' )}
-      />
-      <AdvanceGiftOptions
-        title={'Limited Validity'}
-        infoText={'Lorem ipsum dolor Lorem dolor sit amet, consectetur dolor sit'}
-        stateToUpdate={'limitedValidity'}
-        imageToShow={require( '../../assets/images/icons/validity.png' )}
-      /> */}
       </View>
     )
   }
 
   // gift creation failure UI
-
   const renderErrorModal = () => {
     return (
       <View
@@ -1479,20 +1424,15 @@ const CreateGift = ( { route, navigation }: Props ) => {
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            // backgroundColor:'red',
             marginHorizontal: wp( 5 ),
             alignItems: 'center',
           }}
         >
-          {/* <View style={{
-             marginTop: wp( '1.5%' )
-          }}> */}
           <Text
             style={{
               color: Colors.textColorGrey,
               fontSize: RFValue( 11 ),
               fontFamily: Fonts.Regular,
-              // marginHorizontal: wp( 3 ),
             }}
           >
             <Text>{'Minimum gift value '}</Text>
@@ -1543,7 +1483,6 @@ const CreateGift = ( { route, navigation }: Props ) => {
                 fontSize: RFValue( 10 ),
                 fontFamily: Fonts.Regular,
                 letterSpacing: 0.5,
-                // marginTop: wp( '1.5%' )
               }}
             >
               {'Include '}

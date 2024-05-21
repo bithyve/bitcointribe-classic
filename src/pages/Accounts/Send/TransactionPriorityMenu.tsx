@@ -1,33 +1,29 @@
+import { useBottomSheetModal } from '@gorhom/bottom-sheet'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { View, Text, StyleSheet, TouchableOpacity, Keyboard } from 'react-native'
-import Colors from '../../../common/Colors'
-import Fonts from '../../../common/Fonts'
-import HeadingStyles from '../../../common/Styles/HeadingStyles'
-import TransactionPriority from '../../../common/data/enums/TransactionPriority'
-import RadioButton from '../../../components/RadioButton'
+import { Keyboard, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { heightPercentageToDP } from 'react-native-responsive-screen'
-import useTransactionFeeInfoForSending from '../../../utils/hooks/state-selectors/sending/UseTransactionFeeInfoForSending'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { useBottomSheetModal } from '@gorhom/bottom-sheet'
-import CustomPriorityContent from '../../../components/CustomPriorityContent'
-import defaultBottomSheetConfigs from '../../../common/configs/BottomSheetConfigs'
-import { timeConvertNear30 } from '../../../common/utilities'
-import SubAccountDescribing from '../../../common/data/models/SubAccountInfo/Interfaces'
+import { useDispatch } from 'react-redux'
+import config from '../../../bitcoin/HexaConfig'
+import { TxPriority } from '../../../bitcoin/utilities/Interface'
+import Colors from '../../../common/Colors'
+import BitcoinUnit from '../../../common/data/enums/BitcoinUnit'
 import NetworkKind from '../../../common/data/enums/NetworkKind'
 import SourceAccountKind from '../../../common/data/enums/SourceAccountKind'
-import config from '../../../bitcoin/HexaConfig'
+import AccountShell from '../../../common/data/models/AccountShell'
+import Fonts from '../../../common/Fonts'
+import HeadingStyles from '../../../common/Styles/HeadingStyles'
+import { timeConvertNear30 } from '../../../common/utilities'
+import CustomPriorityContent from '../../../components/CustomPriorityContent'
+import ModalContainer from '../../../components/home/ModalContainer'
+import RadioButton from '../../../components/RadioButton'
 import { calculateCustomFee } from '../../../store/actions/sending'
-import useAvailableTransactionPriorities from '../../../utils/hooks/sending-utils/UseAvailableTransactionPriorities'
-import useSendingState from '../../../utils/hooks/state-selectors/sending/UseSendingState'
-import BitcoinUnit from '../../../common/data/enums/BitcoinUnit'
-import { Satoshis } from '../../../common/data/typealiases/UnitAliases'
 import useFormattedAmountText from '../../../utils/hooks/formatting/UseFormattedAmountText'
 import useFormattedUnitText from '../../../utils/hooks/formatting/UseFormattedUnitText'
-import { TxPriority } from '../../../bitcoin/utilities/Interface'
-import AccountShell from '../../../common/data/models/AccountShell'
-import ModalContainer from '../../../components/home/ModalContainer'
+import useAvailableTransactionPriorities from '../../../utils/hooks/sending-utils/UseAvailableTransactionPriorities'
+import useSendingState from '../../../utils/hooks/state-selectors/sending/UseSendingState'
+import useTransactionFeeInfoForSending from '../../../utils/hooks/state-selectors/sending/UseTransactionFeeInfoForSending'
 
 export type Props = {
   accountShell: AccountShell;
@@ -237,39 +233,12 @@ const TransactionPriorityMenu: React.FC<Props> = ( {
 const styles = StyleSheet.create( {
   rootContainer: {
   },
-
-  tableHeadingText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Medium,
-  },
-
   priorityTableText: {
     fontSize: RFValue( 12 ),
     lineHeight: RFValue( 14 ),
     color: Colors.textColorGrey,
     textAlign: 'right',
   },
-
-  priorityTableHeadingContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderColor: Colors.borderColor,
-    marginTop: heightPercentageToDP( '2%' ),
-    paddingBottom: heightPercentageToDP( '2%' ),
-  },
-  priorityTableContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderBottomWidth: 0.5,
-    borderColor: Colors.borderColor,
-    marginTop: heightPercentageToDP( '1.5%' ),
-    paddingBottom: heightPercentageToDP( '1.5%' ),
-  },
-
   priorityRowContainer: {
     // flex: 1,
     flexDirection: 'row',
@@ -279,14 +248,6 @@ const styles = StyleSheet.create( {
     borderTopWidth: 1,
     paddingHorizontal: 25,
   },
-
-  priorityValueContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
   customPriorityGroupBox: {
     borderRadius: 8,
     marginVertical: heightPercentageToDP( '1.2%' ),

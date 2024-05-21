@@ -1,35 +1,30 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import { useBottomSheetModal } from '@gorhom/bottom-sheet'
+import React, { useCallback, useEffect, useState } from 'react'
 import {
-  View,
-  TouchableOpacity,
-  Text,
-  TextInput,
-  StyleSheet,
   ActivityIndicator,
   SafeAreaView,
-  StatusBar,
+  StatusBar, StyleSheet, Text,
+  TextInput, TouchableOpacity, View
 } from 'react-native'
-import Colors from '../../../common/Colors'
-import Fonts from '../../../common/Fonts'
-import commonStyle from '../../../common/Styles/Styles'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import { useDispatch } from 'react-redux'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import SendConfirmationContent from '../SendConfirmationContent'
-import { executeSendStage2, sendTxNotification } from '../../../store/actions/sending'
-import useSourceAccountShellForSending from '../../../utils/hooks/state-selectors/sending/UseSourceAccountShellForSending'
-import useSendingState from '../../../utils/hooks/state-selectors/sending/UseSendingState'
-import {  refreshAccountShells } from '../../../store/actions/accounts'
-import { resetStackToAccountDetails } from '../../../navigation/actions/NavigationActions'
-import usePrimarySubAccountForShell from '../../../utils/hooks/account-utils/UsePrimarySubAccountForShell'
-import { useBottomSheetModal } from '@gorhom/bottom-sheet'
+import { useDispatch } from 'react-redux'
+import Colors from '../../../common/Colors'
 import defaultBottomSheetConfigs from '../../../common/configs/BottomSheetConfigs'
+import Fonts from '../../../common/Fonts'
+import commonStyle from '../../../common/Styles/Styles'
 import ModalContainer from '../../../components/home/ModalContainer'
 import LoaderModal from '../../../components/LoaderModal'
+import { resetStackToAccountDetails } from '../../../navigation/actions/NavigationActions'
+import { refreshAccountShells } from '../../../store/actions/accounts'
+import { executeSendStage2 } from '../../../store/actions/sending'
+import usePrimarySubAccountForShell from '../../../utils/hooks/account-utils/UsePrimarySubAccountForShell'
+import useSendingState from '../../../utils/hooks/state-selectors/sending/UseSendingState'
+import useSourceAccountShellForSending from '../../../utils/hooks/state-selectors/sending/UseSourceAccountShellForSending'
+import SendConfirmationContent from '../SendConfirmationContent'
 
 
 export default function OTPAuthenticationScreen( { navigation, route } ) {
@@ -516,11 +511,6 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
-    shadowColor: Colors.shadowBlue,
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 15, height: 15
-    },
     backgroundColor: Colors.blue,
     alignSelf: 'center',
   },

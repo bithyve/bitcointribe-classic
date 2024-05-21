@@ -172,35 +172,6 @@ const WalletInitializationScreen = props => {
               />
             </View>
           </TouchableOpacity>
-          {/* <TouchableOpacity
-            onPress={async () => {
-              dispatch( setDownloadedBackupData( [] ) )
-              dispatch( setCloudDataRecovery( null ) )
-              dispatch( setIsFileReading( false ) )
-              props.navigation.navigate( 'RestoreWithICloud' )
-            }}
-            style={{
-              ...styles.NewWalletTouchableView, marginBottom: wp( '7%' )
-            }}
-          >
-            <Image
-              style={styles.iconImage}
-              source={require( '../assets/images/icons/icon_secrets.png' )}
-            />
-            <View style={styles.textView}>
-              <Text style={styles.touchableText}>Using Recovery Keys</Text>
-            </View>
-            <View style={styles.arrowIconView}>
-              <MaterialIcons
-                name="arrow-forward-ios"
-                color={Colors.borderColor}
-                size={15}
-                style={{
-                  alignSelf: 'center'
-                }}
-              />
-            </View>
-          </TouchableOpacity> */}
           <TouchableOpacity
             onPress={() => props.navigation.navigate( 'RegenerateEntropyGrid', {
               navigation: props.navigation

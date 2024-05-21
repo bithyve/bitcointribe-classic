@@ -1,26 +1,22 @@
 import React, { memo, useMemo } from 'react'
 import {
-  View,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
+  StyleSheet, Text, TouchableOpacity, View
 } from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
 import Colors from '../../common/Colors'
+import { REGULAR_ACCOUNT, TEST_ACCOUNT } from '../../common/constants/wallet-service-types'
+import BitcoinUnit from '../../common/data/enums/BitcoinUnit'
+import RecipientKind from '../../common/data/enums/RecipientKind'
+import { RecipientDescribing } from '../../common/data/models/interfaces/RecipientDescribing'
 import Fonts from '../../common/Fonts'
 import HeadingStyles from '../../common/Styles/HeadingStyles'
 import ImageStyles from '../../common/Styles/ImageStyles'
-import { RFValue } from 'react-native-responsive-fontsize'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import { TEST_ACCOUNT, REGULAR_ACCOUNT } from '../../common/constants/wallet-service-types'
-import { RecipientDescribing } from '../../common/data/models/interfaces/RecipientDescribing'
-import useFormattedUnitText from '../../utils/hooks/formatting/UseFormattedUnitText'
 import RecipientAvatar from '../../components/RecipientAvatar'
-import BitcoinUnit from '../../common/data/enums/BitcoinUnit'
-import RecipientKind from '../../common/data/enums/RecipientKind'
 import useFormattedAmountText from '../../utils/hooks/formatting/UseFormattedAmountText'
+import useFormattedUnitText from '../../utils/hooks/formatting/UseFormattedUnitText'
 
 export type Props = {
   recipient: RecipientDescribing;
@@ -156,35 +152,12 @@ const styles = StyleSheet.create( {
     ...ImageStyles.thumbnailImageXLarge,
     borderRadius: wp( 18 )/2
   },
-
-  circleShapeView: {
-    width: wp( '20%' ),
-    height: wp( '20%' ),
-    borderRadius: wp( '20%' ) / 2,
-    borderColor: Colors.white,
-    borderWidth: 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.7,
-    shadowColor: Colors.borderColor,
-    elevation: 10,
-  },
   contactNameText: {
     color: Colors.textColorGrey,
     fontSize: RFValue( 20 ),
     fontFamily: Fonts.Regular,
     width: wp( '50%' ),
   },
-  contactIconImage: {
-    width: 20,
-    height: 20,
-    resizeMode: 'cover',
-  },
-
   amountText: {
     ...HeadingStyles.captionText,
     fontFamily: Fonts.MediumItalic,
