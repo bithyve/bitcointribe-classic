@@ -87,25 +87,23 @@ object RGBHelper {
         return try {
             callback()
         } catch (e: RgbLibException) {
-            Log.d(TAG, "handleMissingFunds: RgbLibException ${e.message}")
+            Log.d(TAG, "handleMissingFunds: RgbLibException ${e}")
             val jsonObject = JsonObject()
             when (e) {
                 is RgbLibException.InsufficientBitcoins,
                 is RgbLibException.InsufficientAllocationSlots -> {
-                    createUTXOs(e)
-                    //updateBitcoinAsset()
-                    callback()
+                    throw Exception("Insufficient sats for RGB")
                 }
-//                is RgbLibException.InvalidBlindedUtxo ->
-//                    throw Exception("Invalid blinded utxo")
-//                is RgbLibException.InvalidBlindedUtxo ->
+                is RgbLibException.InvalidInvoice ->
+                    throw Exception("Invalid invoice")
+//                is RgbLibException.Invalid ->
 //                    throw Exception("Blinded utxo already used")
                 else -> throw e
             }
         }
     }
 
-    private fun getAddress(): String {
+    fun getAddress(): String {
         return RGBWalletRepository.wallet.getAddress()
     }
 
@@ -229,7 +227,7 @@ object RGBHelper {
         return  asset
     }
 
-    fun createUTXOs(): UByte {
+    private fun createUTXOs(): UByte {
         return RGBWalletRepository.wallet.createUtxos(
             RGBWalletRepository.online,
             false,
@@ -239,32 +237,20 @@ object RGBHelper {
         )
     }
 
-    private fun createUTXOs(e: Exception) {
-        Log.d(TAG, "Creating UTXOs because: ${e.message}")
-        if (e is RgbLibException.InsufficientBitcoins) {
-            Log.d(TAG, "Sending funds to RGB wallet...")
-            try {
-//                BdkHelper.sync()
-//                val txid =
-//                    BdkHelper.sendToAddress(
-//                        getAddress(),
-//                        AppConstants.satsForRgb,
-//                        AppConstants.defaultFeeRate
-//                    )
-//                Log.d(TAG, "createUTXOs: txid=${txid}")
-            } catch (e: Exception) {
-                throw Exception("Insufficient sats for RGB")
-            }
-        }
+    fun createNewUTXOs(): Boolean {
+        Log.d(TAG, "Creating UTXOs")
         var attempts = 3
         var newUTXOs: UByte = 0u
         while (newUTXOs == 0u.toUByte() && attempts > 0) {
             try {
                 Log.d(TAG, "Calling create UTXOs...")
                 newUTXOs = createUTXOs()
-            } catch (_: RgbLibException.InsufficientBitcoins) {}
+            } catch (_: RgbLibException.InsufficientBitcoins) {
+                throw Exception("Insufficient sats for RGB")
+            }
             attempts--
         }
+        return true
     }
 
     fun getUnspents(): List<Unspent> {
