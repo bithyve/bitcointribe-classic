@@ -441,35 +441,6 @@ export default function Receive( props ) {
 }
 
 const styles = StyleSheet.create( {
-  textBoxView: {
-    flexDirection: 'row',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: Colors.borderColor,
-    height: 50,
-    marginBottom: hp( '1%' ),
-  },
-  textBoxImage: {
-    width: wp( '6%' ),
-    height: wp( '6%' ),
-    resizeMode: 'contain',
-  },
-  amountInputImage: {
-    width: 40,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.borderColor,
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
-  },
-  textBox: {
-    flex: 1,
-    paddingLeft: 20,
-    color: Colors.textColorGrey,
-    fontFamily: Fonts.Medium,
-    fontSize: RFValue( 13 ),
-  },
   QRView: {
     height: hp( '30%' ),
     justifyContent: 'center',
@@ -496,11 +467,6 @@ const styles = StyleSheet.create( {
   text: {
     justifyContent: 'center', marginRight: 10, marginLeft: 10, flex: 1
   },
-  knowMoreTouchable: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 12 ),
-    marginLeft: 'auto',
-  },
   selectedView: {
     width: wp( '82%' ),
     height: hp( '9%' ),
@@ -512,10 +478,5 @@ const styles = StyleSheet.create( {
   },
   forwardIcon: {
     alignSelf: 'center',
-  },
-  text1: {
-    marginLeft: wp( '5%' ),
-    marginRight: wp( '5%' ),
-    marginBottom: wp( '5%' )
   },
 } )

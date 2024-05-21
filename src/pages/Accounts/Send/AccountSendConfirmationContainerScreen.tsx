@@ -370,19 +370,6 @@ const styles = StyleSheet.create( {
     marginLeft: 20,
     marginRight: 20,
   },
-  inputBoxFocused: {
-    borderWidth: 0.5,
-    borderRadius: 10,
-    marginLeft: 20,
-    marginRight: 20,
-    elevation: 10,
-    shadowColor: Colors.borderColor,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 10, height: 10
-    },
-    backgroundColor: Colors.backgroundColor1,
-  },
   modalInputBox: {
     flex: 1,
     height: height > 720 ? 50 : 40,
@@ -392,16 +379,6 @@ const styles = StyleSheet.create( {
     paddingLeft: 15,
     width: '90%',
     paddingTop: height > 720 ? 17 : 0
-  },
-  modalInfoText: {
-    width: widthPercentageToDP( 90 ),
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 12 ),
-    fontFamily: Fonts.Regular,
-    textAlign: 'justify',
-    lineHeight: 18,
-    marginLeft: widthPercentageToDP( 5 ),
-    paddingVertical: height > 720 ? heightPercentageToDP( 1 ) : 5
   },
   rootContainer: {
     flex: 1,

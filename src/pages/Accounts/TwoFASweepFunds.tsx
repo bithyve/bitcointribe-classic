@@ -1,33 +1,23 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import {
-  View,
-  Text,
-  StyleSheet,
-  KeyboardAvoidingView,
-  TextInput,
-  Platform,
-  TouchableWithoutFeedback,
-  Image,
-  Keyboard,
-  ActivityIndicator,
-  SafeAreaView,
-  StatusBar,
+  ActivityIndicator, Image,
+  Keyboard, KeyboardAvoidingView, Platform, SafeAreaView,
+  StatusBar, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View
 } from 'react-native'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
-import { RFValue } from 'react-native-responsive-fontsize'
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
-import BottomInfoBox from '../../components/BottomInfoBox'
 import { ScrollView } from 'react-native-gesture-handler'
+import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import Slider from 'react-native-slider'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { useDispatch, useSelector } from 'react-redux'
-import Slider from 'react-native-slider'
-import { clearTransfer, transferST1 } from '../../store/actions/accounts'
+import Colors from '../../common/Colors'
 import { SECURE_ACCOUNT } from '../../common/constants/wallet-service-types'
+import Fonts from '../../common/Fonts'
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
+import BottomInfoBox from '../../components/BottomInfoBox'
+import { transferST1 } from '../../store/actions/accounts'
 
 export default function TwoFASweepFunds( props ) {
   const [ isConfirmDisabled, setIsConfirmDisabled ] = useState( true )

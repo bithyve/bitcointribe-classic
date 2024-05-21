@@ -201,21 +201,6 @@ const ReceivingAddress = ( props ) => {
                 </Text>
               </AppBottomSheetTouchableWrapper>
             </View>
-            {/* <View style={{ flexDirection: 'row' }}>
-              <Button
-                title="Ok, I understand"
-                onPress={() =>{
-                  if(SecureReceiveWarningBottomSheet.current)
-                  (SecureReceiveWarningBottomSheet as any).current.snapTo(0)
-                }
-
-                }
-              />
-              <Button
-                title="Manage Backup"
-                onPress={() => props.navigation.replace('ManageBackup')}
-              />
-            </View> */}
           </View>
         </ScrollView>
       </View>

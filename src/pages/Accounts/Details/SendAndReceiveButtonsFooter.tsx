@@ -1,24 +1,20 @@
 import React, { useMemo } from 'react'
 import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
   Image,
-  ImageSourcePropType,
+  ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View
 } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen'
+import { Shadow } from 'react-native-shadow-2'
+import { useSelector } from 'react-redux'
 import Colors from '../../../common/Colors'
+import { SATOSHIS_IN_BTC } from '../../../common/constants/Bitcoin'
+import { translations } from '../../../common/content/LocContext'
 import CurrencyKind from '../../../common/data/enums/CurrencyKind'
 import NetworkKind from '../../../common/data/enums/NetworkKind'
 import Fonts from '../../../common/Fonts'
 import useCurrencyCode from '../../../utils/hooks/state-selectors/UseCurrencyCode'
 import useCurrencyKind from '../../../utils/hooks/state-selectors/UseCurrencyKind'
-import { translations } from '../../../common/content/LocContext'
-import {  useSelector } from 'react-redux'
-import { SATOSHIS_IN_BTC } from '../../../common/constants/Bitcoin'
-import { Shadow } from 'react-native-shadow-2'
 
 type FooterButtonProps = {
   style?: Record<string, unknown>;
@@ -146,11 +142,6 @@ const SendAndReceiveButtonsFooter: React.FC<Props> = ( {
 }
 
 const styles = StyleSheet.create( {
-  rootContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-
   buttonContainer: {
     minWidth: 150,
     width: widthPercentageToDP( 42 ),
