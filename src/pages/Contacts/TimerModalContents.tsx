@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
+import CountDown from 'react-native-countdown-component'
+import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import Config from '../../bitcoin/HexaConfig'
 import Colors from '../../common/Colors'
 import Fonts from '../../common/Fonts'
-import { RFValue } from 'react-native-responsive-fontsize'
-import Entypo from 'react-native-vector-icons/Entypo'
-import Ionicons from 'react-native-vector-icons/Ionicons'
 import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
-import CountDown from 'react-native-countdown-component'
-import { config } from 'process'
-import Config from '../../bitcoin/HexaConfig'
 import UserDetails from '../../components/UserDetails'
 
 export default function TimerModalContents( props ) {
@@ -149,31 +146,6 @@ export default function TimerModalContents( props ) {
               />
             ) : null}
           </View>
-          {/* <UserD */}
-          {/*
-          <AppBottomSheetTouchableWrapper
-            onPress={() => props.onPressContinue()}
-            style={{
-              backgroundColor: Colors.blue,
-              borderRadius: 10,
-              width: wp('50%'),
-              height: wp('13%'),
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginTop: hp('3%'),
-              marginBottom: hp('3%'),
-            }}
-          >
-            <Text
-              style={{
-                color: Colors.white,
-                fontSize: RFValue(13),
-                fontFamily: Fonts.Medium,
-              }}
-            >
-              Continue
-            </Text>
-          </AppBottomSheetTouchableWrapper> */}
         </View>
       </View>
     </View>
