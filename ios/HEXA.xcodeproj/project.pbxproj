@@ -81,10 +81,8 @@
 		356354B42ACD787500C156AF /* RGBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBHelper.swift; sourceTree = "<group>"; };
 		356354B62ACD787500C156AF /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		356354B72ACD787500C156AF /* RGBModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RGBModule.m; sourceTree = "<group>"; };
-		5395FCDF04064C3DBEEE4A64 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		559C9AB9CDAC4F3FA05EC3FE /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		5676B1BA3B1B4E3F9D29308A /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Medium.ttf"; path = "../src/assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
-		57F664D38343416FB1C55280 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		5A7CB37BA9502CF189AC1F45 /* libPods-HEXA.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HEXA.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6111482E2506463F00ED433D /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		611148312506478E00ED433D /* PdfGenerate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PdfGenerate.swift; sourceTree = "<group>"; };
@@ -98,7 +96,6 @@
 		6287601172D675E8A1D16B71 /* Pods-HEXA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HEXA.debug.xcconfig"; path = "Target Support Files/Pods-HEXA/Pods-HEXA.debug.xcconfig"; sourceTree = "<group>"; };
 		63D24441726E4404BC7B7B2E /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../src/assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		67A86A5BF4334540878AED10 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		6A234933673440BFB6559B6D /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		70412DE9AEA54C18972F9DD5 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		782C977DCCF70ED50DF374E6 /* Pods-HEXA Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HEXA Dev.release.xcconfig"; path = "Target Support Files/Pods-HEXA Dev/Pods-HEXA Dev.release.xcconfig"; sourceTree = "<group>"; };
 		782E06BA412FAC8BD733053D /* Pods-HEXA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HEXA.release.xcconfig"; path = "Target Support Files/Pods-HEXA/Pods-HEXA.release.xcconfig"; sourceTree = "<group>"; };
@@ -108,14 +105,11 @@
 		917A2A003A01429481FD026C /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		AA11C3A12548270900B032D1 /* HEXA.Dev-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "HEXA.Dev-Info.plist"; path = "HEXA/HEXA.Dev-Info.plist"; sourceTree = "<group>"; };
 		B51D6FCAE29200D31301ADFE /* libPods-HEXA Dev.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HEXA Dev.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1B0A87F089E485685570E93 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		C88B0D378D49456C80224451 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
-		C8BC543B70204B8FB3B09520 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		CCF1688F25FB8FC50038E126 /* iCloudHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iCloudHelper.swift; path = iCloud/iCloudHelper.swift; sourceTree = "<group>"; };
 		CCF1689125FB8FCF0038E126 /* iCloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCloud.m; path = iCloud/iCloud.m; sourceTree = "<group>"; };
 		CCF1689325FB8FD90038E126 /* iCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCloud.h; path = iCloud/iCloud.h; sourceTree = "<group>"; };
 		CCF1689425FB8FE60038E126 /* HexaWalletBackup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = HexaWalletBackup.json; path = iCloud/HexaWalletBackup.json; sourceTree = "<group>"; };
-		D242AB8F3F014E068BE8C13D /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EE6F36351DD345FAB2CDA5DE /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
@@ -274,17 +268,11 @@
 				C88B0D378D49456C80224451 /* EvilIcons.ttf */,
 				70412DE9AEA54C18972F9DD5 /* Feather.ttf */,
 				917A2A003A01429481FD026C /* FontAwesome.ttf */,
-				D242AB8F3F014E068BE8C13D /* FontAwesome5_Brands.ttf */,
-				5395FCDF04064C3DBEEE4A64 /* FontAwesome5_Regular.ttf */,
-				6A234933673440BFB6559B6D /* FontAwesome5_Solid.ttf */,
-				C8BC543B70204B8FB3B09520 /* Fontisto.ttf */,
 				559C9AB9CDAC4F3FA05EC3FE /* Foundation.ttf */,
 				1BDE786A62844DE89D7EE379 /* Ionicons.ttf */,
 				227A2A160AEE42F4999170A1 /* MaterialCommunityIcons.ttf */,
 				67A86A5BF4334540878AED10 /* MaterialIcons.ttf */,
 				8A1B98A7327A4AD8A5860B74 /* Octicons.ttf */,
-				C1B0A87F089E485685570E93 /* SimpleLineIcons.ttf */,
-				57F664D38343416FB1C55280 /* Zocial.ttf */,
 				FD2C9FFB56CD431FBFFABD4B /* Montserrat-Italic.ttf */,
 				5676B1BA3B1B4E3F9D29308A /* Montserrat-Medium.ttf */,
 				7EBDAB1C01FE4D629B1A7C39 /* Montserrat-MediumItalic.ttf */,
