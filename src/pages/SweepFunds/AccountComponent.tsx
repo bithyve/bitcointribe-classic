@@ -4,12 +4,12 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
   heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
+  widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import Colors from '../../common/Colors'
 import Fonts from '../../common/Fonts'
@@ -101,11 +101,6 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 20 ),
     fontFamily: Fonts.Regular,
     width: wp( '50%' ),
-  },
-  contactIconImage: {
-    width: 20,
-    height: 20,
-    resizeMode: 'cover',
   },
 } )
 export default memo( AccountComponent )
