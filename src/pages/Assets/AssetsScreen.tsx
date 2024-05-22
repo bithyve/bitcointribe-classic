@@ -105,13 +105,13 @@ export default function AssetsScreen(props) {
       const isRgbInit = RGBServices.initiate(rgbConfig.mnemonic, rgbConfig.accountXpub)
       if (isRgbInit) {
         dispatch(syncRgb())
-        backupRgb()
+        // backupRgb()
       }
     } else {
       const isRgbInit = await RGBServices.initiate(rgbConfig.mnemonic, rgbConfig.accountXpub)
       if (isRgbInit) {
         dispatch(syncRgb())
-        backupRgb()
+        // backupRgb()
       }
     }
   }

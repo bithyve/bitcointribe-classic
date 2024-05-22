@@ -220,8 +220,7 @@ import CloudKit
       switch error {
       case .InsufficientBitcoins(_,_),
           .InsufficientAllocationSlots:
-        try createUTXOs(error: error)
-        return try callback()
+          throw NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Insufficient sats for RGB"])
       case .InvalidInvoice(let details):
         if details == "Invalid blinded utxo" {
           throw NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid blinded utxo"])
@@ -235,23 +234,8 @@ import CloudKit
     fatalError("Missing return statement")
   }
   
-  private func createUTXOs(error: RgbLibError) throws -> UInt8 {
+  @objc func createNewUTXOs(callback: @escaping ((String) -> Void)) {
     print("Creating UTXOs...")
-    if let rgbError = error as? RgbLibError {
-      switch rgbError {
-      case .InsufficientBitcoins(let needed, let available):
-        do {
-          let address = try self.rgbManager.rgbWallet!.getAddress()
-          print("Calling create UTXOs address= \(address)")
-          let txid = ""
-          print("Calling create UTXOs txid= \(txid)")
-        } catch let error{
-          throw NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: error.localizedDescription])
-        }
-      default:
-        break
-      }
-    }
     var attempts = 3
     var newUTXOs: UInt8 = 0
     while newUTXOs == 0 && attempts > 0 {
@@ -259,19 +243,24 @@ import CloudKit
         print("Calling create UTXOs...")
         newUTXOs = createUTXOs()
         print("newUTXOs=\(newUTXOs)")
-      } catch let error {
+      } catch let error  as RgbLibError{
+        switch error {
+        case .InsufficientBitcoins(_,_):
+          print("ss")
+        default:
+          print("ss")
+        }
         print("createUTXOs ERROR: \(error.localizedDescription)")
       }
       attempts -= 1
     }
-    return UInt8(0)
   }
   
   private func createUTXOs()->UInt8{
     return try! self.rgbManager.rgbWallet!.createUtxos(online: self.rgbManager.online!, upTo: false, num: nil, size: nil, feeRate: Float(Constants.defaultFeeRate))
   }
   
-  func genReceiveData(mnemonic: String, btcNetwork: String) -> String {
+  func genReceiveData() -> String {
     do {
       return try handleMissingFunds {
         let refresh_ = try self.rgbManager.rgbWallet!.refresh(online: self.rgbManager.online!, assetId: nil, filter: [RefreshFilter(status: RefreshTransferStatus.waitingCounterparty, incoming: true), RefreshFilter(status: RefreshTransferStatus.waitingCounterparty, incoming: false)])
@@ -281,6 +270,7 @@ import CloudKit
           "invoice": bindData.invoice,
           "recipientId": bindData.recipientId,
           "expirationTimestamp": String(bindData.expirationTimestamp ?? 0),
+          "batchTransferIdx": bindData.batchTransferIdx,
         ]
         let json = Utility.convertToJSONString(params: data)
         return json
@@ -296,21 +286,13 @@ import CloudKit
     
   }
   
-  
-  //  func setRgbWallet(dataDir: String, bitcoinNetwork: BitcoinNetwork, pubkey: String,mnemonic:String)->Bool{
-  //    let walletData = WalletData(dataDir: dataDir, bitcoinNetwork: bitcoinNetwork, databaseType: DatabaseType.sqlite, pubkey: pubkey, mnemonic: mnemonic)
-  //    do{
-  //      let wallet = try Wallet(walletData: walletData)
-  //      //RGBHelper.rgbWallet = wallet
-  //      return true
-  //    } catch{
-  //      return false
-  //    }
-  //  }
-  //
-  
-  @objc func getAddress(btcNetwotk: String, mnemonic: String, callback: @escaping ((String) -> Void)) {
-    callback("")
+  @objc func getAddress(callback: @escaping ((String) -> Void)) {
+    do{
+      let address = try self.rgbManager.rgbWallet!.getAddress()
+      callback(address)
+    } catch{
+      callback("")
+    }
   }
   
   @objc func getBalance(btcNetwotk: String, mnemonic: String, callback: @escaping ((String) -> Void)) {
@@ -327,8 +309,8 @@ import CloudKit
   }
   
   
-  @objc func receiveAsset(btcNetwotk: String, mnemonic: String,callback: @escaping ((String) -> Void)){
-    let response = genReceiveData(mnemonic: mnemonic, btcNetwork: btcNetwotk)
+  @objc func receiveAsset(callback: @escaping ((String) -> Void)){
+    let response = genReceiveData()
     callback(response)
   }
   

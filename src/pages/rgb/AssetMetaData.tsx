@@ -2,7 +2,6 @@ import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 import {
   ActivityIndicator,
-  Image,
   PermissionsAndroid,
   Platform,
   SafeAreaView,
@@ -18,9 +17,9 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import RNFetchBlob from 'rn-fetch-blob'
 import Colors from '../../common/Colors'
-import { hp, wp } from '../../common/data/responsiveness/responsive'
 import Fonts from '../../common/Fonts'
 import CommonStyles from '../../common/Styles/Styles'
+import { wp } from '../../common/data/responsiveness/responsive'
 import HeaderTitle from '../../components/HeaderTitle'
 import Toast from '../../components/Toast'
 import RGBServices from '../../services/RGBServices'
@@ -202,7 +201,7 @@ const AssetMetaData = (props) => {
             height: '70%'
           }} /> :
           <ScrollView style={{ height: '100%', padding: 20 }}>
-            {
+            {/* {
               asset?.dataPaths.length > 0 && (
                 <View >
                   <Image
@@ -231,7 +230,7 @@ const AssetMetaData = (props) => {
                   </TouchableOpacity>
                 </View>
               )
-            }
+            } */}
             <Text style={styles.title}>Asset Meta Data</Text>
             <DetailsItem
               name="Asset ID"
@@ -246,6 +245,11 @@ const AssetMetaData = (props) => {
             <DetailsItem
               name="Asset Type"
               value={metaData.assetIface}
+            />
+
+            <DetailsItem
+              name="Schema"
+              value={metaData.assetSchema}
             />
 
             <DetailsItem
