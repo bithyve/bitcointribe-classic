@@ -337,19 +337,6 @@ const NewWalletName: React.FC<Props> = ( { route, navigation }: Props ) => {
 }
 
 const styles = StyleSheet.create( {
-  pageTitle: {
-    color: Colors.blue,
-    fontSize: RFValue( 25 ),
-    marginLeft: 20,
-    marginBottom: 5,
-    fontFamily: Fonts.Regular,
-  },
-  labelStyle: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 12 ),
-    marginLeft: 15,
-    fontFamily: Fonts.Regular,
-  },
   inputBox: {
     borderRadius: 10,
     marginTop: hp( '1%' ),
@@ -372,12 +359,6 @@ const styles = StyleSheet.create( {
     paddingLeft: 15,
     fontSize: RFValue( 13 ),
     color: Colors.textColorGrey,
-    elevation: 10,
-    shadowColor: Colors.borderColor,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 2, height: 2
-    },
     backgroundColor: Colors.backgroundColor1,
     fontFamily: Fonts.Regular,
     marginBottom: hp( 1 ),
@@ -429,38 +410,6 @@ const styles = StyleSheet.create( {
     backgroundColor: Colors.lightBlue,
     borderRadius: 10,
     marginLeft: 5,
-  },
-  checkbox: {
-    width: wp( '7%' ),
-    height: wp( '7%' ),
-    borderRadius: 7,
-    backgroundColor: Colors.white,
-    borderColor: Colors.borderColor,
-    borderWidth: 1,
-    marginLeft: 'auto',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  doCloudBackupField: {
-    borderRadius: 10,
-    backgroundColor: Colors.backgroundColor,
-    justifyContent: 'center',
-    marginBottom: 36,
-    marginHorizontal: 14,
-    paddingHorizontal: 10,
-    padding:10,
-    marginTop: hp( '5%' ),
-  },
-  doCloudBackupFieldContentContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  smallInfoLabelText: {
-    backgroundColor: Colors.backgroundColor,
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 12 ),
-    fontFamily: Fonts.Regular,
   },
 } )
 

@@ -536,39 +536,6 @@ export default function NewOwnQuestions( props ) {
 }
 
 const styles = StyleSheet.create( {
-  dropdownBox: {
-    flexDirection: 'row',
-    borderColor: Colors.borderColor,
-    borderWidth: 0.5,
-    borderRadius: 10,
-    marginTop: 30,
-    height: 50,
-    marginLeft: 20,
-    marginRight: 20,
-    paddingLeft: 15,
-    paddingRight: 15,
-    alignItems: 'center',
-  },
-  dropdownBoxOpened: {
-    flexDirection: 'row',
-    borderColor: Colors.borderColor,
-    borderWidth: 0.5,
-    borderRadius: 10,
-    marginTop: 30,
-    height: 50,
-    marginLeft: 20,
-    marginRight: 20,
-    paddingLeft: 15,
-    paddingRight: 15,
-    elevation: 10,
-    shadowColor: Colors.borderColor,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 2, height: 2
-    },
-    backgroundColor: Colors.white,
-    alignItems: 'center',
-  },
   buttonView: {
     height: wp( '13%' ),
     width: wp( '35%' ),
@@ -592,11 +559,6 @@ const styles = StyleSheet.create( {
     paddingLeft: 30,
     paddingRight: 30,
     paddingBottom: 40,
-    alignItems: 'center',
-  },
-  bottomButtonView1: {
-    flexDirection: 'row',
-    marginTop: 5,
     alignItems: 'center',
   },
   statusIndicatorView: {
@@ -643,31 +605,6 @@ const styles = StyleSheet.create( {
     fontFamily: Fonts.Regular,
     paddingLeft: 15,
   },
-  dropdownBoxText: {
-    color: Colors.textColorGrey,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 13 ),
-    marginRight: 15,
-  },
-  dropdownBoxModal: {
-    borderRadius: 10,
-    margin: 15,
-    height: 'auto',
-    elevation: 10,
-    shadowColor: Colors.shadowBlue,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 0, height: 10
-    },
-    backgroundColor: Colors.white,
-  },
-  dropdownBoxModalElementView: {
-    height: 55,
-    justifyContent: 'center',
-    paddingLeft: 15,
-    paddingRight: 15,
-  },
-
   helpText: {
     fontSize: RFValue( 12 ),
     color: Colors.textColorGrey,
