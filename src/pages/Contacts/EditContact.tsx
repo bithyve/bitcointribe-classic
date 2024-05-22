@@ -1,17 +1,16 @@
 import React, { useCallback, useState } from 'react'
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
-import { RFValue } from 'react-native-responsive-fontsize'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
-import { heightPercentageToDP } from 'react-native-responsive-screen'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import { editTrustedContact } from '../../store/actions/trustedContacts'
-import { ContactRecipientDescribing } from '../../common/data/models/interfaces/RecipientDescribing'
-import { useDispatch } from 'react-redux'
+import { RFValue } from 'react-native-responsive-fontsize'
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import HeaderTitle from '../../components/HeaderTitle'
+import { useDispatch } from 'react-redux'
+import Colors from '../../common/Colors'
+import { ContactRecipientDescribing } from '../../common/data/models/interfaces/RecipientDescribing'
+import Fonts from '../../common/Fonts'
 import ButtonBlue from '../../components/ButtonBlue'
+import HeaderTitle from '../../components/HeaderTitle'
+import { editTrustedContact } from '../../store/actions/trustedContacts'
 
 export type Props = {
   closeModal: ( name: string ) => void;
@@ -119,72 +118,9 @@ const styles = StyleSheet.create( {
   },
   inputBoxFocused: {
     borderRadius: 10,
-    elevation: 10,
-    shadowColor: Colors.borderColor,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 10, height: 10
-    },
     backgroundColor: Colors.white,
     marginHorizontal: wp( 5 ),
     marginBottom: hp( 2 )
-  },
-  modalContentContainer: {
-    // flex: 1,
-    justifyContent: 'space-between',
-  },
-
-  separatorView: {
-    marginLeft: 15,
-    marginRight: 15,
-    height: 2,
-    backgroundColor: Colors.backgroundColor,
-  },
-
-  addModalView: {
-    backgroundColor: Colors.white,
-    paddingVertical: 4,
-    paddingHorizontal: wp( 9 ),
-    // flexDirection: 'row',
-    // display: 'flex',
-    justifyContent: 'space-between',
-  },
-
-  addModalTitleText: {
-    color: Colors.blue,
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Regular
-  },
-
-  addModalInfoText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 11 ),
-    marginTop: 5,
-    fontFamily: Fonts.Regular
-  },
-
-  modalElementInfoView: {
-    marginVertical: 10,
-    height: heightPercentageToDP( '5%' ),
-    flexDirection: 'row',
-    // justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  webLinkBarContainer: {
-    flexDirection: 'row',
-    elevation: 10,
-    shadowColor: '#00000017',
-    shadowOpacity: 1,
-    shadowRadius: 10,
-    backgroundColor: Colors.white,
-    justifyContent: 'space-around',
-    height: 40,
-    alignItems: 'center',
-    marginHorizontal: 16,
-    paddingHorizontal: 10,
-    marginBottom: heightPercentageToDP( 2 ),
-    borderRadius: 10,
   },
 } )
 
