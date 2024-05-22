@@ -741,7 +741,7 @@ const styles = StyleSheet.create( {
   selectedContactText: {
     fontSize: RFValue( 12 ),
     color: Colors.backgroundColor1,
-    fontFamily: Fonts.FiraSans,
+    fontFamily: Fonts.Regular,
     paddingRight: wp( 3 ),
     fontWeight: '500'
   },
