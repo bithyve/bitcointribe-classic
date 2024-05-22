@@ -392,26 +392,6 @@ const styles = StyleSheet.create( {
     paddingRight: 15,
     alignItems: 'center',
   },
-  dropdownBoxOpened: {
-    flexDirection: 'row',
-    borderColor: Colors.borderColor,
-    borderWidth: 0.5,
-    borderRadius: 10,
-    marginTop: 30,
-    height: 50,
-    marginLeft: 20,
-    marginRight: 20,
-    paddingLeft: 15,
-    paddingRight: 15,
-    elevation: 10,
-    shadowColor: Colors.borderColor,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 2, height: 2
-    },
-    backgroundColor: Colors.white,
-    alignItems: 'center',
-  },
   buttonView: {
     height: wp( '13%' ),
     width: wp( '35%' ),
@@ -437,11 +417,6 @@ const styles = StyleSheet.create( {
     paddingBottom: 40,
     alignItems: 'center',
   },
-  bottomButtonView1: {
-    flexDirection: 'row',
-    marginTop: 5,
-    alignItems: 'center',
-  },
   statusIndicatorView: {
     flexDirection: 'row',
     marginLeft: 'auto',
@@ -465,33 +440,6 @@ const styles = StyleSheet.create( {
     marginLeft: 20,
     marginRight: 20,
   },
-  inputBoxFocused: {
-    borderWidth: 0.5,
-    borderRadius: 10,
-    marginLeft: 20,
-    marginRight: 20,
-    elevation: 10,
-    shadowColor: Colors.borderColor,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 2, height: 2
-    },
-    backgroundColor: Colors.white,
-  },
-  modalInputBox: {
-    // flex: 1,
-    height: 50,
-    fontSize: RFValue( 13 ),
-    color: Colors.textColorGrey,
-    fontFamily: Fonts.Regular,
-    paddingLeft: 15,
-  },
-  dropdownBoxText: {
-    color: Colors.textColorGrey,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 13 ),
-    marginRight: 15,
-  },
   dropdownBoxModal: {
     borderRadius: 10,
     margin: 15,
@@ -504,16 +452,4 @@ const styles = StyleSheet.create( {
     },
     backgroundColor: Colors.white,
   },
-  dropdownBoxModalElementView: {
-    height: 55,
-    justifyContent: 'center',
-    paddingLeft: 15,
-    paddingRight: 15,
-  },
-
-  helpText: {
-    fontSize: RFValue( 12 ),
-    color: Colors.textColorGrey,
-    paddingHorizontal: 24,
-  }
 } )
