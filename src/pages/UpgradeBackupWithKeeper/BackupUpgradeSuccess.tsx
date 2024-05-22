@@ -1,14 +1,12 @@
-import React, { useState } from 'react'
-import { View, Image, Text, StyleSheet, ImageBackground } from 'react-native'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import React from 'react'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import Colors from '../../common/Colors'
+import Fonts from '../../common/Fonts'
 import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 export default function BackupUpgradeSuccess( props ) {
   return (
@@ -166,24 +164,6 @@ const styles = StyleSheet.create( {
     padding: 10,
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  greyBoxImage: {
-    width: wp( '15%' ),
-    height: wp( '15%' ),
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    borderRadius: wp( '15%' ) / 2,
-    borderColor: Colors.white,
-    borderWidth: 1,
-    shadowOffset: {
-      width: 2,
-      height: 2,
-    },
-    shadowOpacity: 0.8,
-    shadowColor: Colors.textColorGrey,
-    shadowRadius: 5,
-    elevation: 10,
   },
   greyBoxText: {
     color: Colors.textColorGrey,

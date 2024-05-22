@@ -751,12 +751,6 @@ const styles = StyleSheet.create( {
     width: wp( '13%' ),
     borderRadius: 7,
     marginLeft: 20,
-    elevation: 10,
-    shadowColor: Colors.borderColor,
-    shadowOpacity: 0.35,
-    shadowOffset: {
-      width: 0, height: 3
-    },
     borderColor: Colors.borderColor,
     alignItems: 'center',
     justifyContent: 'center',
@@ -849,11 +843,5 @@ const styles = StyleSheet.create( {
     color: Colors.blue,
     fontSize: RFValue( 18 ),
     fontFamily: Fonts.Medium,
-  },
-  modalContentView: {
-    flex: 1,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 } )

@@ -238,48 +238,7 @@ class SweepFundsEnterAmount extends Component<
           : null
   };
 
-  sendMaxHandler = () => {
-    // const {
-    //   selectedContact,
-    //   averageTxFees,
-    //   serviceType,
-    //   spendableBalance,
-    //   switchOn,
-    // } = this.state;
-    // const { transfer } = this.props;
-    // const recipientsList = [];
-    // let amountStacked = 0;
-    // transfer[serviceType].transfer.details.forEach((instance) => {
-    //   if (
-    //     instance.bitcoinAmount &&
-    //     instance.selectedContact.id !== selectedContact.id
-    //   ) {
-    //     amountStacked += parseInt(instance.bitcoinAmount);
-    //     recipientsList.push(instance);
-    //   }
-    // });
-    // const { fee } = this.props.service[serviceType].service.calculateSendMaxFee(
-    //   recipientsList.length + 1, // +1 for the current instance
-    //   averageTxFees,
-    // );
-    // if (spendableBalance) {
-    //   const max = spendableBalance - amountStacked - fee;
-    //   if (max <= 0) {
-    //     // fee greater than remaining spendable(spendable - amountStacked)
-    //     this.setState({ isInvalidBalance: true });
-    //     return;
-    //   }
-    //   this.setState(
-    //     {
-    //       switchOn: !switchOn ? true : switchOn,
-    //       isSendMax: true,
-    //     },
-    //     () => {
-    //       this.convertBitCoinToCurrency(max.toString());
-    //     },
-    //   );
-    // }
-  };
+  sendMaxHandler = () => {};
 
   convertBitCoinToCurrency = ( value ) => {
     const { switchOn, exchangeRates, CurrencyCode } = this.state
@@ -729,19 +688,6 @@ class SweepFundsEnterAmount extends Component<
                 ( this.refs.AccountSelectionBottomSheet as any ).snapTo( 0 )
               }}
               onPressConfirm={( type ) => {
-                // if (transfer.details && transfer.details.length) {
-                //   for (let i = 0; i < transfer.details.length; i++) {
-                //     if (
-                //       transfer.details[i].selectedContact.id ==
-                //       selectedContact.id
-                //     ) {
-                //       this.props.removeTransferDetails(
-                //         serviceType,
-                //         transfer.details[i],
-                //       );
-                //       break;
-                //     }
-                //  }
                 ( this.refs.AccountSelectionBottomSheet as any ).snapTo( 0 )
                 setTimeout( () => {
                   this.setState( {
@@ -788,12 +734,6 @@ const styles = StyleSheet.create( {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  view1: {
-    marginRight: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: wp( '15%' ),
   },
   name: {
     color: Colors.textColorGrey,
@@ -860,13 +800,6 @@ const styles = StyleSheet.create( {
     marginLeft: 'auto',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  bottomInfoView: {
-    marginTop: wp( '1.5%' ),
-    marginBottom: -25,
-    padding: -20,
-    marginLeft: -20,
-    marginRight: -20,
   },
   availableToSpendView: {
     marginRight: wp( '6%' ),
@@ -957,30 +890,6 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 13 ),
     fontFamily: Fonts.Medium,
   },
-  circleShapeView: {
-    width: wp( '14%' ),
-    height: wp( '14%' ),
-    borderRadius: wp( '14%' ) / 2,
-    borderColor: Colors.white,
-    borderWidth: 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.7,
-    shadowColor: Colors.borderColor,
-    elevation: 10,
-  },
-  closeMarkStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    elevation: 10,
-  },
   totalMountView: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -1008,29 +917,5 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 12 ),
     fontFamily: Fonts.Regular,
     marginLeft: 5,
-  },
-  totalAmountOuterView: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-  },
-  totalAmountInnerView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-  },
-  totalAmountView: {
-    width: 1,
-    height: '60%',
-    backgroundColor: Colors.borderColor,
-    marginRight: 5,
-    marginLeft: 5,
-    alignSelf: 'center',
-  },
-  amountUnitText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Regular,
-    marginRight: 5,
   },
 } )

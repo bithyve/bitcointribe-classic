@@ -1,9 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import idx from 'idx'
 import React, { Component } from 'react'
-import {
-  AppState, Linking, Platform, StatusBar, StyleSheet, View
-} from 'react-native'
+import { Linking, Platform, StatusBar, StyleSheet, View } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
 import {
   heightPercentageToDP as hp

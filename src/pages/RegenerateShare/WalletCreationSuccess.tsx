@@ -1,21 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  SafeAreaView,
-  StatusBar,
-  Image,
+  Image, SafeAreaView,
+  StatusBar, StyleSheet, Text, TouchableOpacity, View
 } from 'react-native'
-import Fonts from '../../common/Fonts'
+import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Colors from '../../common/Colors'
-import { RFValue } from 'react-native-responsive-fontsize'
+import Fonts from '../../common/Fonts'
 import CommonStyles from '../../common/Styles/Styles'
 
 const WalletCreationSuccess = props => {
@@ -214,13 +208,6 @@ const styles = StyleSheet.create( {
     color: Colors.black,
     fontSize: RFValue( 25 ),
     fontFamily: Fonts.Regular,
-  },
-  successModalAmountImage: {
-    width: wp( '15%' ),
-    height: wp( '15%' ),
-    marginRight: 10,
-    marginLeft: 10,
-    resizeMode: 'contain',
   },
   box: {
     justifyContent: 'center',

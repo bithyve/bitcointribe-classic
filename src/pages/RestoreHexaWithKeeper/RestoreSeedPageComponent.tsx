@@ -14,12 +14,12 @@ import PagerView, { PagerViewOnPageScrollEventData, PagerViewOnPageSelectedEvent
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
   heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
+  widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import Icon from 'react-native-vector-icons/dist/MaterialCommunityIcons'
 import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
 import { translations } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
 import AlertModalContents from '../../components/AlertModalContents'
 import ModalContainer from '../../components/home/ModalContainer'
 
@@ -178,37 +178,11 @@ const RestoreSeedPageComponent = ( props ) => {
 
   const getIndex = ( index, seedIndex ) => {
     const newIndex = index + 1 + ( seedIndex * 6 )
-
-    // let newIndex = index + 1 + ( seedIndex * 6 )
-    // let isAdd = false
-    // if ( index % 2 == 0 ) isAdd = true
-
-    // let tempNumber = 0
-    // if ( index == 0 || index == 5 ) tempNumber = 0
-    // else if ( index == 1 || index == 4 ) tempNumber = 2
-    // else tempNumber = 1
-
-    // if ( isAdd )
-    //   newIndex -= tempNumber
-    // else newIndex += tempNumber
-
     return newIndex
   }
 
   const getTextIndex = ( index ) => {
     const newIndex = index
-    // let isAdd = false
-    // if ( index % 2 == 0 ) isAdd = true
-
-    // let tempNumber = 0
-    // if ( index == 0 || index == 5 ) tempNumber = 0
-    // else if ( index == 1 || index == 4 ) tempNumber = 2
-    // else tempNumber = 1
-
-    // if ( isAdd )
-    //   newIndex -= tempNumber
-    // else newIndex += tempNumber
-
     return newIndex
   }
 
@@ -407,11 +381,6 @@ const RestoreSeedPageComponent = ( props ) => {
                     </View>
                     : null
                 }
-                {/* <BottomInfoBox
-                  backgroundColor={Colors.white}
-                  title={props.infoBoxTitle}
-                  infoText={props.infoBoxInfo}
-                /> */}
               </View>
             ) )}
           </AnimatedPagerView>
@@ -517,13 +486,6 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
-    // elevation: 10,
-    // shadowColor: Colors.shadowBlue,
-    // shadowOpacity: 1,
-    shadowOffset: {
-      width: 15,
-      height: 15,
-    },
     backgroundColor: Colors.blue,
     alignSelf: 'center',
   },
@@ -532,45 +494,15 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 13 ),
     fontFamily: Fonts.Medium,
   },
-  selectedHistoryCard: {
-    margin: wp( '3%' ),
-    // backgroundColor: Colors.gray7,
-    borderRadius: 10,
-    height: wp( '20%' ),
-    width: wp( '90%' ),
-    // justifyContent: 'center',
-    paddingLeft: wp( '3%' ),
-    paddingRight: wp( '3%' ),
-    alignSelf: 'center',
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
   historyCard: {
     marginEnd: 15,
     backgroundColor: Colors.backgroundColor1,
-    // backgroundColor: Colors.gray7,
     borderRadius: 10,
     flex: 1 / 2,
-    // height: wp( '15%' ),
-    // width: wp( '90%' ),
-    // justifyContent: 'center',
-    // paddingLeft: wp( '3%' ),
-    // paddingRight: wp( '3%' ),
     alignSelf: 'center',
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20
-  },
-  historyCardTitleText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Regular,
-  },
-  historyCardDateText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 9 ),
-    fontFamily: Fonts.Regular,
-    marginLeft: 'auto',
   },
   bottomButtonView: {
     height: hp( '18%' ),
@@ -580,42 +512,12 @@ const styles = StyleSheet.create( {
     marginLeft: wp( '8%' ),
     marginRight: wp( '8%' ),
   },
-  numberContainer: {
-    margin: 10,
-    height: RFValue( 50 ),
-    width: RFValue( 50 ),
-    borderRadius: RFValue( 25 ),
-    backgroundColor: Colors.white,
-    shadowColor: Colors.shadowBlack,
-    elevation: 10,
-    // shadowColor: Colors.shadowBlue,
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 15,
-      height: 15,
-    },
-  },
-  numberInnerContainer: {
-    backgroundColor: Colors.numberBg,
-    borderRadius: RFValue( 23 ),
-    height: RFValue( 46 ),
-    width: RFValue( 46 ),
-    margin: RFValue( 4 ),
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   numberText: {
     color: Colors.blue,
     fontSize: RFValue( 20 ),
     fontFamily: Fonts.Regular,
     marginEnd: 5,
     paddingStart: 2
-  },
-  nameText: {
-    color: Colors.greyTextColor,
-    fontSize: RFValue( 20 ),
-    fontFamily: Fonts.Regular,
-    marginStart: 25
   },
   modalInputBox: {
     flex: 1,

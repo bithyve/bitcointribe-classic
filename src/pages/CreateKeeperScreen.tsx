@@ -41,37 +41,6 @@ const styles = StyleSheet.create( {
     flex: 1,
     backgroundColor: Colors.LIGHT_BACKGROUND,
   },
-  buttonText: {
-    color: Colors.white,
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Medium,
-  },
-  buttonView: {
-    height: wp( '12%' ),
-    paddingHorizontal: wp( 2 ),
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-    // shadowColor: Colors.shadowBlue,
-    // shadowOpacity: 1,
-    // shadowOffset: {
-    //   width: 15, height: 15
-    // },
-    backgroundColor: Colors.blue,
-    marginHorizontal: wp( 4 ),
-    marginVertical: hp( '2%' ),
-  },
-  icArrow: {
-    marginLeft: wp( '3%' ),
-    marginRight: wp( '3%' ),
-    alignSelf: 'center',
-  },
-  textValue: {
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 13 ),
-    color: Colors.THEAM_INFO_TEXT_COLOR,
-    marginLeft: wp( '3%' ),
-  },
   textHelpUs: {
     fontFamily: Fonts.SemiBold,
     fontSize: RFValue( 12 ),

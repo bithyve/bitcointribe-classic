@@ -70,32 +70,6 @@ SweepFundUseExitKeyPropsTypes,
     this.state = {
       selectedIds: [],
       listData: [],
-      // [
-      //   {
-      //     type: 'device',
-      //     title: 'Harvey’s iMac',
-      //     deviceName: 'iMac Pro',
-      //     info: 'Last backup 2 weeks ago',
-      //     id: 1,
-      //     image: require('../../assets/images/icons/icon_iMac.png'),
-      //   },
-      //   {
-      //     type: 'device',
-      //     title: 'Louis’ iPad',
-      //     deviceName: 'iMac Pro',
-      //     info: 'Last backup 2 weeks ago',
-      //     id: 2,
-      //     image: require('../../assets/images/icons/icon_ipad.png'),
-      //   },
-      //   {
-      //     type: 'device',
-      //     title: 'Kate’s S2',
-      //     deviceName: 'Samsung S2',
-      //     info: 'Last backup 2 weeks ago',
-      //     id: 3,
-      //     image: require('../../assets/images/icons/icon_phone.png'),
-      //   },
-      // ],
       accountData: [
         {
           id: 1,
@@ -516,19 +490,6 @@ const styles = StyleSheet.create( {
     height: 30,
     width: 30,
     justifyContent: 'center',
-  },
-  buttonInnerView: {
-    flexDirection: 'row',
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: wp( '30%' ),
-  },
-  buttonImage: {
-    width: 20,
-    height: 20,
-    resizeMode: 'contain',
-    tintColor: Colors.white,
   },
   buttonText: {
     color: Colors.white,

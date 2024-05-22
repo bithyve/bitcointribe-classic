@@ -289,13 +289,6 @@ class ScanRecoveryKey extends Component<
           )}
 
         </ScrollView>
-        {/* <BottomInfoBox
-          backgroundColor={Colors.white}
-          title={'Note'}
-          infoText={
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.'
-          }
-        /> */}
       </View>
     )
   }

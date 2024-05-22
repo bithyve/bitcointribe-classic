@@ -79,9 +79,10 @@ const RestoreSeedWordsContent = (props) => {
   useEffect(() => {
     if (restoreSeedData == 'restoreSeedDataFailed') {
       setLoaderModal(false);
-      props.navigation.navigate('NewWalletName', {
-        mnemonic,
-      });
+      setShowLoader(false);
+        props.navigation.navigate('NewWalletName', {
+          mnemonic,
+        });
     }
   }, [restoreSeedData]);
 
