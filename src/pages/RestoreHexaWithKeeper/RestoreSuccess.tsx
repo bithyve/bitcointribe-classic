@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
-import { View, Image, Text, StyleSheet, ImageBackground } from 'react-native'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import React from 'react'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import Colors from '../../common/Colors'
+import Fonts from '../../common/Fonts'
 import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
 
 export default function RestoreSuccess( props ) {
@@ -103,12 +102,6 @@ const styles = StyleSheet.create( {
   bottomButtonsView: {
     height: hp( '15%' ),
     flexDirection: 'row',
-    alignItems: 'center',
-  },
-  transparentButtonView: {
-    height: wp( '13%' ),
-    width: wp( '35%' ),
-    justifyContent: 'center',
     alignItems: 'center',
   },
   successModalHeaderView: {

@@ -1,17 +1,16 @@
+import moment from 'moment'
 import React from 'react'
-import { View, Text, StyleSheet, ActivityIndicator, ScrollView } from 'react-native'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import moment from 'moment'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import Colors from '../../common/Colors'
 import { timeFormatter } from '../../common/CommonFunctions/timeFormatter'
+import Fonts from '../../common/Fonts'
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
 
 export default function RestoreFromICloud( props ) {
   return (
