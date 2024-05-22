@@ -336,57 +336,7 @@ class ContactDetails extends PureComponent<
         showQRScanner: false, showQRClicked: false
       } )
     }
-
-    // this.updateContactDetailsUI()
   }
-
-  // updateContactDetailsUI = () => {
-  //   const { SHARES_TRANSFER_DETAILS } = this.props.DECENTRALIZED_BACKUP
-  //   const { trustedContacts, WALLET_SETUP } = this.props
-  //   if ( this.Contact.firstName && SHARES_TRANSFER_DETAILS[ this.index ] ) {
-  //     const contactName = `${this.Contact.firstName} ${
-  //       this.Contact.lastName ? this.Contact.lastName : ''
-  //     }`
-  //       .toLowerCase()
-  //       .trim()
-
-  //     if ( contactName === 'secondary device' ) return
-
-  //     if ( !trustedContacts.tc.trustedContacts[ contactName ] ) return
-
-  //     this.createDeepLink()
-
-  //     const { publicKey, otp } = trustedContacts.tc.trustedContacts[
-  //       contactName
-  //     ]
-
-  //     let info = ''
-  //     if ( this.Contact.phoneNumbers && this.Contact.phoneNumbers.length ) {
-  //       const phoneNumber = this.Contact.phoneNumbers[ 0 ].number
-  //       let number = phoneNumber.replace( /[^0-9]/g, '' ) // removing non-numeric characters
-  //       number = number.slice( number.length - 10 ) // last 10 digits only
-  //       info = number
-  //     } else if ( this.Contact.emails && this.Contact.emails.length ) {
-  //       info = this.Contact.emails[ 0 ].email
-  //     } else if ( otp ) {
-  //       info = otp
-  //     }
-
-  //     this.setState( {
-  //       trustedQR: JSON.stringify( {
-  //         isGuardian: true,
-  //         requester: WALLET_SETUP.walletName,
-  //         publicKey,
-  //         info,
-  //         uploadedAt:
-  //           trustedContacts.tc.trustedContacts[ contactName ].ephemeralChannel
-  //             .initiatedAt,
-  //         type: 'trustedGuardian',
-  //         ver: DeviceInfo.getVersion(),
-  //       } ),
-  //     } )
-  //   }
-  // };
 
   onPressSend = () => {
     const recipient = this.props.trustedContactRecipients.find( recipient => recipient.id === this.contact.id )
@@ -500,50 +450,6 @@ class ContactDetails extends PureComponent<
     } )
     return sortedHistory
   };
-
-  // TODO: have index independent history
-  // updateHistory = ( shareHistory ) => {
-  //   const updatedTrustedContactHistory = [ ...this.state.trustedContactHistory ]
-  //   if ( shareHistory[ this.index ].createdAt )
-  //     updatedTrustedContactHistory[ 0 ].date = shareHistory[ this.index ].createdAt
-  //   if ( shareHistory[ this.index ].inTransit )
-  //     updatedTrustedContactHistory[ 1 ].date = shareHistory[ this.index ].inTransit
-  //   if ( shareHistory[ this.index ].accessible )
-  //     updatedTrustedContactHistory[ 2 ].date =
-  //       shareHistory[ this.index ].accessible
-  //   if ( shareHistory[ this.index ].notAccessible )
-  //     updatedTrustedContactHistory[ 3 ].date =
-  //       shareHistory[ this.index ].notAccessible
-  //   if ( shareHistory[ this.index ].inSent )
-  //     updatedTrustedContactHistory[ 4 ].date = shareHistory[ this.index ].inSent
-  //   this.setState( {
-  //     trustedContactHistory: updatedTrustedContactHistory,
-  //   } )
-  // };
-
-  // saveInTransitHistory = async ( type ) => {
-  //   const shareHistory = JSON.parse( await AsyncStorage.getItem( 'shareHistory' ) )
-  //   if ( shareHistory ) {
-  //     const updatedShareHistory = [ ...shareHistory ]
-  //     if ( type == 'inTransit' ) {
-  //       updatedShareHistory[ this.index ] = {
-  //         ...updatedShareHistory[ this.index ],
-  //         inTransit: Date.now(),
-  //       }
-  //     }
-  //     if ( type == 'isSent' ) {
-  //       updatedShareHistory[ this.index ] = {
-  //         ...updatedShareHistory[ this.index ],
-  //         inSent: Date.now(),
-  //       }
-  //     }
-  //     this.updateHistory( updatedShareHistory )
-  //     await AsyncStorage.setItem(
-  //       'shareHistory',
-  //       JSON.stringify( updatedShareHistory )
-  //     )
-  //   }
-  // };
 
   SelectOption = ( Id ) => {
     if ( Id === this.state.SelectedOption ) {
@@ -683,16 +589,6 @@ class ContactDetails extends PureComponent<
       )
     }
   };
-
-  // SendModalFunction = () => {
-  //   return (
-  //     <ModalHeader
-  //       onPressHeader={() => {
-  //         ( this.shareBottomSheet as any ).current.snapTo( 0 )
-  //       }}
-  //     />
-  //   )
-  // };
 
   renderSendViaLinkContents = () => {
     return (
@@ -1134,35 +1030,6 @@ class ContactDetails extends PureComponent<
           <View style={{
             flex: 0.97
           }}>
-            {/* <ScrollView style={{
-              flex: 1
-            }}>
-              {[ 1, 2, 3, 4, 5 ].map( ( value, index ) => {
-                return (
-                  <View key={index} style={styles.scrollViewContainer}>
-                    <View>
-                      <View
-                        style={{
-                          backgroundColor: Colors.backgroundColor,
-                          height: wp( '4%' ),
-                          width: wp( '40%' ),
-                          borderRadius: 10,
-                        }}
-                      />
-                      <View
-                        style={{
-                          backgroundColor: Colors.backgroundColor,
-                          height: wp( '4%' ),
-                          width: wp( '30%' ),
-                          marginTop: 5,
-                          borderRadius: 10,
-                        }}
-                      />
-                    </View>
-                  </View>
-                )
-              } )}
-            </ScrollView> */}
             <BottomInfoBox
               backgroundColor={Colors.white}
               title={this.common[
@@ -1195,16 +1062,6 @@ class ContactDetails extends PureComponent<
                       >
                         {value.title}
                       </Text>
-                      {/* <Text
-                          style={{
-                            color: Colors.textColorGrey,
-                            fontSize: RFValue(10),
-                            fontFamily: Fonts.Regular,
-                            marginTop: 5,
-                          }}
-                        >
-                          {value.info}
-                        </Text> */}
                       <Text style={styles.dateTextStyle}>{value.date}</Text>
                     </TouchableOpacity>
                   )
@@ -1448,19 +1305,6 @@ class ContactDetails extends PureComponent<
             }}
           />
         </ModalContainer>
-        {/* <BottomSheet
-          enabledInnerScrolling={true}
-          enabledGestureInteraction={false}
-          ref={this.shareBottomSheet as any}
-          snapPoints={[
-            Platform.OS == 'ios' && DeviceInfo.hasNotch() ? 0 : 0,
-            Platform.OS == 'ios' && DeviceInfo.hasNotch()
-              ? hp( '90%' )
-              : hp( '85%' ),
-          ]}
-          renderContent={this.SendShareModalFunction}
-          renderHeader={this.SendModalFunction}
-        /> */}
         {this.state.showLoader ? <Loader /> : null}
       </View>
     )
@@ -1540,14 +1384,6 @@ const styles = StyleSheet.create( {
     color: Colors.textColorGrey,
     paddingBottom:5
   },
-  headerTitleText: {
-    color: Colors.blue,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 14 ),
-    // marginBottom: wp( '1%' ),
-    alignSelf: 'center',
-    marginHorizontal: wp( 2 )
-  },
   modalContainer: {
     backgroundColor: Colors.backgroundColor,
     alignSelf: 'center',
@@ -1565,12 +1401,6 @@ const styles = StyleSheet.create( {
     paddingTop: 10,
     // marginHorizontal: 20,
     marginBottom: 15,
-    shadowOpacity: 0.06,
-    shadowOffset: {
-      width: 10, height: 10
-    },
-    shadowRadius: 10,
-    elevation: 6,
   },
   contactTextBold: {
     marginLeft: 10,
@@ -1593,23 +1423,9 @@ const styles = StyleSheet.create( {
     fontFamily: Fonts.Regular,
     color: Colors.textColorGrey,
   },
-  filterButton: {
-    height: wp( '8%' ),
-    width: wp( '12%' ),
-    marginLeft: 'auto',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
   headerImageView: {
     width: wp( '17%' ),
     height: wp( '17%' ),
-    elevation: 10,
-    shadowColor: Colors.borderColor,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 2, height: 2
-    },
     backgroundColor: Colors.white,
     justifyContent: 'center',
     alignItems: 'center',
@@ -1632,18 +1448,6 @@ const styles = StyleSheet.create( {
     textAlign: 'center',
     fontSize: RFValue( 17 ),
   },
-  buttonInnerView: {
-    flexDirection: 'row',
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: wp( '30%' ),
-  },
-  buttonImage: {
-    width: wp( '10%' ),
-    height: wp( '10%' ),
-    resizeMode: 'contain',
-  },
   buttonSubText: {
     marginTop: hp( 0.4 ),
     color: Colors.white,
@@ -1658,19 +1462,10 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 15 ),
     letterSpacing: 0.01,
     fontFamily: Fonts.Medium,
-    // marginLeft: 10,
-    // marginRight: 10,
     marginLeft: 0,
     marginRight: 0,
     width: wp( '46%' ),
     textAlign: 'center'
-  },
-  buttonInfo: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 9 ),
-    fontFamily: Fonts.Regular,
-    marginTop: 5,
-    marginLeft: 10,
   },
   bottomButton: {
     backgroundColor: Colors.lightBlue,
@@ -1682,9 +1477,6 @@ const styles = StyleSheet.create( {
     borderWidth: 0.5,
     borderColor: Colors.borderColor,
     alignSelf: 'center',
-  },
-  backArrowView: {
-    height: 30, width: 30, justifyContent: 'center'
   },
   headerRowContainer: {
     flexDirection: 'row', alignItems: 'center', paddingHorizontal: wp( 3 )
@@ -1720,19 +1512,6 @@ const styles = StyleSheet.create( {
     fontFamily: Fonts.Medium,
     fontSize: RFValue( 10 ),
     marginLeft: 2,
-  },
-  scrollViewContainer: {
-    margin: wp( '3%' ),
-    backgroundColor: Colors.white,
-    borderRadius: 10,
-    height: wp( '20%' ),
-    width: wp( '90%' ),
-    paddingLeft: wp( '3%' ),
-    paddingRight: wp( '3%' ),
-    alignSelf: 'center',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
   },
   selectOptionContainer: {
     margin: wp( '3%' ),
