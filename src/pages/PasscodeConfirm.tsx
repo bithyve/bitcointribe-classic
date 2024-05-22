@@ -725,12 +725,6 @@ const styles = StyleSheet.create( {
     width: wp( '13%' ),
     borderRadius: 7,
     marginLeft: 20,
-    // elevation: 10,
-    // shadowColor: Colors.borderColor,
-    // shadowOpacity: 1,
-    // shadowOffset: {
-    //   width: 0, height: 3
-    // },
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.white,
@@ -795,12 +789,6 @@ const styles = StyleSheet.create( {
     marginTop: hp( '1%' ),
     marginLeft: 20,
     fontFamily: Fonts.Regular
-  },
-  headerInfoBoldText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 12 ),
-    fontFamily: Fonts.Regular,
-    // fontWeight: '600',
   },
   passcodeTextInputText: {
     color: Colors.blue,
