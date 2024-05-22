@@ -662,18 +662,6 @@ class UpgradeBackup extends Component<
     }
   }
 
-  // updateTrustedContactsInfo = async ( contact ) => {
-  //   const tcInfo = this.props.trustedContactsInfo
-  //   if ( tcInfo.length ) {
-  //     tcInfo[ 0 ] = contact
-  //   } else {
-  //     tcInfo[ 0 ] = contact
-  //     tcInfo[ 1 ] = undefined // securing initial 3 positions for Guardians
-  //     tcInfo[ 2 ] = undefined
-  //   }
-  //   this.props.updateTrustedContactsInfoLocally( tcInfo )
-  // }
-
   setSecondaryDeviceQR = () => {
     try {
       const { uploadMetaShare, updateEphemeralChannelLoader, trustedContacts, keeperProcessStatus, walletName } = this.props
@@ -1027,9 +1015,6 @@ class UpgradeBackup extends Component<
     const { navigation, containerStyle } = this.props
     return (
       <View style={styles.accountCardsSectionContainer}>
-        {/* <View style={{
-        flex: 1, backgroundColor: Colors.backgroundColor1
-      }}> */}
         <SafeAreaView style={{
           flex: 0
         }} />
@@ -1545,35 +1530,11 @@ const styles = StyleSheet.create( {
     width: 30,
     justifyContent: 'center',
   },
-  buttonInnerView: {
-    flexDirection: 'row',
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: wp( '30%' ),
-  },
-  buttonImage: {
-    width: 20,
-    height: 20,
-    resizeMode: 'contain',
-    tintColor: Colors.white,
-  },
   buttonText: {
     color: Colors.white,
     fontSize: RFValue( 12 ),
     fontFamily: Fonts.Regular,
     marginLeft: 10,
-  },
-  cardsInfoText: {
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Regular,
-    color: Colors.textColorGrey,
-  },
-  cardsView: {
-    padding: 15,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderBottomColor: Colors.backgroundColor,
   },
   cardsImageView: {
     width: wp( '15%' ),
@@ -1587,21 +1548,6 @@ const styles = StyleSheet.create( {
     resizeMode: 'contain',
     //marginBottom: wp('1%'),
   },
-  statusTextView: {
-    height: wp( '5%' ),
-    backgroundColor: Colors.backgroundColor,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 5,
-    marginLeft: 'auto',
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-  statusText: {
-    fontSize: RFValue( 9 ),
-    fontFamily: Fonts.Regular,
-    color: Colors.textColorGrey,
-  },
   greyBox: {
     backgroundColor: Colors.backgroundColor1,
     paddingLeft: 10,
@@ -1610,34 +1556,9 @@ const styles = StyleSheet.create( {
     //  marginTop: wp('2%'),
     //  marginBottom: wp('2%'),
   },
-  greyBoxImage: {
-    width: wp( '15%' ),
-    height: wp( '15%' ),
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    borderRadius: wp( '15%' ) / 2,
-    borderColor: Colors.white,
-    borderWidth: 1,
-    shadowOffset: {
-      width: 2,
-      height: 2,
-    },
-    shadowOpacity: 0.8,
-    shadowColor: Colors.textColorGrey,
-    shadowRadius: 5,
-    elevation: 10,
-  },
   greyBoxText: {
     color: Colors.textColorGrey,
     fontFamily: Fonts.Regular,
     fontSize: RFValue( 10 ),
-  },
-  successModalImage: {
-    width: wp( '30%' ),
-    height: wp( '35%' ),
-    marginLeft: 'auto',
-    resizeMode: 'stretch',
-    marginRight: -5,
   },
 } )
