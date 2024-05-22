@@ -1,30 +1,20 @@
 import React, { useState } from 'react'
 import {
-  StyleSheet,
-  View,
-  SafeAreaView,
-  TouchableOpacity,
-  ScrollView,
-  StatusBar,
-  Text,
-  Image,
   KeyboardAvoidingView,
-  Platform,
-  TextInput
+  Platform, SafeAreaView, ScrollView,
+  StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View
 } from 'react-native'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import Fonts from '../../common/Fonts'
-import Colors from '../../common/Colors'
-import CommonStyles from '../../common/Styles/Styles'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp
-} from 'react-native-responsive-screen'
-import { RFValue } from 'react-native-responsive-fontsize'
 import DeviceInfo from 'react-native-device-info'
-import HeaderTitle from '../../components/HeaderTitle'
+import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Colors from '../../common/Colors'
+import Fonts from '../../common/Fonts'
+import CommonStyles from '../../common/Styles/Styles'
 import BottomInfoBox from '../../components/BottomInfoBox'
+import HeaderTitle from '../../components/HeaderTitle'
 
 export default function NewWalletNameRegenerateShare( props ) {
   const [ walletName, setWalletName ] = useState( '' )
@@ -119,19 +109,6 @@ export default function NewWalletNameRegenerateShare( props ) {
 }
 
 const styles = StyleSheet.create( {
-  pageTitle: {
-    color: Colors.blue,
-    fontSize: RFValue( 25 ),
-    marginLeft: 20,
-    marginBottom: 5,
-    fontFamily: Fonts.Regular
-  },
-  labelStyle: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 12 ),
-    marginLeft: 15,
-    fontFamily: Fonts.Regular
-  },
   inputBox: {
     borderColor: Colors.borderColor,
     borderWidth: 0.5,
@@ -166,17 +143,6 @@ const styles = StyleSheet.create( {
     backgroundColor: Colors.white,
     fontFamily: Fonts.Regular,
     marginBottom: 20
-  },
-  bottomNoteText: {
-    color: Colors.blue,
-    fontSize: RFValue( 13 ),
-    marginBottom: 5,
-    fontFamily: Fonts.Regular
-  },
-  bottomNoteInfoText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 12 ),
-    fontFamily: Fonts.Regular
   },
   buttonView: {
     height: wp( '13%' ),

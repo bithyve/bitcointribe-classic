@@ -50,10 +50,7 @@ export default function NewWalletQuestionRegenerateShare( props ) {
   const [ ansError, setAnsError ] = useState( '' )
   const dispatch = useDispatch()
   const walletName = props.route.params?.walletName
-  // const { isInitialized, loading } = useSelector(state => state.setupAndAuth);
-  // if (isInitialized) {
-  //     props.navigation.navigate('HomeNav');
-  // }
+
   const setConfirm = event => {
     if ( event.text ) {
       if ( answer && event.text != answer ) {

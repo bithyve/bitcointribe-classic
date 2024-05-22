@@ -80,11 +80,6 @@ const NewWalletGenerationOTP = props => {
                 <Text style={styles.commModeModalHeaderText}>
                   {'Enter OTP for the\nexisting secure account'}
                 </Text>
-                {/* <Text style={styles.commModeModalInfoText}>
-                  {
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit,\nsed do eiusmod tempor incididunt'
-                  }
-                </Text> */}
               </View>
               <View
                 style={{
@@ -326,57 +321,6 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 18 ),
     marginLeft: 25,
     marginRight: 25,
-  },
-  commModeModalInfoText: {
-    color: Colors.textColorGrey,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 11 ),
-    marginLeft: 25,
-    marginRight: 25,
-    // marginTop: hp('0.7%')
-  },
-  contactProfileView: {
-    flexDirection: 'row',
-    marginLeft: 25,
-    marginRight: 25,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: hp( '3.5%' ),
-    marginTop: hp( '1.7%' ),
-  },
-  contactProfileImage: {
-    width: 70,
-    height: 70,
-    resizeMode: 'cover',
-    borderRadius: 70 / 2,
-  },
-  contactNameText: {
-    color: Colors.black,
-    fontSize: RFValue( 25 ),
-    fontFamily: Fonts.Regular,
-    marginLeft: 25,
-  },
-  contactIconImage: {
-    width: 20,
-    height: 20,
-    resizeMode: 'cover',
-  },
-  buttonInnerView: {
-    flexDirection: 'row',
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: wp( '30%' ),
-  },
-  buttonImage: {
-    width: 20,
-    height: 20,
-    resizeMode: 'contain',
-  },
-  buttonText: {
-    color: Colors.white,
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Medium,
   },
   passcodeTextInputView: {
     flexDirection: 'row',
