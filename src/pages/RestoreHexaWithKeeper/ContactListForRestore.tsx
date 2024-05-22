@@ -1,9 +1,7 @@
 import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
-import {
-  heightPercentageToDP as hp, widthPercentageToDP as wp
-} from 'react-native-responsive-screen'
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import Colors from '../../common/Colors'
 import Fonts from '../../common/Fonts'
 import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
@@ -83,23 +81,10 @@ const styles = StyleSheet.create( {
     fontFamily: Fonts.Regular,
     marginTop: wp( '1.5%' ),
   },
-  bottomInfoText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 11 ),
-    fontFamily: Fonts.Regular,
-    marginBottom: hp( '1%' ),
-    marginTop: 'auto',
-  },
   successModalHeaderView: {
     marginRight: wp( '8%' ),
     marginLeft: wp( '8%' ),
     marginTop: wp( '4%' ),
-  },
-  successModalAmountView: {
-    justifyContent: 'center',
-    marginRight: wp( '8%' ),
-    marginLeft: wp( '8%' ),
-    marginTop: 'auto',
   },
   greyBox: {
     width: wp( '90%' ),
