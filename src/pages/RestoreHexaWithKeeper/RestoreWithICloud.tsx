@@ -96,16 +96,6 @@ const loaderMessages = [
     text: 'Make sure you only share your Recovery Keys with trustable contacts',
     subText: '',
   },
-  // {
-  //   heading: 'Level 2 - Double Backup',
-  //   text: 'Starting to hodl sats and bitcoin? Ensure that you backup your wallet atleast to Level 2 backup called Double Backup',
-  //   subText: '',
-  // },
-  // {
-  //   heading: 'Level 3 - Multi-key Backup',
-  //   text: 'For hardcore Bitcoiners who understand Bitcoin, stack large amounts of sats or bitcoin and care for utmost security of their wallet',
-  //   subText: '',
-  // }
 ]
 interface RestoreWithICloudStateTypes {
   listData: any[];
@@ -298,17 +288,6 @@ class RestoreWithICloud extends Component<
     if ( prevProps.cloudData !== cloudData && cloudData ) {
       this.getData( cloudData )
     }
-
-    // if ( prevProps.cloudBackupStatus !== cloudBackupStatus && cloudBackupStatus === CloudBackupStatus.FAILED ) {
-    //   this.setState( ( state ) => ( {
-    //     showLoader: false,
-    //   } ) )
-    //   this.props.setCloudBackupStatus( CloudBackupStatus.PENDING )
-    //   // ( this.BackupNotFound as any ).current.snapTo( 1 )
-    //   this.setState( {
-    //     backupModal: true
-    //   } )
-    // }
     if ( prevProps.cloudErrorMessage !== this.props.cloudErrorMessage ) {
       this.setState( ( state ) => ( {
         showLoader: false,
@@ -371,10 +350,6 @@ class RestoreWithICloud extends Component<
         this.updateList(); console.log( 'this.updateList();' )
       } else this.setKeeperInfoList( 0, this.props.downloadedBackupData[ 0 ].backupData.keeperInfo )
     }
-
-    // if ( prevProps.s3Service != this.props.s3Service && this.props.s3Service.levelhealth ) {
-    //   this.props.setupHealth( this.state.currentLevel )
-    // }
   };
 
   componentWillUnmount = () => {
@@ -522,18 +497,6 @@ class RestoreWithICloud extends Component<
     } )
   }
 
-  // setSecurityQuestionAndName = async () => {
-  //   const { answer, question, walletName, } = this.state
-  //   if ( answer && question && walletName ) {
-  //     const security = {
-  //       question,
-  //       answer,
-  //     }
-  //     this.props.initializeRecovery( walletName, security )
-  //   }
-
-  // }
-
   showCloudRestoreError = () => {
     if ( this.props.cloudErrorMessage !== '' ) {
       setTimeout( () => {
@@ -666,141 +629,11 @@ class RestoreWithICloud extends Component<
     } )
   };
 
-  onCreatLink = () => {
-    // const { database } = this.props
-    // const { RECOVERY_SHARES } = database.DECENTRALIZED_BACKUP
-    // if ( this.state.contactList.length && this.state.contactList.length == 1 ) {
-    //   if (
-    //     ( RECOVERY_SHARES[ 1 ] && !RECOVERY_SHARES[ 1 ].REQUEST_DETAILS ) ||
-    //     !RECOVERY_SHARES[ 1 ]
-    //   ) {
-    //     // Removed sss file
-    //     // requestShare( 1 )
-    //   }
-    // } else if (
-    //   this.state.contactList.length &&
-    //   this.state.contactList.length == 2
-    // ) {
-    //   if (
-    //     ( RECOVERY_SHARES[ 1 ] && !RECOVERY_SHARES[ 1 ].REQUEST_DETAILS ) ||
-    //     !RECOVERY_SHARES[ 1 ]
-    //   ) {
-    //     // Removed sss file
-    //     // requestShare( 1 )
-    //   }
-    //   if (
-    //     ( RECOVERY_SHARES[ 2 ] && !RECOVERY_SHARES[ 2 ].REQUEST_DETAILS ) ||
-    //     !RECOVERY_SHARES[ 2 ]
-    //   ) {
-    //     // Removed sss file
-    //     // requestShare( 2 )
-    //   }
-    // }
-  };
+  onCreatLink = () => {};
 
-  createLink = ( selectedContact, index ) => {
-    // const { database } = this.props
-    // const requester = this.state.walletName //database.WALLET_SETUP.walletName
-    // const { REQUEST_DETAILS } = database.DECENTRALIZED_BACKUP.RECOVERY_SHARES[
-    //   index == 0 ? 1 : 2
-    // ]
-    // const appVersion = DeviceInfo.getVersion()
-    // if (
-    //   selectedContact.data.phoneNumbers &&
-    //   selectedContact.data.phoneNumbers.length
-    // ) {
-    //   let number = selectedContact.data.phoneNumbers.length
-    //     ? selectedContact.data.phoneNumbers[ 0 ].number
-    //     : ''
-    //   number = number.slice( number.length - 10 ) // last 10 digits only
-    //   const numHintType = 'num'
-    //   const numHint = number[ 0 ] + number.slice( number.length - 2 )
-    //   const numberEncKey = TrustedContactsOperations.encryptData(
-    //     // using TCs encryption mech
-    //     REQUEST_DETAILS.KEY,
-    //     number
-    //   ).encryptedData
-    //   const numberDL =
-    //     `https://hexawallet.io/${config.APP_STAGE}/rk` +
-    //     `/${requester}` +
-    //     `/${numberEncKey}` +
-    //     `/${numHintType}` +
-    //     `/${numHint}` +
-    //     `/v${appVersion}`
-    //   this.setState( {
-    //     linkToRequest: numberDL
-    //   } )
-    // } else if (
-    //   selectedContact.data.emails &&
-    //   selectedContact.data.emails.length
-    // ) {
-    //   const email = selectedContact.data.emails.length
-    //     ? selectedContact.data.emails[ 0 ].email
-    //     : ''
-    //   const Email = email.replace( '.com', '' )
-    //   const emailHintType = 'eml'
-    //   const emailHint = email[ 0 ] + Email.slice( Email.length - 2 )
-    //   const emailEncPubKey = TrustedContactsOperations.encryptData(
-    //     REQUEST_DETAILS.KEY,
-    //     email
-    //   ).encryptedData
-    //   const emailDL =
-    //     `https://hexawallet.io/${config.APP_STAGE}/rk` +
-    //     `/${requester}` +
-    //     `/${emailEncPubKey}` +
-    //     `/${emailHintType}` +
-    //     `/${emailHint}` +
-    //     `/v${appVersion}`
-    //   this.setState( {
-    //     linkToRequest: emailDL
-    //   } )
-    // } else {
-    //   const otp = BHROperations.generateOTP( parseInt( config.SSS_OTP_LENGTH, 10 ) )
-    //   const otpHintType = 'otp'
-    //   const otpHint = 'xxx'
-    //   const otpEncPubKey = TrustedContactsOperations.encryptData(
-    //     REQUEST_DETAILS.KEY,
-    //     otp
-    //   ).encryptedData
-    //   const otpDL =
-    //     `https://hexawallet.io/${config.APP_STAGE}/rk` +
-    //     `/${requester}` +
-    //     `/${otpEncPubKey}` +
-    //     `/${otpHintType}` +
-    //     `/${otpHint}` +
-    //     `/v${appVersion}`
-    //   this.setState( {
-    //     linkToRequest: otpDL, isOtpType: true, otp: otp
-    //   } )
-    // }
-  };
+  createLink = ( selectedContact, index ) => {};
 
-  downloadSecret = () => {
-    // this.setState( {
-    //   refreshControlLoader: true
-    // } )
-    // const { database } = this.props
-    // const { RECOVERY_SHARES } = database.DECENTRALIZED_BACKUP
-    // if ( RECOVERY_SHARES ) {
-    //   for ( let shareIndex = 0; shareIndex < Object.keys( RECOVERY_SHARES ).length; shareIndex++ ) {
-    //     if (
-    //       RECOVERY_SHARES[ shareIndex ] &&
-    //       !RECOVERY_SHARES[ shareIndex ].META_SHARE && RECOVERY_SHARES[ shareIndex ].REQUEST_DETAILS && RECOVERY_SHARES[ shareIndex ].REQUEST_DETAILS.KEY
-    //     ) {
-    //       const { KEY } = RECOVERY_SHARES[ shareIndex ].REQUEST_DETAILS
-    //       // Removed this method
-    //       // this.props.downloadMShare( {
-    //       //   encryptedKey: KEY,
-    //       //   downloadType: 'recovery',
-    //       //   replaceIndex: shareIndex,
-    //       // } )
-    //     }
-    //   }
-    //   this.setState( {
-    //     refreshControlLoader: false
-    //   } )
-    // }
-  };
+  downloadSecret = () => {};
 
   onRefresh = () => {
     // this.downloadSecret()
@@ -1083,37 +916,9 @@ class RestoreWithICloud extends Component<
             marginBottom: hp( '4%' ),
             justifyContent: 'space-evenly',
             alignItems: 'center',
-            // shadowColor: Colors.shadowBlue,
-            // shadowOpacity: 1,
-            // shadowOffset: {
-            //   width: 15, height: 15
-            // },
             width: wp( '40%' )
           }}
         >
-          {/* <TouchableOpacity
-            onPress={() => {
-              // alert("test");
-              // ( this.ContactListForRestore as any ).current.snapTo( 1 )
-              this.setState( {
-                contactListModal: true
-              } )
-              // this.onCreatLink();
-            }}
-            style={styles.buttonInnerView}
-            disabled={contactList.length ? false : true}
-          >
-            <Image
-              source={require( '../../assets/images/icons/openlink.png' )}
-              style={styles.buttonImage}
-            />
-            <Text style={styles.buttonText}>{strings[ 'SendRequest' ]}</Text>
-          </TouchableOpacity> */}
-          {/* <View
-            style={{
-              width: 1, height: 30, backgroundColor: Colors.white
-            }}
-          /> */}
           <TouchableOpacity
             style={styles.buttonInnerView}
             onPress={() => {
@@ -1280,20 +1085,8 @@ class RestoreWithICloud extends Component<
           <SecurityQuestion
             question={this.state.question}
             encryptionType={this.state.encryptionType}
-            // onFocus={() => {
-            //   if ( Platform.OS == 'ios' ){
-            //     if( this.SecurityQuestionBottomSheet as any )
-            //       ( this.SecurityQuestionBottomSheet as any ).current.snapTo( 2 )}
-            // }}
-            // onBlur={() => {
-            //   if ( Platform.OS == 'ios' ){
-            //     if( this.SecurityQuestionBottomSheet as any )
-            //       ( this.SecurityQuestionBottomSheet as any ).current.snapTo( 1 )}
-            // }}
             onPressConfirm={( answer ) => {
               Keyboard.dismiss()
-              // if( this.SecurityQuestionBottomSheet as any )
-              //   ( this.SecurityQuestionBottomSheet as any ).current.snapTo( 0 )
               this.setState( {
                 securityQuestionModal: false
               } )
@@ -1307,14 +1100,6 @@ class RestoreWithICloud extends Component<
               else this.decryptCloudJson()
             }}
           />
-          {/* )
-         }
-          renderHeader={()=>( <ModalHeader
-            onPressHeader={() => {
-              ( this.SecurityQuestionBottomSheet as any ).current.snapTo( 0 )
-            }}
-          /> )}
-        /> */}
         </ModalContainer>
         <ModalContainer onBackground={() => {
           this.setState( {
