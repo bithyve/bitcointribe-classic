@@ -1,9 +1,7 @@
-import React, { Component, } from 'react'
-import { View, StyleSheet, ActivityIndicator } from 'react-native'
-import { RFValue } from 'react-native-responsive-fontsize'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
 import { inject, observer } from 'mobx-react'
+import React, { Component } from 'react'
+import { ActivityIndicator, StyleSheet, View } from 'react-native'
+import Colors from '../../common/Colors'
 import PaymentList from './components/PaymentList'
 
 @inject( 'PaymentsStore' )
@@ -41,12 +39,6 @@ const styles = StyleSheet.create( {
     padding: 10,
     backgroundColor: Colors.white,
     flex: 1,
-  },
-  header: {
-    color: Colors.darkBlue,
-    fontSize: RFValue( 25 ),
-    paddingLeft: 10,
-    fontFamily: Fonts.Regular,
   },
   activityIndicator: {
     paddingVertical: 40,
