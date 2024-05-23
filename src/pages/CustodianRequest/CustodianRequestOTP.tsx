@@ -84,22 +84,6 @@ export default function CustodianRequestOTP( props ) {
     ( state ) => state.storage.database.DECENTRALIZED_BACKUP,
   )
 
-  // useEffect(() => {
-  //   if (UNDER_CUSTODY[requester]) {
-  // setTimeout(() => {
-  //   setErrorMessageHeader('Failed to store Recovery Secret');
-  //   setErrorMessage(
-  //     'You cannot be the Guardian of multiple shares from the same user',
-  //   );
-  //   setButtonText('Ok')
-  // }, 2);
-  //     (ErrorBottomSheet as any).current.snapTo(1);
-  //   } else {
-  //     if (passcode.join('').length === 6 || otp)
-  //       props.navigation.navigate('CustodianRequestAccepted', { requester });
-  //   }
-  // }, [UNDER_CUSTODY]);
-
   useEffect( () => {
     // check for whether the share from the same wallet is under custody is done prior to landing on this page
     if ( UNDER_CUSTODY[ requester ] ) {
@@ -418,11 +402,6 @@ const styles = StyleSheet.create( {
     height: '100%',
     backgroundColor: Colors.white,
   },
-  passcodeTextInputText: {
-    color: Colors.blue,
-    fontWeight: 'bold',
-    fontSize: RFValue( 13 ),
-  },
   textBoxStyles: {
     borderWidth: 0.5,
     height: wp( '12%' ),
@@ -454,18 +433,6 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     backgroundColor: Colors.white,
     marginLeft: 8,
-    color: Colors.black,
-    fontSize: RFValue( 13 ),
-    textAlign: 'center',
-    lineHeight: 18,
-  },
-  textStyles: {
-    color: Colors.black,
-    fontSize: RFValue( 13 ),
-    textAlign: 'center',
-    lineHeight: 18,
-  },
-  textFocused: {
     color: Colors.black,
     fontSize: RFValue( 13 ),
     textAlign: 'center',

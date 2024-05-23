@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react'
-import { View, Image, TouchableOpacity, Text, StyleSheet } from 'react-native'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import React from 'react'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import Colors from '../../common/Colors'
+import Fonts from '../../common/Fonts'
 import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
 
 export default function CustodianRequestAccepted( props ) {
@@ -142,10 +141,6 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 11 ),
     fontFamily: Fonts.Regular,
   },
-  successModalAmountView: {
-    marginRight: wp( '10%' ),
-    marginLeft: wp( '10%' ),
-  },
   successModalWalletNameText: {
     color: Colors.black,
     fontSize: RFValue( 25 ),
@@ -158,22 +153,6 @@ const styles = StyleSheet.create( {
     marginRight: 15,
     marginLeft: 15,
     resizeMode: 'contain',
-  },
-  successModalAmountText: {
-    color: Colors.black,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 21 ),
-    marginLeft: 5,
-  },
-  successModalAmountUnitText: {
-    color: Colors.borderColor,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 11 ),
-  },
-  successModalAmountInfoView: {
-    flex: 0.4,
-    marginRight: wp( '10%' ),
-    marginLeft: wp( '10%' ),
   },
   successModalButtonView: {
     height: wp( '13%' ),
