@@ -441,36 +441,6 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
         }}>
           {strings.settingsAndMore}
         </Text>
-        {/* <View style={{
-            flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', margin: 15
-          }}>
-            <Image
-              source={require( '../../assets/images/icons/recurring_buy.png' )}
-              style={{
-                width: widthPercentageToDP( 8 ),
-                height: widthPercentageToDP( 8 ),
-              }}
-            />
-            <View>
-              <Text style={styles.addModalTitleText}>
-          Show in Bitcoin
-              </Text>
-              <Text style={styles.addModalInfoText}>
-        Lorem ipsum dolor sit amet, consectetur
-              </Text>
-            </View>
-            <CurrencyKindToggleSwitch
-              fiatCurrencyCode={currencyCode}
-              onpress={() => {
-                dispatch(
-                  currencyKindSet(
-                    prefersBitcoin ? CurrencyKind.FIAT : CurrencyKind.BITCOIN
-                  )
-                )
-              }}
-              isOn={prefersBitcoin}
-            />
-          </View> */}
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
@@ -624,41 +594,6 @@ const MoreOptionsContainerScreen: React.FC<Props> = ( { navigation }: Props ) =>
               }}
             />
           </TouchableOpacity>
-          {/* </View> */}
-
-          {/* <View
-          style={styles.webLinkBarContainer}
-        >
-          <AppBottomSheetTouchableWrapper
-            onPress={() => openLink( 'http://hexawallet.io/faq' )}
-          >
-            <Text style={styles.addModalTitleText}>FAQs</Text>
-          </AppBottomSheetTouchableWrapper>
-
-          <View
-            style={{
-              height: 20, width: 1, backgroundColor: Colors.borderColor
-            }}
-          />
-
-          <AppBottomSheetTouchableWrapper
-            onPress={() => openLink( 'https://bitcointribe.app/terms-of-service/' )}
-          >
-            <Text style={styles.addModalTitleText}>Terms of Service</Text>
-          </AppBottomSheetTouchableWrapper>
-
-          <View
-            style={{
-              height: 20, width: 1, backgroundColor: Colors.borderColor
-            }}
-          />
-
-          <AppBottomSheetTouchableWrapper
-            onPress={() => openLink( 'http://hexawallet.io/privacy-policy' )}
-          >
-            <Text style={styles.addModalTitleText}>Privacy Policy</Text>
-          </AppBottomSheetTouchableWrapper>
-        </View> */}
         </ScrollView>
       </View>
     </View>
@@ -680,13 +615,6 @@ const styles = StyleSheet.create( {
     flexDirection: 'column',
     justifyContent: 'space-around'
   },
-  modalContentContainer: {
-    backgroundColor: Colors.white,
-    padding: 10,
-    maxHeight: '80%',
-    minHeight: '60%',
-  },
-
   list: {
     marginTop: 20,
     flexGrow: 1,
@@ -699,28 +627,6 @@ const styles = StyleSheet.create( {
     paddingVertical: 5,
     alignItems: 'center',
   },
-
-  containerItemSelected: {
-    flexDirection: 'row',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    alignItems: 'center',
-    backgroundColor: Colors.lightBlue,
-    borderRadius: 10,
-  },
-
-  textLanName: {
-    fontSize: 18,
-    flex: 1,
-    color: 'black',
-  },
-
-  flag: {
-    fontSize: 35,
-    paddingRight: 15,
-    color: 'black',
-  },
-
   separatorView: {
     marginLeft: 15,
     marginRight: 15,
@@ -774,23 +680,6 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 12 ),
     fontFamily: Fonts.Regular
   },
-
-  textBeta: {
-    color: 'white',
-    fontSize: 12,
-  },
-
-  containerBeta: {
-    marginHorizontal: 10,
-    backgroundColor: Colors.blue,
-    paddingHorizontal: 4,
-    paddingVertical: 1,
-    borderRadius: 5,
-    overflow: 'hidden',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
   addModalInfoText: {
     color: Colors.THEAM_INFO_LIGHT_TEXT_COLOR,
     fontSize: RFValue( 11 ),
@@ -805,22 +694,6 @@ const styles = StyleSheet.create( {
     flexDirection: 'row',
     // justifyContent: 'center',
     alignItems: 'center',
-  },
-
-  webLinkBarContainer: {
-    flexDirection: 'row',
-    elevation: 10,
-    shadowColor: '#00000017',
-    shadowOpacity: 1,
-    shadowRadius: 10,
-    backgroundColor: Colors.white,
-    justifyContent: 'space-around',
-    height: 40,
-    alignItems: 'center',
-    marginHorizontal: 16,
-    paddingHorizontal: 10,
-    marginBottom: heightPercentageToDP( 2 ),
-    borderRadius: 10,
   },
   wrapper: {
     height: height > 720 ? heightPercentageToDP( 35 ) : heightPercentageToDP( 50 ),
