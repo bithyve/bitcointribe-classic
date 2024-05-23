@@ -1,38 +1,30 @@
+import React, { useState } from 'react'
 import {
-  ActivityIndicator,
-  Dimensions,
   Image,
-  ImageBackground,
-  Platform,
-  RefreshControl,
   SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View
 } from 'react-native'
-import React, { useState } from 'react'
 import {
   heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
+  widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
-import BottomInfoBox from '../../components/BottomInfoBox'
-import ClaimSatComponent from './ClaimSatComponent'
-import Colors from '../../common/Colors'
-import CommonStyles from '../../common/Styles/Styles'
-import Fonts from '../../common/Fonts'
-import GiftUnwrappedComponent from './GiftUnwrappedComponent'
-import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons'
-import ModalContainer from '../../components/home/ModalContainer'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { Shadow } from 'react-native-shadow-2'
+import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons'
 import Tooltip from 'rn-tooltip'
+import Colors from '../../common/Colors'
+import Fonts from '../../common/Fonts'
+import CommonStyles from '../../common/Styles/Styles'
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
+import BottomInfoBox from '../../components/BottomInfoBox'
+import ModalContainer from '../../components/home/ModalContainer'
+import ClaimSatComponent from './ClaimSatComponent'
+import GiftUnwrappedComponent from './GiftUnwrappedComponent'
 
-const { height, } = Dimensions.get( 'window' )
 
 export default function GiftCreatedScreen( props ) {
 
@@ -89,20 +81,6 @@ export default function GiftCreatedScreen( props ) {
       <View style={[ CommonStyles.headerContainer, {
         backgroundColor: Colors.white,
       } ]}>
-        {/* <TouchableOpacity
-          style={CommonStyles.headerLeftIconContainer}
-          onPress={() => {
-            props.navigation.goBack()
-          }}
-        >
-          <View style={CommonStyles.headerLeftIconInnerContainer}>
-            <FontAwesome
-              name="long-arrow-left"
-              color={Colors.homepageButtonColor}
-              size={17}
-            />
-          </View>
-        </TouchableOpacity> */}
       </View>
       <Text style={{
         fontSize: RFValue( 24 ), marginHorizontal: 20, marginTop: 10,
@@ -167,12 +145,7 @@ export default function GiftCreatedScreen( props ) {
             </Tooltip>
           </View>
         </View>
-
-        {/* <GreySatCard /> */}
       </View>
-      {/* <View style={{
-        flex: 1
-      }} /> */}
       {
         slotFromIndex &&
         <View style={{
@@ -241,11 +214,6 @@ export default function GiftCreatedScreen( props ) {
               width: wp( '27%' ),
               justifyContent: 'center',
               alignItems: 'center',
-              // alignSelf: 'center',
-              // marginTop: wp( '5%' ),
-              // position: 'absolute',
-              // left: wp( 53 )
-              // backgroundColor:'red'
             }}
             delayPressIn={0}
           >
@@ -344,8 +312,6 @@ const styles = StyleSheet.create( {
     color: Colors.black,
     fontSize: RFValue( 8 ),
     fontFamily: Fonts.Regular,
-    // lineHeight: 13,
-    // backgroundColor: Colors.white,
     padding:RFValue( 10 )
   }
 } )
