@@ -246,42 +246,6 @@ const styles = StyleSheet.create( {
     backgroundColor: Colors.white,
     width: '100%',
   },
-  headerContainer: {
-    flexDirection: 'row',
-    marginTop: 10,
-    alignItems: 'center',
-    height: 54,
-  },
-  headerLeftIconContainer: {
-    height: 54,
-  },
-  headerLeftIconInnerContainer: {
-    width: 54,
-    height: 54,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalHeaderTitleView: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    paddingRight: 10,
-    paddingBottom: hp( '1.5%' ),
-    paddingTop: hp( '1%' ),
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: hp( '1.5%' ),
-  },
-  modalHeaderTitleText: {
-    color: Colors.blue,
-    fontSize: RFValue( 18 ),
-    fontFamily: Fonts.Medium,
-  },
-  modalHeaderInfoText: {
-    color: Colors.textColorGrey,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 12 ),
-    marginTop: 5,
-  },
   listElements: {
     flexDirection: 'row',
     paddingLeft: 20,

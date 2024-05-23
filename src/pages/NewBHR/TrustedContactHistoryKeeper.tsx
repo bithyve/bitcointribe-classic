@@ -1,78 +1,50 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  SafeAreaView,
-  StatusBar,
-  AsyncStorage,
-  Keyboard,
-  TouchableOpacity,
-} from 'react-native'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import { RootStateOrAny, useSelector } from 'react-redux'
-import Colors from '../../common/Colors'
-import { RFValue } from 'react-native-responsive-fontsize'
-import ErrorModalContents from '../../components/ErrorModalContents'
-import DeviceInfo from 'react-native-device-info'
-import HistoryPageComponent from './HistoryPageComponent'
-import ShareOtpWithTrustedContact from './ShareOtpWithTrustedContact'
-import moment from 'moment'
-import _ from 'underscore'
-import { nameToInitials } from '../../common/CommonFunctions'
-import {
-  ErrorSending,
-  updateMSharesHealth,
-  updatedKeeperInfo,
-  setChannelAssets,
-  createChannelAssets,
-  createGuardian,
-  setApprovalStatus,
-  downloadSMShare,
-} from '../../store/actions/BHR'
-import { useDispatch } from 'react-redux'
-import {
-  KeeperInfoInterface,
-  Keepers,
-  MetaShare,
-  TrustedContact,
-  Trusted_Contacts,
-  ChannelAssets,
-  TrustedContactRelationTypes,
-  Wallet,
-  INotification,
-  notificationType,
-  notificationTag,
-  LevelInfo,
-  LevelData,
-  ShareSplitScheme,
-  KeeperType
-} from '../../bitcoin/utilities/Interface'
-import config from '../../bitcoin/HexaConfig'
-import FriendsAndFamilyHelpContents from '../../components/Helper/FriendsAndFamilyHelpContents'
-import HistoryHeaderComponent from './HistoryHeaderComponent'
-import KeeperTypeModalContents from './KeeperTypeModalContent'
-import semver from 'semver'
-import ModalContainer from '../../components/home/ModalContainer'
-import { getTime } from '../../common/CommonFunctions/timeFormatter'
-import { historyArray } from '../../common/CommonVars/commonVars'
-import { getIndex } from '../../common/utilities'
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
-import BackupStyles from './Styles'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import BHROperations from '../../bitcoin/utilities/BHROperations'
 import idx from 'idx'
-import Toast from '../../components/Toast'
-import Loader from '../../components/loader'
-import useStreamFromContact from '../../utils/hooks/trusted-contacts/UseStreamFromContact'
+import moment from 'moment'
+import React, { useCallback, useEffect, useState } from 'react'
+import {
+  AsyncStorage, Image, Keyboard, SafeAreaView,
+  StatusBar, StyleSheet, Text, TouchableOpacity, View
+} from 'react-native'
+import DeviceInfo from 'react-native-device-info'
+import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
+import semver from 'semver'
+import _ from 'underscore'
+import config from '../../bitcoin/HexaConfig'
+import BHROperations from '../../bitcoin/utilities/BHROperations'
+import {
+  ChannelAssets, INotification, KeeperInfoInterface,
+  Keepers, KeeperType, LevelData, LevelInfo, MetaShare, notificationTag, notificationType, ShareSplitScheme, TrustedContact, TrustedContactRelationTypes, Trusted_Contacts, Wallet
+} from '../../bitcoin/utilities/Interface'
 import Relay from '../../bitcoin/utilities/Relay'
 import TrustedContactsOperations from '../../bitcoin/utilities/TrustedContactsOperations'
+import Colors from '../../common/Colors'
+import { nameToInitials } from '../../common/CommonFunctions'
+import { getTime } from '../../common/CommonFunctions/timeFormatter'
+import { historyArray } from '../../common/CommonVars/commonVars'
 import { translations } from '../../common/content/LocContext'
+import { getIndex } from '../../common/utilities'
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
+import ErrorModalContents from '../../components/ErrorModalContents'
+import FriendsAndFamilyHelpContents from '../../components/Helper/FriendsAndFamilyHelpContents'
+import ModalContainer from '../../components/home/ModalContainer'
+import Loader from '../../components/loader'
+import Toast from '../../components/Toast'
+import {
+  createChannelAssets,
+  createGuardian, downloadSMShare, ErrorSending, setApprovalStatus, setChannelAssets, updatedKeeperInfo, updateMSharesHealth
+} from '../../store/actions/BHR'
+import useStreamFromContact from '../../utils/hooks/trusted-contacts/UseStreamFromContact'
 import QRModal from '../Accounts/QRModal'
+import HistoryHeaderComponent from './HistoryHeaderComponent'
+import HistoryPageComponent from './HistoryPageComponent'
+import KeeperTypeModalContents from './KeeperTypeModalContent'
+import ShareOtpWithTrustedContact from './ShareOtpWithTrustedContact'
+import BackupStyles from './Styles'
 
 const TrustedContactHistoryKeeper = ( props ) => {
   const strings  = translations[ 'bhr' ]

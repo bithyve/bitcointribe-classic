@@ -1,12 +1,12 @@
 import React, { memo } from 'react'
-import { View, Image, TouchableOpacity, Text, StyleSheet, ImageBackground } from 'react-native'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
+  widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import Colors from '../../common/Colors'
 import { nameToInitials } from '../../common/CommonFunctions'
+import Fonts from '../../common/Fonts'
 
 function MBKeeperButton( props ) {
   const value = props.value

@@ -316,10 +316,6 @@ export default function ManageBackup( props ) {
 
   useEffect( () => {
     if ( isTypeBottomSheetOpen === true && onKeeperButtonClick ) {
-      // setShowLoader( false )
-      // setTimeout( () => {
-      // setKeeperTypeModal( true )
-      // }, 500 )
       const obj = {
         selectedKeeper: {
           ...selectedKeeper, name: selectedKeeper.name ? selectedKeeper.name : selectedKeeperName, shareType: selectedKeeper.shareType ? selectedKeeper.shareType : 'cloud',
@@ -1038,10 +1034,6 @@ const styles = StyleSheet.create( {
     borderRadius: wp( 14 ) / 2,
     marginHorizontal: wp( 1 ),
   },
-  moreImage: {
-    width: wp( '10%' ),
-    height: wp( '10%' ),
-  },
   pageTitle: {
     color: Colors.blue,
     fontSize: RFValue( 16 ),
@@ -1050,14 +1042,6 @@ const styles = StyleSheet.create( {
     fontFamily: Fonts.Medium,
     // paddingLeft: wp ( '4%' )
   },
-  cardTitle: {
-    color: Colors.blue,
-    fontSize: RFValue( 12 ),
-    // fontFamily: Fonts.Regular,
-    fontFamily: Fonts.Medium,
-    marginVertical: wp( 2 ),
-    // marginHorizontal: wp( 4 )
-  },
   pageInfoText: {
     // paddingLeft: wp ( '4%' ),
     color: Colors.textColorGrey,
@@ -1065,28 +1049,6 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 11 ),
     fontFamily: Fonts.Regular,
     marginTop: 3,
-  },
-  addModalTitleText: {
-    color: Colors.blue,
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Regular
-  },
-
-  addModalInfoText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 11 ),
-    marginTop: 5,
-    fontFamily: Fonts.Regular
-  },
-
-  modalElementInfoView: {
-    flex: 1,
-    // margin: 10,
-    height: hp( '5%' ),
-    flexDirection: 'row',
-    // justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: wp( '6%' )
   },
   accountCardsSectionContainer: {
     height: hp( '71.46%' ),
@@ -1102,96 +1064,11 @@ const styles = StyleSheet.create( {
     flexDirection: 'column',
     justifyContent: 'space-around'
   },
-  modalHeaderTitleView: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    paddingRight: 5,
-    paddingBottom: 5,
-    paddingTop: 7,
-    marginLeft: 20,
-    marginRight: 20,
-  },
-  headerBackArrowView: {
-    height: 30,
-    width: 30,
-    justifyContent: 'center',
-  },
-  topHealthView: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   healthShieldImage: {
     width: wp( '10%' ),
     height: wp( '18%' ),
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  headerSeparator: {
-    backgroundColor: Colors.seaBlue,
-    width: 4,
-    borderRadius: 5,
-    height: wp( '17%' ),
-    marginLeft: wp( '5%' ),
-    marginRight: wp( '5%' ),
-  },
-  backupText: {
-    color: Colors.black,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 15 ),
-  },
-  backupInfoText: {
-    color: Colors.blue,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 18 ),
-  },
-  cardView: {
-    height: wp( '11%' ),
-    width: wp( '85%' ),
-    padding: 15,
-    borderBottomWidth: 0.5,
-    borderColor: Colors.textColorGrey,
-  },
-  cardHealthImageView: {
-    backgroundColor: Colors.red,
-    // shadowColor: Colors.deepBlue,
-    // shadowOpacity: 1,
-    // shadowOffset: {
-    //   width: 0, height: 3
-    // },
-    // shadowRadius: 10,
-    borderRadius: wp( '7%' ) / 2,
-    width: wp( '6%' ),
-    height: wp( '6%' ),
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  cardHealthImage: {
-    width: wp( '2%' ),
-    height: wp( '4%' ),
-    resizeMode: 'contain',
-  },
-  cardButtonView: {
-    width: wp( '21%' ),
-    height: wp( '8' ),
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 'auto',
-    borderRadius: 8,
-  },
-  cardButtonText: {
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Regular,
-    color: Colors.white,
-    width: wp( '24%' ),
-  },
-  levelText: {
-    fontSize: RFValue( 16 ),
-    fontFamily: Fonts.Regular,
-    color: Colors.white,
-  },
-  levelInfoText: {
-    fontSize: RFValue( 10 ),
   },
   shieldErrorDot: {
     backgroundColor: Colors.red,
@@ -1203,13 +1080,6 @@ const styles = StyleSheet.create( {
     right: 0,
     borderWidth: 2,
     borderColor: Colors.white,
-  },
-  headerMessageView: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: wp( '85%' ),
-    marginLeft: 30,
-    marginRight: 30
   },
   headerMessageText: {
     color: Colors.textColorGrey,

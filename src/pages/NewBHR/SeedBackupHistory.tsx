@@ -377,13 +377,6 @@ const SeedBackupHistory = ( props ) => {
       <ModalContainer onBackground={()=>setErrorModal( false )} visible={errorModal} closeBottomSheet={() => {setErrorModal( false )}}>
         {renderCloudErrorContent()}
       </ModalContainer>
-      {/* <BottomSheet
-        enabledInnerScrolling={true}
-        ref={bottomSheetRef as any}
-        snapPoints={[ -30, Platform.OS == 'ios' && DeviceInfo.hasNotch() ? hp( '40%' ) : hp( '35%' ), ]}
-        renderContent={renderCloudPermissionContent}
-        renderHeader={renderCloudPermissionHeader}
-      /> */}
       <BottomSheet
         enabledGestureInteraction={false}
         enabledInnerScrolling={true}

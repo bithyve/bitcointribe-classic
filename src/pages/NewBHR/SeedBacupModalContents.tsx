@@ -1,17 +1,16 @@
 import React, { useContext } from 'react'
-import { View, Image, Text, StyleSheet } from 'react-native'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import { Image, StyleSheet, Text, View } from 'react-native'
+import LinearGradient from 'react-native-linear-gradient'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Colors from '../../common/Colors'
 import { LocalizationContext } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
 import BottomInfoBox from '../../components/BottomInfoBox'
-import LinearGradient from 'react-native-linear-gradient'
 
 export default function SeedBacupModalContents( props ) {
   const { translations } = useContext( LocalizationContext )
@@ -109,49 +108,6 @@ export default function SeedBacupModalContents( props ) {
           />
         </View>
         }
-        {/* <View style={styles.successModalAmountView}>
-          {props.note ? (
-            <Text
-              style={{
-                ...styles.modalInfoText,
-                marginBottom: hp( '1%' ),
-                marginTop: 'auto',
-                letterSpacing: 0.11,
-                fontSize: RFValue( 11 ),
-                color: Colors.textColorGrey
-              }}
-            >
-              {props.note}
-              {props.noteNextLine ? '\n' + props.noteNextLine : null}
-            </Text>
-          ) : null}
-          {props.links &&
-            <View style={{
-              marginTop: hp( 3 ),
-              marginBottom: hp( 2 )
-            }}>
-              {props.links.map( ( item, index ) => {
-                return(
-                  <View key={index} style={{
-                    flexDirection: 'row', paddingVertical: hp( 1 ), alignItems: 'center',
-                  }}>
-                    <Image source={item.icon} style={{
-                      height: wp( 4 ), width: wp( 4 ), resizeMode: 'contain'
-                    }}/>
-                    <View style={{
-                      height: hp( 2 ), width: wp( 0.3 ), backgroundColor: Colors.gray1, marginHorizontal: wp( 4 )
-                    }} />
-                    <Text style={{
-                      color: Colors.textColorGrey, opacity: 1, fontSize: RFValue( 11 ), letterSpacing: 0.6, fontFamily: Fonts.Regular,
-                    }}>
-                      {item.link}
-                    </Text>
-                  </View>
-                )
-              } )}
-            </View>
-          }
-        </View> */}
         {props.otherText ? (
           <View style={styles.successModalAmountView}>
             <Text

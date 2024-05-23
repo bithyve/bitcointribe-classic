@@ -668,17 +668,6 @@ const styles = StyleSheet.create( {
     alignSelf: 'center',
     marginTop: hp( 4 ),
   },
-  addContactBtn: {
-    marginHorizontal: wp( 4 ),
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: hp( 1 )
-  },
-  plusIcon: {
-    height: wp( 9 ),
-    width: wp( 8 ),
-    resizeMode: 'contain'
-  },
   listItem: {
     marginHorizontal: wp( 2 ),
     marginVertical: hp( 2 ),
@@ -713,15 +702,6 @@ const styles = StyleSheet.create( {
     marginLeft: 10,
     fontSize: RFValue( 13 ),
     fontFamily: Fonts.Regular,
-  },
-  contactIndexText: {
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Regular,
-  },
-  contactIndexView: {
-    flex: 0.5,
-    height: '100%',
-    justifyContent: 'space-evenly',
   },
   searchBoxContainer: {
     flexDirection: 'row',

@@ -1,29 +1,22 @@
-import React, { useState, useEffect, useContext } from 'react'
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Platform,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import React, { useContext, useEffect, useState } from 'react'
+import {
+  Platform, StyleSheet, Text, TextInput, TouchableOpacity, View
+} from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { LocalizationContext } from '../../common/content/LocContext'
 
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
-import { RFValue } from 'react-native-responsive-fontsize'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
-import { useSelector } from 'react-redux'
 import { useNavigation } from '@react-navigation/native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import { useSelector } from 'react-redux'
 import { Wallet } from '../../bitcoin/utilities/Interface'
+import Colors from '../../common/Colors'
+import Fonts from '../../common/Fonts'
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
 
 
 const ALLOWED_CHARACTERS_REGEXP = /^[0-9a-z]+$/
@@ -157,9 +150,6 @@ function SecuritySeedWord( props ) {
             paddingLeft: wp( '6%' ), paddingRight: wp( '6%' )
           }}>
             <View style={styles.dropdownBox}>
-              {/* {parseInt( security.questionId ) > 0 ? <Text style={styles.dropdownBoxText}>{securityQuestion}</Text> :
-                <Text style={styles.dropdownBoxText}>{`${strings.Hint}: ${securityQuestion}`}</Text>
-              } */}
             </View>
             <KeyboardAwareScrollView
               resetScrollToCoords={{
@@ -314,11 +304,6 @@ const styles = StyleSheet.create( {
     color: Colors.textColorGrey,
     fontSize: RFValue( 12 ),
     fontFamily: Fonts.Regular,
-  },
-  dropdownBoxText: {
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 13 ),
-    color: Colors.black,
   },
   dropdownBox: {
     marginTop: hp( '2%' ),

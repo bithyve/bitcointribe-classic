@@ -1,23 +1,17 @@
+import moment from 'moment'
 import React, { useState } from 'react'
 import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  Platform
+  Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View
 } from 'react-native'
-import Fonts from '../../common/Fonts'
+import LinearGradient from 'react-native-linear-gradient'
+import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import Colors from '../../common/Colors'
-import { RFValue } from 'react-native-responsive-fontsize'
-import BottomInfoBox from '../../components/BottomInfoBox'
 import { translations } from '../../common/content/LocContext'
-import LinearGradient from 'react-native-linear-gradient'
-import moment from 'moment'
+import Fonts from '../../common/Fonts'
+import BottomInfoBox from '../../components/BottomInfoBox'
 
 const HistoryPageComponent = ( props ) => {
   const strings  = translations[ 'bhr' ]
@@ -104,18 +98,6 @@ const HistoryPageComponent = ( props ) => {
         <View style={{
           flex: 1
         }}>
-          {/* <ScrollView>
-            {[ 1, 2, 3, 4 ].map( ( index ) => {
-              return (
-                <View style={styles.waterMarkCard} key={index}>
-                  <View>
-                    <View style={styles.waterMarkCardTextOne} />
-                    <View style={styles.waterMarkCardTextTwo} />
-                  </View>
-                </View>
-              )
-            } )}
-          </ScrollView> */}
           { !props.showSeedHistoryNote &&
           <View style={{
             backgroundColor: Colors.backgroundColor, flex: 1, justifyContent: 'flex-end'
@@ -332,19 +314,6 @@ const styles = StyleSheet.create( {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-  },
-  waterMarkCardTextOne: {
-    backgroundColor: Colors.backgroundColor,
-    height: wp( '4%' ),
-    width: wp( '40%' ),
-    borderRadius: 10,
-  },
-  waterMarkCardTextTwo: {
-    backgroundColor: Colors.backgroundColor,
-    height: wp( '4%' ),
-    width: wp( '30%' ),
-    marginTop: 5,
-    borderRadius: 10,
   },
   bottomButtonView: {
     height: hp( '18%' ),
