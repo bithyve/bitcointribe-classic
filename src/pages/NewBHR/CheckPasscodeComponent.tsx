@@ -344,25 +344,6 @@ export default function CheckPasscodeComponent( props ) {
                 <Text style={styles.proceedButtonText}>{common.proceed}</Text>
               </View>
             </TouchableOpacity>
-
-            {/* {
-              attempts >= 3&&(
-                <TouchableOpacity
-                  style={{
-                    ...styles.proceedButtonView,
-                    elevation: Elevation,
-                    marginHorizontal: 15,
-                  }}
-                  onPress={()=> {
-
-                  }}>
-                  <Text style={{
-                    color: Colors.blue,
-                    fontFamily: Fonts.Medium
-                  }}>{strings.ForgotPasscode}</Text>
-                </TouchableOpacity>
-              )
-            } */}
           </View>
         </View>
 
@@ -578,11 +559,6 @@ const styles = StyleSheet.create( {
     color: Colors.white,
     fontSize: RFValue( 13 ),
     fontFamily: Fonts.Medium,
-  },
-  boldItalicText: {
-    fontFamily: Fonts.MediumItalic,
-    fontWeight: 'bold',
-    fontStyle: 'italic',
   },
   errorText: {
     fontFamily: Fonts.MediumItalic,

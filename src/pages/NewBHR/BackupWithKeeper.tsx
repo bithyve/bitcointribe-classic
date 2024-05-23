@@ -219,30 +219,6 @@ export default function BackupWithKeeper( { navigation } ) {
           {'P2WPKH: Native SegWit'}
         </Text>
       </View>
-      {/* <Text onPress={copyPath} style={{
-        textAlign:'center'
-      }}>{`Derivation Path: ${path}`}</Text>
-      <Text style={{
-        textAlign: 'center'
-      }}>{'Purpose: P2SH-P2WPKH: Wrapped segwit'}</Text> */}
-      {/* <View style={{
-        margin: 20
-      }}>
-        <ButtonBlue
-          buttonText={isKeeperInstalled ? 'Open in Keeper' : 'Download Bitcoin Keeper'}
-          handleButtonPress={openInKeeper}
-          buttonDisable= {false}
-        />
-      </View> */}
-
-      {/* <Text
-        onPress={()=> {
-          navigation.goBack()
-          dispatch( setBackupWithKeeperState( BackupWithKeeperState.BACKEDUP ) )
-        }}
-        style={{
-          textAlign: 'center', marginVertical: 40
-        }}>I have backed up with Keeper</Text> */}
       <View
         style={styles.addModalView}
       >
@@ -279,12 +255,6 @@ export default function BackupWithKeeper( { navigation } ) {
               </Text>
             </TouchableOpacity>
           </View>
-          {/* <Ionicons
-          name={'chevron-forward'}
-          color={Colors.textColorGrey}
-          size={22}
-          style={styles.icArrow}
-        /> */}
         </View>
       </View>
       <TouchableOpacity
