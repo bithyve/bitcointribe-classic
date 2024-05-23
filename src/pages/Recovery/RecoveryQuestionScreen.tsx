@@ -14,7 +14,7 @@ import {
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
   heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
+  widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -85,18 +85,6 @@ export default function RecoveryQuestionScreen( props ) {
                 and enter its answer
               </Text>
             </View>
-            {/* <View style={{
-              flex: 1
-            }}>
-              <KnowMoreButton
-                onpress={() => {}}
-                containerStyle={{
-                  marginLeft: 'auto', marginTop: 10
-                }}
-                textStyle={{
-                }}
-              />
-            </View>*/}
           </View>
           <View style={{
             paddingLeft: wp( '6%' ), paddingRight: wp( '6%' ),
@@ -355,24 +343,6 @@ const styles = StyleSheet.create( {
     paddingLeft: 15,
     fontSize: RFValue( 13 ),
     color: Colors.textColorGrey,
-    fontFamily: Fonts.Regular,
-  },
-  inputBoxFocused: {
-    borderColor: Colors.borderColor,
-    borderWidth: 0.5,
-    borderRadius: 10,
-    width: wp( '85%' ),
-    height: 50,
-    paddingLeft: 15,
-    fontSize: RFValue( 13 ),
-    color: Colors.textColorGrey,
-    elevation: 10,
-    shadowColor: Colors.borderColor,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 2, height: 2
-    },
-    backgroundColor: Colors.white,
     fontFamily: Fonts.Regular,
   },
   proceedButtonText: {

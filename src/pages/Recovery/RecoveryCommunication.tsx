@@ -478,9 +478,6 @@ export default function RecoveryCommunication( props ) {
 }
 
 const styles = StyleSheet.create( {
-  modalContentContainer: {
-    backgroundColor: Colors.white,
-  },
   commModeModalHeaderText: {
     color: Colors.blue,
     fontFamily: Fonts.Medium,
@@ -516,11 +513,6 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 25 ),
     fontFamily: Fonts.Regular,
     marginLeft: 25,
-  },
-  contactIconImage: {
-    width: 20,
-    height: 20,
-    resizeMode: 'cover',
   },
   contactInfo: {
     flexDirection: 'row',

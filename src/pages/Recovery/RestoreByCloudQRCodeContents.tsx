@@ -306,19 +306,10 @@ const styles = StyleSheet.create( {
     marginVertical: 16,
     paddingHorizontal: 16,
   },
-
-  qrModalImage: {
-    width: widthPercentageToDP( '100%' ),
-    height: widthPercentageToDP( '100%' ),
-    borderRadius: 20,
-    marginTop: heightPercentageToDP( '5%' ),
-  },
-
   statusIndicatorView: {
     flexDirection: 'row',
     marginLeft: 'auto',
   },
-
   statusIndicatorActiveView: {
     height: 5,
     width: 25,
@@ -327,7 +318,6 @@ const styles = StyleSheet.create( {
     marginLeft: 2,
     marginRight: 2,
   },
-
   statusIndicatorInactiveView: {
     width: 5,
     backgroundColor: Colors.lightBlue,

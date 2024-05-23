@@ -1107,7 +1107,6 @@ const styles = StyleSheet.create( {
     justifyContent: 'space-between',
     flex: 1,
   },
-
   selectedContactView: {
     marginLeft: 20,
     marginRight: 20,
