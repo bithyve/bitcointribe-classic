@@ -1,30 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Platform,
-  TouchableOpacity
-} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import React, { useEffect, useState } from 'react'
+import {
+  Platform, StyleSheet, Text, TextInput, TouchableOpacity, View
+} from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
-import Colors from '../../../common/Colors'
-import Fonts from '../../../common/Fonts'
-import { RFValue } from 'react-native-responsive-fontsize'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import { AppBottomSheetTouchableWrapper } from '../../../components/AppBottomSheetTouchableWrapper'
-import { useSelector } from 'react-redux'
-import { ScrollView } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import BottomInfoBox from '../../../components/BottomInfoBox'
-import { translations } from '../../../common/content/LocContext'
+import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import { useSelector } from 'react-redux'
 import { Wallet } from '../../../bitcoin/utilities/Interface'
+import Colors from '../../../common/Colors'
+import { translations } from '../../../common/content/LocContext'
+import Fonts from '../../../common/Fonts'
+import { AppBottomSheetTouchableWrapper } from '../../../components/AppBottomSheetTouchableWrapper'
 
 
 const ALLOWED_CHARACTERS_REGEXP = /^[0-9a-z]+$/
@@ -221,15 +213,6 @@ function SecurityQuestion( props ) {
           <View style={styles.statusIndicatorInactiveView} />
           <View style={styles.statusIndicatorInactiveView} />
         </View>
-        {/* {showNote &&
-        <BottomInfoBox
-          // backgroundColor={Colors.white}
-          title={'Note'}
-          infoText={
-            'Your Friends & Family will be notified of this change, so they may update their saved details.'
-          }
-        />
-        } */}
         <View
           style={{
             paddingLeft: wp( '6%' ),
@@ -267,25 +250,6 @@ function SecurityQuestion( props ) {
               {!errorText ? 'Confirm' : 'Try Again'}
             </Text>
           </AppBottomSheetTouchableWrapper>
-          {/* <AppBottomSheetTouchableWrapper
-            onPress={() => {}}
-            style={{
-              height: wp( '15%' ),
-              width: wp( '36%' ),
-              justifyContent: 'center',
-              alignItems: 'center',
-              paddingLeft: wp( '8%' ),
-            }}
-          >
-            <Text
-              style={{
-                fontFamily: Fonts.Medium,
-                color: Colors.blue
-              }}
-            >
-              {'Need Help?'}
-            </Text>
-          </AppBottomSheetTouchableWrapper> */}
         </View>
       </View>
     </KeyboardAwareScrollView>

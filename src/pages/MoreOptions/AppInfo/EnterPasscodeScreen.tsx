@@ -540,23 +540,4 @@ const styles = StyleSheet.create( {
     marginTop: hp( '1%' ),
     marginBottom: hp( '2%' ),
   },
-  boldItalicText: {
-    fontFamily: Fonts.MediumItalic,
-    fontWeight: 'bold',
-    fontStyle: 'italic',
-  },
-  headerTitleText: {
-    color: Colors.blue,
-    fontSize: RFValue( 25 ),
-    marginLeft: wp( 6 ),
-    marginTop: hp( '10%' ),
-    fontFamily: Fonts.Regular,
-  },
-  headerInfoText: {
-    marginTop: hp( '2%' ),
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 12 ),
-    marginLeft: wp( 6 ),
-    fontFamily: Fonts.Regular,
-  },
 } )
