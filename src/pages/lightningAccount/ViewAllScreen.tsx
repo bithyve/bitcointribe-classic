@@ -1,13 +1,9 @@
+import { inject, observer } from 'mobx-react'
 import React from 'react'
 import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  TouchableOpacity,
+  FlatList, StyleSheet, TouchableOpacity, View
 } from 'react-native'
 import { Mode } from './AccountDetails'
-import { inject, observer } from 'mobx-react'
 import InvoiceItem from './components/InvoiceItem'
 import TransactionItem from './components/TransactionItem'
 
