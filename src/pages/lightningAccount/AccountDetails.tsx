@@ -312,22 +312,15 @@ const styles = StyleSheet.create( {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
   },
-
-  rootContainer: {
-    height: '100%',
-  },
-
   scrollViewContainer: {
     paddingTop: 20,
     flex:1,
     paddingHorizontal: 0,
     backgroundColor: Colors.backgroundColor,
   },
-
   viewSectionContainer: {
 
   },
-
   viewAccountDetailsCard: {
     paddingHorizontal: 20,
   },
