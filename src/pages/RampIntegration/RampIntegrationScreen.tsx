@@ -25,16 +25,6 @@ const actionMenuItems: ActionMenuItem[] = [
     subtitle: 'Login and Authenticate with Ramp',
     kind: RampActionKind.AUTHENTICATE,
   },
-  // {
-  //   title: 'Create Ramp Account Shell in Hexa',
-  //   subtitle: 'Create Ramp Account Shell in Hexa Wallet',
-  //   kind: RampActionKind.CREATE_RAMP_ACCOUNT_SHELL,
-  // },
-  // {
-  //   title: 'Link Hexa and Ramp SubAccounts',
-  //   subtitle: 'Send xPub to Ramp',
-  //   kind: RampActionKind.LINK_HEXA_AND_RAMP_SUB_ACCOUNTS,
-  // },
   {
     title: 'Fetch Reservation Code from Ramp',
     subtitle: 'Buy bitcoin from Ramp',

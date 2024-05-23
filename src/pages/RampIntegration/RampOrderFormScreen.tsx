@@ -1,19 +1,19 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { View, StyleSheet, Text, ScrollView, Image } from 'react-native'
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Button, ListItem } from 'react-native-elements'
+import { RFValue } from 'react-native-responsive-fontsize'
+import { useDispatch } from 'react-redux'
 import Colors from '../../common/Colors'
+import ExternalServiceSubAccountInfo from '../../common/data/models/SubAccountInfo/ExternalServiceSubAccountInfo'
 import Fonts from '../../common/Fonts'
 import ButtonStyles from '../../common/Styles/ButtonStyles'
 import ListStyles from '../../common/Styles/ListStyles'
-import { Button, ListItem } from 'react-native-elements'
-import { useDispatch } from 'react-redux'
-import ExternalServiceSubAccountInfo from '../../common/data/models/SubAccountInfo/ExternalServiceSubAccountInfo'
+import { clearRampCache, fetchRampReceiveAddress, fetchRampReservation } from '../../store/actions/RampIntegration'
+import useRampReservationFetchEffect from '../../utils/hooks/ramp-integration/UseRampReservationFetchEffect'
+import useAccountShellForID from '../../utils/hooks/state-selectors/accounts/UseAccountShellForID'
 import useRampIntegrationState from '../../utils/hooks/state-selectors/accounts/UseRampIntegrationState'
 import openLink from '../../utils/OpenLink'
-import { clearRampCache, fetchRampReservation, fetchRampReceiveAddress } from '../../store/actions/RampIntegration'
-import useRampReservationFetchEffect from '../../utils/hooks/ramp-integration/UseRampReservationFetchEffect'
 import DepositSubAccountShellListItem from '../Accounts/AddNew/RampAccount/DepositAccountShellListItem'
-import useAccountShellForID from '../../utils/hooks/state-selectors/accounts/UseAccountShellForID'
-import { RFValue } from 'react-native-responsive-fontsize'
 
 
 export type Props = {
@@ -142,27 +142,14 @@ const RampOrderFormScreen: React.FC<Props> = ( { navigation, route }: Props ) =>
 }
 
 const styles = StyleSheet.create( {
-  rootContainer: {
-    flex: 1,
-  },
-
   rootContentContainer: {
     flex: 1,
     justifyContent: 'space-between',
     paddingBottom: 36,
   },
-
-  formContainer: {
-    paddingHorizontal: 16,
-  },
-
   proceedButtonContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-  },
-
-  textInputContainer: {
-    marginBottom: 12,
   },
   bottomNoteInfoText: {
     color: Colors.textColorGrey,
