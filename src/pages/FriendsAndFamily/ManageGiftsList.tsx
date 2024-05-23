@@ -1,20 +1,16 @@
+import moment from 'moment'
 import React, { useContext } from 'react'
 import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image
+  Image, Text,
+  TouchableOpacity, View
 } from 'react-native'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import moment from 'moment'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
 import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import Colors from '../../common/Colors'
 import { LocalizationContext } from '../../common/content/LocContext'
-import { ListItem } from 'react-native-elements/dist/list/ListItem'
+import Fonts from '../../common/Fonts'
 
 const ManageGiftsList = ( props ) => {
   const { translations } = useContext( LocalizationContext )
@@ -27,12 +23,6 @@ const ManageGiftsList = ( props ) => {
       style={{
         width: '90%',
         backgroundColor: Colors.gray7,
-        // shadowOpacity: 0.06,
-        // shadowOffset: {
-        //   width: 10, height: 10
-        // },
-        // shadowRadius: 10,
-        // elevation: 2,
         alignSelf: 'center',
         borderRadius: wp( 2 ),
         marginTop: hp( 1 ),
@@ -84,15 +74,6 @@ const ManageGiftsList = ( props ) => {
           }}>
             {props.titleText}
           </Text>
-          {/* <Text style={{
-              color: Colors.lightTextColor,
-              fontSize: RFValue( 10 ),
-              fontFamily: Fonts.Regular,
-
-            }}>
-              {props.subText}
-            </Text> */}
-          {/* </View> */}
           <View style={{
             flexDirection: 'row', alignItems: 'flex-end',
           }}>
@@ -116,8 +97,6 @@ const ManageGiftsList = ( props ) => {
                 width: RFValue( 10 ),
                 height: RFValue( 16 ),
                 resizeMode: 'contain',
-                // marginBottom: hp( 0.7 ),
-                // marginLeft: wp( 3 )
                 marginStart:RFValue( 15 )
               }}
             />

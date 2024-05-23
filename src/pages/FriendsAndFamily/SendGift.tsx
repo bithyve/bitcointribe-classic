@@ -3,26 +3,22 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  StyleSheet,
   TouchableOpacity,
   View
 } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
-import {
-  heightPercentageToDP as hp
-} from 'react-native-responsive-screen'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { useDispatch, useSelector } from 'react-redux'
 import { Account, DeepLinkEncryptionType, GiftThemeId, QRCodeTypes, Wallet } from '../../bitcoin/utilities/Interface'
 import Colors from '../../common/Colors'
-import CommonStyles from '../../common/Styles/Styles'
 import { SATOSHIS_IN_BTC } from '../../common/constants/Bitcoin'
 import { LocalizationContext } from '../../common/content/LocContext'
 import CurrencyKind from '../../common/data/enums/CurrencyKind'
+import CommonStyles from '../../common/Styles/Styles'
 import RequestKeyFromContact from '../../components/RequestKeyFromContact'
 import dbManager from '../../storage/realm/dbManager'
-import { updateWalletImageHealth } from '../../store/actions/BHR'
 import { updateGift } from '../../store/actions/accounts'
+import { updateWalletImageHealth } from '../../store/actions/BHR'
 import { AccountsState } from '../../store/reducers/accounts'
 import { generateGiftLink } from '../../store/sagas/accounts'
 import useCurrencyCode from '../../utils/hooks/state-selectors/UseCurrencyCode'
@@ -178,12 +174,3 @@ export default function SendGift( props ) {
     </ScrollView>
   )
 }
-const styles = StyleSheet.create( {
-  contactProfileView: {
-    flexDirection: 'row',
-    marginLeft: 20,
-    marginRight: 20,
-    alignItems: 'center',
-    marginTop: hp( '1.7%' ),
-  },
-} )

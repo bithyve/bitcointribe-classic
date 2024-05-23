@@ -41,7 +41,7 @@ import ThemeList from './Theme'
 
 import { translations } from '../../common/content/LocContext'
 
-import { CommonActions, useFocusEffect } from '@react-navigation/native'
+import { useFocusEffect } from '@react-navigation/native'
 import Feather from 'react-native-vector-icons/Feather'
 import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
 import BottomInfoBox from '../../components/BottomInfoBox'
@@ -870,26 +870,6 @@ const GiftDetails = ( { navigation, route } ) => {
             </View>
           </View>
         </TouchableOpacity>
-        {/* <TouchableOpacity
-          activeOpacity={10}
-          style={
-            dropdownBoxOpenClose
-              ? styles.dropdownBoxOpened
-              : styles.dropdownBox
-          }
-          onPress={() => {
-            setDropdownBoxOpenClose( !dropdownBoxOpenClose )
-          }}
-          disabled={isDisabled}
-        >
-          <Text style={styles.dropdownBoxText}>
-            {dropdownBoxValue.question
-              ? dropdownBoxValue.question
-              : strings.SelectQuestion}
-          </Text>{
-            dropdownBoxOpenClose ? <ArrowDown /> : <ArrowUp />
-          }
-        </TouchableOpacity> */}
         {dropdownBoxOpenClose ? (
           <View style={styles.dropdownBoxModal}>
             <ScrollView
@@ -1061,32 +1041,6 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
     backgroundColor: Colors.white,
   },
-  dropdownBoxOpened: {
-    flexDirection: 'row',
-    borderColor: Colors.white,
-    borderWidth: 0.5,
-    borderRadius: 10,
-    marginTop: 15,
-    height: 50,
-    marginLeft: 20,
-    marginRight: 20,
-    paddingLeft: 15,
-    paddingRight: 15,
-    elevation: 10,
-    shadowColor: Colors.borderColor,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 2, height: 2
-    },
-    backgroundColor: Colors.white,
-    alignItems: 'center',
-  },
-  dropdownBoxText: {
-    color: Colors.textColorGrey,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 13 ),
-    marginRight: 15,
-  },
   dropdownBoxModal: {
     borderRadius: 10,
     margin: 15,
@@ -1098,12 +1052,6 @@ const styles = StyleSheet.create( {
       width: 10, height: 10
     },
     backgroundColor: Colors.white,
-  },
-  dropdownBoxModalElementView: {
-    height: 55,
-    justifyContent: 'center',
-    paddingLeft: 15,
-    paddingRight: 15,
   },
   statusIndicatorView: {
     flexDirection: 'row',
@@ -1155,12 +1103,6 @@ const styles = StyleSheet.create( {
     alignSelf: 'center'
 
   },
-  timeInfo: {
-    width: '87%',
-    alignSelf: 'center',
-    alignItems: 'flex-start',
-    marginVertical: hp( 1 )
-  },
   dashedStyle: {
     backgroundColor: Colors.gray7,
     borderRadius: wp( 2 ),
@@ -1170,20 +1112,9 @@ const styles = StyleSheet.create( {
     borderWidth: 1,
     borderStyle: 'dashed',
   },
-  normalStyle: {
-    backgroundColor: Colors.gray7,
-    paddingTop: hp( 1 ),
-    paddingHorizontal: wp( 2 ),
-  },
   dashedContainer: {
     width: '90%',
     backgroundColor: Colors.gray7,
-    // shadowOpacity: 0.06,
-    // shadowOffset: {
-    //   width: 10, height: 10
-    // },
-    // shadowRadius: 10,
-    // elevation: 2,
     alignSelf: 'center',
     borderRadius: wp( 2 ),
     marginTop: hp( 1 ),
@@ -1198,44 +1129,15 @@ const styles = StyleSheet.create( {
     ...ImageStyles.thumbnailImageMedium,
     borderRadius: wp( 9 ) / 2,
   },
-  bottomButton: {
-    backgroundColor: Colors.lightBlue,
-    height: wp( '18%' ),
-    width: wp( '45%' ),
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 0.5,
-    borderColor: Colors.borderColor,
-    alignSelf: 'center',
-  },
-  buttonSubText: {
-    marginTop: hp( 0.4 ),
-    color: Colors.white,
-    fontSize: RFValue( 11 ),
-    letterSpacing: 0.5,
-    fontFamily: Fonts.Regular,
-    textAlign: 'center',
-    width: wp( '46%' )
-  },
   buttonText: {
     color: Colors.backgroundColor1,
     fontSize: RFValue( 15 ),
     letterSpacing: 0.01,
     fontFamily: Fonts.Medium,
-    // marginLeft: 10,
-    // marginRight: 10,
     marginLeft: 0,
     marginRight: 0,
     width: wp( '46%' ),
     textAlign: 'center'
-  },
-  keeperViewStyle: {
-    flexDirection: 'row',
-    backgroundColor: Colors.backgroundColor,
-    paddingHorizontal: wp( '4%' ),
-    justifyContent: 'space-between',
-    height: wp( '30' ),
   },
   modalTitleText: {
     color: Colors.blue,
@@ -1263,11 +1165,6 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
-    // shadowColor: Colors.shadowBlue,
-    // shadowOpacity: 1,
-    // shadowOffset: {
-    //   width: 15, height: 15
-    // },
     backgroundColor: Colors.blue,
     marginLeft: wp( 5 )
   },
@@ -1278,11 +1175,6 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
-    // shadowColor: Colors.shadowBlue,
-    // shadowOpacity: 1,
-    // shadowOffset: {
-    //   width: 15, height: 15
-    // },
     backgroundColor: Colors.lightBlue,
     marginLeft: wp( 5 )
   },
@@ -1323,47 +1215,6 @@ const styles = StyleSheet.create( {
     marginRight: 20,
     backgroundColor: Colors.white,
   },
-  // inputBoxFocused: {
-  //   borderWidth: 0.5,
-  //   borderRadius: 10,
-  //   marginLeft: 20,
-  //   marginRight: 20,
-  //   elevation: 10,
-  //   shadowColor: Colors.borderColor,
-  //   shadowOpacity: 10,
-  //   shadowOffset: {
-  //     width: 10, height: 10
-  //   },
-  //   backgroundColor: Colors.white,
-  // },
-  accImage: {
-    marginRight: wp( 4 )
-  },
-  availableToSpendText: {
-    color: Colors.blue,
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Italic,
-    lineHeight: 15,
-  },
-  balanceText: {
-    color: Colors.blue,
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Italic,
-  },
-  proceedButtonText: {
-    color: Colors.blue,
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Medium
-  },
-  selectedContactsView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    backgroundColor: Colors.blue,
-    borderRadius: wp( 2 ),
-    height: hp( 4 ),
-    paddingHorizontal: wp( 2 )
-  },
   contactText: {
     fontSize: RFValue( 13 ),
     fontFamily: Fonts.Regular,
@@ -1387,9 +1238,7 @@ const styles = StyleSheet.create( {
     color: Colors.blue,
     fontSize: 13,
     fontWeight: '400',
-    fontFamily: Fonts.Regular,
-    color: Colors.blue,
-
+    fontFamily: Fonts.Regular
   },
   identificationDescription: {
     color: '#6C6C6C',

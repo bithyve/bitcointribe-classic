@@ -122,24 +122,6 @@ const styles = StyleSheet.create( {
     borderBottomLeftRadius: 10,
     justifyContent: 'center',
   },
-  buttonText: {
-    color: Colors.white,
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Medium,
-  },
-  buttonView: {
-    height: wp( '14%' ),
-    width: wp( '35%' ),
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-    shadowColor: Colors.shadowBlue,
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 15, height: 15
-    },
-    backgroundColor: Colors.blue,
-  },
   availableToSpendText: {
     color: Colors.blue,
     fontSize: RFValue( 10 ),
