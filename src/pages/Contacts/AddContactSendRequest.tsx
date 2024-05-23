@@ -108,8 +108,6 @@ export default function AddContactSendRequest( props ) {
       // setPhoneumber( filteredData.phoneNumbers )
 
       setContact( filteredData )
-      // setEmails( filteredData.emails )
-      // await AsyncStorage.setItem( 'ContactData', JSON.stringify( data ) )
     } )
   }
 
