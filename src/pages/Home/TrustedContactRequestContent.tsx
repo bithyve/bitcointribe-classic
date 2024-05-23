@@ -1,7 +1,7 @@
-import React from 'react'
-import TrustedContactRequest from '../Contacts/TrustedContactRequest'
-import BottomSheet from '@gorhom/bottom-sheet'
-import { DeepLinkEncryptionType } from '../../bitcoin/utilities/Interface'
+import BottomSheet from '@gorhom/bottom-sheet';
+import React from 'react';
+import { DeepLinkEncryptionType } from '../../bitcoin/utilities/Interface';
+import TrustedContactRequest from '../Contacts/TrustedContactRequest';
 
 export interface Props {
   bottomSheetRef: React.RefObject<BottomSheet>;
