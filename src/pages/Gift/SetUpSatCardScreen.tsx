@@ -3,7 +3,7 @@ import messaging from '@react-native-firebase/messaging'
 import JailMonkey from 'jail-monkey'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import {
-  BackHandler, Dimensions, Keyboard, Linking, Platform, SafeAreaView, StatusBar, StyleSheet,
+  BackHandler, Keyboard, Linking, Platform, SafeAreaView, StatusBar, StyleSheet,
   Text, TouchableOpacity, View
 } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
@@ -42,18 +42,8 @@ import ConfirmSeedWordsModal from '../NewBHR/ConfirmSeedWordsModal'
 import SecurityQuestion from '../NewBHR/SecurityQuestion'
 import SecuritySeedWord from '../NewBHR/SecuritySeedWord'
 
-const { height, } = Dimensions.get( 'window' )
 
 export default function SetUpSatCardScreen( props ) {
-  // const subPoints = [
-  //   'Setting up multi-accounts',
-  //   'Fetching test sats & balances',
-  //   'Generating shares for back-up',
-  //   'Getting the latest details'
-  // ]
-  // const [ bottomTextMessage, setBottomTextMessage ] = useState(
-  //   'Bitcoin Tribe uses the passcode and answer to the security question to encrypt different parts of your wallet',
-  // )
   const { translations } = useContext( LocalizationContext )
   const strings = translations[ 'login' ]
   const common = translations[ 'common' ]
@@ -62,9 +52,6 @@ export default function SetUpSatCardScreen( props ) {
   const levelHealth = useSelector( ( state ) => state.bhr.levelHealth )
 
   const getRandomMessage = () => {
-    //const randomIndex = Math.floor( Math.random() * 5 )
-    //return strings.loaderMessages[ randomIndex ]
-    // added static message for 2.0.5 #4833
     return {
       // heading: 'Gift Sats',
       // text: 'Send sats as gifts to your friends and family.',
@@ -92,9 +79,6 @@ export default function SetUpSatCardScreen( props ) {
   const [ passcodeFlag ] = useState( true )
   const [ checkAuth, setCheckAuth ] = useState( false )
   const [ attempts, setAttempts ] = useState( 0 )
-  // const [ loaderBottomSheet ] = useState(
-  //   React.createRef<BottomSheet>(),
-  // )
   const [ loaderModal, setloaderModal ] = useState( false )
   const [ errorModal, setErrorModal ] = useState( false )
   const [ showAlertModal, setShowAlertModal ]=useState( false )
@@ -437,16 +421,6 @@ export default function SetUpSatCardScreen( props ) {
     )
   }, [ JailBrokenTitle ] )
 
-  // const renderErrorModalHeader = useCallback( () => {
-  //   return (
-  //     <ModalHeader
-  //       onPressHeader={() => {
-  //         ErrorBottomSheet.current.snapTo( 0 )
-  //       }}
-  //     />
-  //   )
-  // }, [] )
-
   return (
     <SafeAreaView style={{
       flex: 1, backgroundColor: Colors.white,
@@ -454,8 +428,6 @@ export default function SetUpSatCardScreen( props ) {
       <StatusBar />
       <View style={[ CommonStyles.headerContainer, {
         backgroundColor: Colors.white,
-        // marginRight: wp( 4 ),
-        // marginVertical: height < 720 ? wp( 0 ) : 'auto'
       } ]}>
         <TouchableOpacity
           style={CommonStyles.headerLeftIconContainer}
@@ -474,16 +446,12 @@ export default function SetUpSatCardScreen( props ) {
       </View>
       <View style={{
         flex: 1,
-        // backgroundColor:'red'
       }}>
-        <View style={{
-          // backgroundColor:'yellow'
-        }}>
+        <View>
           <Text style={styles.headerTitleText}>{'Setting up SATSCARD™'}</Text>
           <View>
             <Text style={styles.headerInfoText}>
               {'Enter the 6-digit code printed\non the back of your SATSCARD™'}
-              {/* <Text style={styles.boldItalicText}>{'Enter the 6-digit code printed\non the back of your SATSCARD™}</Text> */}
             </Text>
             <View style={{
               alignSelf: 'baseline'
@@ -923,25 +891,6 @@ export default function SetUpSatCardScreen( props ) {
           cancelButtonText={'Cancel'}
         />
       </BottomInputModalContainer>
-      {/* <ModalContainer onBackground={()=>showSecuiritySeedWordModal( false )} visible={secuiritySeedWordModal} closeBottomSheet={() => {showSecuiritySeedWordModal( false )}} >
-        {renderSeedWordContent()}
-      </ModalContainer> */}
-      {/* <BottomSheet
-        onCloseEnd={() => {
-          setElevation( 10 )
-        }}
-        onOpenEnd={() => {
-          setElevation( 0 )
-        }}
-        enabledInnerScrolling={true}
-        ref={ErrorBottomSheet}
-        snapPoints={[
-          -50,
-          Platform.OS == 'ios' && DeviceInfo.hasNotch() ? hp( '25%' ) : hp( '30%' ),
-        ]}
-        renderContent={renderErrorModalContent}
-        renderHeader={renderErrorModalHeader}
-      /> */}
       <ModalContainer onBackground={()=>{setShowAlertModal( false )}} visible={showAlertModal} closeBottomSheet={() => { }}>
         <AlertModalContents
           // modalRef={this.ErrorBottomSheet}
@@ -1033,11 +982,6 @@ const styles = StyleSheet.create( {
     color: Colors.white,
     fontSize: RFValue( 13 ),
     fontFamily: Fonts.Medium,
-  },
-  boldItalicText: {
-    fontFamily: Fonts.MediumItalic,
-    fontWeight: 'bold',
-    fontStyle: 'italic',
   },
   errorText: {
     fontFamily: Fonts.MediumItalic,
