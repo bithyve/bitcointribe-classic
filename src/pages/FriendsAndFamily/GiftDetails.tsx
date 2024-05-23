@@ -261,59 +261,6 @@ const GiftDetails = ( { route, navigation } ) => {
                 ) : null}
               </View>
             </View>
-            {/* {isOpen &&
-            gift.status !== GiftStatus.CREATED &&
-            gift.type === GiftType.SENT &&
-            deepLinkConfig?.encryptionType === DeepLinkEncryptionType.OTP && (
-              <View
-                style={{
-                  marginHorizontal: wp( 1 ),
-                }}
-              >
-                <Text
-                  style={{
-                    color: Colors.lightTextColor,
-                    fontSize: RFValue( 10 ),
-                    fontFamily: Fonts.Regular,
-                    fontWeight: '600',
-                  }}
-                >
-                  Share OTP with contact
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    marginLeft: wp( 3 ),
-                    marginVertical: hp( 2 ),
-                  }}
-                >
-                  {deepLinkConfig?.encryptionKey
-                    .split( '' )
-                    .map( ( num, index ) => {
-                      return (
-                        <View
-                          key={index}
-                          style={{
-                            alignItems: 'center',
-                            backgroundColor: Colors.backgroundColor,
-                            marginHorizontal: wp( 1 ),
-                            borderRadius: wp( 2 ),
-                          }}
-                        >
-                          <Text
-                            style={{
-                              marginHorizontal: wp( 4 ),
-                              marginVertical: wp( 3 ),
-                            }}
-                          >
-                            {num}
-                          </Text>
-                        </View>
-                      )
-                    } )}
-                </View>
-              </View>
-            )} */}
             {isOpen &&
             gift.status !== GiftStatus.CREATED &&
             gift.type === GiftType.SENT && gift.note &&
@@ -474,15 +421,6 @@ const GiftDetails = ( { route, navigation } ) => {
             />
           </View>
         </ModalContainer>
-        {/* <ModalContainer visible={acceptGift} closeBottomSheet={() => {}} >
-        <View style={styles.modalContentContainer}>
-          <AccountSelection
-            onClose={(  ) => {setAcceptGiftModal( false )}}
-            onChangeType={( type ) => { }}
-          />
-        </View>
-      </ModalContainer> */}
-
       </ScrollView>
       <View style={{
         marginBottom: wp( '0%' ), flexDirection: 'row',
@@ -602,33 +540,14 @@ const styles = StyleSheet.create( {
     paddingLeft: wp( '5%' ),
     paddingRight: wp( '5%' ),
   },
-  buttonSubText: {
-    marginTop: hp( 0.4 ),
-    color: Colors.white,
-    fontSize: RFValue( 11 ),
-    letterSpacing: 0.5,
-    fontFamily: Fonts.Regular,
-    textAlign: 'center',
-    width: wp( '46%' ),
-  },
   buttonText: {
     color: Colors.backgroundColor1,
     fontSize: RFValue( 15 ),
     letterSpacing: 0.01,
     fontFamily: Fonts.Medium,
-    // marginLeft: 10,
-    // marginRight: 10,
     marginLeft: 0,
     marginRight: 0,
-    // width: wp( '46%' ),
     textAlign: 'center'
-  },
-  keeperViewStyle: {
-    flexDirection: 'row',
-    backgroundColor: Colors.backgroundColor,
-    paddingHorizontal: wp( '2%' ),
-    paddingVertical: wp( '2%' ),
-    justifyContent: 'space-between',
   },
   modalTitleText: {
     color: Colors.blue,
@@ -666,43 +585,6 @@ const styles = StyleSheet.create( {
     backgroundColor: Colors.blue,
     marginLeft: wp( 2 ),
   },
-  disabledButtonView: {
-    height: wp( '12%' ),
-    width: wp( '27%' ),
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-    shadowColor: Colors.shadowBlue,
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 15,
-      height: 15,
-    },
-    backgroundColor: Colors.lightBlue,
-    marginLeft: wp( 2 ),
-  },
-  imageView: {
-    width: 18,
-    height: 18,
-    borderRadius: 9,
-    backgroundColor: Colors.white,
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 10,
-    shadowOpacity: 0.1,
-    shadowOffset: {
-      width: 1,
-      height: 1,
-    },
-  },
-  modalInputBox: {
-    flex: 1,
-    height: 50,
-    fontSize: RFValue( 13 ),
-    color: Colors.textColorGrey,
-    fontFamily: Fonts.Regular,
-    backgroundColor: Colors.white,
-  },
   inputBox: {
     borderWidth: 0.5,
     borderRadius: 10,
@@ -712,118 +594,6 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 13 ),
     color: Colors.textColorGrey,
     fontFamily: Fonts.Regular,
-  },
-  // inputBoxFocused: {
-  //   borderWidth: 0.5,
-  //   borderRadius: 10,
-  //   marginLeft: 20,
-  //   marginRight: 20,
-  //   elevation: 10,
-  //   shadowColor: Colors.borderColor,
-  //   shadowOpacity: 10,
-  //   shadowOffset: {
-  //     width: 10,
-  //     height: 10,
-  //   },
-  //   backgroundColor: Colors.white,
-  // },
-  accImage: {
-    marginRight: wp( 4 ),
-  },
-  availableToSpendText: {
-    color: Colors.blue,
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Italic,
-    lineHeight: 15,
-  },
-  balanceText: {
-    color: Colors.blue,
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Italic,
-  },
-  proceedButtonText: {
-    color: Colors.blue,
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Medium,
-  },
-  selectedContactsView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    backgroundColor: Colors.blue,
-    borderRadius: wp( 2 ),
-    height: hp( 4 ),
-    paddingHorizontal: wp( 2 ),
-  },
-  contactText: {
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Regular,
-    color: Colors.white,
-  },
-  cardContainer:{
-    flexDirection:'row',
-    alignItems:'center',
-    backgroundColor:'#fff',
-    width:'80%',
-    alignSelf:'center',
-    padding:13,
-    borderRadius:8,
-    paddingHorizontal:20,
-    marginVertical:10,
-  },
-  identificationHeading:{
-    color:'#006DB4',
-    fontSize:13,
-    fontWeight:'400',
-    fontFamily: Fonts.Regular,
-
-  },
-  identificationDescription:{
-    color:'#6C6C6C',
-    fontSize:11,
-    fontWeight:'400',
-    width:225,
-    fontFamily: Fonts.Regular,
-
-  },
-  radioBtnContainer:{
-    marginRight:10
-  },
-  advancedButton: {
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'space-between',
-    width: '94%'
-  },
-  textInputContainer:{
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'space-between',
-    width:'85%',
-    alignSelf:'center',
-    marginTop:10,
-    backgroundColor:'#fff',
-    padding:14,
-    borderRadius:10
-  },
-  textInput:{
-    width:'92%'
-  },
-  btnContainer:{
-    marginTop:10,
-    backgroundColor:'#006DB4',
-    width:100,
-    padding:14,
-    borderRadius:6,
-    marginLeft: 30,
-    justifyContent:'center',
-    alignItems:'center',
-  },
-  btnText: {
-    color: '#fff',
-    fontWeight:'500',
-    fontSize:15,
-    fontFamily: Fonts.Regular
   },
   deepLinkEncryptionText: {
     color: Colors.textColorGrey,

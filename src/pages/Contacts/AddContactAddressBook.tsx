@@ -276,11 +276,6 @@ export default function AddContactAddressBook( props ) {
     }
     setRadioOnOff( !radioOnOff )
     setFilterContactData( contacts )
-    // const isTrustedC = await isTrustedContact( selectedContacts[ 0 ] )
-    // setIsTC( isTrustedC )
-    // if ( isTrustedC ) {
-    //   Toast( 'Contact already exists' )
-    // }
   }
 
   async function onCancel( value ) {

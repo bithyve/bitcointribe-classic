@@ -271,40 +271,6 @@ class Home extends PureComponent<HomePropsTypes, HomeStateTypes> {
                 <IconRight/>
               </View>
             </AppBottomSheetTouchableWrapper>
-
-            {/* <AppBottomSheetTouchableWrapper
-              style={[ styles.menuWrapper, {
-                marginBottom: hp( 5 )
-              } ]} onPress={()=>{
-                this.setState( {
-                  visibleModal:false
-                } )
-                const accountShell = this.props.accountShells.filter( shell => shell?.primarySubAccount.type === AccountType.TEST_ACCOUNT )
-                this.props.updateAccountSettings(
-                  {
-                    accountShell: accountShell[ 0 ],
-                    settings: {
-                      accountName: accountShell[ 0 ].primarySubAccount.customDisplayName,
-                      accountDescription: accountShell[ 0 ].primarySubAccount.customDescription,
-                      visibility: AccountVisibility.DEFAULT,
-                    },
-                  }
-                )
-                this.props.navigation.navigate( 'AccountDetails', {
-                  accountShellID: accountShell[ 0 ].primarySubAccount.accountShellID,
-                } )
-              }}>
-              <View style={styles.iconWrapper}>
-                <TestIcon/>
-              </View>
-              <View style={styles.titleWrapper}>
-                <Text style={styles.titleText}>Add a Test Account</Text>
-                <Text style={styles.subTitleText}>Add a test account on Tribe </Text>
-              </View>
-              <View style={styles.iconRightWrapper}>
-                <IconRight/>
-              </View>
-            </AppBottomSheetTouchableWrapper> */}
           </View>
         </ModalContainer>
         <ModalContainer

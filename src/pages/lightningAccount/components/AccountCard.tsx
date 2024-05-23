@@ -96,25 +96,6 @@ const AccountCard = ( {
     <View style={{
       marginTop: 220
     }}>
-      {/* <AccountDetailsCard
-        onKnowMorePressed={()=> {}}
-        onSettingsPressed={onClickSettings}
-        balance={lightningBalance}
-        accountShell={accountShell}
-        mode={Mode.LIGHTNING}
-        onItemPressed={()=> setMode( Mode.LIGHTNING )}
-      />
-      <View style={{
-        marginVertical: 10
-      }}/>
-      <AccountDetailsCard
-        onKnowMorePressed={()=> {}}
-        onSettingsPressed={()=>{}}
-        balance={totalBlockchainBalance}
-        accountShell={accountShell}
-        onItemPressed={()=> setMode( Mode.ON_CHAIN )}
-        mode={Mode.ON_CHAIN}
-      /> */}
       <Animated.View
         style={{
           width: '100%', height: 200,

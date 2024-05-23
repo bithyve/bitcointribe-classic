@@ -783,12 +783,6 @@ class ContactDetails extends PureComponent<
           <Text style={styles.titleSubText}>
             {!this.contact.isActive && !this.contact.streamId ? 'Rejected' : this.contact.streamId ? 'Approved' : 'Pending'}
           </Text>
-          {/* <Text style={styles.titleText}>
-            Contact Created
-            </Text>
-            <Text style={styles.titleSubText}>
-            18 June ‘21
-            </Text> */}
           {this.contact.walletName &&
             <>
               <Text style={styles.titleText}>
@@ -1011,17 +1005,6 @@ class ContactDetails extends PureComponent<
                 <Text style={styles.contactTextBold}>{this.secondNamePieceText()}</Text>
               </Text>
               <Text style={styles.contactTypeText}>{this.contactsType}</Text>
-
-
-              {/* {this.contact.connectedVia ? (
-                  <Text style={styles.phoneText}>
-                    {this.contact.usesOTP
-                      ? !contact.hasTrustedChannel
-                        ? 'OTP: ' + contact.connectedVia
-                        : ''
-                      : this.contact.connectedVia}
-                  </Text>
-                ) : null} */}
             </View>
             <More width={14} height={4} />
           </View>
@@ -1090,16 +1073,6 @@ class ContactDetails extends PureComponent<
                           {value.date}
                         </Text>
                       </View>
-                      {/* <Text
-                          style={{
-                            color: Colors.textColorGrey,
-                            fontSize: RFValue(8),
-                            fontFamily: Fonts.Regular,
-                            marginTop: 5,
-                          }}
-                        >
-                          {value.info}
-                        </Text> */}
                     </TouchableOpacity>
                   )
                 }

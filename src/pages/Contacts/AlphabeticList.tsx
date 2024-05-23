@@ -1,6 +1,6 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import React from 'react'
-import { RFValue } from 'react-native-responsive-fontsize'
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { RFValue } from 'react-native-responsive-fontsize';
 const alphabets = Array.from( {
   length: 26
 }, ( _, i ) => String.fromCharCode( 65 + i ) )

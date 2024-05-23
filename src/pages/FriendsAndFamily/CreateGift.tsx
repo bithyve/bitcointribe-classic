@@ -1907,23 +1907,6 @@ const styles = StyleSheet.create( {
     marginRight: wp( '5%' ),
     backgroundColor: Colors.white,
   },
-  inputBoxFocused: {
-    borderWidth: 0.5,
-    borderRadius: 10,
-    marginLeft: wp( '5%' ),
-    marginRight: wp( '5%' ),
-    elevation: 10,
-    shadowColor: Colors.borderColor,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 10,
-      height: 10,
-    },
-    backgroundColor: Colors.white,
-  },
-  accImage: {
-    marginRight: wp( 4 ),
-  },
   availableToSpendText: {
     color: Colors.blue,
     fontSize: RFValue( 10 ),
@@ -1940,28 +1923,8 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 13 ),
     fontFamily: Fonts.Medium,
   },
-  selectedContactsView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    backgroundColor: Colors.blue,
-    borderRadius: wp( 2 ),
-    height: hp( 4 ),
-    paddingHorizontal: wp( 2 ),
-  },
-  contactText: {
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Regular,
-    color: Colors.white,
-  },
   accountSelectionView: {
     width: '90%',
-    // shadowOpacity: 0.06,
-    // shadowOffset: {
-    //   width: 10, height: 10
-    // },
-    // shadowRadius: 10,
-    // elevation: 2,
     alignSelf: 'center',
     marginTop: hp( 2 ),
     marginBottom: hp( 2 ),
@@ -1984,7 +1947,6 @@ const styles = StyleSheet.create( {
   homeHeaderAmountUnitText: {
     fontFamily: Fonts.Regular,
     fontSize: RFValue( 11 ),
-    // marginBottom: 3,
     color: Colors.gray2,
     marginTop: hp( 0.7 ),
   },

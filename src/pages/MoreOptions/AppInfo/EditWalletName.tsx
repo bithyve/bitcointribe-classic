@@ -178,91 +178,8 @@ export default function EditWalletName( props ) {
               handleSubmit()
             }}
           />
-          {/* {answer ? (
-            <TouchableWithoutFeedback
-              onPress={() => {
-                setHdeShowAnswer( !hideShowAnswer )
-              }}
-            >
-              <Feather
-                style={{
-                  marginLeft: 'auto', padding: 10
-                }}
-                size={15}
-                color={Colors.blue}
-                name={hideShowAnswer ? 'eye-off' : 'eye'}
-              />
-            </TouchableWithoutFeedback>
-          ) : null} */}
         </View>
-        <View
-          // style={{
-          //   ...confirmInputStyle,
-          //   marginBottom: 15,
-          //   flexDirection: 'row',
-          //   alignItems: 'center',
-          //   paddingRight: 15,
-          //   marginTop: 10,
-          //   borderColor: answerError ? Colors.red : Colors.white,
-          //   backgroundColor: Colors.white,
-          //   width: wp( 80 )
-          // }}
-        >
-          {/* <TextInput
-            style={styles.modalInputBox}
-            maxLength = {10}
-            ref={confirmAnswerTextInput}
-            placeholder={strings.Confirmnewwalletname}
-            placeholderTextColor={Colors.borderColor}
-            value={tempAns}
-            keyboardType={
-              Platform.OS == 'ios'
-                ? 'ascii-capable'
-                : 'visible-password'
-            }
-            returnKeyType="done"
-            returnKeyLabel="Done"
-            autoCompleteType="off"
-            autoCorrect={false}
-            editable={isEditable}
-            autoCapitalize="none"
-            onChangeText={( text ) => {
-              setTempAns( text.replace( /[^A-Za-z]/g, '' ) )
-            }}
-            onSubmitEditing={handleSubmit}
-            onFocus={() => {
-              // setShowNote( false )
-              setConfirmAnswerInputStyle( styles.inputBoxFocused )
-              if ( tempAns.length > 0 ) {
-                setTempAns( '' )
-                setAnswerError( '' )
-                setConfirmAnswer( '' )
-              }
-            }}
-            onBlur={() => {
-              // setShowNote( true )
-              setConfirmAnswerInputStyle( styles.inputBox )
-              handleSubmit()
-            }}
-          /> */}
-          {/* {tempAns ? (
-            <TouchableWithoutFeedback
-              onPress={() => {
-                setHideShowConfirmAnswer( !hideShowConfirmAnswer )
-                setDropdownBoxOpenClose( false )
-              }}
-            >
-              <Feather
-                style={{
-                  marginLeft: 'auto', padding: 10
-                }}
-                size={15}
-                color={Colors.blue}
-                name={hideShowConfirmAnswer ? 'eye-off' : 'eye'}
-              />
-            </TouchableWithoutFeedback>
-          ) : null} */}
-
+        <View>
         </View>
       </View>
 
@@ -285,14 +202,6 @@ export default function EditWalletName( props ) {
 }
 
 const styles = StyleSheet.create( {
-  helpText: {
-    fontSize: RFValue( 12 ),
-    color: Colors.textColorGrey,
-    marginRight: wp( 5 ),
-    alignSelf: 'flex-end',
-    width: wp( '72%' ),
-    textAlign: 'right'
-  },
   buttonView: {
     height: wp( '13%' ),
     width: wp( '35%' ),

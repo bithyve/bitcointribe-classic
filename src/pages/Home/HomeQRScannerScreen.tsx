@@ -31,16 +31,6 @@ export type Props = {
   route: any;
 };
 
-// const HeaderSection: React.FC = ( { title } ) => {
-//   return (
-//     <View style={styles.infoHeaderSection}>
-//       <Text style={ListStyles.infoHeaderSubtitleText}>
-//         {title}
-//       </Text>
-//     </View>
-//   )
-// }
-
 const HomeQRScannerScreen: React.FC<Props> = ({ navigation, route }: Props) => {
   const dispatch = useDispatch()
   const accountsState: AccountsState = useSelector((state) => state.accounts,)
@@ -128,10 +118,7 @@ const HomeQRScannerScreen: React.FC<Props> = ({ navigation, route }: Props) => {
             x: 0, y: 0
           }}
           scrollEnabled={false}
-        // style={styles.rootContainer}
         >
-          {/* <HeaderSection title={strings.ScanaBitcoinaddress} /> */}
-
           <CoveredQRCodeScanner
             onCodeScanned={handleBarcodeRecognized}
             containerStyle={{
@@ -197,19 +184,6 @@ const HomeQRScannerScreen: React.FC<Props> = ({ navigation, route }: Props) => {
               onPress={() => { navigation.navigate('ReceiveQR') }}
             />
           </View>
-          {/* {
-            __DEV__ && (
-              <TouchableOpacity onPress={() => {
-                const qrScannedData = {
-                  data: '{"type":"KEEPER_REQUEST","encryptedChannelKeys":"0BvnLFWTJfNP3hFy43qYk136-upToEzzuNHJ75QYqyRz9Q6Lc","encryptionType":"DEFAULT","encryptionHint":"","walletName":"Asa","version":"2.0.8","currentLevel":1}'
-                }
-                handleBarcodeRecognized( qrScannedData )
-              }} >
-                <Text>Continue</Text>
-              </TouchableOpacity>
-            )
-          } */}
-
           <View style={{
             marginTop: 'auto'
           }}>
@@ -231,80 +205,18 @@ const styles = StyleSheet.create({
     fontSize: RFValue(13),
     fontFamily: Fonts.Medium,
   },
-  buttonView: {
-    height: widthPercentageToDP('12%'),
-    width: widthPercentageToDP('35%'),
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-    shadowColor: Colors.shadowBlue,
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 15, height: 15
-    },
-    backgroundColor: Colors.blue,
-  },
-  availableToSpendText: {
-    color: Colors.blue,
-    fontSize: RFValue(10),
-    fontFamily: Fonts.Italic,
-    lineHeight: 15,
-  },
-  balanceText: {
-    color: Colors.blue,
-    fontSize: RFValue(10),
-    fontFamily: Fonts.Italic,
-  },
-  modalTitleText: {
-    color: Colors.blue,
-    fontSize: RFValue(18),
-    fontFamily: Fonts.Regular,
-  },
-  modalInfoText: {
-    // marginTop: hp( '3%' ),
-    marginTop: heightPercentageToDP(0.5),
-    color: Colors.textColorGrey,
-    fontSize: RFValue(12),
-    fontFamily: Fonts.Regular,
-    marginRight: widthPercentageToDP(12),
-    letterSpacing: 0.6
-  },
-  modalContentContainer: {
-    // height: '100%',
-    backgroundColor: Colors.backgroundColor,
-    paddingBottom: heightPercentageToDP(4),
-  },
   rootContainer: {
     flex: 1
   },
   viewSectionContainer: {
     marginBottom: 16,
   },
-  infoHeaderSection: {
-    paddingHorizontal: 24,
-    paddingVertical: 24,
-    marginTop: 5,
-  },
   floatingActionButtonContainer: {
     bottom: heightPercentageToDP(2),
     right: 0,
     marginLeft: 'auto',
     padding: heightPercentageToDP(1.5),
-    //flexDirection: 'row'
   },
-  btnImport: {
-    marginHorizontal: 10,
-    marginVertical: 10,
-    padding: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row'
-  },
-  textImport: {
-    fontSize: RFValue(13),
-    fontFamily: Fonts.Regular,
-    marginHorizontal: 2,
-  }
 })
 
 export default HomeQRScannerScreen

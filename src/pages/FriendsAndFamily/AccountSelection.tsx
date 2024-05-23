@@ -152,7 +152,6 @@ const styles = StyleSheet.create( {
     fontFamily: Fonts.Regular,
   },
   modalInfoText: {
-    // marginTop: hp( '3%' ),
     marginTop: hp( 0.5 ),
     color: Colors.textColorGrey,
     fontSize: RFValue( 12 ),
@@ -162,7 +161,5 @@ const styles = StyleSheet.create( {
     marginBottom: hp( 2 )
   },
 } )
-
-// export default AccountSelection
 
 

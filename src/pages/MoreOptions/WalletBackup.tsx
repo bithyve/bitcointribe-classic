@@ -805,14 +805,6 @@ const WalletBackup = ( props, navigation ) => {
         infoTextNormal1={''}
         step={''}
       />
-      {/* <Text style={{
-        fontSize: 16, color: Colors.blue, fontFamily: Fonts.Regular, marginTop: 10, marginStart: 20
-      }}>{( levelData && levelData[ 0 ]?.status == 'notSetup' ) ? 'No backup created' : 'Backup created'}</Text> */}
-      {/* <Text style={{
-        fontSize: 12, color: Colors.lightTextColor, fontFamily: Fonts.Light, marginTop: 6, marginStart: 20
-      }}>{levelData[ 0 ].keeper1.shareType == '' || levelData[ 0 ].keeper1.shareType == 'notSetup' ? strings.Backupyour : ( levelData[ 0 ].keeper1.shareType == 'seed' ? 'Seed backup is Completed' : 'Wallet backup not complete' )}</Text> */}
-      {/* {showBackupMessage()} */}
-
       <FlatList
         keyExtractor={( item, index ) => item + index}
         data={localLevelData}
@@ -1155,15 +1147,6 @@ const WalletBackup = ( props, navigation ) => {
 }
 
 const styles = StyleSheet.create( {
-  headerTitleText: {
-    color: Colors.black,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 16 ),
-    // marginBottom: wp( '1%' ),
-    alignSelf: 'center',
-    marginHorizontal: wp( 2 ),
-    letterSpacing: 0.48
-  },
   addModalView: {
     backgroundColor: Colors.white,
     paddingVertical: 34,
@@ -1193,20 +1176,6 @@ const styles = StyleSheet.create( {
   },
   modalElementInfoView: {
     flex: 1,
-  },
-
-  addModalTitleText: {
-    color: Colors.blue,
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Regular,
-    letterSpacing: 0.01
-  },
-
-  addModalInfoText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 11 ),
-    marginTop: 5,
-    fontFamily: Fonts.Regular
   },
   successModalButtonView: {
     height: wp( '12%' ),

@@ -1,9 +1,7 @@
-import React, { useMemo } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { ActionMenuItem } from './RampIntegrationScreen'
-import useRampIntegrationState from '../../utils/hooks/state-selectors/accounts/UseRampIntegrationState'
-import { RampActionKind } from '../../store/actions/RampIntegration'
-import useRampIntegrationResultFromAction from '../../utils/hooks/ramp-integration/UseRampIntegrationResultFromAction'
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import useRampIntegrationResultFromAction from '../../utils/hooks/ramp-integration/UseRampIntegrationResultFromAction';
+import { ActionMenuItem } from './RampIntegrationScreen';
 
 
 export type Props = {

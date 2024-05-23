@@ -371,9 +371,6 @@ const ClaimSatsScreen = ( { navigation } ) => {
         <Text style={{
           color: Colors.blue, fontSize: RFValue( 20 ), fontFamily: Fonts.Regular
         }}>Create Multiple Gift Sats</Text>
-        {/* <Text style={{
-          color: Colors.gray3, fontSize: RFValue( 12 ), fontFamily: Fonts.Regular
-        }}>Lorem ipsum dolor Lorem dolor sit amet, consectetur dolor sit</Text> */}
       </View>
       <AdvanceGiftOptions
         title={'No. of Gifts'}
@@ -844,12 +841,6 @@ const styles = StyleSheet.create( {
     flexDirection: 'row',
     height: hp( '8%' ),
   },
-  errorText: {
-    fontFamily: Fonts.MediumItalic,
-    color: Colors.red,
-    fontSize: RFValue( 11, 812 ),
-    fontStyle: 'italic',
-  },
   keyPadElementTouchable: {
     flex: 1,
     height: hp( '8%' ),
@@ -862,31 +853,6 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 25 ),
     fontFamily: Fonts.Regular,
     fontStyle: 'normal',
-  },
-  cardBitCoinImage: {
-    width: wp( '3.5%' ),
-    height: wp( '3.5%' ),
-    marginRight: 5,
-    resizeMode: 'contain',
-    // marginBottom: wp( '0.7%' ),
-  },
-  modalTitleText: {
-    color: Colors.blue,
-    fontSize: RFValue( 18 ),
-    fontFamily: Fonts.Regular,
-    letterSpacing: 0.54
-  },
-  modalInfoText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 12 ),
-    fontFamily: Fonts.Regular,
-    marginRight: wp( 10 ),
-    letterSpacing: 0.6,
-    marginBottom: hp( 2 )
-  },
-  modalContentContainer: {
-    backgroundColor: Colors.backgroundColor,
-    paddingBottom: hp( 4 ),
   },
   viewContainer: {
     flex: 1,
@@ -905,14 +871,6 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
     borderRadius: 8,
     backgroundColor: Colors.blue,
-  },
-  disabledButtonView: {
-    height: wp( '12%' ),
-    width: wp( '27%' ),
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-    backgroundColor: Colors.lightBlue,
   },
   imageView: {
     width: 18,
@@ -947,11 +905,6 @@ const styles = StyleSheet.create( {
     fontFamily: Fonts.Regular,
     paddingLeft: 15,
     borderRadius: 10,
-    // justifyContent: 'center',
-    // alignItems:'center',
-    // textAlignVertical:'center',
-    // textAlign:'center',
-    // backgroundColor:'red',
   },
   inputBox: {
     borderWidth: 0.5,
@@ -959,22 +912,6 @@ const styles = StyleSheet.create( {
     marginLeft: wp( '5%' ),
     marginRight: wp( '5%' ),
     backgroundColor: Colors.white
-  },
-  inputBoxFocused: {
-    borderWidth: 0.5,
-    borderRadius: 10,
-    marginLeft: wp( '5%' ),
-    marginRight: wp( '5%' ),
-    elevation: 10,
-    shadowColor: Colors.borderColor,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 10, height: 10
-    },
-    backgroundColor: Colors.white,
-  },
-  accImage: {
-    marginRight: wp( 4 )
   },
   availableToSpendText: {
     color: Colors.blue,
@@ -991,20 +928,6 @@ const styles = StyleSheet.create( {
     color: Colors.blue,
     fontSize: RFValue( 13 ),
     fontFamily: Fonts.Medium
-  },
-  selectedContactsView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    backgroundColor: Colors.blue,
-    borderRadius: wp( 2 ),
-    height: hp( 4 ),
-    paddingHorizontal: wp( 2 )
-  },
-  contactText: {
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Regular,
-    color: Colors.white,
   },
   accountSelectionView: {
     width: '90%',
@@ -1028,19 +951,6 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: 'auto'
-  },
-  homeHeaderAmountText: {
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 20 ),
-    marginRight: 5,
-    color: Colors.black,
-  },
-  homeHeaderAmountUnitText: {
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 11 ),
-    // marginBottom: 3,
-    color: Colors.gray2,
-    marginTop: hp( 0.7 )
   },
   successModalButtonView: {
     height: wp( '12%' ),

@@ -1,17 +1,16 @@
 import React from 'react'
-import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native'
-import NavStyles from '../../common/Styles/NavStyles'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
+import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Colors from '../../common/Colors'
+import { translations } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
+import NavStyles from '../../common/Styles/NavStyles'
 import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
 import QRCode from '../../components/QRCode'
-import { translations } from '../../common/content/LocContext'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 export default function SecondaryDeviceModelContents( props ) {
   const strings  = translations[ 'bhr' ]

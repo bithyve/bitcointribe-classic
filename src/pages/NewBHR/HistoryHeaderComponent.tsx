@@ -1,14 +1,13 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
-import Fonts from '../../common/Fonts'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import Colors from '../../common/Colors'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { translations } from '../../common/content/LocContext'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
 import FinanceSecurityReceipt from '../../assets/images/svgs/Finance_security_receipt.svg'
+import Colors from '../../common/Colors'
+import { translations } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
 
 const HistoryHeaderComponent = ( props ) => {
   const strings  = translations[ 'bhr' ]
@@ -37,10 +36,6 @@ const HistoryHeaderComponent = ( props ) => {
         ) : (
           <View style={styles.headerImageView}>
             <FinanceSecurityReceipt/>
-            {/* <Image style={props.tintColor ? {
-              ...styles.headerImage,
-              tintColor: Colors.deepBlue
-            } : styles.headerImage} source={props.headerImage} /> */}
           </View>
         )}
         <View style={styles.headerInfoView}>
@@ -71,11 +66,6 @@ const HistoryHeaderComponent = ( props ) => {
 export default HistoryHeaderComponent
 
 const styles = StyleSheet.create( {
-  modalHeaderTitleText: {
-    color: Colors.blue,
-    fontSize: RFValue( 18 ),
-    fontFamily: Fonts.Regular,
-  },
   modalHeaderTitleView: {
     borderBottomWidth: 1,
     borderColor: Colors.borderColor,

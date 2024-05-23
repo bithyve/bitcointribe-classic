@@ -1,14 +1,12 @@
-import React, { useCallback } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 import { Button } from 'react-native-elements'
 import { Easing } from 'react-native-reanimated'
-import ButtonStyles from '../../common/Styles/ButtonStyles'
+import { useSelector } from 'react-redux'
 import AccountShell from '../../common/data/models/AccountShell'
-import BottomSheetBackground from '../../components/bottom-sheets/BottomSheetBackground'
-import HomeAccountCardsDraggableList from '../../components/home/HomeAccountCardsDraggableList'
+import ButtonStyles from '../../common/Styles/ButtonStyles'
 import HomeAccountCardsGrid from '../../components/home/HomeAccountCardsGrid'
 import useActiveAccountShells from '../../utils/hooks/state-selectors/accounts/UseActiveAccountShells'
-import { useDispatch, useSelector } from 'react-redux'
 
 
 export type Props = {
@@ -93,11 +91,6 @@ const styles = StyleSheet.create( {
     flexDirection: 'row',
     alignItems: 'center',
     zIndex: 2,
-  },
-
-  editModeBottomSheetContentContainer: {
-    marginTop: 50,
-    flex: 1,
   },
 
   editModeBottomSheetHeadingText: {

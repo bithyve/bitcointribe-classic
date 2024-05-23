@@ -3,12 +3,11 @@ import { FlatList, ImageSourcePropType, SafeAreaView, StatusBar, StyleSheet, Tou
 import { ListItem } from 'react-native-elements'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
-import Colors from '../../../../common/Colors'
-import ListStyles from '../../../../common/Styles/ListStyles'
-// import ImageStyles from '../../../../common/Styles/ImageStyles'
 import IconSettings from '../../../../assets/images/svgs/icon_accntSettings.svg'
+import Colors from '../../../../common/Colors'
 import { translations } from '../../../../common/content/LocContext'
 import { hp } from '../../../../common/data/responsiveness/responsive'
+import ListStyles from '../../../../common/Styles/ListStyles'
 import CommonStyles from '../../../../common/Styles/Styles'
 import HeaderTitle from '../../../../components/HeaderTitle'
 
@@ -54,11 +53,6 @@ const PanAccountSettingsContainerScreen: React.FC<Props> = ( { navigation, }: Pr
         bottomDivider
         onPress={() => { handleListItemPress( menuOption ) }}
       >
-        {/* <Image
-          source={menuOption.imageSource}
-          style={ImageStyles.thumbnailImageMedium}
-          resizeMode="contain"
-        /> */}
         <IconSettings/>
 
         <ListItem.Content style={ListStyles.listItemContentContainer}>

@@ -157,43 +157,6 @@ const styles = StyleSheet.create( {
     paddingHorizontal: 24,
     flex: 1,
   },
-
-  textInputContainer: {
-  },
-
-  footerSection: {
-    marginTop: 12,
-    paddingHorizontal: 26,
-    alignItems: 'flex-start',
-  },
-
-  useFallbackTouchable: {
-    flexDirection: 'row',
-    borderRadius: 8,
-    backgroundColor: Colors.backgroundColor1,
-    alignItems: 'center',
-    paddingLeft: 10,
-    paddingRight: 10,
-    marginTop: 10,
-    marginBottom: 10,
-    height: wp( '13%' ),
-  },
-  useFallbackText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 12 ),
-    fontFamily: Fonts.Regular,
-  },
-  useFallbackCheckView: {
-    width: wp( '7%' ),
-    height: wp( '7%' ),
-    borderRadius: 7,
-    backgroundColor: Colors.white,
-    borderColor: Colors.borderColor,
-    borderWidth: 1,
-    marginLeft: 'auto',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   selectedItem: {
     borderWidth: 1,
   },

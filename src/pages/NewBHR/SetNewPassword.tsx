@@ -1,55 +1,38 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react'
-import {
-  StyleSheet,
-  View,
-  SafeAreaView,
-  TouchableOpacity,
-  ScrollView,
-  StatusBar,
-  Text,
-  Platform,
-  Keyboard,
-  TouchableWithoutFeedback,
-  TextInput,
-  Clipboard,
-  Image,
-  Dimensions
-} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import Fonts from '../../common/Fonts'
-import Colors from '../../common/Colors'
-import QuestionList from '../../common/QuestionList'
-import CommonStyles from '../../common/Styles/Styles'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  Clipboard, Dimensions, Image, Keyboard, Platform, SafeAreaView, ScrollView,
+  StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View
+} from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import Feather from 'react-native-vector-icons/Feather'
-import { RFValue } from 'react-native-responsive-fontsize'
-import HeaderTitle from '../../components/HeaderTitle'
-import BottomInfoBox from '../../components/BottomInfoBox'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import Colors from '../../common/Colors'
+import Fonts from '../../common/Fonts'
+import QuestionList from '../../common/QuestionList'
 import ButtonStyles from '../../common/Styles/ButtonStyles'
+import CommonStyles from '../../common/Styles/Styles'
+import BottomInfoBox from '../../components/BottomInfoBox'
+import HeaderTitle from '../../components/HeaderTitle'
 
+import { NavigationProp, ParamListBase, RouteProp } from '@react-navigation/native'
+import DeviceInfo from 'react-native-device-info'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useDispatch, useSelector } from 'react-redux'
 import zxcvbn from 'zxcvbn'
-import LoaderModal from '../../components/LoaderModal'
-import DeviceInfo from 'react-native-device-info'
-import { changeQuestionAnswer, setupPassword } from '../../store/actions/BHR'
-import { setCloudData } from '../../store/actions/cloud'
-import CloudBackupStatus from '../../common/data/enums/CloudBackupStatus'
-import ModalContainer from '../../components/home/ModalContainer'
-import ButtonBlue from '../../components/ButtonBlue'
-import { updateCloudPermission } from '../../store/actions/BHR'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import CardWithRadioBtn from '../../components/CardWithRadioBtn'
 import { LevelHealthInterface } from '../../bitcoin/utilities/Interface'
-import { LocalizationContext } from '../../common/content/LocContext'
 import TrustedContactsOperations from '../../bitcoin/utilities/TrustedContactsOperations'
+import { LocalizationContext } from '../../common/content/LocContext'
+import CardWithRadioBtn from '../../components/CardWithRadioBtn'
+import ModalContainer from '../../components/home/ModalContainer'
 import ModalContainerScroll from '../../components/home/ModalContainerScroll'
 import WalletInitKnowMore from '../../components/know-more-sheets/WalletInitKnowMore'
-import { NavigationProp, ParamListBase, RouteProp } from '@react-navigation/native'
+import LoaderModal from '../../components/LoaderModal'
+import { changeQuestionAnswer, setupPassword } from '../../store/actions/BHR'
 
 export enum BottomSheetKind {
   CLOUD_PERMISSION,
@@ -197,13 +180,6 @@ export default function SetNewPassword( props: { navigation: NavigationProp<Para
       )
     } )
   }
-
-  // useEffect( ()=>{
-  //   if( cloudBackupStatus !== CloudBackupStatus.IN_PROGRESS &&
-  //     cloudPermissionGranted === true && !isSkipClicked && ( ( currentLevel == 0 && levelHealth.length == 0 ) || ( currentLevel == 0 && levelHealth.length && levelHealth[ 0 ].levelInfo.length && levelHealth[ 0 ].levelInfo[ 0 ].status != 'notSetup' ) ) ){
-  //     dispatch( setCloudData() )
-  //   }
-  // }, [ cloudPermissionGranted, levelHealth ] )
 
   const changeAnswer = ( security ) => {
     dispatch( changeQuestionAnswer( security.questionId, security.question, security.answer ) )
@@ -520,26 +496,6 @@ export default function SetNewPassword( props: { navigation: NavigationProp<Para
           paddingHorizontal: 8,
           paddingTop: 8
         }}>
-          {/* <TouchableOpacity
-            activeOpacity={1}
-            onPress={() => {
-              setKnowMoreIndex(2)
-              showSecurityQue(false)
-              showEncryptionPswd(false)
-              setPswdError('')
-              setKnowMore(true)
-              setHint('')
-            }
-            }
-            style={{
-              ...styles.selectedContactsView,
-              alignSelf: 'flex-end',
-              marginRight: 15
-            }}
-          >
-            <Text style={styles.contactText}>{common['knowMore']}</Text>
-
-          </TouchableOpacity> */}
           <TouchableOpacity
             style={{
               justifyContent: 'center', alignItems: 'center',
@@ -625,22 +581,6 @@ export default function SetNewPassword( props: { navigation: NavigationProp<Para
                 handlePswdSubmit()
               }}
             />
-            {/* {pswd ? (
-              <TouchableWithoutFeedback
-                onPress={() => {
-                  setHideShowPswd( !hideShowPswd )
-                }}
-              >
-                <Feather
-                  style={{
-                    marginLeft: 'auto', padding: 10
-                  }}
-                  size={15}
-                  color={Colors.blue}
-                  name={hideShowPswd ? 'eye-off' : 'eye'}
-                />
-              </TouchableWithoutFeedback>
-            ) : null} */}
             {pswd ? (
               <TouchableWithoutFeedback
                 onPress={() => {
@@ -723,39 +663,6 @@ export default function SetNewPassword( props: { navigation: NavigationProp<Para
                 handlePswdSubmit()
               }}
             />
-            {/* {tempPswd ? (
-              <TouchableWithoutFeedback
-                onPress={() => {
-                  setHideShowConfirmPswd( !hideShowConfirmPswd )
-                  setDropdownBoxOpenClose( false )
-                }}
-              >
-                <Feather
-                  style={{
-                    marginLeft: 'auto', padding: 10
-                  }}
-                  size={15}
-                  color={Colors.blue}
-                  name={hideShowConfirmPswd ? 'eye-off' : 'eye'}
-                />
-              </TouchableWithoutFeedback>
-            ) : null} */}
-            {/* {tempPswd ? (
-              <TouchableWithoutFeedback
-                onPress={() => {
-                  setHideShowConfirmPswd( !hideShowConfirmPswd )
-                }}
-              >
-                <Text
-                  style={{
-                    color: confirmpasswordScore > 3 ? Colors.green : confirmpasswordScore > 1 ? Colors.coral: Colors.red,
-                    fontFamily: Fonts.Italic,
-                    fontSize: RFValue( 11 ),
-                    marginLeft: 4,
-                  }}
-                >{getConfirmPasswordLevel()}</Text>
-              </TouchableWithoutFeedback>
-            ) : null} */}
           </View>
 
           <View
@@ -799,24 +706,6 @@ export default function SetNewPassword( props: { navigation: NavigationProp<Para
               }
               }
             />
-            {/* {hintText ? (
-              <TouchableWithoutFeedback
-                onPress={() => {
-                  setHideShowHint( !hideShowHint )
-
-                  // setDropdownBoxOpenClose( false )
-                }}
-              >
-                <Feather
-                  style={{
-                    marginLeft: 'auto', padding: 10
-                  }}
-                  size={15}
-                  color={Colors.blue}
-                  name={hideShowHint ? 'eye-off' : 'eye'}
-                />
-              </TouchableWithoutFeedback>
-            ) : null} */}
           </View>
 
           <View
@@ -1179,10 +1068,6 @@ export default function SetNewPassword( props: { navigation: NavigationProp<Para
             ) && (
               setButtonVisible()
             ) || null}
-            {/* <View style={styles.statusIndicatorView}>
-            <View style={styles.statusIndicatorInactiveView} />
-            <View style={styles.statusIndicatorActiveView} />
-          </View> */}
           </View> : null}
           {showNote &&
             <View style={{
@@ -1284,19 +1169,6 @@ export default function SetNewPassword( props: { navigation: NavigationProp<Para
               tag={strings.recommended}
               hideRadioBtn
               boldText={undefined} />
-            {/* <CardWithRadioBtn
-              geticon={''}
-              mainText={strings.AnsweraSecurityQuestion}
-              subText={strings.Easiertoremember}
-              isSelected={false}
-              setActiveIndex={()=> confirmAction( 1 )}
-              index={1}
-              italicText={''}
-              boldText={''}
-              changeBgColor={true}
-              tag={strings.MostMemorable}
-              hideRadioBtn
-            /> */}
             <CardWithRadioBtn
               geticon={''}
               mainText={strings.Useencryptionpassword}
@@ -1314,12 +1186,6 @@ export default function SetNewPassword( props: { navigation: NavigationProp<Para
 
         </View>
       </ScrollView>
-
-      {/* <View style={styles.statusIndicatorView}>
-        <View style={styles.statusIndicatorInactiveView} />
-        <View style={styles.statusIndicatorInactiveView} />
-        <View style={styles.statusIndicatorActiveView} />
-      </View> */}
       {showNote && !visibleButton ? (
         <View
           style={{
@@ -1335,31 +1201,6 @@ export default function SetNewPassword( props: { navigation: NavigationProp<Para
           />
         </View>
       ) : null}
-      {/* <View style={{
-        alignItems: 'center', marginLeft: wp( '9%' ), marginBottom: hp( '9%' ),
-        flexDirection: 'row'
-      }}>
-        <ButtonBlue
-          buttonText="Confirm & Proceed"
-          handleButtonPress={confirmAction}
-          buttonDisable={false}
-        />
-        <TouchableOpacity
-          onPress={() => {
-            props.navigation.goBack()
-          }}
-        >
-          <Text style={{
-            color: Colors.blue,
-            fontFamily: Fonts.Medium,
-            alignSelf: 'center',
-            marginLeft: wp( '5%' )
-          }}>{common.cancel}</Text>
-        </TouchableOpacity>
-      </View> */}
-      {/* <ModalContainer visible={currentBottomSheetKind != null} closeBottomSheet={() => {}} >
-        {renderBottomSheetContent()}
-      </ModalContainer> */}
       <ModalContainer onBackground={() => showSecurityQue( false )} visible={securityQue} closeBottomSheet={() => { showSecurityQue( false ) }} >
         {renderSecurityQuestion()}
       </ModalContainer>
@@ -1446,30 +1287,6 @@ const styles = StyleSheet.create( {
     paddingRight: 30,
     paddingBottom: hp( 2 ),
     alignItems: 'center',
-  },
-  bottomButtonView1: {
-    flexDirection: 'row',
-    marginTop: 5,
-    alignItems: 'center',
-  },
-  statusIndicatorView: {
-    flexDirection: 'row',
-    marginLeft: 'auto',
-    marginHorizontal: wp( '6%' ),
-    marginBottom: hp( 2 )
-  },
-  statusIndicatorActiveView: {
-    height: 5,
-    width: 25,
-    backgroundColor: Colors.blue,
-    borderRadius: 10,
-    marginLeft: 5,
-  },
-  statusIndicatorInactiveView: {
-    width: 5,
-    backgroundColor: Colors.lightBlue,
-    borderRadius: 10,
-    marginLeft: 5,
   },
   inputBox: {
     borderWidth: 0.5,

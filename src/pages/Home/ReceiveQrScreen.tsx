@@ -158,12 +158,6 @@ const ReceiveQrScreen: React.FC<Props> = ( { navigation, }: Props ) => {
                         style={{
                           ...styles.dropDownElement,
                         }}>
-                        {/* <View style={styles.imageView}>
-                          <Image source={value.accountImage} style={{
-                            width: wp( '8%' ), height: wp( '8%' )
-                          }} />
-
-                        </View> */}
                         <View style={{
                           marginLeft: wp( '2%' ), alignSelf: 'center',
                         }}>
@@ -197,11 +191,6 @@ const ReceiveQrScreen: React.FC<Props> = ( { navigation, }: Props ) => {
               marginRight: 20,
               marginBottom: 20,
             }}>
-            {/* <View style={styles.imageView}>
-              <Image source={selectedAccount && selectedAccount.accountImage} style={{
-                width: wp( '9%' ), height: wp( '9%' )
-              }} />
-            </View> */}
             <View style={{
               marginLeft: wp( '2%' ), alignSelf: 'center',
             }}>
@@ -285,17 +274,6 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 12 ),
     fontFamily: Fonts.Regular,
     color: Colors.textColorGrey,
-  },
-  imageView: {
-    width: wp( '15%' ), height: wp( '15%' ), backgroundColor: Colors.backgroundColor, borderRadius: wp( '15%' ) / 2, justifyContent: 'center', alignItems: 'center', borderWidth: 2, borderColor: Colors.white,
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.7,
-    shadowColor: Colors.borderColor,
-    shadowRadius: 5,
-    elevation: 10
   },
   accountName: {
     color: Colors.black, fontFamily: Fonts.Regular, fontSize: RFValue( 16 )

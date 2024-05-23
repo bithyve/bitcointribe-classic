@@ -173,16 +173,6 @@ const NodeSettingsContainerScreen: React.FC<Props> = ( { navigation, }: Props ) 
       </KeyboardAvoidingView>
 
       {loading ? <Loader isLoading={true} /> : null}
-      {/* {isKeyboardVisible == false && (
-        <View style={styles.floatingNoteContainer}>
-          <BottomInfoBox
-            title={common.note}
-            infoText={
-              strings.nodeisaccessible
-            }
-          />
-        </View>
-      )} */}
     </SafeAreaView>
   )
 }
@@ -195,12 +185,6 @@ const styles = StyleSheet.create( {
   rootContentContainer: {
 
   },
-
-  floatingNoteContainer: {
-    position: 'absolute',
-    bottom: 0,
-    marginBottom: 24,
-  }
 } )
 
 export default NodeSettingsContainerScreen

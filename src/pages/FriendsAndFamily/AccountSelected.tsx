@@ -179,21 +179,6 @@ const styles = StyleSheet.create( {
     borderRadius: 10,
     marginLeft: 5,
   },
-  buttonText: {
-    color: Colors.white,
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Medium,
-  },
-  buttonView: {
-    height: wp( '14%' ),
-    width: wp( '35%' ),
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-    backgroundColor: Colors.blue,
-    marginLeft: wp( 6 ),
-    marginTop: hp( 1 )
-  },
   modalTitleText: {
     color: Colors.blue,
     fontSize: RFValue( 18 ),

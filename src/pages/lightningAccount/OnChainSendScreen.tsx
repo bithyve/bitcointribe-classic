@@ -1,28 +1,24 @@
-import React, { useState, useMemo, useEffect } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import HeaderTitle from '../../components/HeaderTitle'
 import { inject, observer } from 'mobx-react'
+import React, { useEffect, useMemo, useState } from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { RFValue } from 'react-native-responsive-fontsize'
 import Colors from '../../common/Colors'
+import { translations } from '../../common/content/LocContext'
+import BitcoinUnit from '../../common/data/enums/BitcoinUnit'
+import SubAccountKind from '../../common/data/enums/SubAccountKind'
 import { Satoshis } from '../../common/data/typealiases/UnitAliases'
 import Fonts from '../../common/Fonts'
 import ButtonStyles from '../../common/Styles/ButtonStyles'
-import FormStyles from '../../common/Styles/FormStyles'
-import { RFValue } from 'react-native-responsive-fontsize'
-import { useDispatch } from 'react-redux'
+import ModalContainer from '../../components/home/ModalContainer'
+import Toast from '../../components/Toast'
 import useFormattedAmountText from '../../utils/hooks/formatting/UseFormattedAmountText'
+import useFormattedUnitText from '../../utils/hooks/formatting/UseFormattedUnitText'
 import useSelectedRecipientForSendingByID from '../../utils/hooks/state-selectors/sending/UseSelectedRecipientForSendingByID'
 import useSelectedRecipientsForSending from '../../utils/hooks/state-selectors/sending/UseSelectedRecipientsForSending'
 import BalanceEntryFormGroup from '../Accounts/Send/BalanceEntryFormGroup'
 import SelectedRecipientsCarousel from '../Accounts/Send/SelectedRecipientsCarousel'
-import { widthPercentageToDP } from 'react-native-responsive-screen'
-import useFormattedUnitText from '../../utils/hooks/formatting/UseFormattedUnitText'
-import BitcoinUnit from '../../common/data/enums/BitcoinUnit'
-import { translations } from '../../common/content/LocContext'
-import SubAccountKind from '../../common/data/enums/SubAccountKind'
-import Toast from '../../components/Toast'
 import SendConfirmationContent from '../Accounts/SendConfirmationContent'
-import ModalContainer from '../../components/home/ModalContainer'
 
 
 const styles = StyleSheet.create( {
@@ -44,27 +40,6 @@ const styles = StyleSheet.create( {
     flexDirection: 'row',
     alignContent: 'center',
     justifyContent: 'center',
-  },
-
-  textInputFieldWrapper: {
-    ...FormStyles.textInputContainer,
-    marginBottom: widthPercentageToDP( '1.5%' ),
-    width: widthPercentageToDP( '70%' ),
-    height: widthPercentageToDP( '13%' ),
-    alignItems: 'center',
-  },
-
-  textInputContainer: {
-    flex: 1,
-    height: '100%',
-    flexDirection: 'column',
-  },
-
-  textInputContent: {
-    height: '100%',
-    color: Colors.textColorGrey,
-    fontFamily: Fonts.Medium,
-    fontSize: RFValue( 13 ),
   },
 } )
 

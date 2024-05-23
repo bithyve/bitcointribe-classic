@@ -3,9 +3,9 @@ import { Animated, Image, Modal, StyleSheet, Text, TouchableOpacity, View } from
 import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
 
-import { wp } from '../../common/data/responsiveness/responsive'
 import Colors from '../../common/Colors'
 import { translations } from '../../common/content/LocContext'
+import { wp } from '../../common/data/responsiveness/responsive'
 
 import Fonts from '../../common/Fonts'
 

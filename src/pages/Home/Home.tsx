@@ -12,10 +12,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient'
 import * as RNLocalize from 'react-native-localize'
 import {
-  heightPercentageToDP,
-  heightPercentageToDP as hp,
-  widthPercentageToDP,
-  widthPercentageToDP as wp
+  heightPercentageToDP as hp
 } from 'react-native-responsive-screen'
 import { connect } from 'react-redux'
 import {
@@ -573,18 +570,6 @@ export default
   })(Home)
 
 const styles = StyleSheet.create({
-  cardContainer: {
-    backgroundColor: Colors.white,
-    width: widthPercentageToDP('95%'),
-    borderRadius: widthPercentageToDP(3),
-    marginBottom: 10,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginHorizontal: widthPercentageToDP(5),
-    alignSelf: 'center',
-    flexDirection: 'row',
-    paddingHorizontal: widthPercentageToDP(2)
-  },
   accountCardsSectionContainer: {
     height: hp('71.46%'),
     backgroundColor: Colors.backgroundColor,
@@ -598,18 +583,4 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-around'
   },
-
-  floatingActionButtonContainer: {
-    justifyContent: 'flex-end',
-    alignSelf: 'flex-end',
-    padding: heightPercentageToDP(1.5),
-  },
-
-  cloudErrorModalImage: {
-    width: wp('30%'),
-    height: wp('25%'),
-    marginLeft: 'auto',
-    resizeMode: 'stretch',
-    marginBottom: hp('-3%'),
-  }
 })

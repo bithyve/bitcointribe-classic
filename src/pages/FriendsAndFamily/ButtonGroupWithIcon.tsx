@@ -1,19 +1,15 @@
 import React, { useContext } from 'react'
 import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet
+  StyleSheet, Text,
+  TouchableOpacity, View
 } from 'react-native'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import moment from 'moment'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
 import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import Colors from '../../common/Colors'
 import { LocalizationContext } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
 
 const ButtonGroupWithIcon = ( props ) => {
   const { translations } = useContext( LocalizationContext )

@@ -1,40 +1,29 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
-import {
-  View,
-  StyleSheet,
-  SafeAreaView,
-  StatusBar,
-  TouchableOpacity,
-  ScrollView,
-  Text,
-  Alert,
-  ActivityIndicator,
-  Platform,
-  TextInput
-} from 'react-native'
-import Share from 'react-native-share'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import CommonStyles from '../../common/Styles/Styles'
-import Colors from '../../common/Colors'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { LocalizationContext } from '../../common/content/LocContext'
-import CopyThisText from '../../components/CopyThisText'
-import QRCode from '../../components/QRCode'
-import HeaderTitle from '../../components/HeaderTitle'
-import DashedLargeContainer from './DahsedLargeContainer'
-import GiftCard from '../../assets/images/svgs/icon_gift.svg'
-import { RFValue } from 'react-native-responsive-fontsize'
-import ViewShot from 'react-native-view-shot'
-import ThemeList from './Theme'
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
-import ModalContainer from '../../components/home/ModalContainer'
-import Fonts from '../../common/Fonts'
-import { DeepLinkEncryptionType } from '../../bitcoin/utilities/Interface'
 import Clipboard from '@react-native-clipboard/clipboard'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import {
+  ActivityIndicator,
+  Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View
+} from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import Share from 'react-native-share'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import ViewShot from 'react-native-view-shot'
+import GiftCard from '../../assets/images/svgs/icon_gift.svg'
+import { DeepLinkEncryptionType } from '../../bitcoin/utilities/Interface'
+import Colors from '../../common/Colors'
+import { LocalizationContext } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
+import CommonStyles from '../../common/Styles/Styles'
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
+import HeaderTitle from '../../components/HeaderTitle'
+import ModalContainer from '../../components/home/ModalContainer'
+import QRCode from '../../components/QRCode'
 import Toast from '../../components/Toast'
+import DashedLargeContainer from './DahsedLargeContainer'
+import ThemeList from './Theme'
 
 
 export default function SendViaLinkAndQR( props ) {
@@ -315,24 +304,7 @@ export default function SendViaLinkAndQR( props ) {
               </View>
             </View>
                 }
-                {/* {!props.isGift &&
-            <HeaderTitle
-              firstLineTitle={strings.orShare}
-              secondLineTitle={strings.WithContact}
-              infoTextNormal={''}
-              infoTextBold={''}
-              infoTextNormal1={''}
-              step={''}
-            />
-            } */}
                 {type === 'Link' &&
-            // <CopyThisText
-            //   openLink={link ? shareOption : () => { }}
-            //   backgroundColor={Colors.white}
-            //   text={link ? link : strings.Creating}
-            //   width={'20%'}
-            //   height={'18%'}
-            // />
             <View
               style={{
                 // flex: 1,
@@ -409,13 +381,6 @@ export default function SendViaLinkAndQR( props ) {
   )
 }
 const styles = StyleSheet.create( {
-  contactProfileView: {
-    flexDirection: 'row',
-    marginLeft: 20,
-    marginRight: 20,
-    alignItems: 'center',
-    marginTop: hp( '1.7%' ),
-  },
   qrContainer: {
     height: hp( '24%' ),
     justifyContent: 'center',
@@ -439,11 +404,6 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
-    // shadowColor: Colors.shadowBlue,
-    // shadowOpacity: 1,
-    // shadowOffset: {
-    //   width: 15, height: 15
-    // },
   },
   proceedButtonText: {
     color: Colors.white,
@@ -497,21 +457,5 @@ const styles = StyleSheet.create( {
     alignItems:'center',
     padding:10,
     marginHorizontal:30,
-  },
-  btnContainer:{
-    marginTop:10,
-    backgroundColor:'#006DB4',
-    width:100,
-    padding:14,
-    borderRadius:6,
-    marginLeft: 30,
-    justifyContent:'center',
-    alignItems:'center',
-  },
-  btnText: {
-    color: '#fff',
-    fontWeight:'500',
-    fontSize:15,
-    fontFamily: Fonts.Regular
   }
 } )

@@ -1,18 +1,16 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, Clipboard } from 'react-native'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import React from 'react'
+import { Clipboard, StyleSheet, Text, View } from 'react-native'
+import CountDown from 'react-native-countdown-component'
 import { RFValue } from 'react-native-responsive-fontsize'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import Colors from '../../common/Colors'
+import { translations } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
 import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
 import Toast from '../../components/Toast'
-import CountDown from 'react-native-countdown-component'
-import { translations } from '../../common/content/LocContext'
 
 export default function ShareOtpWithTrustedContact( props ) {
   const OTP = props.OTP
@@ -29,9 +27,6 @@ export default function ShareOtpWithTrustedContact( props ) {
         <View style={{
           flexDirection: 'row', flex: 1, marginTop: hp( 2 )
         }}>
-          {/* <AppBottomSheetTouchableWrapper onPress={() => { props.onPressBack(); }} style={{ height: 30, width: 30 }} >
-            <FontAwesome name="long-arrow-left" color={Colors.blue} size={17} />
-          </AppBottomSheetTouchableWrapper> */}
           <View>
             <Text style={styles.modalHeaderTitleText}>
               Send OTP to contact
@@ -170,11 +165,6 @@ const styles = StyleSheet.create( {
     marginTop: hp( '0.7%' ),
     marginRight: 20,
     flexWrap: 'wrap',
-  },
-  qrModalImage: {
-    width: wp( '100%' ),
-    height: wp( '100%' ),
-    borderRadius: 20,
   },
   otpText: {
     color: Colors.black,

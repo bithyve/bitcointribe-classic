@@ -66,10 +66,6 @@ const PersonalCopyHistory = ( props ) => {
   const [ QrBottomSheetsFlag, setQrBottomSheetsFlag ] = useState( false )
   const [ isChangeClicked, setIsChangeClicked ] = useState( false )
   const [ personalCopyHistory, setPersonalCopyHistory ] = useState( historyArray )
-  // const [
-  //   PersonalCopyShareBottomSheet,
-  //   setPersonalCopyShareBottomSheet,
-  // ] = useState( React.createRef() )
 
   const [ personalCopyShareModal, setPersonalCopyShareModal ] = useState( false )
   const selectedPersonalCopy = props.route.params.selectedPersonalCopy
@@ -167,25 +163,6 @@ const PersonalCopyHistory = ( props ) => {
       generatePDF()
     }
   }, [ hasStoragePermission ] )
-  // const saveInTransitHistory = async () => {
-  //   try{
-  //       const shareHistory = JSON.parse(await AsyncStorage.getItem("shareHistory"));
-  //     if (shareHistory) {
-  //       let updatedShareHistory = [...shareHistory];
-  //       // updatedShareHistory = {
-  //       //   ...updatedShareHistory,
-  //       //   inTransit: Date.now(),
-  //       // };
-  //       updateHistory(updatedShareHistory);
-  //       await AsyncStorage.setItem(
-  //         "shareHistory",
-  //         JSON.stringify(updatedShareHistory)
-  //       );
-  //     }
-  //   }catch(e){
-  //
-  //   }
-  // };
 
   const generatePDF = async() => {
     initiateGuardianCreation( )

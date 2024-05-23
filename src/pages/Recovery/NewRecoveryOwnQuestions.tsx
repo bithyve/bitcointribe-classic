@@ -1,40 +1,22 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import {
-  StyleSheet,
-  View,
-  SafeAreaView,
-  TouchableOpacity,
-  ScrollView,
-  StatusBar,
-  Text,
-  KeyboardAvoidingView,
-  Platform,
-  Keyboard,
-  TouchableWithoutFeedback,
-  TextInput,
-} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import Fonts from '../../common/Fonts'
-import Colors from '../../common/Colors'
-import QuestionList from '../../common/QuestionList'
-import CommonStyles from '../../common/Styles/Styles'
+import React, { useEffect, useState } from 'react'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import Feather from 'react-native-vector-icons/Feather'
+  Keyboard, KeyboardAvoidingView,
+  Platform, SafeAreaView, ScrollView,
+  StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View
+} from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
-import HeaderTitle from '../../components/HeaderTitle'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Colors from '../../common/Colors'
+import Fonts from '../../common/Fonts'
+import CommonStyles from '../../common/Styles/Styles'
 import BottomInfoBox from '../../components/BottomInfoBox'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { initializeRecovery } from '../../store/actions/setupAndAuth'
-import BottomSheet from 'reanimated-bottom-sheet'
-import LoaderModal from '../../components/LoaderModal'
-import { getTestcoins, accountsSynched } from '../../store/actions/accounts'
-import { TEST_ACCOUNT } from '../../common/constants/wallet-service-types'
 
 import DeviceInfo from 'react-native-device-info'
 
@@ -322,11 +304,6 @@ const styles = StyleSheet.create( {
     paddingBottom: 40,
     alignItems: 'center',
   },
-  bottomButtonView1: {
-    flexDirection: 'row',
-    marginTop: 5,
-    alignItems: 'center',
-  },
   statusIndicatorView: {
     flexDirection: 'row',
     marginLeft: 'auto',
@@ -371,12 +348,6 @@ const styles = StyleSheet.create( {
     fontFamily: Fonts.Regular,
     paddingLeft: 15,
   },
-  dropdownBoxText: {
-    color: Colors.textColorGrey,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 13 ),
-    marginRight: 15,
-  },
   dropdownBoxModal: {
     borderRadius: 10,
     margin: 15,
@@ -388,11 +359,5 @@ const styles = StyleSheet.create( {
       width: 0, height: 10
     },
     backgroundColor: Colors.white,
-  },
-  dropdownBoxModalElementView: {
-    height: 55,
-    justifyContent: 'center',
-    paddingLeft: 15,
-    paddingRight: 15,
   },
 } )
