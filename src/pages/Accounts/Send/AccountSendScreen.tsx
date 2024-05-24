@@ -210,12 +210,9 @@ const styles = StyleSheet.create( {
   },
 
   qrScannerContainer: {
-    // width: '100%',
-    // maxWidth: qrScannerHeight * ( 1.40 ),
     height: qrScannerHeight,
     marginBottom: 9,
   },
-
   // Undo the info box component's coupling to margin
   infoBoxContainer: {
     marginTop: 0,

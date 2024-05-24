@@ -1,12 +1,10 @@
 import React, { useContext } from 'react'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
-import { TouchableOpacity, Text, StyleSheet, View } from 'react-native'
-import { RFValue } from 'react-native-responsive-fontsize'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { heightPercentageToDP, widthPercentageToDP as wp } from 'react-native-responsive-screen'
-import ListStyles from '../../common/Styles/ListStyles'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Colors from '../../common/Colors'
 import { LocalizationContext } from '../../common/content/LocContext'
+import ListStyles from '../../common/Styles/ListStyles'
 
 const BottomSheetWalletHeader = ( { title, onPress } ) => {
   const { translations } = useContext( LocalizationContext )
@@ -37,16 +35,7 @@ const styles = StyleSheet.create( {
   headerContainer: {
     backgroundColor: Colors.bgColor,
     paddingBottom: heightPercentageToDP( 4 )
-  },
-  modalInfoText: {
-    marginLeft: wp( '7%' ),
-    color: Colors.THEAM_INFO_TEXT_COLOR,
-    fontSize: RFValue( 12 ),
-    fontFamily: Fonts.Regular,
-    textAlign: 'justify',
-    letterSpacing: RFValue( 0.2 ),
-    lineHeight: RFValue( 18 )
-  },
+  }
 } )
 
 
