@@ -4,7 +4,7 @@ import {
 } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  heightPercentageToDP as hp, widthPercentageToDP as wp
+  heightPercentageToDP as hp
 } from 'react-native-responsive-screen'
 import Colors from '../../common/Colors'
 import Fonts from '../../common/Fonts'
@@ -97,9 +97,6 @@ const NewTwoFASecret = props => {
             >
               Scan in Authenticator
             </Text>
-            {/* <Text style={styles.bottomNoteInfoText}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              </Text> */}
           </View>
 
         </ScrollView>
@@ -132,22 +129,10 @@ const styles = StyleSheet.create( {
       width: 0, height: 2
     },
   },
-  confirmButtonView: {
-    width: wp( '40%' ),
-    height: wp( '13%' ),
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-  },
   qrModalScrollView: {
     display: 'flex',
     backgroundColor: Colors.white,
-  },
-  bottomNoteInfoText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 11 ),
-    fontFamily: Fonts.Regular,
-  },
+  }
 } )
 
 export default NewTwoFASecret

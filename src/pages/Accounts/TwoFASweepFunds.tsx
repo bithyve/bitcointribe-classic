@@ -39,10 +39,8 @@ export default function TwoFASweepFunds( props ) {
   const [ sliderValueText, setSliderValueText ] = useState( 'Low Fee' )
   const [ isInvalidBalance, setIsInvalidBalance ] = useState( false )
   const [ isInvalidAddress, setIsInvalidAddress ] = useState( true )
-  // const [SendSuccessBottomSheet, setSendSuccessBottomSheet] = useState(
-  //   React.createRef(),
-  // );
   const [ isEditable, setIsEditable ] = useState( true )
+  
   const viewRef = useRef( null )
   const tapSliderHandler = ( evt ) => {
     if ( viewRef.current ) {

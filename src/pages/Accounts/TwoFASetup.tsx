@@ -1,24 +1,20 @@
+import { authenticator } from 'otplib'
 import React from 'react'
 import {
-  View,
-  Text,
   SafeAreaView,
-  StatusBar,
-  TouchableOpacity,
+  StatusBar, Text, TouchableOpacity, View
 } from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Colors from '../../common/Colors'
 import Fonts from '../../common/Fonts'
 import NavStyles from '../../common/Styles/NavStyles'
 import CommonStyles from '../../common/Styles/Styles'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
 import CopyThisText from '../../components/CopyThisText'
-import Colors from '../../common/Colors'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { RFValue } from 'react-native-responsive-fontsize'
 import QRCode from '../../components/QRCode'
-import { authenticator } from 'otplib'
 
 const TwoFASetup = props => {
   const twoFASetup = props.route.params?.twoFASetup
@@ -126,15 +122,6 @@ const TwoFASetup = props => {
               borderRadius: 10,
             }}
           >
-            {/* <Text
-              style={{
-                color: Colors.blue,
-                fontSize: RFValue(13),
-                fontFamily: Fonts.Medium,
-              }}
-            >
-              Activate Later
-            </Text> */}
           </TouchableOpacity>
         </View>
       </View>
