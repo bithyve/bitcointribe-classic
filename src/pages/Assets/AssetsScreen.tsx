@@ -25,8 +25,8 @@ import RGBIntroModal from 'src/components/rgb/RGBIntroModal'
 import RGBInactive from '../../assets/images/tabs/rgb_inactive.svg'
 import { RGBConfig, RGB_ASSET_TYPE, Wallet } from '../../bitcoin/utilities/Interface'
 import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
 import { translations } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
 import BottomSheetAddWalletInfo from '../../components/bottom-sheets/add-wallet/BottomSheetAddWalletInfo'
 import ModalContainer from '../../components/home/ModalContainer'
 import RGBServices from '../../services/RGBServices'
@@ -337,16 +337,6 @@ export default function AssetsScreen(props) {
             showsHorizontalScrollIndicator={false}
             directionalLockEnabled={true}
             alwaysBounceVertical={false}>
-            {/* <FlatList
-                        data={coinsData}
-                        contentContainerStyle={styles.flatListStyle}
-                        keyExtractor={keyExtractor}
-                        renderItem={renderCollectibleItems}
-                        numColumns={Math.ceil(coinsData.length/3)}
-                        showsVerticalScrollIndicator={false}
-                        showsHorizontalScrollIndicator={false}
-                        scrollEnabled={false}
-                    /> */}
             <StaggeredList
               numColumns={3}
               showsVerticalScrollIndicator={false}
@@ -432,23 +422,6 @@ export default function AssetsScreen(props) {
           height={windowHeight < 600? hp(60) : hp(52)}
         />
       </ModalContainer>
-      {/* <ModalContainer
-        onBackground={() => { }}
-        closeBottomSheet={() => { }}
-        visible={syncing || (!syncing && proceed)}
-      >
-        <RGBIntroModal
-          title={'Syncing Asset'}
-          info={'RGB protocol allows you to issue and manage fungible (coins) and non-fungible (collectibles) assets on the bitcoin network'}
-          otherText={'Syncing assets with RGB nodes'}
-          proceedButtonText={'Close'}
-          isIgnoreButton={false}
-          isBottomImage={true}
-          bottomImage={require('../../assets/images/icons/contactPermission.png')}
-          showBtn={!syncing && proceed}
-          closeModal={()=>{setProceed(false)}}
-        />
-      </ModalContainer> */}
     </View>
   )
 }
