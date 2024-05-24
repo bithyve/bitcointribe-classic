@@ -11,7 +11,6 @@ import { displayNameForBitcoinUnit } from '../../../common/data/enums/BitcoinUni
 import SubAccountKind from '../../../common/data/enums/SubAccountKind'
 import TransactionKind from '../../../common/data/enums/TransactionKind'
 import TransactionDescribing from '../../../common/data/models/Transactions/Interfaces'
-import Fonts from '../../../common/Fonts'
 import ListStyles from '../../../common/Styles/ListStyles'
 import HeaderTitle from '../../../components/HeaderTitle'
 import LabeledBalanceDisplay from '../../../components/LabeledBalanceDisplay'
@@ -312,14 +311,6 @@ const styles = StyleSheet.create( {
     flexGrow: 1,
     backgroundColor: Colors.backgroundColor,
   },
-  textHeader: {
-    fontSize: 24,
-    color: Colors.blue,
-    marginHorizontal: 20,
-    marginVertical: 20,
-    fontFamily: Fonts.Regular,
-  },
-
   bodySection: {
     paddingHorizontal: 10,
   },
