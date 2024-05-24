@@ -6,9 +6,7 @@ import {
 } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { RFValue } from 'react-native-responsive-fontsize'
-import {
-  heightPercentageToDP, heightPercentageToDP as hp, widthPercentageToDP, widthPercentageToDP as wp
-} from 'react-native-responsive-screen'
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import { connect } from 'react-redux'
 import {
   AccountType,
@@ -337,32 +335,4 @@ export default (
   } )( Home )
 )
 
-const styles = StyleSheet.create( {
-  cardContainer: {
-    backgroundColor: Colors.white,
-    width: widthPercentageToDP( '95%' ),
-    height: hp( 9 ),
-    borderRadius: widthPercentageToDP( 3 ),
-    marginBottom: 10,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginHorizontal: widthPercentageToDP( 5 ),
-    alignSelf: 'center',
-    flexDirection: 'row',
-    paddingHorizontal: widthPercentageToDP( 2 )
-  },
-
-  floatingActionButtonContainer: {
-    justifyContent: 'flex-end',
-    alignSelf: 'flex-end',
-    padding: heightPercentageToDP( 1.5 ),
-  },
-
-  cloudErrorModalImage: {
-    width: wp( '30%' ),
-    height: wp( '25%' ),
-    marginLeft: 'auto',
-    resizeMode: 'stretch',
-    marginBottom: hp( '-3%' ),
-  }
-} )
+const styles = StyleSheet.create( {} )
