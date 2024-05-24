@@ -92,32 +92,7 @@ const DownloadEncryptGrid = ( props ) => {
         info={'The Regeneration Mnemonic for the entropy grid will help you create back the grid, but you can optionally also download the grid or continue without downloading'}
         selectedTitle={headerTitle}
       />
-      <View
-        style={{
-          // height: '45%',
-        }}
-      >
-        {/* <TouchableOpacity
-          style={styles.menuWrapper}
-          onPress={() => onPressNext()}
-        >
-          <View style={styles.titleWrapper}>
-            <Text style={styles.titleText}>Download with Encryption</Text>
-            <Text style={styles.subTitleText}>
-              Provide an encryption password in the next step
-            </Text>
-          </View>
-          <View style={styles.arrowIconView}>
-            <MaterialIcons
-              name="arrow-forward-ios"
-              color={Colors.borderColor}
-              size={15}
-              style={{
-                alignSelf: 'center',
-              }}
-            />
-          </View>
-        </TouchableOpacity> */}
+      <View>
         <TouchableOpacity style={styles.menuWrapper} onPress={()=> showAlert()}>
           <View style={styles.titleWrapper}>
             <Text style={styles.titleText}>Download</Text>
@@ -137,29 +112,6 @@ const DownloadEncryptGrid = ( props ) => {
           </View>
         </TouchableOpacity>
       </View>
-      {/* <View>
-        <TouchableOpacity
-          style={styles.menuWrapper}
-          onPress={() => onPressNext()}
-        >
-          <View style={styles.titleWrapper}>
-            <Text style={styles.titleText}>Proceed without downloading</Text>
-            <Text style={styles.subTitleText}>
-              If you have already noted down the 12-word Regeneration Mnemonic
-            </Text>
-          </View>
-          <View style={styles.arrowIconView}>
-            <MaterialIcons
-              name="arrow-forward-ios"
-              color={Colors.borderColor}
-              size={15}
-              style={{
-                alignSelf: 'center',
-              }}
-            />
-          </View>
-        </TouchableOpacity>
-      </View> */}
       <View style={styles.bottomButtonView}>
         <View style={styles.statusIndicatorView}>
           <View style={styles.statusIndicatorInactiveView} />
@@ -196,22 +148,6 @@ const DownloadEncryptGrid = ( props ) => {
           </AppBottomSheetTouchableWrapper>
         </View>
       </View>
-      {/* <ModalContainer
-        onBackground={()=> setFileSavedModal( false )}
-        visible={fileSavedModal}
-        closeBottomSheet={()=> setFileSavedModal( false )}
-      >
-        <FileSavedModal
-          title={'File Saved'}
-          info={'Your Border wallet PDF has been downloaded to the location below and you can also view it in your local files.'}
-          proceedButtonText={'Next'}
-          cancelButtonText={'Open File'}
-          isIgnoreButton
-          closeModal={()=> setFileSavedModal( false )}
-          onPressProceed={() => {setFileSavedModal( false ); onPressNext()}}
-          onPressIgnore={() => downloadPdf()}
-        />
-      </ModalContainer> */}
     </SafeAreaView>
   )
 }

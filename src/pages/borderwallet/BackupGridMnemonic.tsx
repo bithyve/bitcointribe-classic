@@ -79,18 +79,7 @@ const BackupGridMnemonic = ( props ) => {
         keyExtractor={item => item}
         numColumns={2}
       />
-      {/* <BottomInfoBox
-        title={'Note'}
-        infoText={'Treat these words & grid with the same degree of security that you would a Bitcoin seed phrase'}
-      /> */}
       <View style={styles.bottomButtonView}>
-        {/* <View style={styles.statusIndicatorView}>
-          <View style={styles.statusIndicatorActiveView} />
-          <View style={styles.statusIndicatorInactiveView} />
-          <View style={styles.statusIndicatorInactiveView} />
-          <View style={styles.statusIndicatorInactiveView} />
-          <View style={styles.statusIndicatorInactiveView} />
-        </View> */}
         <View>
           <TouchableOpacity
             onPress={()=> props.navigation.navigate( 'ValidateBorderWalletPattern', {
@@ -105,11 +94,6 @@ const BackupGridMnemonic = ( props ) => {
           </TouchableOpacity>
         </View>
       </View>
-      {/* <ModalContainer onBackground={() =>setGenerateEntropyGrid( false )}
-        visible={generateEntropyGrid}
-        closeBottomSheet={() => { }}>
-        <GenerateEntropyGridModal closeModal={() => setGenerateEntropyGrid( false )}/>
-      </ModalContainer> */}
     </SafeAreaView>
   )
 }
@@ -156,23 +140,6 @@ const styles = StyleSheet.create( {
     justifyContent: 'flex-end',
     paddingHorizontal: wp( 30 ),
     paddingBottom: deviceInfoModule.hasNotch() ? hp( 4 ) : hp( 3 ),
-  },
-  statusIndicatorView: {
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  statusIndicatorActiveView: {
-    height: 10,
-    width: 10,
-    backgroundColor: Colors.CLOSE_ICON_COLOR,
-    borderRadius: 10,
-  },
-  statusIndicatorInactiveView: {
-    height: 7,
-    width: 7,
-    backgroundColor: Colors.THEAM_TEXT_COLOR,
-    borderRadius: 10,
-    marginLeft: 5,
-  },
+  }
 } )
 export default BackupGridMnemonic
