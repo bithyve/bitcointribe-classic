@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
+import CountDown from 'react-native-countdown-component'
+import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import Config from '../../bitcoin/HexaConfig'
 import Colors from '../../common/Colors'
 import Fonts from '../../common/Fonts'
-import { RFValue } from 'react-native-responsive-fontsize'
-import Entypo from 'react-native-vector-icons/Entypo'
-import Ionicons from 'react-native-vector-icons/Ionicons'
 import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
-import CountDown from 'react-native-countdown-component'
-import { config } from 'process'
-import Config from '../../bitcoin/HexaConfig'
 import UserDetails from '../../components/UserDetails'
 
 export default function TimerModalContents( props ) {
@@ -149,31 +146,6 @@ export default function TimerModalContents( props ) {
               />
             ) : null}
           </View>
-          {/* <UserD */}
-          {/*
-          <AppBottomSheetTouchableWrapper
-            onPress={() => props.onPressContinue()}
-            style={{
-              backgroundColor: Colors.blue,
-              borderRadius: 10,
-              width: wp('50%'),
-              height: wp('13%'),
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginTop: hp('3%'),
-              marginBottom: hp('3%'),
-            }}
-          >
-            <Text
-              style={{
-                color: Colors.white,
-                fontSize: RFValue(13),
-                fontFamily: Fonts.Medium,
-              }}
-            >
-              Continue
-            </Text>
-          </AppBottomSheetTouchableWrapper> */}
         </View>
       </View>
     </View>
@@ -222,29 +194,6 @@ const styles = StyleSheet.create( {
     marginRight: 20,
     flexWrap: 'wrap',
   },
-  qrModalImage: {
-    width: wp( '100%' ),
-    height: wp( '100%' ),
-    borderRadius: 20,
-  },
-  otpText: {
-    color: Colors.black,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 23 ),
-  },
-  otpTextView: {
-    height: wp( '12%' ),
-    width: wp( '12%' ),
-    backgroundColor: Colors.backgroundColor,
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  otpView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: hp( '5%' ),
-  },
   separator: {
     height: 1,
     backgroundColor: Colors.borderColor,
@@ -260,11 +209,5 @@ const styles = StyleSheet.create( {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-  },
-  timerText: {
-    color: Colors.blue,
-    fontSize: RFValue( 19 ),
-    fontFamily: Fonts.Regular,
-    marginLeft: 10,
   },
 } )

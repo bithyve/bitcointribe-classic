@@ -1,19 +1,15 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
+  StyleSheet, Text, View
 } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen';
 import Colors from '../../common/Colors';
 import Fonts from '../../common/Fonts';
-import BottomInfoBox from '../../components/BottomInfoBox';
 import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper';
+import BottomInfoBox from '../../components/BottomInfoBox';
 
 export default function TwoFASetupWarningModal(props) {
   return (
@@ -79,9 +75,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '100%',
     paddingBottom: hp('2%'),
-    elevation: 10,
-    shadowOpacity: 10,
-    shadowOffset: { width: 0, height: 2 },
   },
   manageBackupButtonText: {
     color: Colors.blue,

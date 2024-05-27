@@ -1,27 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
-  View,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  TextInput,
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
-  StatusBar,
-  Alert
+  StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View
 } from 'react-native'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import DeviceInfo from 'react-native-device-info'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import BottomInfoBox from '../../components/BottomInfoBox'
-import DeviceInfo from 'react-native-device-info'
-import commonStyle from '../../common/Styles/Styles'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Colors from '../../common/Colors'
+import Fonts from '../../common/Fonts'
+import commonStyle from '../../common/Styles/Styles'
+import BottomInfoBox from '../../components/BottomInfoBox'
 
 export default function WalletNameRecovery( props ) {
   const [ inputStyle, setInputStyle ] = useState( styles.inputBox )
@@ -118,9 +111,6 @@ export default function WalletNameRecovery( props ) {
                   props.navigation.navigate( 'RecoveryQuestion', {
                     walletName
                   } )
-                  // props.navigation.navigate( 'RestoreWithICloud', {
-                  //   walletName
-                  // } )
                 }
                 style={styles.buttonView}
               >
@@ -153,10 +143,6 @@ export default function WalletNameRecovery( props ) {
 }
 
 const styles = StyleSheet.create( {
-  modalContentContainer: {
-    flex: 1,
-    backgroundColor: Colors.white,
-  },
   bottomButtonView: {
     flexDirection: 'row',
     paddingLeft: 30,
@@ -213,24 +199,7 @@ const styles = StyleSheet.create( {
     backgroundColor: Colors.white,
     fontFamily: Fonts.Regular
   },
-  proceedButtonView: {
-    height: wp( '13%' ),
-    width: wp( '30%' ),
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-    elevation: 10,
-    shadowColor: Colors.shadowBlue,
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 15, height: 15
-    },
-    backgroundColor: Colors.blue,
-    marginRight: 20,
-    marginLeft: 20
-  },
   proceedButtonText: {
-
     color: Colors.white,
     fontSize: RFValue( 13 ),
     fontFamily: Fonts.Medium

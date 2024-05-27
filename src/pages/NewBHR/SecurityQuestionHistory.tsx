@@ -90,8 +90,6 @@ const SecurityQuestionHistory = ( props ) => {
 
   const wallet: Wallet = useSelector( ( state ) => state.storage.wallet )
   const next = props.route.params?.next
-  const [ showRescanningPrompt, setShowRescanningPrompt ] = useState( false )
-  const [ showRescanningModal, setShowRescanningModal ] = useState( false )
   const [ showSelectMethodModal, setShowSelectMethodModal ] = useState( false )
   const [ copied, setCopied ] = useState( false )
   const [ confirmPswdTextInput ] = useState( React.createRef() )
@@ -501,11 +499,6 @@ const SecurityQuestionHistory = ( props ) => {
               </TouchableWithoutFeedback>
             ) : null}
           </View>
-          {/* {pswdError.length == 0 && (
-            <Text style={styles.helpText}>
-              {loginStrings.Numbersorspecial}
-            </Text>
-          )} */}
           <View
             style={{
               ...hintInputStyle,
@@ -547,24 +540,6 @@ const SecurityQuestionHistory = ( props ) => {
               }
               }
             />
-            {/* {hintText ? (
-              <TouchableWithoutFeedback
-                onPress={() => {
-                  setHideShowHint( !hideShowHint )
-
-                  // setDropdownBoxOpenClose( false )
-                }}
-              >
-                <Feather
-                  style={{
-                    marginLeft: 'auto', padding: 10
-                  }}
-                  size={15}
-                  color={Colors.blue}
-                  name={hideShowHint ? 'eye-off' : 'eye'}
-                />
-              </TouchableWithoutFeedback>
-            ) : null} */}
           </View>
 
           <View
@@ -595,10 +570,6 @@ const SecurityQuestionHistory = ( props ) => {
             ) && (
               setButtonVisible()
             ) || null}
-            {/* <View style={styles.statusIndicatorView}>
-            <View style={styles.statusIndicatorInactiveView} />
-            <View style={styles.statusIndicatorActiveView} />
-          </View> */}
           </View> : null}
           {showNote &&
         <View style={{
@@ -907,21 +878,6 @@ const SecurityQuestionHistory = ( props ) => {
 export default SecurityQuestionHistory
 
 const styles = StyleSheet.create( {
-  modalHeaderTitleText: {
-    color: Colors.blue,
-    fontSize: RFValue( 18 ),
-    fontFamily: Fonts.Regular,
-  },
-  modalHeaderTitleView: {
-    borderBottomWidth: 1,
-    borderColor: Colors.borderColor,
-    alignItems: 'center',
-    flexDirection: 'row',
-    paddingRight: 10,
-    paddingBottom: hp( '3%' ),
-    marginTop: 20,
-    marginBottom: 15,
-  },
   inputBox: {
     borderWidth: 0.5,
     borderRadius: 10,
@@ -963,12 +919,6 @@ const styles = StyleSheet.create( {
     },
     backgroundColor: Colors.blue,
   },
-  dropdownBoxText: {
-    color: Colors.textColorGrey,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 13 ),
-    marginRight: 15,
-  },
   dropdownBoxModal: {
     borderRadius: 10,
     margin: 15,
@@ -981,24 +931,6 @@ const styles = StyleSheet.create( {
     },
     backgroundColor: Colors.white,
   },
-  dropdownBoxModalElementView: {
-    height: 55,
-    justifyContent: 'center',
-    paddingLeft: 15,
-    paddingRight: 15,
-  },
-
-  helpText: {
-    fontSize: RFValue( 10 ),
-    color: Colors.textColorGrey,
-    fontFamily: Fonts.Italic,
-    marginRight: wp( 5 ),
-    alignSelf: 'flex-end',
-    width: wp( '54%' ),
-    textAlign: 'right',
-    marginTop: hp( 0.5 )
-  },
-
   bottomNoteInfoText: {
     color: Colors.textColorGrey,
     fontSize: RFValue( 13 ),
@@ -1006,12 +938,6 @@ const styles = StyleSheet.create( {
     letterSpacing: 0.6,
     lineHeight: 18
   },
-  contactText: {
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Regular,
-    color: Colors.white,
-  },
-
   containerPasscode: {
     backgroundColor: Colors.white,
     borderRadius: wp( '3%' ),

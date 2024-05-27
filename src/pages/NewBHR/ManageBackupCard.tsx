@@ -1,21 +1,16 @@
 import React, { memo, useContext } from 'react'
 import {
-  View,
-  Image,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
+  Image, StyleSheet, Text, TouchableOpacity, View
 } from 'react-native'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import MBKeeperButton from './MBKeeperButton'
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import Colors from '../../common/Colors'
 import { LocalizationContext } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
+import MBKeeperButton from './MBKeeperButton'
 
 function ManageBackupCard( props ) {
   const value = props.value
@@ -101,32 +96,6 @@ function ManageBackupCard( props ) {
                 }}
               />
             )}
-            {/* <TouchableOpacity
-              onPress={()=>props.onPressKnowMore()}
-              style={{
-                ...styles.cardButtonView,
-                backgroundColor:
-                  value.status == 'notSetup' ? Colors.white : Colors.deepBlue,
-              }}
-            >
-              <Text
-                style={{
-                  ...styles.cardButtonText,
-                  color: textColor,
-                  width: 'auto',
-                }}
-              >
-                Know More
-              </Text>
-            </TouchableOpacity>
-          </View>
-
-          <View
-            style={{
-              flexDirection: 'row',
-              marginTop: 'auto',
-            }}
-          > */}
             <View
               style={{
                 justifyContent: 'center',
@@ -253,13 +222,6 @@ const styles = StyleSheet.create( {
   },
   cardHealthImageView: {
     backgroundColor: Colors.red,
-    // shadowColor: Colors.deepBlue,
-    // shadowOpacity: 1,
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 3,
-    // },
-    // shadowRadius: 10,
     borderRadius: wp( '6%' ) / 2,
     width: wp( '6%' ),
     height: wp( '6%' ),
@@ -270,20 +232,6 @@ const styles = StyleSheet.create( {
     width: wp( '2%' ),
     height: wp( '4%' ),
     resizeMode: 'contain',
-  },
-  cardButtonView: {
-    width: wp( '21%' ),
-    height: wp( '8' ),
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 'auto',
-    borderRadius: 8,
-  },
-  cardButtonText: {
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Regular,
-    color: Colors.white,
-    width: wp( '24%' ),
   },
   levelText: {
     fontSize: RFValue( 18 ),

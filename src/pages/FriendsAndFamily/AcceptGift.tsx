@@ -1,27 +1,27 @@
+import idx from 'idx'
 import React, { useEffect, useRef, useState } from 'react'
 import { Keyboard, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
   heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
+  widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import { RootSiblingParent } from 'react-native-root-siblings'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { useDispatch, useSelector } from 'react-redux'
 import CheckingAcc from '../../assets/images/svgs/gift_icon_new.svg'
 import { AccountType, DeepLinkEncryptionType, Gift } from '../../bitcoin/utilities/Interface'
 import Colors from '../../common/Colors'
+import AccountShell from '../../common/data/models/AccountShell'
 import Fonts from '../../common/Fonts'
 import BottomInfoBox from '../../components/BottomInfoBox'
-import idx from 'idx'
-import { RootSiblingParent } from 'react-native-root-siblings'
-import AccountShell from '../../common/data/models/AccountShell'
+import ModalContainer from '../../components/home/ModalContainer'
+import LoaderModal from '../../components/LoaderModal'
 import { giftAccepted } from '../../store/actions/accounts'
 import usePrimarySubAccountForShell from '../../utils/hooks/account-utils/UsePrimarySubAccountForShell'
 import AddGiftToAccount from './AddGiftToAccount'
 import DashedLargeContainer from './DahsedLargeContainer'
 import ThemeList from './Theme'
-import ModalContainer from '../../components/home/ModalContainer'
-import LoaderModal from '../../components/LoaderModal'
 
 
 export type Props = {
@@ -723,24 +723,6 @@ export default function AcceptGift( { giftLoading, stopReset, navigation, closeM
 }
 
 const styles = StyleSheet.create( {
-  statusIndicatorView: {
-    flexDirection: 'row',
-    marginLeft: 'auto',
-    marginHorizontal: wp( '1%' ),
-  },
-  statusIndicatorActiveView: {
-    height: 5,
-    width: 25,
-    backgroundColor: Colors.blue,
-    borderRadius: 10,
-    marginLeft: 5,
-  },
-  statusIndicatorInactiveView: {
-    width: 5,
-    backgroundColor: Colors.lightBlue,
-    borderRadius: 10,
-    marginLeft: 5,
-  },
   box: {
     flex: 1,
     height: 60,
@@ -750,46 +732,6 @@ const styles = StyleSheet.create( {
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
     justifyContent: 'center',
-  },
-  successModalHeaderView: {
-    flex: 1,
-    marginTop: hp( '3%' ),
-    marginBottom: hp( '3%' ),
-    marginLeft: wp( '8%' ),
-  },
-  successModalButtonView: {
-    height: wp( '13%' ),
-    width: wp( '35%' ),
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-    elevation: 10,
-    shadowColor: Colors.shadowBlue,
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 15, height: 15
-    },
-    alignSelf: 'center',
-    marginLeft: wp( '8%' ),
-  },
-  proceedButtonText: {
-    color: Colors.white,
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Medium,
-  },
-  successModalAmountImage: {
-    width: wp( '10%' ),
-    height: wp( '10%' ),
-    marginRight: 10,
-    marginLeft: 10,
-    // marginBottom: wp('1%'),
-    resizeMode: 'contain',
-  },
-  phoneNumberInfoText: {
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 11 ),
-    color: Colors.textColorGrey,
-    marginBottom: wp( '5%' ),
   },
   inputErrorText: {
     fontFamily: Fonts.MediumItalic,
@@ -809,11 +751,6 @@ const styles = StyleSheet.create( {
     marginBottom: wp( '5%' ),
     alignItems: 'center',
     marginTop: 10,
-  },
-  countryCodeText: {
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 13 ),
-    paddingRight: 15,
   },
   separatorView: {
     marginRight: 15,
@@ -858,22 +795,6 @@ const styles = StyleSheet.create( {
     textAlign: 'center',
     lineHeight: 18,
   },
-  textStyles: {
-    color: Colors.black,
-    fontSize: RFValue( 13 ),
-    textAlign: 'center',
-    lineHeight: 18,
-  },
-  textFocused: {
-    color: Colors.black,
-    fontSize: RFValue( 13 ),
-    textAlign: 'center',
-    lineHeight: 18,
-  },
-
-
-
-
   buttonText: {
     color: Colors.white,
     fontSize: RFValue( 13 ),
@@ -885,23 +806,7 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
-    // shadowColor: Colors.shadowBlue,
-    // shadowOpacity: 1,
-    // shadowOffset: {
-    //   width: 15, height: 15
-    // },
     backgroundColor: Colors.blue,
-  },
-  availableToSpendText: {
-    color: Colors.blue,
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Italic,
-    lineHeight: 15,
-  },
-  balanceText: {
-    color: Colors.blue,
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Italic,
   },
   modalTitleText: {
     color: Colors.blue,
@@ -919,27 +824,8 @@ const styles = StyleSheet.create( {
     marginBottom: hp( 2 )
   },
   modalContentContainer: {
-    // height: '100%',
     backgroundColor: Colors.bgColor,
     paddingBottom: hp( 4 ),
   },
-  rootContainer: {
-    flex: 1
-  },
-  viewSectionContainer: {
-    marginBottom: 16,
-  },
-  infoHeaderSection: {
-    paddingHorizontal: 24,
-    paddingVertical: 24,
-  },
-  floatingActionButtonContainer: {
-    bottom: hp( 1.5 ),
-    right: 0,
-    marginLeft: 'auto',
-    padding: hp( 1.5 ),
-  },
 } )
-
-// export default AcceptGift
 

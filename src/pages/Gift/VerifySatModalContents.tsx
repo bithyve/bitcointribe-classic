@@ -112,9 +112,6 @@ export default function VerifySatModalContents( props ) {
             flexDirection:'row', marginTop: RFValue( 25 )
             // , alignItems:'flex-start',
           }}>
-            {/* <View style={{
-              width:RFValue( 5 ), height:RFValue( 5 ), borderRadius: RFValue( 5 ), backgroundColor: Colors.blue, marginTop: RFValue( 5 )
-            }}/> */}
             <Text style={{
               fontSize: RFValue( 12 ), color:Colors.textColorGrey, fontFamily: Fonts.Regular, marginStart: RFValue( 5 ), textAlign: 'center', marginTop:20
             }}>
@@ -203,27 +200,17 @@ export default function VerifySatModalContents( props ) {
 
 const styles = StyleSheet.create( {
   modalContentContainer: {
-    // height: '100%',
     backgroundColor: Colors.white,
   },
   successModalHeaderView: {
     marginRight: wp( '8%' ),
     marginLeft: wp( '8%' ),
-    // backgroundColor:'red'
-    // marginTop: wp( '1%' ),
   },
   modalInfoText: {
     color: Colors.textColorGrey,
-    // opacity: 1,
     fontSize: RFValue( 12 ),
     fontFamily: Fonts.Regular,
     letterSpacing: 0.6,
-  },
-  successModalAmountView: {
-    justifyContent: 'center',
-    marginRight: wp( '12%' ),
-    marginLeft: wp( '8%' ),
-    marginTop: hp( '2%' ),
   },
   successModalButtonView: {
     height: wp( '12%' ),
@@ -237,14 +224,6 @@ const styles = StyleSheet.create( {
     alignSelf: 'center',
     marginLeft: wp( '8%' ),
     marginBottom: hp( '3%' ),
-  },
-  successModalImage: {
-    width: wp( '30%' ),
-    height: wp( '30%' ),
-    marginLeft: 'auto',
-    resizeMode: 'stretch',
-    marginRight: wp( -3 ),
-    marginBottom: wp( -3 ),
   },
   proceedButtonText: {
     color: Colors.white,

@@ -1,37 +1,46 @@
 import { NativeModules } from 'react-native'
+import AccountOperations from 'src/bitcoin/utilities/accounts/AccountOperations'
 import { NetworkType, RGBConfig } from '../bitcoin/utilities/Interface'
 
 const { RGB } = NativeModules
-const NETWORK = NetworkType.TESTNET
+const SATS_FOR_RGB = 9000
 
 export default class RGBServices{
+  static NETWORK = NetworkType.TESTNET
+
   static generateKeys = async (): Promise<RGBConfig> => {
     const keys = await RGB.generateKeys(
-      NETWORK
+      this.NETWORK
     )
     return JSON.parse( keys )
   }
 
   static restoreKeys = async ( mnemonic: string ): Promise<RGBConfig> => {
     const keys = await RGB.restoreKeys(
-      NETWORK,
+      this.NETWORK,
       mnemonic
     )
     return JSON.parse( keys )
   }
 
-  static getAddress = async ( mnemonic: string ): Promise<string> => {
-    const address = await RGB.getAddress(
-      mnemonic,
-      NETWORK
-    )
+  static getAddress = async ( ): Promise<string> => {
+    const address = await RGB.getAddress()
     return address
+  }
+
+  static createUtxos = async (account, averageTxFeeByNetwork): Promise<string> => {
+    const address = await RGB.getAddress()
+    const txid = await AccountOperations.sendToAddress(account, address, SATS_FOR_RGB, averageTxFeeByNetwork )
+    if(txid) {
+      const response = await RGB.createUtxos()
+      return JSON.parse( response )
+    }
   }
 
   static initiate = async ( mnemonic: string, pubKey: string ): Promise<string> => {
     try {
       const data = await RGB.initiate(
-        NETWORK,
+        this.NETWORK,
         mnemonic,
         pubKey,
       )
@@ -44,7 +53,7 @@ export default class RGBServices{
   static getBalance = async ( mnemonic: string ): Promise<string> => {
     const balance = await RGB.getBalance(
       mnemonic,
-      NETWORK
+      this.NETWORK
     )
     return JSON.parse( balance )
   }
@@ -52,7 +61,7 @@ export default class RGBServices{
   static getTransactions = async ( mnemonic: string ): Promise<[]> => {
     const txns = await RGB.getTransactions(
       mnemonic,
-      NETWORK
+      this.NETWORK
     )
     return JSON.parse( txns )
   }
@@ -60,7 +69,7 @@ export default class RGBServices{
   static sync = async ( mnemonic: string ): Promise<string> => {
     const isSynched = await RGB.sync(
       mnemonic,
-      NETWORK
+      this.NETWORK
     )
     return isSynched
   }
@@ -69,7 +78,7 @@ export default class RGBServices{
     const assets = await RGB.syncRgbAssets(
       mnemonic,
       pubKey,
-      NETWORK
+      this.NETWORK
     )
     return JSON.parse( assets )
   }
@@ -77,7 +86,7 @@ export default class RGBServices{
   static sendBtc = async ( mnemonic: string, address: string, amount: string, feeRate: Number ): Promise<string> => {
     const txid = await RGB.sendBtc(
       mnemonic,
-      NETWORK,
+      this.NETWORK,
       address,
       amount,
       feeRate
@@ -85,12 +94,9 @@ export default class RGBServices{
     return JSON.parse( txid )
   }
 
-  static receiveAsset = async ( mnemonic: string ): Promise<string> => {
+  static receiveAsset = async (): Promise<string> => {
     try {
-      const data = await RGB.receiveAsset(
-        mnemonic,
-        NETWORK
-      )
+      const data = await RGB.receiveAsset()
       return JSON.parse( data )
     } catch ( error ) {
       return `${error}`

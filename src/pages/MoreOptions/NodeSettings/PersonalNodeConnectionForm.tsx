@@ -1,22 +1,20 @@
-import React, { useMemo, useState, useRef, useEffect } from 'react'
-import { View, Text, StyleSheet, Switch } from 'react-native'
-import ListStyles from '../../../common/Styles/ListStyles'
-import FormStyles from '../../../common/Styles/FormStyles'
-import { Button, Input } from 'react-native-elements'
-import useActivePersonalNode from '../../../utils/hooks/state-selectors/nodeSettings/UseActivePersonalNode'
-import ButtonBlue from '../../../components/ButtonBlue'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { StyleSheet, Switch, Text, View } from 'react-native'
+import { Input } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { RFValue } from 'react-native-responsive-fontsize'
-import Colors from '../../../common/Colors'
-import Entypo from 'react-native-vector-icons/Entypo'
-import {
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen'
-import Fonts from '../../../common/Fonts'
-import { translations } from '../../../common/content/LocContext'
-import ButtonStyles from '../../../common/Styles/ButtonStyles'
-import PersonalNode from '../../../common/data/models/PersonalNode'
 import LinearGradient from 'react-native-linear-gradient'
+import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import Colors from '../../../common/Colors'
+import { translations } from '../../../common/content/LocContext'
+import PersonalNode from '../../../common/data/models/PersonalNode'
+import Fonts from '../../../common/Fonts'
+import ButtonStyles from '../../../common/Styles/ButtonStyles'
+import FormStyles from '../../../common/Styles/FormStyles'
+import ListStyles from '../../../common/Styles/ListStyles'
+import useActivePersonalNode from '../../../utils/hooks/state-selectors/nodeSettings/UseActivePersonalNode'
 
 export type PersonalNodeFormData = {
   ipAddress: string;
@@ -105,13 +103,6 @@ const PersonalNodeConnectionForm: React.FC<Props> = ( { params, onSubmit, onClos
               <Text style={ButtonStyles.miniNavButtonText}>{'Close'}</Text>
             </LinearGradient>
           </TouchableOpacity>
-          {/* <Button
-            raised
-            buttonStyle={ButtonStyles.miniNavButton}
-            title="Close"
-            titleStyle={ButtonStyles.miniNavButtonText}
-            onPress={onCloseClick}
-          /> */}
         </View>
       </View>
 
@@ -227,17 +218,6 @@ const styles = StyleSheet.create( {
     color: Colors.textColorGrey,
     fontSize: RFValue( 12 ),
     fontFamily: Fonts.Regular,
-  },
-  useFallbackCheckView: {
-    width: wp( '7%' ),
-    height: wp( '7%' ),
-    borderRadius: 7,
-    backgroundColor: Colors.white,
-    borderColor: Colors.borderColor,
-    borderWidth: 1,
-    marginLeft: 'auto',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   proceedBtnWrapper: {
     height: wp( '13%' ),

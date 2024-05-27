@@ -338,16 +338,6 @@ const styles = StyleSheet.create( {
     height: '100%',
     backgroundColor: Colors.white,
   },
-  box: {
-    backgroundColor: Colors.backgroundColor1,
-    marginRight: wp( '5%' ),
-    marginLeft: wp( '5%' ),
-    paddingTop: hp( '2%' ),
-    paddingBottom: hp( '2%' ),
-    marginBottom: hp( '3%' ),
-    borderRadius: 10,
-    justifyContent: 'center',
-  },
   successModalHeaderView: {
     marginTop: hp( '4%' ),
     marginBottom: hp( '3%' ),
@@ -362,52 +352,12 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 11 ),
     fontFamily: Fonts.Regular,
   },
-  successModalAmountView: {
-    marginRight: wp( '10%' ),
-    marginLeft: wp( '10%' ),
-  },
-  successModalWalletNameText: {
-    color: Colors.black,
-    fontSize: RFValue( 25 ),
-    fontFamily: Fonts.Regular,
-    textAlign: 'center',
-  },
-  successModalAmountImage: {
-    width: wp( '15%' ),
-    height: wp( '15%' ),
-    marginRight: 15,
-    marginLeft: 10,
-    marginBottom: wp( '1%' ),
-    resizeMode: 'contain',
-  },
-  successModalAmountText: {
-    color: Colors.black,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 21 ),
-    marginLeft: 5,
-  },
-  successModalAmountUnitText: {
-    color: Colors.borderColor,
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 11 ),
-  },
-  successModalAmountInfoView: {
-    flex: 0.4,
-    marginRight: wp( '10%' ),
-    marginLeft: wp( '10%' ),
-  },
   successModalButtonView: {
     height: wp( '13%' ),
     width: wp( '35%' ),
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
-    elevation: 10,
-    shadowColor: Colors.shadowBlue,
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 15, height: 15
-    },
     backgroundColor: Colors.blue,
     alignSelf: 'center',
   },
@@ -415,11 +365,5 @@ const styles = StyleSheet.create( {
     color: Colors.white,
     fontSize: RFValue( 13 ),
     fontFamily: Fonts.Medium,
-  },
-  separator: {
-    height: 2,
-    marginLeft: wp( '2%' ),
-    marginRight: wp( '2%' ),
-    backgroundColor: Colors.borderColor,
   },
 } )

@@ -449,12 +449,6 @@ const styles = StyleSheet.create( {
     width: wp( '13%' ),
     borderRadius: 7,
     marginLeft: 20,
-    elevation: 10,
-    shadowColor: Colors.borderColor,
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 0, height: 3
-    },
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.white,

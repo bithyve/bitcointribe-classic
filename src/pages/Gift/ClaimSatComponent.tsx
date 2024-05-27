@@ -1,16 +1,15 @@
 import React, { useContext, useState } from 'react'
-import { View, Image, Text, StyleSheet, TouchableOpacity, TextInput, Keyboard } from 'react-native'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import { Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import { Shadow } from 'react-native-shadow-2'
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Colors from '../../common/Colors'
 import { LocalizationContext } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
 
 export default function ClaimSatComponent( props ) {
   const { translations } = useContext( LocalizationContext )
@@ -62,9 +61,6 @@ export default function ClaimSatComponent( props ) {
             >
               {props.title}
             </Text>
-            {/* <TouchableOpacity onPress={props.onCloseClick} style={{
-              width: 28, height: 28, backgroundColor: Colors.blue
-            }}></TouchableOpacity> */}
           </View>
           {props.info ? (
             <Text
@@ -108,11 +104,6 @@ export default function ClaimSatComponent( props ) {
               onChangeText={( text ) => {
                 setSpendCode( text.trim() )
               }}
-            // onFocus={() => {
-            //   if ( word.length > 0 ) {
-            //     setWord( '' )
-            //   }
-            // }}
             />
           </Shadow>
         </View>
@@ -121,9 +112,6 @@ export default function ClaimSatComponent( props ) {
             height: hp( '12%' ),
             flexDirection: 'row',
             marginTop: RFValue( 38 ),
-            // alignItems: 'center',
-            // backgroundColor: 'red',
-            // justifyContent: 'flex-end',
             marginEnd: RFValue( 20 )
           }}
         >
@@ -193,12 +181,6 @@ const styles = StyleSheet.create( {
     fontFamily: Fonts.Regular,
     letterSpacing: 0.6
   },
-  successModalAmountView: {
-    justifyContent: 'center',
-    marginRight: wp( '12%' ),
-    marginLeft: wp( '8%' ),
-    marginTop: hp( '2%' ),
-  },
   successModalButtonView: {
     height: wp( '12%' ),
     minWidth: wp( '22%' ),
@@ -211,14 +193,6 @@ const styles = StyleSheet.create( {
     alignSelf: 'center',
     marginLeft: wp( '8%' ),
     marginBottom: hp( '3%' ),
-  },
-  successModalImage: {
-    width: wp( '30%' ),
-    height: wp( '30%' ),
-    marginLeft: 'auto',
-    resizeMode: 'stretch',
-    marginRight: wp( -3 ),
-    marginBottom: wp( -3 ),
   },
   proceedButtonText: {
     color: Colors.white,

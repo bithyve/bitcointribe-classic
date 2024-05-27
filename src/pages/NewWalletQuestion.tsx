@@ -287,29 +287,6 @@ export default function NewWalletQuestion( props ) {
         answer: appGeneratedPassword,
       }
     }
-    // if ( activeIndex === 0 ) {
-    //   security = {
-    //     questionId: '100', //for AGSP
-    //     question: 'App generated password',
-    //     answer: appGeneratedPassword,
-    //   }
-    // } else if ( activeIndex === 1 ) {
-    //   security = {
-    //     questionId: dropdownBoxValue.id,
-    //     question: dropdownBoxValue.question,
-    //     answer,
-    //   }
-    // } else if ( activeIndex === 2 ) {
-    //   if( passwordScore < 2 ){
-    //     setPswdError( 'Weak password. Try using longer passwords with a mix of lowercase, upper case, numbers and characters' )
-    //     return
-    //   }
-    //   security = {
-    //     questionId: '0',
-    //     question: hintText,
-    //     answer: pswd,
-    //   }
-    // }
     setSignUpStarted( true )
     showLoader()
     setShowAGSPmodal( false )
@@ -1505,13 +1482,6 @@ const styles = StyleSheet.create( {
     marginRight: 20,
     paddingLeft: 15,
     paddingRight: 15,
-    elevation: 10,
-    shadowColor: Colors.borderColor,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 2,
-      height: 2,
-    },
     backgroundColor: Colors.white,
     alignItems: 'center',
   },
@@ -1521,12 +1491,6 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
-    shadowColor: Colors.shadowBlue,
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 15,
-      height: 15,
-    },
     backgroundColor: Colors.blue,
   },
   buttonText: {
@@ -1578,13 +1542,6 @@ const styles = StyleSheet.create( {
     borderRadius: 10,
     marginLeft: 20,
     marginRight: 20,
-    elevation: 10,
-    shadowColor: Colors.borderColor,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 10,
-      height: 10,
-    },
     backgroundColor: Colors.white,
   },
   modalInputBox: {
@@ -1614,13 +1571,6 @@ const styles = StyleSheet.create( {
     borderRadius: 10,
     margin: 15,
     height: 'auto',
-    elevation: 10,
-    shadowColor: Colors.shadowBlue,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
     backgroundColor: Colors.white,
   },
   dropdownBoxModalElementView: {
@@ -1684,13 +1634,6 @@ const styles = StyleSheet.create( {
     flexDirection:'row',
     alignItems:'center',
     justifyContent:'space-between',
-    elevation: 10,
-    shadowColor: Colors.shadowColor,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 2,
-      height: 8,
-    },
     backgroundColor: Colors.white,
   },
   fieldsButtonContainer:{
@@ -1699,13 +1642,6 @@ const styles = StyleSheet.create( {
     marginBottom:10,
     padding:12,
     height: 'auto',
-    elevation: 10,
-    shadowColor: Colors.shadowColor,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 2,
-      height: 8,
-    },
     backgroundColor: Colors.white,
   },
   enterPassword:{

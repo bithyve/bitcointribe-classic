@@ -1,15 +1,14 @@
 import React from 'react'
-import { View, Image, Text, StyleSheet } from 'react-native'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import { Image, StyleSheet, Text, View } from 'react-native'
+import CountDown from 'react-native-countdown-component'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
-import CountDown from 'react-native-countdown-component'
 import Config from '../../bitcoin/HexaConfig'
+import Colors from '../../common/Colors'
+import Fonts from '../../common/Fonts'
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
 
 export default function ApproveSetup( props ) {
   const KP_REQUEST_EXPIRY = Config.KP_REQUEST_EXPIRY

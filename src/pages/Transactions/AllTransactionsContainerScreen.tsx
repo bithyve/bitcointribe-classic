@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react'
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
-import useAllAccountTransactions from '../../utils/hooks/transactions/UseAllAccountTransactions'
+import { ActivityIndicator, StyleSheet, View } from 'react-native'
 import EmptyListInfoBox from '../../components/empty-states/EmptyListInfoBox'
 import TransactionsFlatList from '../../components/transactions/TransactionsFlatList'
+import useAllAccountTransactions from '../../utils/hooks/transactions/UseAllAccountTransactions'
 
 export type Props = {
   navigation: any;

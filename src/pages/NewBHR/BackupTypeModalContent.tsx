@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { View, Image, Text, StyleSheet } from 'react-native'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import React, { useContext, useState } from 'react'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import Colors from '../../common/Colors'
+import { LocalizationContext } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
 import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
 import RadioButton from '../../components/RadioButton'
-import { LocalizationContext } from '../../common/content/LocContext'
 
 export default function BackupTypeModalContent( props ) {
   const { translations } = useContext( LocalizationContext )

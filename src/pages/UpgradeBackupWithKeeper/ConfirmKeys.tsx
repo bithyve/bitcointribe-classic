@@ -1,41 +1,24 @@
+import idx from 'idx'
 import React, { Component } from 'react'
 import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  SafeAreaView,
-  StatusBar,
-  Image,
-  ScrollView,
-  Platform,
-  ImageBackground,
+  Image, ImageBackground, Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View
 } from 'react-native'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import DeviceInfo from 'react-native-device-info'
 import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { connect } from 'react-redux'
-import {
-  fetchEphemeralChannel,
-} from '../../store/actions/trustedContacts'
-import idx from 'idx'
-import { timeFormatter } from '../../common/CommonFunctions/timeFormatter'
-import moment from 'moment'
 import BottomSheet from 'reanimated-bottom-sheet'
-import ModalHeader from '../../components/ModalHeader'
-// import RestoreFromICloud from './RestoreFromICloud';
-import DeviceInfo from 'react-native-device-info'
-// import RestoreSuccess from './RestoreSuccess';
-// import ICloudBackupNotFound from './ICloudBackupNotFound';
-import AntDesign from 'react-native-vector-icons/AntDesign'
-import { requestTimedout } from '../../store/utils/utilities'
+import Colors from '../../common/Colors'
+import Fonts from '../../common/Fonts'
 import LoaderModal from '../../components/LoaderModal'
-// import RestoreWallet from './RestoreWallet';
+import ModalHeader from '../../components/ModalHeader'
+import {
+  fetchEphemeralChannel
+} from '../../store/actions/trustedContacts'
 import BackupUpgradeSuccess from './BackupUpgradeSuccess'
 import DeleteRecoveryKeys from './DeleteRecoveryKeys'
 
@@ -395,84 +378,6 @@ class ConfirmKeys extends Component<
             />
           )}
         />
-        {/* <BottomSheet
-          enabledInnerScrolling={true}
-          ref={'RestoreSuccess'}
-          snapPoints={[
-            -50,
-            Platform.OS == 'ios' && DeviceInfo.hasNotch()
-              ? hp('50%')
-              : hp('60%'),
-          ]}
-          renderContent={() => (
-            <RestoreSuccess
-              modalRef={this.refs.RestoreSuccess}
-              onPressProceed={() => {
-                (this.refs.RestoreSuccess as any).snapTo(0);
-              }}
-              onPressBack={() => {
-                (this.refs.RestoreSuccess as any).snapTo(0);
-              }}
-            />
-          )}
-          renderHeader={() => (
-            <ModalHeader
-              onPressHeader={() => (this.refs.RestoreSuccess as any).snapTo(0)}
-            />
-          )}
-        />
-        <BottomSheet
-          enabledInnerScrolling={true}
-          ref={'BackupNotFound'}
-          snapPoints={[
-            -50,
-            Platform.OS == 'ios' && DeviceInfo.hasNotch()
-              ? hp('40%')
-              : hp('50%'),
-          ]}
-          renderContent={() => (
-            <ICloudBackupNotFound
-              modalRef={this.refs.BackupNotFound}
-              onPressProceed={() => {
-                (this.refs.BackupNotFound as any).snapTo(0);
-              }}
-              onPressBack={() => {
-                (this.refs.BackupNotFound as any).snapTo(0);
-              }}
-            />
-          )}
-          renderHeader={() => (
-            <ModalHeader
-              onPressHeader={() => (this.refs.BackupNotFound as any).snapTo(0)}
-            />
-          )}
-        />
-        <BottomSheet
-          enabledInnerScrolling={true}
-          ref={'RestoreWallet'}
-          snapPoints={[
-            -50,
-            Platform.OS == 'ios' && DeviceInfo.hasNotch()
-              ? hp('60%')
-              : hp('70%'),
-          ]}
-          renderContent={() => (
-            <RestoreWallet
-              modalRef={this.refs.RestoreWallet}
-              onPressProceed={() => {
-                (this.refs.RestoreWallet as any).snapTo(0);
-              }}
-              onPressBack={() => {
-                (this.refs.RestoreWallet as any).snapTo(0);
-              }}
-            />
-          )}
-          renderHeader={() => (
-            <ModalHeader
-              onPressHeader={() => (this.refs.RestoreWallet as any).snapTo(0)}
-            />
-          )}
-        /> */}
       </View>
     )
   }

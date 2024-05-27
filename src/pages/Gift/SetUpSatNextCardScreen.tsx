@@ -36,14 +36,6 @@ import NfcPrompt from './NfcPromptAndroid'
 
 const { height, width } = Dimensions.get( 'window' )
 const dummySatcardAddress = '3Ax781srE163xdH9DR9JKPRWooQ3xkbM4m'
-// const dummySatcardAddress = '3LcY5MMQXibVJ1RA4XYAeVyfrgbrD1WEzj'
-// const temp = {
-//   'card_nonce':{
-//     'type':'Buffer', 'data':[ 156, 61, 66, 83, 118, 58, 158, 31, 255, 118, 127, 143, 181, 12, 12, 208 ]
-//   }, 'card_pubkey':{
-//     'type':'Buffer', 'data':[ 3, 6, 239, 160, 72, 161, 55, 244, 48, 79, 91, 111, 47, 176, 120, 237, 155, 49, 188, 58, 151, 169, 30, 48, 118, 188, 142, 6, 244, 206, 142, 70, 214 ]
-//   }, 'card_ident':'PLJCZ-CFK24-EMH7F-VPDZF', 'applet_version':'1.0.0', 'birth_height':744019, 'is_testnet':false, 'auth_delay':0, 'is_tapsigner':false, 'path':null, 'num_backups':'NA', 'active_slot':0, 'num_slots':10, '_certs_checked':false
-// }
 
 export default function SetUpSatNextCardScreen( props ) {
   const dispatch = useDispatch()

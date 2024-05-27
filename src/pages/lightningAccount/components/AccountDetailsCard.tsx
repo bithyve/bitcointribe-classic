@@ -10,7 +10,6 @@ import {
 import { Button } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { widthPercentageToDP } from 'react-native-responsive-screen'
 import { useDispatch } from 'react-redux'
 import LightningIcon from '../../../assets/images/svgs/ligntning_icon.svg'
 import Icon from '../../../assets/images/svgs/onchain_icon.svg'
@@ -150,10 +149,6 @@ const AccountDetailsCard : React.FC<Props> = inject(
             <Text style={styles.transactionsText} >For direct layer 1 transactions</Text>
           </View>
         </View>
-        {/* <View style={styles.accountKindBadgeImage} >
-          {getAvatarForSubAccount( primarySubAccount, false, false, true )}
-        </View> */}
-
       </View>
     )
   }
@@ -289,13 +284,6 @@ const styles = StyleSheet.create( {
     flex: 1,
     width: '100%',
   },
-
-  accountKindBadgeImage: {
-    width: widthPercentageToDP( 16 ),
-    height: widthPercentageToDP( 16 ),
-    resizeMode: 'contain',
-  },
-
   title1Text: {
     fontFamily: Fonts.Regular,
     fontSize: RFValue( 15 ),

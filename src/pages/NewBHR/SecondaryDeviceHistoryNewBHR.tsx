@@ -1,21 +1,17 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import {
-  View,
-  SafeAreaView,
-  StatusBar,
-} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
-import { createChannelAssets, createGuardian, ErrorSending, modifyLevelData, setChannelAssets, updatedKeeperInfo, downloadSMShare, setApprovalStatus } from '../../store/actions/BHR'
-import { updateMSharesHealth } from '../../store/actions/BHR'
-import Colors from '../../common/Colors'
-import BottomSheet from 'reanimated-bottom-sheet'
-import HistoryPageComponent from './HistoryPageComponent'
-import SecondaryDevice from './SecondaryDeviceNewBHR'
 import moment from 'moment'
-import _ from 'underscore'
-import ErrorModalContents from '../../components/ErrorModalContents'
+import React, { useCallback, useEffect, useState } from 'react'
+import {
+  SafeAreaView,
+  StatusBar, View
+} from 'react-native'
 import DeviceInfo from 'react-native-device-info'
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
+import BottomSheet from 'reanimated-bottom-sheet'
+import _ from 'underscore'
+import { v4 as uuid } from 'uuid'
+import config from '../../bitcoin/HexaConfig'
+import BHROperations from '../../bitcoin/utilities/BHROperations'
 import {
   ChannelAssets,
   DeepLinkEncryptionType,
@@ -29,25 +25,26 @@ import {
   TrustedContact,
   TrustedContactRelationTypes,
   Trusted_Contacts,
-  Wallet,
+  Wallet
 } from '../../bitcoin/utilities/Interface'
-import config from '../../bitcoin/HexaConfig'
-import KeeperDeviceHelpContents from '../../components/Helper/KeeperDeviceHelpContents'
-import HistoryHeaderComponent from './HistoryHeaderComponent'
-import KeeperTypeModalContents from './KeeperTypeModalContent'
-import { v4 as uuid } from 'uuid'
-import ModalContainer from '../../components/home/ModalContainer'
+import TrustedContactsOperations from '../../bitcoin/utilities/TrustedContactsOperations'
+import Colors from '../../common/Colors'
+import { generateDeepLink, getDeepLinkKindFromContactsRelationType } from '../../common/CommonFunctions'
 import { getTime } from '../../common/CommonFunctions/timeFormatter'
 import { historyArray } from '../../common/CommonVars/commonVars'
-import { getIndex } from '../../common/utilities'
-import BHROperations from '../../bitcoin/utilities/BHROperations'
-import { generateDeepLink, getDeepLinkKindFromContactsRelationType } from '../../common/CommonFunctions'
 import { translations } from '../../common/content/LocContext'
+import { getIndex } from '../../common/utilities'
+import ErrorModalContents from '../../components/ErrorModalContents'
+import KeeperDeviceHelpContents from '../../components/Helper/KeeperDeviceHelpContents'
+import ModalContainer from '../../components/home/ModalContainer'
+import { createChannelAssets, createGuardian, downloadSMShare, ErrorSending, modifyLevelData, setApprovalStatus, setChannelAssets, updatedKeeperInfo, updateMSharesHealth } from '../../store/actions/BHR'
 import { PermanentChannelsSyncKind, syncPermanentChannels } from '../../store/actions/trustedContacts'
-import TrustedContactsOperations from '../../bitcoin/utilities/TrustedContactsOperations'
 import useStreamFromContact from '../../utils/hooks/trusted-contacts/UseStreamFromContact'
 import QRModal from '../Accounts/QRModal'
-import Toast from '../../components/Toast'
+import HistoryHeaderComponent from './HistoryHeaderComponent'
+import HistoryPageComponent from './HistoryPageComponent'
+import KeeperTypeModalContents from './KeeperTypeModalContent'
+import SecondaryDevice from './SecondaryDeviceNewBHR'
 
 const SecondaryDeviceHistoryNewBHR = ( props ) => {
   const strings  = translations[ 'bhr' ]
@@ -686,30 +683,6 @@ const SecondaryDeviceHistoryNewBHR = ( props ) => {
       <ModalContainer onBackground={()=>setShowQr( false )} visible={showQr} closeBottomSheet={() => setShowQr( false )} >
         {renderSecondaryDeviceContents()}
       </ModalContainer>
-      {/* <BottomSheet
-        onCloseEnd={() => {
-          if( keeperProcessStatusFlag == KeeperProcessStatus.COMPLETED ){
-            saveInTransitHistory()
-            // ( secondaryDeviceBottomSheet as any ).current.snapTo( 0 )
-            setShowQr( false )
-            if ( next ) {
-              props.navigation.goBack()
-            }
-            setTimeout( () => {
-              setIsReshare( true )
-            }, 2 )
-          }
-        }}
-        onCloseStart={() => {
-          // ( secondaryDeviceBottomSheet as any ).current.snapTo( 0 )
-          setShowQr( false )
-        }}
-        enabledInnerScrolling={true}
-        ref={secondaryDeviceBottomSheet as any}
-        snapPoints={[ -30, hp( '85%' ) ]}
-        renderContent={renderSecondaryDeviceContents}
-        renderHeader={renderSecondaryDeviceHeader}
-      /> */}
       <ModalContainer onBackground={()=>setConfirmFromSecondaryDeviceModal( false )} visible={ConfirmFromSecondaryDeviceModal} closeBottomSheet={()=>setConfirmFromSecondaryDeviceModal( false )} >
         {renderConfirmFromSecondaryDeviceModal()}
       </ModalContainer>

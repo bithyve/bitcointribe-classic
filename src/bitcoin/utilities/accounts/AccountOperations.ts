@@ -1403,6 +1403,25 @@ export default class AccountOperations {
     } else throw new Error( 'Invalid Signatures' )
   }
 
+  static sendToAddress= async (
+    account: Account,
+    address: string,
+    amount: Number,
+    averageTxFees: AverageTxFees,
+  ) : Promise<string> => {
+    const network = AccountUtilities.getNetworkByType( account.networkType )
+    const txPriority = TxPriority.LOW
+    const recipients = []
+    recipients.push( {
+      address,
+      amount,
+      name: 'RGB',
+    } )
+    const { txPrerequisites } = await AccountOperations.transferST1( account, recipients, averageTxFees )
+    const { txid } = await AccountOperations.transferST2( account, txPrerequisites, txPriority, network, recipients )
+    return txid
+   }
+
   static generateGifts = async (
     walletDetails: {
       walletId: string,

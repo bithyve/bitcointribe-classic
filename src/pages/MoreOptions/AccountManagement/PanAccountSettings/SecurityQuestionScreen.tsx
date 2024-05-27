@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text, AsyncStorage, StyleSheet, TextInput, Platform, TouchableOpacity, StatusBar, SafeAreaView, ScrollView, KeyboardAvoidingView } from 'react-native'
-import Colors from '../../../../common/Colors'
-import Fonts from '../../../../common/Fonts'
+import React, { useEffect, useState } from 'react'
+import { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import { AppBottomSheetTouchableWrapper } from '../../../../components/AppBottomSheetTouchableWrapper'
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import { useDispatch, useSelector } from 'react-redux'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { setShowAllAccount } from '../../../../store/actions/accounts'
+import Colors from '../../../../common/Colors'
 import { translations } from '../../../../common/content/LocContext'
+import Fonts from '../../../../common/Fonts'
+import { AppBottomSheetTouchableWrapper } from '../../../../components/AppBottomSheetTouchableWrapper'
+import { setShowAllAccount } from '../../../../store/actions/accounts'
 
 export default function SecurityQuestionScreen( props ) {
   const { security } = useSelector( ( state ) => state.storage.wallet )
@@ -193,27 +192,6 @@ export default function SecurityQuestionScreen( props ) {
 }
 
 const styles = StyleSheet.create( {
-  modalHeaderTitleView: {
-    borderBottomWidth: 1,
-    borderColor: Colors.borderColor,
-    alignItems: 'center',
-    flexDirection: 'row',
-    paddingRight: 10,
-    paddingBottom: 15,
-    paddingTop: 10,
-    marginLeft: 20,
-    marginBottom: 15,
-  },
-  modalHeaderTitleText: {
-    color: Colors.blue,
-    fontSize: RFValue( 18 ),
-    fontFamily: Fonts.Medium,
-  },
-  modalTitleText: {
-    color: Colors.blue,
-    fontSize: RFValue( 18 ),
-    fontFamily: Fonts.Medium,
-  },
   modalInfoText: {
     marginTop: hp( '3%' ),
     color: Colors.textColorGrey,

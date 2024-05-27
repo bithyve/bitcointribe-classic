@@ -633,44 +633,6 @@ export default function Login( props ) {
             alignItems: 'center',
             justifyContent: 'flex-end',
           }}>
-            {/* {
-              attempts >= 3&&(
-                <TouchableOpacity
-                  style={{
-                    ...styles.proceedButtonView,
-                    elevation: Elevation,
-                    marginHorizontal: 15,
-                  }}
-                  onPress={()=> {
-                    if( ( currentLevel == 0 && levelHealth.length == 0 ) || ( currentLevel == 0 && levelHealth.length && levelHealth[ 0 ].levelInfo.length && levelHealth[ 0 ].levelInfo[ 0 ].status == 'notSetup' ) ) {
-                      setJailBrokenTitle( strings.EncryptionKeyNotSet )
-                      setJailBrokenInfo( strings.Youcanreset )
-                      setErrorModal( true )
-                      return
-                    }
-                    if ( levelHealth.length && levelHealth[ 0 ].levelInfo.length && levelHealth[ 0 ].levelInfo[ 0 ].shareType == 'seed' ) {
-                      // showSecuiritySeedWordModal( true )
-                      // Alert.alert( 'In case you have forgotten passcode, please setup the wallet again and restore it' )
-                      ( async function() {
-                        try {
-                          const SeedWord = await AsyncStorage.getItem( 'randomSeedWord' )
-                          setRanSeedWord( JSON.parse( SeedWord ) )
-                        } catch ( e ) {
-                          console.error( e )
-                        }
-                      } )()
-                      setConfirmSeedWordModal( true )
-                    }else {
-                      showQuestionModal( true )
-                    }
-                  }}>
-                  <Text style={{
-                    color: Colors.blue,
-                    fontFamily: Fonts.Medium
-                  }}>{strings.ForgotPasscode}</Text>
-                </TouchableOpacity>
-              )
-            } */}
             <TouchableOpacity
               disabled={passcode.length !==4}
               activeOpacity={0.7}
@@ -883,25 +845,6 @@ export default function Login( props ) {
           cancelButtonText={'Cancel'}
         />
       </BottomInputModalContainer>
-      {/* <ModalContainer onBackground={()=>showSecuiritySeedWordModal( false )} visible={secuiritySeedWordModal} closeBottomSheet={() => {showSecuiritySeedWordModal( false )}} >
-        {renderSeedWordContent()}
-      </ModalContainer> */}
-      {/* <BottomSheet
-        onCloseEnd={() => {
-          setElevation( 10 )
-        }}
-        onOpenEnd={() => {
-          setElevation( 0 )
-        }}
-        enabledInnerScrolling={true}
-        ref={ErrorBottomSheet}
-        snapPoints={[
-          -50,
-          Platform.OS == 'ios' && DeviceInfo.hasNotch() ? hp( '25%' ) : hp( '30%' ),
-        ]}
-        renderContent={renderErrorModalContent}
-        renderHeader={renderErrorModalHeader}
-      /> */}
       <ModalContainer onBackground={()=>{setShowAlertModal( false )}} visible={showAlertModal} closeBottomSheet={() => { }}>
         <AlertModalContents
           // modalRef={this.ErrorBottomSheet}
@@ -1003,13 +946,6 @@ const styles = StyleSheet.create( {
   },
   boldItalicText: {
     fontFamily: Fonts.Medium,
-  },
-  errorText: {
-    fontFamily: Fonts.MediumItalic,
-    color: Colors.THEAM_ERROR_RED_TEXT_COLOR,
-    fontSize: RFValue( 10 ),
-    fontStyle: 'italic',
-    letterSpacing: 0.5
   },
   headerTitleText: {
     color: Colors.THEAM_TEXT_COLOR,

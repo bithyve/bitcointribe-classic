@@ -1,24 +1,23 @@
 import React, { useContext } from 'react'
-import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import { Shadow } from 'react-native-shadow-2'
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { useSelector } from 'react-redux'
+import Colors from '../../common/Colors'
+import { SATOSHIS_IN_BTC } from '../../common/constants/Bitcoin'
 import { LocalizationContext } from '../../common/content/LocContext'
 import CurrencyKind from '../../common/data/enums/CurrencyKind'
-import getAvatarForSubAccount from '../../utils/accounts/GetAvatarForSubAccountKind'
+import Fonts from '../../common/Fonts'
 import { UsNumberFormat } from '../../common/utilities'
-import useCurrencyCode from '../../utils/hooks/state-selectors/UseCurrencyCode'
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
 import { AccountsState } from '../../store/reducers/accounts'
-import { useSelector } from 'react-redux'
-import { SATOSHIS_IN_BTC } from '../../common/constants/Bitcoin'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import getAvatarForSubAccount from '../../utils/accounts/GetAvatarForSubAccountKind'
+import useCurrencyCode from '../../utils/hooks/state-selectors/UseCurrencyCode'
 
 export default function GiftUnwrappedComponent( props ) {
   const { translations } = useContext( LocalizationContext )
@@ -147,15 +146,10 @@ export default function GiftUnwrappedComponent( props ) {
                 fontSize: RFValue( 18 ),
                 fontFamily: Fonts.Regular,
                 letterSpacing: 0.01,
-                // marginTop: RFValue( 20 )
-                // width: wp( 65 )
               }}
             >
               {props.title}
             </Text>
-            {/* <TouchableOpacity onPress={props.onCloseClick} style={{
-              width: 28, height: 28, backgroundColor: Colors.blue
-            }}></TouchableOpacity> */}
           </View>
           {props.info ? (
             <Text
@@ -242,9 +236,6 @@ export default function GiftUnwrappedComponent( props ) {
                 alignItems: 'center',
                 alignSelf: 'center',
                 marginTop: wp( '5%' ),
-                // position: 'absolute',
-                // left: wp( 53 )
-                // backgroundColor:'red'
               }}
               delayPressIn={0}
             >
@@ -294,12 +285,6 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 11 ),
     fontFamily: Fonts.Regular,
     letterSpacing: 0.6
-  },
-  successModalAmountView: {
-    justifyContent: 'center',
-    marginRight: wp( '12%' ),
-    marginLeft: wp( '8%' ),
-    marginTop: hp( '2%' ),
   },
   successModalButtonView: {
     height: wp( '12%' ),

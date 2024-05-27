@@ -1,15 +1,14 @@
 import React, { memo } from 'react'
-import { View, Image, Text, StyleSheet } from 'react-native'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import { Image, StyleSheet, Text, View } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import Colors from '../../common/Colors'
+import { nameToInitials } from '../../common/CommonFunctions'
+import Fonts from '../../common/Fonts'
 import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
-import { isEmpty, nameToInitials } from '../../common/CommonFunctions'
-import { ScrollView } from 'react-native-gesture-handler'
 
 const setPhoneNumber = ( selectedContact ) => {
   const phoneNumber = selectedContact.phoneNumbers[ 0 ].number
@@ -179,14 +178,6 @@ const styles = StyleSheet.create( {
     color: Colors.blue,
     fontSize: RFValue( 18 ),
     fontFamily: Fonts.Medium,
-  },
-  grayBox: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: wp( '5%' ),
-    borderRadius: 10,
-    backgroundColor: Colors.backgroundColor,
-    alignSelf: 'center',
   },
   successModalButtonView: {
     height: wp( '13%' ),

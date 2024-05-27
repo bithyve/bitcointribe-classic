@@ -125,35 +125,12 @@ const SeedPageComponent = ( props ) => {
 
   const getIndex = ( index, seedIndex ) => {
     const newIndex = index + 1 + ( seedIndex * 12 )
-    // let isAdd = false
-    // if( index % 2 == 0 ) isAdd = true
-
-    // let tempNumber = 0
-    // if( index == 0 || index == 5 ) tempNumber = 0
-    // else if( index == 1 || index == 4 ) tempNumber = 2
-    // else tempNumber = 1
-
-    // if( isAdd )
-    //   newIndex -= tempNumber
-    // else newIndex += tempNumber
 
     return newIndex
   }
 
   const getTextIndex = ( index ) => {
     const newIndex = index
-    // let isAdd = false
-    // if( index % 2 == 0 ) isAdd = true
-
-    // let tempNumber = 0
-    // if( index == 0 || index == 5 ) tempNumber = 0
-    // else if( index == 1 || index == 4 ) tempNumber = 2
-    // else tempNumber = 1
-
-    // if( isAdd )
-    // newIndex -= tempNumber
-    // else newIndex += tempNumber
-
     return newIndex
   }
 
@@ -266,43 +243,10 @@ const SeedPageComponent = ( props ) => {
                               : getSecureData( partialSeedData[ currentPosition ][ getTextIndex( index ) ]?.name )}
                           </Text>
                         </TouchableOpacity>
-                        {/* <TextInput
-                          style={[ styles.modalInputBox,
-                            partialSeedData[ currentPosition ][ getTextIndex( index ) ]?.name.length > 0 ? styles.selectedInput : null,
-                          // value?.name.length > 0 ? styles.selectedInput : null,
-                          ]}
-                          placeholder={`Enter ${getPlaceholder( getIndex( index, seedIndex ) )} word`}
-                          placeholderTextColor={Colors.borderColor}
-                          value={partialSeedData[ currentPosition ][ getTextIndex( index ) ]?.name}
-                          autoCompleteType="off"
-                          textContentType="none"
-                          returnKeyType="next"
-                          autoCorrect={false}
-                          showSoftInputOnFocus={false}
-                          secureTextEntry={index == SelectedOption ? false : true}
-                          onFocus={() => {
-                            setSelectedOption( index )
-                            Keyboard.dismiss()
-                          }}
-                          // editable={false}
-                          autoCapitalize="none"
-                          // onSubmitEditing={() =>
-                          // }
-                          // onChangeText={( text ) => {
-                          //   const data = [ ...partialSeedData ]
-                          //   data[ currentPosition ][ getTextIndex( index ) ].name = text
-                          //   setPartialSeedData( data )
-                          // }}
-                        /> */}
                       </TouchableOpacity>
                     )
                   }}
                 />
-                {/* <BottomInfoBox
-                  backgroundColor={Colors.white}
-                  title={props.infoBoxTitle}
-                  infoText={props.infoBoxInfo}
-                /> */}
               </View>
             ) )}
           </AnimatedPagerView>
@@ -310,15 +254,6 @@ const SeedPageComponent = ( props ) => {
           <View style={{
             // flex: 1,
           }}>
-            {/* <View style={{
-              backgroundColor: Colors.backgroundColor, flex: 1, justifyContent: 'flex-end'
-            }}>
-              <BottomInfoBox
-                backgroundColor={Colors.white}
-                title={props.infoBoxTitle}
-                infoText={props.infoBoxInfo}
-              />
-            </View> */}
           </View>
         )}
       {props.showButton ? <View>
@@ -413,28 +348,9 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 13 ),
     fontFamily: Fonts.Medium,
   },
-  selectedHistoryCard: {
-    margin: wp( '3%' ),
-    // backgroundColor: Colors.gray7,
-    borderRadius: 10,
-    height: wp( '20%' ),
-    width: wp( '90%' ),
-    // justifyContent: 'center',
-    paddingLeft: wp( '3%' ),
-    paddingRight: wp( '3%' ),
-    alignSelf: 'center',
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
   historyCard: {
     marginEnd: 15,
-    // backgroundColor: Colors.gray7,
     flex: 1 / 2,
-    // height: wp( '15%' ),
-    // width: wp( '90%' ),
-    // justifyContent: 'center',
-    // paddingLeft: wp( '3%' ),
-    // paddingRight: wp( '3%' ),
     paddingHorizontal: wp( 2 ),
     paddingVertical: height > 760 ? hp( 1 ) : 0,
     alignSelf: 'center',
@@ -442,20 +358,7 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
     marginBottom: height > 720 ? 15 : height > 650 ? 10 : 5,
     borderRadius: 10,
-    // borderColor: '#E3E3E3',
-    // borderWidth: 1
     backgroundColor: Colors.backgroundColor1
-  },
-  historyCardTitleText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Regular,
-  },
-  historyCardDateText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 9 ),
-    fontFamily: Fonts.Regular,
-    marginLeft: 'auto',
   },
   bottomButtonView: {
     height: hp( '13%' ),
@@ -471,14 +374,6 @@ const styles = StyleSheet.create( {
     width: height > 720 ? ( 50 ) : height > 650 ? ( 45 ) : ( 30 ),
     borderRadius: height > 720 ? ( 25 ) : ( 15 ),
     backgroundColor: Colors.white,
-    shadowColor: Colors.shadowBlack,
-    // elevation: 10,
-    // shadowColor: Colors.shadowBlue,
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 15,
-      height: 15,
-    },
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -497,12 +392,6 @@ const styles = StyleSheet.create( {
     fontFamily: Fonts.Regular,
     // marginEnd: 10
   },
-  nameText: {
-    color: Colors.greyTextColor,
-    fontSize: RFValue( 20 ),
-    fontFamily: Fonts.Regular,
-    marginStart: 25
-  },
   modalInputContainer:{
     width: '70%',
     height: 50,
@@ -511,22 +400,11 @@ const styles = StyleSheet.create( {
     // backgroundColor: 'red'
   },
   modalInputBox: {
-    // backgroundColor: 'yellow',
-    // flex: 1,
-    // width: '70%',
-    // height: 50,
     fontSize: RFValue( 13 ),
     color: Colors.textColorGrey,
     fontFamily: Fonts.Regular,
-    // borderRadius: 10,
-    // borderColor: '#E3E3E3',
-    // borderWidth: 1
-    // backgroundColor: Colors.backgroundColor1
   },
   selectedInput: {
-    // backgroundColor: Colors.white,
-    // backgroundColor: 'red',
-    // elevation: 5,
     shadowColor: Colors.shadowBlack,
     shadowOpacity: 1,
     shadowOffset: {

@@ -1,23 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Platform,
-} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
+import { useNavigation } from '@react-navigation/native'
+import React, { useEffect, useState } from 'react'
+import {
+  Platform, StyleSheet, Text, TextInput, View
+} from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import Colors from '../../common/Colors'
+import Fonts from '../../common/Fonts'
 import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
-import { useSelector } from 'react-redux'
-import { ScrollView } from 'react-native-gesture-handler'
-import { useNavigation } from '@react-navigation/native'
 
 const ALLOWED_CHARACTERS_REGEXP = /^[0-9a-z]+$/
 

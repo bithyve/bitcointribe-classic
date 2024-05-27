@@ -1,13 +1,12 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
-import Fonts from '../../common/Fonts'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import Colors from '../../common/Colors'
-import { RFValue } from 'react-native-responsive-fontsize'
 import { translations } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
 
 const RestoreSeedHeaderComponent = ( props ) => {
   const strings  = translations[ 'bhr' ]
@@ -61,16 +60,5 @@ const styles = StyleSheet.create( {
     color: Colors.blue,
     fontSize: RFValue( 20 ),
     fontFamily: Fonts.Regular,
-  },
-  headerImage: {
-    width: wp( '9%' ),
-    height: wp( '9%' ),
-    resizeMode: 'contain',
-    alignSelf: 'center',
-  },
-  headerInfoView: {
-    flex: 1,
-    flexDirection: 'row',
-    marginLeft: wp( '4%' ),
   },
 } )

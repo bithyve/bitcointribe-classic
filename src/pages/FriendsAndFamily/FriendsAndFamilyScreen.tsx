@@ -16,31 +16,31 @@ import LinearGradient from 'react-native-linear-gradient'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
   heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
+  widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { connect } from 'react-redux'
 import BottomSheet from 'reanimated-bottom-sheet'
 import { KeeperInfoInterface, TrustedContactRelationTypes, Trusted_Contacts } from '../../bitcoin/utilities/Interface'
 import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
-import ImageStyles from '../../common/Styles/ImageStyles'
 import { LocalizationContext } from '../../common/content/LocContext'
 import ContactTrustKind from '../../common/data/enums/ContactTrustKind'
 import {
-  ContactRecipientDescribing,
+  ContactRecipientDescribing
 } from '../../common/data/models/interfaces/RecipientDescribing'
+import Fonts from '../../common/Fonts'
+import ImageStyles from '../../common/Styles/ImageStyles'
 import BottomInfoBox from '../../components/BottomInfoBox'
+import FriendsAndFamilyContactListItemContent from '../../components/friends-and-family/FriendsAndFamilyContactListItemContent'
 import AddressBookHelpContents from '../../components/Helper/AddressBookHelpContents'
+import ModalContainer from '../../components/home/ModalContainer'
+import Loader from '../../components/loader'
 import ModalHeader from '../../components/ModalHeader'
 import RecipientAvatar from '../../components/RecipientAvatar'
 import SmallHeaderModal from '../../components/SmallHeaderModal'
-import FriendsAndFamilyContactListItemContent from '../../components/friends-and-family/FriendsAndFamilyContactListItemContent'
-import ModalContainer from '../../components/home/ModalContainer'
-import Loader from '../../components/loader'
 import {
   PermanentChannelsSyncKind,
-  syncPermanentChannels,
+  syncPermanentChannels
 } from '../../store/actions/trustedContacts'
 import { makeContactRecipientDescription } from '../../utils/sending/RecipientFactories'
 interface FriendsAndFamilyPropTypes {
@@ -500,37 +500,6 @@ class FriendsAndFamilyScreen extends React.Component<
               <ActivityIndicator color={Colors.white} size='large'/>
             </ModalContainer>
           }
-
-          {/* <View style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingVertical: wp( 4 ),
-              paddingHorizontal: wp( 4 ),
-              alignItems: 'center'
-            }}>
-              <Text style={{
-                color: Colors.blue,
-                fontSize: RFValue( 16 ),
-                marginLeft: 2,
-                fontFamily: Fonts.Medium,
-
-              }}>
-              My Accounts
-              </Text>
-              <ToggleContainer />
-            </View> */}
-          {/* <TouchableOpacity onPress={this.onAllGiftClick} style={styles.giftContainer}>
-            <Image style={styles.giftImage}
-            source={require( '../../assets/images/svgs/icon_gift.svg' )} />
-            <GiftIcon/>
-            <View style={{
-              flex:1, paddingLeft: 10
-            }}>
-              <Text style={styles.giftText}>All Gifts</Text>
-              <Text numberOfLines={2} style={styles.giftDescText}>All the gifts you have created, not sent, and gifts you have received</Text>
-            </View>
-            <ArrowRight />
-          </TouchableOpacity> */}
           <View style={{
             flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: hp( 3.5 ), marginRight: wp( 6 )
           }}>
@@ -775,13 +744,6 @@ const styles = StyleSheet.create( {
     fontFamily: Fonts.Regular,
     color: Colors.white
   },
-  phoneText: {
-    marginTop: 3,
-    marginLeft: 10,
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Regular,
-    color: Colors.textColorGrey,
-  },
   selectedContactsView: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -798,106 +760,5 @@ const styles = StyleSheet.create( {
     fontFamily: Fonts.SemiBold,
     alignItems: 'center',
     marginHorizontal: wp ( 4 ),
-  },
-  subInfo: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginRight: wp ( 3 ),
-    flex: 1,
-    marginBottom: 2
-  },
-  cardTitle: {
-    color: Colors.blue,
-    fontSize: RFValue( 12 ),
-    fontFamily: Fonts.Medium,
-    marginVertical: wp( 2 ),
-    marginHorizontal: wp( 4 )
-  },
-  pageInfoText: {
-    marginLeft: 30,
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Regular,
-    marginTop: 3,
-  },
-  imageIconStyle: {
-    width: wp( '12%' ),
-    height: wp( '12%' ),
-    borderRadius: wp( '12%' ) / 2,
-    resizeMode: 'contain',
-  },
-  imageIconViewStyle: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: Colors.shadowBlue,
-    width: wp( '12%' ),
-    height: wp( '12%' ),
-    borderRadius: wp( '12%' ) / 2,
-  },
-  imageIconText: {
-    textAlign: 'center',
-    fontSize: 13,
-    lineHeight: 13,
-  },
-  getImageView: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 'auto',
-  },
-  xpubIconView: {
-    width: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 'auto',
-    marginRight: 10,
-  },
-  addGrayImage: {
-    width: wp( 3 ),
-    height: wp( 4 ),
-    marginLeft: 5,
-    color: Colors.white
-  },
-  moreImage: {
-    width: wp( '10%' ),
-    height: wp( '10%' ),
-  },
-  giftContainer:{
-    width: '90%',
-    // height: hp( '15%' ),
-    backgroundColor: Colors.gray7,
-    shadowOpacity: 0.06,
-    shadowOffset: {
-      width: 10, height: 10
-    },
-    shadowRadius: 10,
-    elevation: 2,
-    alignSelf: 'center',
-    borderRadius: wp( 2 ),
-    marginTop: hp( 3 ),
-    paddingHorizontal: wp( 8 ),
-    paddingVertical: hp( 3 ),
-    justifyContent:'center',
-    flexDirection:'row',
-    alignItems:'center'
-  },
-  giftImage:{
-    width: 40,
-    height: 40,
-    marginEnd: 16,
-    // backgroundColor:'red'
-  },
-  giftText:{
-    fontSize: RFValue( 12 ),
-    fontFamily: Fonts.Medium,
-    color: Colors.THEAM_TEXT_COLOR
-  },
-  giftDescText: {
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Regular,
-    color: Colors.THEAM_INFO_TEXT_COLOR,
-    marginTop: 4,
-    marginEnd: 4
   }
 } )

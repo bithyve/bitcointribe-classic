@@ -73,16 +73,11 @@ const HomeBuyCard = ( {
   //   exchangeRates,
   currencyCode,
 } ) => {
-//   const currencyKind: CurrencyKind = useCurrencyKind()
   const fiatCurrencyCode = useCurrencyCode()
-  //   const prefersBitcoin = useMemo( () => {
-  //     return currencyKind === CurrencyKind.BITCOIN
-  //   }, [ currencyKind ] )
   const { translations, formatString } = useContext( LocalizationContext )
   const strings = translations[ 'home' ]
   return (
     <View
-    // startColor={Colors.shadowColor} distance={0} offset={[ 8, 8 ] }
       style={cardContainer}
     >
       <View>
@@ -101,10 +96,6 @@ const HomeBuyCard = ( {
           flexDirection: 'row', marginTop: hp( '0.4' ), alignItems: 'center'
         }}>
           {materialIconCurrencyCodes.includes( fiatCurrencyCode ) ? (
-          // setCurrencyCodeToImage(
-          //   getCurrencyImageName( CurrencyCode ),
-          //   'light'
-          // )
             <MaterialCurrencyCodeIcon
               currencyCode={fiatCurrencyCode}
               color={Colors.GRAY_ICON}
@@ -136,17 +127,6 @@ const HomeBuyCard = ( {
           backgroundColor: Colors.blue,
         }}>
         <TouchableOpacity
-        // icon={
-        //   <Image
-        //     source={require( '../../assets/images/icons/recurring_buy.png' )}
-        //     style={{
-        //       width: wp( 6 ),
-        //       height: wp( 6 ),
-        //       resizeMode: 'contain'
-        //     }}
-        //   />
-        // }
-
           onPress={() =>
             openBottomSheet( BottomSheetKind.TAB_BAR_BUY_MENU )
           }
@@ -161,24 +141,4 @@ const HomeBuyCard = ( {
     </View>
   )
 }
-// const styles = StyleSheet.create( {
-//   titleStyle: {
-//     color: Colors.blue,
-//     fontSize: RFValue( 11 ),
-//     letterSpacing: 0.33,
-//     fontFamily: Fonts.Regular,
-//   },
-//   subTitleStyle: {
-//     color: Colors.gray8,
-//     fontSize: RFValue( 9 ),
-//   },
-//   cardBitCoinImage: {
-//     width: wp( '3.5%' ),
-//     height: wp( '3.5%' ),
-//     marginRight: 5,
-//     resizeMode: 'contain',
-//     marginBottom: wp( '0.7%' ),
-//   },
-// } )
-
 export default HomeBuyCard

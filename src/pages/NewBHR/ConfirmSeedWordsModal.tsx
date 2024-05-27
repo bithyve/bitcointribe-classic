@@ -1,31 +1,22 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import {
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  Dimensions,
-  Keyboard
+  Keyboard, StyleSheet, Text,
+  TextInput, View
 } from 'react-native'
-import Fonts from '../../common/Fonts'
-import Colors from '../../common/Colors'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import { RFValue } from 'react-native-responsive-fontsize'
-import BottomInfoBox from '../../components/BottomInfoBox'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { LocalizationContext } from '../../common/content/LocContext'
-import { Shadow } from 'react-native-shadow-2'
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
 import LinearGradient from 'react-native-linear-gradient'
+import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import Colors from '../../common/Colors'
+import { LocalizationContext } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
+import BottomInfoBox from '../../components/BottomInfoBox'
 
 export default function ConfirmSeedWordsModal( props ) {
   const { translations } = useContext( LocalizationContext )
   const common = translations[ 'common' ]
-
-  const windowHeight = Dimensions.get( 'window' ).height
 
   const [ word, setWord ]=useState( '' )
   const getSeedNumber = ( seedNumber )=>{
@@ -268,13 +259,6 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 13 ),
     fontFamily: Fonts.Medium,
   },
-  bottomButtonView: {
-    flexDirection: 'row',
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingBottom: hp( 2 ),
-    alignItems: 'center',
-  },
   inputBox: {
     borderWidth: 0.5,
     borderRadius: 10,
@@ -288,19 +272,6 @@ const styles = StyleSheet.create( {
     color: Colors.textColorGrey,
     fontFamily: Fonts.Regular,
     paddingLeft: 15,
-
-  },
-  dropdownBoxModal: {
-    borderRadius: 10,
-    margin: 15,
-    height: 'auto',
-    elevation: 10,
-    shadowColor: Colors.shadowBlue,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 0, height: 10
-    },
-    backgroundColor: Colors.white,
   },
   successModalButtonView: {
     height: wp( '12%' ),

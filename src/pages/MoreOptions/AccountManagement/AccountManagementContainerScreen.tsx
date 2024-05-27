@@ -41,7 +41,6 @@ const AccountManagementContainerScreen: React.FC<Props> = ( { navigation, }: Pro
   const accountShells = useSelector( ( state: RootStateOrAny ) => state.accounts.accountShells )
   const accounts = useSelector( ( state: RootStateOrAny ) => state.accounts.accounts )
 
-  // const [ tempValue, setTempValue ] = useState( false )
   const showAllAccount = useSelector( ( state: RootStateOrAny ) => state.accounts.showAllAccount )
   const [ orderedAccountShells, setOrderedAccountShells ] = useState( accountShells )
   const [ hiddenAccountShells, setHiddenAccountShells ] = useState( [] )
@@ -52,7 +51,6 @@ const AccountManagementContainerScreen: React.FC<Props> = ( { navigation, }: Pro
   const [ unHideArchiveModal, showUnHideArchiveModal ] = useState( false )
   const [ successModel, showSuccessModel ] = useState( false )
   const [ numberOfTabs, setNumberOfTabs ] = useState( 0 )
-  // const [ debugModalVisible, setDebugModalVisible ] = useState( false )
 
   const synchedDebugMissingAccounts = useSelector( ( state: RootStateOrAny ) => state.upgrades.synchedMissingAccounts )
 
@@ -132,21 +130,6 @@ const AccountManagementContainerScreen: React.FC<Props> = ( { navigation, }: Pro
 
     }
   }, [ hasAccountSettingsUpdateSucceeded, selectedAccount ] )
-  // useEffect( () => {
-  //   if( numberOfTabs!=0 ){
-  //     setTimeout( () => {
-  //       setNumberOfTabs( 0 )
-  //     }, 1000 )
-  //   }
-  //   if( numberOfTabs >= 3 ){
-  //     // clear previous session on mount
-  //     dispatch( updateSynchedMissingAccount( {
-  //     } ) )
-  //     setDebugModalVisible( true )
-  //   }
-  // }, [ numberOfTabs ] )
-
-
 
   const showUnHideArchiveAccountBottomSheet = useCallback( () => {
     return(
@@ -252,9 +235,6 @@ const AccountManagementContainerScreen: React.FC<Props> = ( { navigation, }: Pro
   }, [ accountVisibility, primarySubAccount ] )
 
   const changeVisisbility = ( accountShell, visibility ) => {
-
-    // selectedAccount.visibility = visibility
-    // dispatch( updateSubAccountSettings( selectedAccount ) )
 
     const settings = {
       visibility: visibility
@@ -371,187 +351,8 @@ const AccountManagementContainerScreen: React.FC<Props> = ( { navigation, }: Pro
       </ListItem>
     )
   }
-  // const closeBottomSheet = () => {
-  //   setDebugModalVisible( false )
-  // }
-
-  // const getWalletDebugData = ( wallet: Wallet ) => {
-  //   delete wallet.security
-  //   // delete wallet.primaryMnemonic
-  //   // delete wallet.primarySeed
-  //   // delete wallet.secondaryXpub
-  //   // delete wallet.details2FA
-  //   delete wallet.smShare
-
-  //   return <View style={styles.lineItem}>
-  //     <Text style={ListStyles.listItemTitleTransaction}>
-  //         Wallet Info
-  //     </Text>
-
-  //     {Object.keys( wallet ).map( key => {
-  //       return (
-  //         <>
-  //           <Text  style={{
-  //             ...ListStyles.listItemSubtitle,
-  //             marginBottom: 3,
-  //             fontWeight: 'bold',
-  //           }} >{key.toUpperCase()}</Text>
-  //           <Text  style={{
-  //             ...ListStyles.listItemSubtitle,
-  //             marginBottom: 3,
-  //           }} selectable={true}>{JSON.stringify( wallet[ key ], null, 8 )}</Text>
-  //         </>
-  //       )
-  //     } )}
-
-
-  //   </View>
-  // }
-
-  // const getAccountDebugData = ( shell: AccountShell, index: number ) => {
-  //   const primarySubAcc = shell.primarySubAccount
-  //   const account: Account = accounts[ primarySubAcc.id ]
-
-  //   const debugPrimarySub: SubAccountDescribing = {
-  //     ...primarySubAcc,
-  //   }
-  //   // drop unnecessary properties
-  //   delete debugPrimarySub.transactions
-  //   delete debugPrimarySub.utxoCompatibilityGroup
-  //   delete debugPrimarySub.hasNewTxn
-
-  //   const debugAccount: Account = {
-  //     ...account,
-  //   }
-  //   // drop unnecessary and private properties
-  //   delete debugAccount.transactions
-  //   delete debugAccount.xpriv
-  //   delete ( debugAccount as MultiSigAccount ).xprivs
-  //   delete debugAccount.txIdMap
-  //   delete debugAccount.hasNewTxn
-  //   delete debugAccount.transactionsNote
-  //   delete debugAccount.activeAddresses
-
-  //   return (
-  //     <View style={styles.lineItem}>
-  //       <Text style={ListStyles.listItemTitleTransaction}>
-  //         Account Shell {index + 1}
-  //       </Text>
-  //       <Text style={{
-  //         fontSize: 10
-  //       }}>{debugPrimarySub.id}</Text>
-  //       <Text  style={{
-  //         ...ListStyles.listItemSubtitle,
-  //         marginBottom: 3,
-  //       }}>{JSON.stringify( debugPrimarySub, null, 8 )}</Text>
-  //       <Text style={ListStyles.listItemTitleTransaction}>
-  //         Account
-  //       </Text>
-  //       <Text style={{
-  //         fontSize: 10
-  //       }}>{debugAccount.id}</Text>
-  //       <Text  style={{
-  //         ...ListStyles.listItemSubtitle,
-  //         marginBottom: 3,
-  //       }}>{JSON.stringify( debugAccount, null, 8 )}</Text>
-  //     </View>
-  //   )
-  // }
-
-  // const RenderDebugModal = () => {
-  //   const [ debugModalTaps, setDebugModalTaps ] = useState( 0 )
-  //   const [ debugSweepAddress, setDebugSweepAddress ] = useState( '' )
-  //   const [ debugSweepToken, setDebugSweepToken ] = useState( '' )
-
-  //   return (
-  //     <View style={styles.modalContainer}>
-  //       <View style={styles.crossIconContainer}>
-  //         <FontAwesome name="close" color={Colors.blue} size={24} onPress = {closeBottomSheet}/>
-  //       </View>
-  //       <ScrollView>
-  //         <TouchableOpacity style={styles.rootContainer} activeOpacity={1} onPress={()=>setDebugModalTaps( prev => prev+1 )}>
-  //           {getWalletDebugData( {
-  //             ...wallet
-  //           } )}
-  //           {accountShells.map( ( shell: AccountShell, index ) => {
-  //             return getAccountDebugData( shell, index )
-  //           } )}
-  //         </TouchableOpacity>
-
-  //         { debugModalTaps > 4?
-  //           (
-  //             <>
-  //               {Object.keys( synchedDebugMissingAccounts ).length? (
-  //                 <>
-  //                   <TextInput
-  //                     style={{
-  //                       height: 50,
-  //                       // margin: 20,
-  //                       paddingHorizontal: 15,
-  //                       fontSize: RFValue( 13 ),
-  //                       letterSpacing: 0.26,
-  //                       fontFamily: Fonts.Regular,
-  //                     }}
-  //                     placeholder={'Enter Address'}
-  //                     placeholderTextColor={Colors.borderColor}
-  //                     value={debugSweepAddress}
-  //                     textContentType='none'
-  //                     autoCompleteType='off'
-  //                     autoCorrect={false}
-  //                     autoCapitalize="none"
-  //                     onChangeText={( text ) => {
-  //                       setDebugSweepAddress( text )
-  //                     }}
-  //                   />
-
-  //                   <TextInput
-  //                     style={{
-  //                       height: 50,
-  //                       // margin: 20,
-  //                       paddingHorizontal: 15,
-  //                       fontSize: RFValue( 13 ),
-  //                       letterSpacing: 0.26,
-  //                       fontFamily: Fonts.Regular,
-  //                     }}
-  //                     placeholder={'Enter Token'}
-  //                     placeholderTextColor={Colors.borderColor}
-  //                     value={debugSweepToken}
-  //                     textContentType='none'
-  //                     autoCompleteType='off'
-  //                     autoCorrect={false}
-  //                     autoCapitalize="none"
-  //                     onChangeText={( text ) => {
-  //                       setDebugSweepToken( text )
-  //                     }}
-  //                   />
-  //                 </>
-  //               ): null}
-  //               <Button title={Object.keys( synchedDebugMissingAccounts ).length? 'Sweep Missing Accounts': 'Sync Missing Accounts'} onPress={()=> {
-
-  //                 if( Object.keys( synchedDebugMissingAccounts ).length ){
-  //                   // sweep already synched accounts
-  //                   setDebugModalVisible( false )
-  //                   if( debugSweepAddress )
-  //                     dispatch( sweepMissingAccounts( {
-  //                       address: debugSweepAddress,
-  //                       token: parseInt( debugSweepToken )
-  //                     } ) )
-  //                   // dispatch( recreateAccounts() )
-  //                 } else {
-  //                   setDebugModalVisible( false )
-  //                   dispatch( syncMissingAccounts() )
-  //                 }
-  //               }}></Button>
-  //             </>
-  //           ): null}
-
-  //       </ScrollView>
-  //     </View>
-  //   )
-  // }
 
   return (
-    //TouchableOpacity style={styles.rootContainer} activeOpacity={1} onPress={()=>setNumberOfTabs( prev => prev+1 )}>
     <TouchableOpacity style={styles.rootContainer} activeOpacity={1}>
       <SafeAreaView>
         <StatusBar backgroundColor={Colors.backgroundColor} barStyle="dark-content" />
@@ -676,11 +477,6 @@ const AccountManagementContainerScreen: React.FC<Props> = ( { navigation, }: Pro
             />
           )}
         </View>
-        {/* <ModalContainer onBackground={closeBottomSheet} visible={debugModalVisible} closeBottomSheet = {closeBottomSheet}>
-          <View style={styles.modalContainer}>
-            <RenderDebugModal/>
-          </View>
-        </ModalContainer> */}
       </SafeAreaView>
     </TouchableOpacity>
   )
@@ -709,41 +505,6 @@ const styles = StyleSheet.create( {
     backgroundColor: Colors.white,
     paddingVertical: hp( 0.5 ),
     letterSpacing: 0.55
-  },
-  textHeader: {
-    fontSize: 24,
-    color: Colors.blue,
-    marginHorizontal: 20,
-    marginVertical: 20,
-    fontFamily: Fonts.Regular,
-  },
-  bodySection: {
-    marginTop: 24,
-    paddingHorizontal: 10,
-  },
-  lineItem: {
-    marginVertical: hp( 0.9 ),
-    backgroundColor:Colors.white,
-    padding: 10,
-    paddingHorizontal: 10,
-    borderRadius: 8,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 1,
-      height: 3,
-    },
-    shadowOpacity: 0.10,
-    shadowRadius: 1.84,
-    elevation: 2,
-  },
-  containerRec: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  crossIconContainer:{
-    justifyContent:'flex-end',
-    flexDirection:'row',
-    marginBottom:hp( 2 ),
   },
   modalContainer:{
     backgroundColor:Colors.backgroundColor,

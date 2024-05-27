@@ -40,9 +40,8 @@ class RGBModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
     }
 
     @ReactMethod
-    fun getAddress(mnemonic:String, network: String, promise: Promise) {
-        val address = ""
-        promise.resolve(address)
+    fun getAddress(promise: Promise) {
+        promise.resolve(RGBHelper.getAddress())
     }
     @ReactMethod
     fun initiate(network: String, mnemonic:String, xpub: String, promise: Promise){
@@ -83,7 +82,7 @@ class RGBModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
     }
 
     @ReactMethod
-    fun receiveAsset( mnemonic:String, network: String, promise: Promise){
+    fun receiveAsset(promise: Promise){
         try {
             promise.resolve(RGBHelper.receiveAsset())
         }catch (e: Exception) {
@@ -93,6 +92,23 @@ class RGBModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaMod
             promise.resolve(jsonObject.toString())
         }
     }
+
+    @ReactMethod
+    fun createUtxos(promise: Promise){
+        try {
+            val created = RGBHelper.createNewUTXOs()
+            val jsonObject = JsonObject()
+            jsonObject.addProperty("error", "")
+            jsonObject.addProperty("created", created)
+            promise.resolve(jsonObject.toString())
+        }catch (e: Exception) {
+            val message = e.message
+            val jsonObject = JsonObject()
+            jsonObject.addProperty("error", message)
+            promise.resolve(jsonObject.toString())
+        }
+    }
+
     @ReactMethod
     fun issueRgb20Asset( ticker: String, name: String, supply: String, promise: Promise){
         Log.d(TAG, "issueRgb20Asset: ${supply}")

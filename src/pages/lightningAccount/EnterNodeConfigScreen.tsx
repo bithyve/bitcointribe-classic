@@ -57,18 +57,10 @@ const styles = StyleSheet.create( {
     fontFamily: Fonts.Regular,
     color: Colors.white,
   },
-  textSubtitle: {
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 12 ),
-    color: Colors.textColorGrey,
-  },
   row: {
     flexDirection: 'row',
     marginBottom: wp( '2%' ),
     marginTop: wp( '8%' ),
-  },
-  containerItem: {
-    marginHorizontal: wp( '5%' ),
   },
   btn:{
     flexDirection: 'row',
@@ -77,11 +69,6 @@ const styles = StyleSheet.create( {
     borderWidth: 1,
     borderColor: Colors.borderColor,
     marginBottom: 20
-  },
-  textTitle: {
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 15 ),
-    color: Colors.blue,
   },
   textCurrency: {
     fontFamily: Fonts.Medium,

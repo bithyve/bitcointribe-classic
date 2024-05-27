@@ -1,50 +1,36 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import idx from 'idx'
+import React, { useCallback, useEffect, useState } from 'react'
 import {
-  View,
-  Text,
-  StyleSheet,
-  Platform,
   Image,
   SafeAreaView,
-  StatusBar,
-  Keyboard,
+  StatusBar, StyleSheet, Text, View
 } from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import { useDispatch, useSelector } from 'react-redux'
 import BottomSheet from 'reanimated-bottom-sheet'
-import DeviceInfo from 'react-native-device-info'
-import ModalHeader from '../../components/ModalHeader'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
+import { KeeperInfoInterface, QRCodeTypes, Wallet } from '../../bitcoin/utilities/Interface'
 import Colors from '../../common/Colors'
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Fonts from '../../common/Fonts'
-import { RFValue } from 'react-native-responsive-fontsize'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
+import ModalContainer from '../../components/home/ModalContainer'
+import Loader from '../../components/loader'
+import ModalHeader from '../../components/ModalHeader'
+import Toast from '../../components/Toast'
+import { resetStackToAccountDetails, resetStackToAccountDetailsSendScreen } from '../../navigation/actions/NavigationActions'
+import {
+  getSMAndReSetTFAOrGenerateSXpriv, secondaryXprivGenerated, setResetTwoFALoader, twoFAResetted
+} from '../../store/actions/accounts'
+import { resetSendState, sourceAccountSelectedForSending } from '../../store/actions/sending'
+import { AccountsState } from '../../store/reducers/accounts'
+import useAccountsState from '../../utils/hooks/state-selectors/accounts/UseAccountsState'
 import QRModal from './QRModal'
 import ResetTwoFAFailure from './ResetTwoFASuccess'
 import ServerErrorModal from './ServerErrorModal'
-import {
-  resetTwoFA,
-  generateSecondaryXpriv,
-  twoFAResetted,
-  secondaryXprivGenerated,
-  getSMAndReSetTFAOrGenerateSXpriv,
-  setResetTwoFALoader,
-} from '../../store/actions/accounts'
-import { resetStackToAccountDetails, resetStackToAccountDetailsSendScreen } from '../../navigation/actions/NavigationActions'
-import idx from 'idx'
-import { AccountsState } from '../../store/reducers/accounts'
-import useAccountsState from '../../utils/hooks/state-selectors/accounts/UseAccountsState'
-import { resetSendState, sourceAccountSelectedForSending } from '../../store/actions/sending'
-import SecurityQuestion from '../../pages/NewBHR/SecurityQuestion'
-import Loader from '../../components/loader'
-import useAccountShellForID from '../../utils/hooks/state-selectors/accounts/UseAccountShellForID'
-import { KeeperInfoInterface, QRCodeTypes, Wallet } from '../../bitcoin/utilities/Interface'
-import ModalContainer from '../../components/home/ModalContainer'
-import Toast from '../../components/Toast'
 
 export type Props = {
   navigation: any;
@@ -392,30 +378,8 @@ const SubAccountTFAHelpScreen = ( { navigation, route }: Props ) => {
           marginBottom: hp( '5%' ),
         }}
       >
-        {/* <Text style={{ ...styles.modalHeaderInfoText }}>
-          Lorem ipsum dolor sit amet, consectetur{'\n'}adipiscing elit, sed do
-          eiusmod tempor
-        </Text> */}
       </View>
       {showLoader ? <Loader isLoading={true}/> : null}
-      {/* <BottomSheet
-        onOpenEnd={() => {
-          setQrBottomSheetsFlag( true )
-        }}
-        onCloseEnd={() => {
-          setQrBottomSheetsFlag( false )
-          showQRModel( false )
-        }}
-        onCloseStart={() => {}}
-        enabledInnerScrolling={true}
-        ref={QrBottomSheet}
-        snapPoints={[
-          -50,
-          Platform.OS == 'ios' && DeviceInfo.hasNotch() ? hp( '92%' ) : hp( '91%' ),
-        ]}
-        renderContent={renderQrContent}
-        renderHeader={renderQrHeader}
-      /> */}
       {qrModal &&
         <ModalContainer onBackground={()=>showQRModel( false )} visible={qrModal} closeBottomSheet={() => {}}>
           {renderQrContent()}
@@ -464,37 +428,6 @@ const styles = StyleSheet.create( {
     color: Colors.textColorGrey,
     fontSize: RFValue( 11 ),
     fontFamily: Fonts.Regular,
-  },
-  modalContentView: {
-    flex: 1,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  contactView: {
-    height: 50,
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginLeft: 20,
-  },
-  modalHeaderContainer: {
-    marginTop: 'auto',
-    flex: 1,
-    height: 20,
-    borderTopLeftRadius: 10,
-    borderLeftWidth: 1,
-    borderTopRightRadius: 10,
-    borderRightWidth: 1,
-    borderTopWidth: 1,
-    zIndex: 9999,
-  },
-  modalHeaderHandle: {
-    width: 50,
-    height: 5,
-    backgroundColor: Colors.borderColor,
-    borderRadius: 10,
-    alignSelf: 'center',
-    marginTop: 7,
   },
   selectedContactsView: {
     marginLeft: 20,

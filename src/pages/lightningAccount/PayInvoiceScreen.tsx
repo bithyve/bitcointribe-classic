@@ -1,37 +1,34 @@
+import { inject, observer } from 'mobx-react'
+import moment from 'moment'
 import * as React from 'react'
 import {
   ActivityIndicator,
   ScrollView,
   StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  TextInput
+  Text, TextInput, TouchableOpacity,
+  View
 } from 'react-native'
-import { inject, observer } from 'mobx-react'
-import moment from 'moment'
-import HeaderTitle from '../../components/HeaderTitle'
+import LinearGradient from 'react-native-linear-gradient'
 import { RFValue } from 'react-native-responsive-fontsize'
-import InvoicesStore from '../../mobxstore/InvoicesStore'
-import TransactionsStore from '../../mobxstore/TransactionsStore'
-import UnitsStore from '../../mobxstore/UnitsStore'
-import ChannelsStore from '../../mobxstore/ChannelsStore'
-import SettingsStore from '../../mobxstore/SettingsStore'
-import BalanceStore from '../../mobxstore/BalanceStore'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
 import BitcoinIcon from '../../assets/images/accIcons/bitcoin.svg'
 import LightningHexa from '../../assets/images/accIcons/icon_ln.svg'
 import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts.js'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import FormStyles from '../../common/Styles/FormStyles'
-import SendConfirmationContent from '../Accounts/SendConfirmationContent'
 import { translations } from '../../common/content/LocContext'
-import ModalContainer from '../../components/home/ModalContainer'
+import Fonts from '../../common/Fonts.js'
+import FormStyles from '../../common/Styles/FormStyles'
 import ListStyles from '../../common/Styles/ListStyles'
-import LinearGradient from 'react-native-linear-gradient'
+import HeaderTitle from '../../components/HeaderTitle'
+import ModalContainer from '../../components/home/ModalContainer'
+import BalanceStore from '../../mobxstore/BalanceStore'
+import ChannelsStore from '../../mobxstore/ChannelsStore'
+import InvoicesStore from '../../mobxstore/InvoicesStore'
+import SettingsStore from '../../mobxstore/SettingsStore'
+import TransactionsStore from '../../mobxstore/TransactionsStore'
+import UnitsStore from '../../mobxstore/UnitsStore'
+import SendConfirmationContent from '../Accounts/SendConfirmationContent'
 
 interface InvoiceProps {
     exitSetup: any;
@@ -458,14 +455,6 @@ const styles = StyleSheet.create( {
   value: {
     paddingBottom: 5
   },
-  labelDark: {
-    paddingTop: 5,
-    color: 'white'
-  },
-  valueDark: {
-    paddingBottom: 5,
-    color: 'white'
-  },
   button: {
     paddingTop: 5,
     paddingBottom: 15,
@@ -476,21 +465,12 @@ const styles = StyleSheet.create( {
     fontSize: 25,
     fontWeight: 'bold'
   },
-  amountDark: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: 'white'
-  },
   center: {
     alignItems: 'center',
   },
   textInput: {
     fontSize: 20,
     color: 'black'
-  },
-  mppForm: {
-    paddingLeft: 20,
-    paddingBottom: 10
   },
   buttonText: {
     color: Colors.white,

@@ -397,32 +397,6 @@ const styles = StyleSheet.create( {
     fontSize: RFValue( 18 ),
     fontFamily: Fonts.Regular,
   },
-  modalContentView: {
-    flex: 1,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  contactView: {
-    height: 50,
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginLeft: 20,
-  },
-  contactText: {
-    marginLeft: 10,
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Regular,
-  },
-  contactIndexText: {
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Regular,
-  },
-  contactIndexView: {
-    flex: 0.5,
-    height: '100%',
-    justifyContent: 'space-evenly',
-  },
   selectedContactsView: {
     marginLeft: 20,
     flexDirection: 'row',
@@ -444,37 +418,9 @@ const styles = StyleSheet.create( {
     color: Colors.textColorGrey,
     marginTop: 5,
   },
-  shareButtonView: {
-    height: wp( '8%' ),
-    width: wp( '15%' ),
-    backgroundColor: Colors.backgroundColor,
-    borderWidth: 1,
-    borderColor: Colors.borderColor,
-    borderRadius: 5,
-    marginLeft: 'auto',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  shareButtonText: {
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Regular,
-    color: Colors.textColorGrey,
-  },
   headerSettingImage: {
     height: wp( '6%' ),
     width: wp( '6%' ),
-  },
-  pageTitle: {
-    marginLeft: 30,
-    color: Colors.blue,
-    fontSize: RFValue( 14 ),
-    fontFamily: Fonts.Regular,
-  },
-  pageInfoText: {
-    marginLeft: 30,
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Regular,
   },
   addModalTitleText: {
     color: Colors.blue,

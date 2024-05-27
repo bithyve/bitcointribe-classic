@@ -935,40 +935,6 @@ const styles = StyleSheet.create( {
     flexDirection: 'column',
     justifyContent: 'space-around',
   },
-  contactText: {
-    // marginLeft: 10,
-    // marginHorizontal: wp ( 1 ),
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Regular,
-    color: Colors.white,
-    // padding: wp( 2 )
-  },
-  phoneText: {
-    marginTop: 3,
-    marginLeft: 10,
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Regular,
-    color: Colors.textColorGrey,
-  },
-  selectedContactsView: {
-    // marginLeft: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    // marginRight: 20,
-    // marginTop: 5,
-    // paddingBottom: 15,
-    // paddingTop: 15,
-    // borderBottomWidth: 1,
-    // borderColor: Colors.borderColor,
-    backgroundColor: Colors.blue,
-    borderRadius: wp( 2 ),
-    // width: wp( 22 )
-    // padding: wp( 1 ),
-    //width: wp( 24 ),
-    height: hp( 4 ),
-    paddingHorizontal: wp( 2 )
-  },
   pageTitle: {
     color: Colors.THEAM_TEXT_COLOR,
     fontSize: RFValue( 16 ),
@@ -978,62 +944,5 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
     marginHorizontal: wp( 4 ),
   },
-  cardTitle: {
-    color: Colors.THEAM_TEXT_COLOR,
-    fontSize: RFValue( 12 ),
-    // fontFamily: Fonts.Regular,
-    fontFamily: Fonts.Medium,
-    marginVertical: wp( 2 ),
-    marginHorizontal: wp( 4 )
-  },
-  pageInfoText: {
-    marginLeft: 30,
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 10 ),
-    fontFamily: Fonts.Regular,
-    marginTop: 3,
-  },
-  imageIconStyle: {
-    width: wp( '12%' ),
-    height: wp( '12%' ),
-    borderRadius: wp( '12%' ) / 2,
-    resizeMode: 'contain',
-  },
-  imageIconViewStyle: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: Colors.shadowBlue,
-    width: wp( '12%' ),
-    height: wp( '12%' ),
-    borderRadius: wp( '12%' ) / 2,
-  },
-  imageIconText: {
-    textAlign: 'center',
-    fontSize: 13,
-    lineHeight: 13,
-  },
-  getImageView: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 'auto',
-  },
-  xpubIconView: {
-    width: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 'auto',
-    marginRight: 10,
-  },
-  addGrayImage: {
-    width: wp( 3 ),
-    height: wp( 4 ),
-    marginLeft: 5,
-    color: Colors.white
-  },
-  moreImage: {
-    width: wp( '10%' ),
-    height: wp( '10%' ),
-  }
 } )
 

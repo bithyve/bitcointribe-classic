@@ -1,18 +1,16 @@
+import moment from 'moment'
 import React, { useContext } from 'react'
 import {
-  View,
   Text,
-  TouchableOpacity
+  TouchableOpacity, View
 } from 'react-native'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import moment from 'moment'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
 import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import Colors from '../../common/Colors'
 import { LocalizationContext } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
 
 const DashedContainer = ( props ) => {
   const { translations } = useContext( LocalizationContext )
@@ -25,12 +23,6 @@ const DashedContainer = ( props ) => {
       style={{
         width: '90%',
         backgroundColor: Colors.gray7,
-        // shadowOpacity: 0.06,
-        // shadowOffset: {
-        //   width: 10, height: 10
-        // },
-        // shadowRadius: 10,
-        // elevation: 2,
         alignSelf: 'center',
         borderRadius: wp( 2 ),
         marginTop: hp( 1 ),

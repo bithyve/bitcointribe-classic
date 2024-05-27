@@ -30,18 +30,6 @@ export default function KeeperTypeModalContents( props ) {
       info: strings.BackupwithcontactSub,
       image: require( '../../assets/images/icons/seedwords.png' ),
     },
-    // {
-    //   type: 'device',
-    //   name: strings.Backuponadevice,
-    //   info: strings.BackuponadeviceSub,
-    //   image: require( '../../assets/images/icons/icon_secondarydevice.png' ),
-    // },
-    // {
-    //   type: 'pdf',
-    //   name: strings.BackupusingPDF,
-    //   info: strings.BackupusingPDFSub,
-    //   image: require( '../../assets/images/icons/files-and-folders-2.png' ),
-    // },
   ] )
   const [ SelectedKeeperType, setSelectedKeeperType ] = useState( {
     type: '',
@@ -173,15 +161,6 @@ export default function KeeperTypeModalContents( props ) {
               style={styles.keeperTypeElementView}
               key={index}
             >
-              {/* <View style={styles.typeRadioButtonView}>
-                <RadioButton
-                  size={15}
-                  color={Colors.lightBlue}
-                  borderColor={Colors.borderColor}
-                  isChecked={value.type == SelectedKeeperType.type}
-                  onpress={() => onKeeperSelect( value )}
-                />
-              </View> */}
               <Image
                 style={{
                   width: wp( '9%' ),
@@ -202,18 +181,6 @@ export default function KeeperTypeModalContents( props ) {
           )
         } )}
       </View>
-      {/* <View style={styles.successModalAmountView}>
-          <Text
-            style={{
-              ...styles.modalInfoText,
-              marginBottom: wp( '5%' ),
-              marginTop: 'auto',
-            }}
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore.
-          </Text>
-        </View>*/}
       <View style={styles.bottomButtonView}>
         <AppBottomSheetTouchableWrapper
           // disabled={!SelectedKeeperType.name}
@@ -309,11 +276,6 @@ const styles = StyleSheet.create( {
     color: Colors.blue,
     fontSize: RFValue( 18 ),
     fontFamily: Fonts.Medium,
-  },
-  typeRadioButtonView: {
-    justifyContent: 'center',
-    width: wp( '10%' ),
-    height: wp( '10%' ),
   },
   keeperTypeTitle: {
     color: Colors.blue,

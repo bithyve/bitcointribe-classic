@@ -1,40 +1,33 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import {
-  StyleSheet,
-  View,
-  SafeAreaView,
-  TouchableOpacity,
-  StatusBar,
-  Text,
-  KeyboardAvoidingView,
-  Platform,
   ActivityIndicator,
-  Alert,
+  Alert, KeyboardAvoidingView,
+  Platform, SafeAreaView, StatusBar,
+  Text, TouchableOpacity, View
 } from 'react-native'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import Fonts from '../../common/Fonts'
-import Colors from '../../common/Colors'
-import CommonStyles from '../../common/Styles/Styles'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import { RFValue } from 'react-native-responsive-fontsize'
-import HeaderTitle from '../../components/HeaderTitle'
-import BottomInfoBox from '../../components/BottomInfoBox'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  ErrorReceiving,
-} from '../../store/actions/BHR'
-import Toast from '../../components/Toast'
-import ErrorModalContents from '../../components/ErrorModalContents'
-import ModalHeader from '../../components/ModalHeader'
-import BottomSheet from 'reanimated-bottom-sheet'
 import DeviceInfo from 'react-native-device-info'
-import QRCode from '../../components/QRCode'
+import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  heightPercentageToDP as hp, widthPercentageToDP as wp
+} from 'react-native-responsive-screen'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { useDispatch, useSelector } from 'react-redux'
+import BottomSheet from 'reanimated-bottom-sheet'
 import config from '../../bitcoin/HexaConfig'
 import { Wallet } from '../../bitcoin/utilities/Interface'
+import Colors from '../../common/Colors'
+import Fonts from '../../common/Fonts'
+import CommonStyles from '../../common/Styles/Styles'
+import BottomInfoBox from '../../components/BottomInfoBox'
 import CopyThisText from '../../components/CopyThisText'
+import ErrorModalContents from '../../components/ErrorModalContents'
+import HeaderTitle from '../../components/HeaderTitle'
+import ModalHeader from '../../components/ModalHeader'
+import QRCode from '../../components/QRCode'
+import Toast from '../../components/Toast'
+import {
+  ErrorReceiving
+} from '../../store/actions/BHR'
 
 export default function RestoreWalletBySecondaryDevice( props ) {
   const [ secondaryQR, setSecondaryQR ] = useState( '' )

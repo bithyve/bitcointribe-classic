@@ -1,35 +1,27 @@
-import React, { useCallback, useEffect, useState, } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import {
-  View,
-  TouchableOpacity,
-  Text,
-  TextInput,
-  StyleSheet,
   SafeAreaView,
-  StatusBar,
-  Platform,
+  StatusBar, StyleSheet, Text,
+  TextInput, TouchableOpacity, View
 } from 'react-native'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
-import commonStyle from '../../common/Styles/Styles'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import { useDispatch, useSelector } from 'react-redux'
-import SendStatusModalContents from '../../components/SendStatusModalContents'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { useDispatch, useSelector } from 'react-redux'
 import BottomSheet from 'reanimated-bottom-sheet'
-import ModalHeader from '../../components/ModalHeader'
-import SendConfirmationContent from './SendConfirmationContent'
-import DeviceInfo from 'react-native-device-info'
-import { validateTwoFA } from '../../store/actions/accounts'
-import ModalContainer from '../../components/home/ModalContainer'
-import { makeAddressRecipientDescription } from '../../utils/sending/RecipientFactories'
-import useSendingState from '../../utils/hooks/state-selectors/sending/UseSendingState'
+import Colors from '../../common/Colors'
 import { RecipientDescribing } from '../../common/data/models/interfaces/RecipientDescribing'
+import Fonts from '../../common/Fonts'
+import commonStyle from '../../common/Styles/Styles'
+import ModalContainer from '../../components/home/ModalContainer'
+import ModalHeader from '../../components/ModalHeader'
+import { validateTwoFA } from '../../store/actions/accounts'
 import { addRecipientForSending, recipientSelectedForAmountSetting } from '../../store/actions/sending'
+import useSendingState from '../../utils/hooks/state-selectors/sending/UseSendingState'
+import { makeAddressRecipientDescription } from '../../utils/sending/RecipientFactories'
+import SendConfirmationContent from './SendConfirmationContent'
 
 export default function TwoFAValidation( props ) {
   const [ Elevation, setElevation ] = useState( 10 )
@@ -397,27 +389,6 @@ export default function TwoFAValidation( props ) {
         <ModalContainer onBackground={()=>setUnsuccessModal( false )} visible={unsuccessModal} closeBottomSheet={() => {}} >
           {renderSendUnSuccessContents()}
         </ModalContainer>
-        {/* <BottomSheet
-          onCloseStart={() => {
-            SendUnSuccessBottomSheet.current.snapTo( 0 )
-          }}
-          onCloseEnd={() => {
-            setElevation( 10 )
-          }}
-          onOpenEnd={() => {
-            setElevation( 0 )
-          }}
-          enabledInnerScrolling={true}
-          ref={SendUnSuccessBottomSheet}
-          snapPoints={[
-            -50,
-            Platform.OS == 'ios' && DeviceInfo.hasNotch()
-              ? hp( '65%' )
-              : hp( '70%' ),
-          ]}
-          renderContent={renderSendUnSuccessContents}
-          renderHeader={renderSendUnSuccessHeader}
-        /> */}
       </View>
     </SafeAreaView>
   )

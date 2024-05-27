@@ -409,10 +409,6 @@ const AccountDetailsContainerScreen: React.FC<Props> = ( { route, navigation } )
 }
 
 const styles = StyleSheet.create( {
-  rootContainer: {
-    height: '100%',
-  },
-
   scrollViewContainer: {
     paddingTop: 10,
     // height: '100%',

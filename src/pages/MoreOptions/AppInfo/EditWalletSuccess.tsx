@@ -1,22 +1,18 @@
 import React from 'react'
 import {
-  View,
-  TouchableOpacity,
-  Text,
   SafeAreaView,
-  StyleSheet,
-  Image,
+  StyleSheet, Text, TouchableOpacity, View
 } from 'react-native'
-import Colors from '../../../common/Colors'
-import Fonts from '../../../common/Fonts'
 import { RFValue } from 'react-native-responsive-fontsize'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Colors from '../../../common/Colors'
+import Fonts from '../../../common/Fonts'
 
-import {  useSelector } from 'react-redux'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
-import BottomInfoBox from '../../../components/BottomInfoBox'
+import { useSelector } from 'react-redux'
 import Illustration from '../../../assets/images/svgs/illustration.svg'
 import Wallet from '../../../assets/images/svgs/wallet.svg'
+import BottomInfoBox from '../../../components/BottomInfoBox'
 
 export default function EditWalletSuccess( props ) {
   const walletName = useSelector(
@@ -110,11 +106,6 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
-    // shadowColor: Colors.shadowBlue,
-    // shadowOpacity: 1,
-    // shadowOffset: {
-    //   width: 15, height: 15
-    // },
   },
   buttonText: {
     color: Colors.white,

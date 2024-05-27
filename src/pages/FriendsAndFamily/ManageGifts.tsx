@@ -1,3 +1,5 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import idx from 'idx'
 import moment from 'moment'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { Alert, FlatList, Image, RefreshControl, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
@@ -7,21 +9,18 @@ import {
 } from 'react-native-responsive-screen'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { useDispatch, useSelector } from 'react-redux'
-import Colors from '../../common/Colors'
-import { LocalizationContext } from '../../common/content/LocContext'
-import Fonts from '../../common/Fonts'
-import CommonStyles from '../../common/Styles/Styles'
-// import GiftCard from '../../assets/images/svgs/icon_gift.svg'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import idx from 'idx'
 import Gifts from '../../assets/images/svgs/gift_card_2.svg'
 import CheckingAcc from '../../assets/images/svgs/icon_checking.svg'
 import { DeepLinkEncryptionType, Gift, GiftStatus, GiftType, TrustedContact, Trusted_Contacts } from '../../bitcoin/utilities/Interface'
 import TrustedContactsOperations from '../../bitcoin/utilities/TrustedContactsOperations'
+import Colors from '../../common/Colors'
 import { processRequestQR } from '../../common/CommonFunctions'
 import { SATOSHIS_IN_BTC } from '../../common/constants/Bitcoin'
+import { LocalizationContext } from '../../common/content/LocContext'
 import CurrencyKind from '../../common/data/enums/CurrencyKind'
+import Fonts from '../../common/Fonts'
 import ImageStyles from '../../common/Styles/ImageStyles'
+import CommonStyles from '../../common/Styles/Styles'
 import ModalContainer from '../../components/home/ModalContainer'
 import GiftKnowMore from '../../components/know-more-sheets/GiftKnowMoreModel'
 import RecipientAvatar from '../../components/RecipientAvatar'
@@ -66,8 +65,6 @@ const ManageGifts = ( props ) => {
   const [ active, setActive ] = useState( statusGift )
   const [ giftLoading, setGiftLoading ] = useState( false )
   const [ knowMore, setKnowMore ] = useState( false )
-  // const [ sentGifts, setSentClaimedGifts ] = useState( [] )
-  // const [ receivedGifts, setReceicedGifts ] = useState( [] )
   const currencyKind = useSelector(
     ( state ) => state.preferences.giftCurrencyKind,
   )
@@ -118,9 +115,6 @@ const ManageGifts = ( props ) => {
     obj[ `${GiftStatus.EXPIRED}` ] = expiredArr
 
     setGiftsArr( obj )
-    // setAvailableGifts( availableGifts )
-    // setReceicedGifts( receivedArr )
-    // setSentClaimedGifts( sentAndClaimed )
   }, [ gifts ] )
 
   useEffect( () => {
@@ -161,33 +155,6 @@ const ManageGifts = ( props ) => {
       }
     }
   }
-  // const renderGiftDetailsModel = useCallback( () => {
-  //   return(
-  //     <View style={{
-  //       backgroundColor: Colors.white,
-  //       height: hp( 30 ),
-  //       paddingHorizontal: wp( 6 )
-  //     }}>
-  //       <TouchableOpacity
-  //         activeOpacity={1}
-  //         onPress={() => {showGiftDetails( false )}}
-  //         style={{
-  //           width: wp( 7 ), height: wp( 7 ), borderRadius: wp( 7/2 ),
-  //           alignSelf: 'flex-end',
-  //           backgroundColor: Colors.CLOSE_ICON_COLOR, alignItems: 'center', justifyContent: 'center',
-  //           marginTop: wp( 3 ),
-  //         }}
-  //       >
-  //         <FontAwesome name="close" color={Colors.white} size={19} style={{
-  //         // marginTop: hp( 0.5 )
-  //         }} />
-  //       </TouchableOpacity>
-  //       <Text style={styles.modalTitleText}>{giftInfo.type === GiftType.SENT ? giftInfo.type === GiftStatus.SENT ? 'Sent to recipient' : 'Claimed by the recipient' : 'Received Gift' }</Text>
-  //       <Text></Text>
-  //       <Text>Amount: {giftInfo.amount}</Text>
-  //     </View>
-  //   )
-  // }, [ giftInfo ] )
 
   const buttonPress = ( type ) => {
     setActive( type )
@@ -397,11 +364,6 @@ const ManageGifts = ( props ) => {
           }}
         />
         <StatusBar backgroundColor={Colors.white} barStyle="dark-content" />
-        {/* {giftDetails &&
-      <ModalContainer visible={giftDetails} closeBottomSheet={() => {}} >
-        {renderGiftDetailsModel()}
-      </ModalContainer>
-        } */}
         <View style={[ CommonStyles.headerContainer, {
           backgroundColor: Colors.backgroundColor, flexDirection: 'row', justifyContent: 'space-between',
           marginRight: 10,
@@ -455,37 +417,6 @@ const ManageGifts = ( props ) => {
             }
           </ScrollView>
         </View>
-        {/* <View style={{
-          height: 'auto'
-        }}> */}
-        {/* {Object.values( gifts ?? {
-        } ).length > 0 &&
-          <BottomInfoBox
-            // backgroundColor={Colors.white}
-            // title={'Note'}
-            infoText={getSectionDescription()}
-          />
-        } */}
-        {/* { active === GiftStatus.CREATED &&
-        <TouchableOpacity
-          onPress={() => navigation.navigate( 'CreateGift', {
-            setActiveTab: buttonPress
-          } )}
-          style={{
-            flexDirection: 'row', alignItems: 'center', marginHorizontal: wp( 9 ),
-            marginVertical: hp( 1 )
-          }}>
-          <Image
-            style={{
-              width: 30, height: 30
-            }}
-            source={require( '../../assets/images/icons/icon_add.png' )}
-          />
-          <Text style={styles.createGiftText}>
-          Create New Gift
-          </Text>
-        </TouchableOpacity>
-        } */}
         <Text style={styles.flatlistHeader}>
           {active === GiftStatus.CREATED?'Available Gifts':active === GiftStatus.SENT?'Sent Gifts':'Expired Gifts'}
         </Text>
@@ -666,61 +597,9 @@ const styles = StyleSheet.create( {
     backgroundColor: Colors.backgroundColor,
     marginBottom: hp( 2 )
   },
-  roundedViewSmall: {
-    width: wp( 9 ),
-    height: wp( 9 ),
-    borderRadius: wp( 9 / 2 ),
-    backgroundColor: Colors.backgroundColor,
-    marginHorizontal: wp( 1 )
-  },
-  scrollViewContainer: {
-    marginHorizontal: wp( '3%' ),
-    marginVertical: wp( '1.8%' ),
-    backgroundColor: Colors.white,
-    paddingVertical: hp( 1 ),
-    borderRadius: 10,
-    // height: wp( '20%' ),
-    width: wp( '90%' ),
-    paddingLeft: wp( '3%' ),
-    paddingRight: wp( '3%' ),
-    alignSelf: 'center',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  createGiftText: {
-    color: Colors.blueTextNew,
-    fontSize: RFValue( 12 ),
-    letterSpacing: 0.3,
-    fontFamily: Fonts.Medium,
-    marginHorizontal: wp( 2 )
-  },
-  centeredView: {
-    // alignSelf: 'center',
-    marginHorizontal: wp( 6 )
-  },
   buttonText: {
     color: Colors.gray2,
     fontFamily: Fonts.Medium
-  },
-  buttonNavigator: {
-    width: wp( '20%' ),
-    height: 64,
-    marginRight: wp( 2 ),
-    marginLeft: wp( 1 ),
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.borderColor,
-    borderRadius: wp( 3 ),
-  },
-  modalTitleText: {
-    color: Colors.blue,
-    fontSize: RFValue( 18 ),
-    fontFamily: Fonts.Regular,
-  },
-  secondNamePieceText: {
-    fontSize: RFValue( 10 ),
-    color: Colors.lightTextColor
   },
   avatarImage: {
     ...ImageStyles.thumbnailImageMedium,
@@ -736,58 +615,8 @@ const styles = StyleSheet.create( {
   },
   listItem: {
     marginVertical: hp( 0.5 ),
-    // borderRadius: wp( 2 ),
-    // padding: wp( 3 ),
     alignItems: 'center',
-    // backgroundColor: Colors.backgroundColor1,
     flexDirection: 'row'
-  },
-  proceedButtonText: {
-    color: Colors.blue,
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Medium
-  },
-  modalContentContainer: {
-    height: '100%',
-    backgroundColor: Colors.backgroundColor,
-  },
-  selectedContactsView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    backgroundColor: Colors.lightBlue,
-    borderRadius: wp( 2 ),
-    height: hp( 3.6 ),
-    paddingHorizontal: wp( 2 ),
-    marginTop: wp( 2.7 ),
-    alignSelf: 'flex-start'
-  },
-  createView: {
-    position: 'absolute',
-    bottom: hp( 5 ),
-    alignSelf: 'center',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    backgroundColor: Colors.lightBlue,
-    borderRadius: wp( 2 ),
-    height: hp( 5 ),
-    paddingHorizontal: wp( 2 ),
-    marginRight: wp( 4 )
-  },
-  contactText: {
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Regular,
-    color: Colors.white,
-  },
-  pageTitle: {
-    color: Colors.blue,
-    fontSize: RFValue( 18 ),
-    letterSpacing: 0.7,
-    // fontFamily: Fonts.Regular,
-    fontFamily: Fonts.Medium,
-    alignItems: 'center',
-    marginHorizontal: wp( 4 ),
   },
   qrWrapper:{
     tintColor:Colors.black,

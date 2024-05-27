@@ -1,23 +1,17 @@
 import React, { useState } from 'react'
 import {
-  View,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  TouchableOpacity,
-  SafeAreaView,
-  StatusBar,
+  ActivityIndicator, SafeAreaView,
+  StatusBar, StyleSheet, Text, TouchableOpacity, View
 } from 'react-native'
-import NavStyles from '../../common/Styles/NavStyles'
+import { RFValue } from 'react-native-responsive-fontsize'
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
+  heightPercentageToDP as hp, widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import CopyThisText from '../../components/CopyThisText'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Colors from '../../common/Colors'
 import Fonts from '../../common/Fonts'
-import { RFValue } from 'react-native-responsive-fontsize'
+import NavStyles from '../../common/Styles/NavStyles'
+import CopyThisText from '../../components/CopyThisText'
 import QRCode from '../../components/QRCode'
 
 

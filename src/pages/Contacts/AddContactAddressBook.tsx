@@ -246,23 +246,6 @@ export default function AddContactAddressBook( props ) {
   )
   const [ isTC, setIsTC ] = useState( false )
 
-  // const isTrustedContact = useCallback(
-  //   ( selectedContact ) => {
-  //     const contactName = `${selectedContact.firstName} ${selectedContact.lastName ? selectedContact.lastName : ''
-  //     }`
-  //       .toLowerCase()
-  //       .trim()
-
-  //     const trustedContact = trustedContacts[ contactName ]
-  //     if ( trustedContact && trustedContact.symmetricKey ) {
-  //       // Trusted channel exists
-  //       return true
-  //     }
-  //     return false
-  //   },
-  //   [ trustedContacts ],
-  // )
-
   const findIndexOfLetter = ( letter ) => {
     return filterContactData.findIndex( ( contact ) => {
       let firstCharacter = contact.name.trim()[ 0 ].toUpperCase()
@@ -293,11 +276,6 @@ export default function AddContactAddressBook( props ) {
     }
     setRadioOnOff( !radioOnOff )
     setFilterContactData( contacts )
-    // const isTrustedC = await isTrustedContact( selectedContacts[ 0 ] )
-    // setIsTC( isTrustedC )
-    // if ( isTrustedC ) {
-    //   Toast( 'Contact already exists' )
-    // }
   }
 
   async function onCancel( value ) {
@@ -451,100 +429,12 @@ export default function AddContactAddressBook( props ) {
           </View>
         </View>
         }
-        {/* <View style={{
-          flexDirection: 'row'
-        }}>
-          <AppBottomSheetTouchableWrapper
-            onPress={() => onPressBack()}
-            style={{
-              height: 30, width: 30, justifyContent: 'center'
-            }}
-          >
-            <FontAwesome name="long-arrow-left" color={Colors.blue} size={17} />
-          </AppBottomSheetTouchableWrapper>
-          <View style={{
-            justifyContent: 'center', flex: 1
-          }}>
-            <Text style={styles.modalHeaderTitleText}>
-              {props.modalTitle ? props.modalTitle : 'Associate a contact'}
-            </Text>
-            <Text style={styles.modalHeaderInfoText}>
-              {'Select a contact from your phone\'s address book'}
-            </Text>
-          </View>
-          <AppBottomSheetTouchableWrapper
-            onPress={() => {
-              onSkipContinue()
-            }}
-            style={{
-              height: wp( '8%' ),
-              width: wp( '22%' ),
-              flexDirection: 'row',
-              alignItems: 'center',
-              backgroundColor: Colors.blue,
-              justifyContent: 'center',
-              borderRadius: 8,
-              alignSelf: 'center',
-            }}
-          >
-            <Text
-              style={{
-                color: Colors.white,
-                fontSize: RFValue( 12 ),
-                fontFamily: Fonts.Regular,
-              }}
-            >
-              Skip
-            </Text>
-          </AppBottomSheetTouchableWrapper>
-        </View> */}
-
-        {/* </View> */}
-
         <View style={{
           flex: 1
         }}>
-          {/* <View
-          style={{
-            paddingLeft: wp( '5%' ),
-            paddingRight: wp( '5%' ),
-            paddingTop: wp( '5%' ),
-          }}
-        >
-          <Text style={styles.modalHeaderInfoText}>
-            {'Add contacts from your Address Book, or add a new contact'}
-          </Text>
-        </View> */}
           <View style={{
             height: '95%', ...props.style
           }}>
-            {/* <View style={styles.selectedContactContainer}>
-            {selectedContacts.length > 0
-              ? selectedContacts.map( ( value, index ) => {
-                return (
-                  <View key={index} style={styles.selectedContactView}>
-                    <Text style={styles.selectedContactNameText}>
-                      {value.name ? value.name.split( ' ' )[ 0 ] : ''}{' '}
-                      <Text style={{
-                        fontFamily: Fonts.Medium
-                      }}>
-                        {value.name ? value.name.split( ' ' )[ 1 ] : ''}
-                      </Text>
-                    </Text>
-                    <AppBottomSheetTouchableWrapper
-                      onPress={() => onCancel( value )}
-                    >
-                      <AntDesign
-                        name="close"
-                        size={17}
-                        color={Colors.white}
-                      />
-                    </AppBottomSheetTouchableWrapper>
-                  </View>
-                )
-              } )
-              : null}
-          </View> */}
             <View style={[ styles.searchBoxContainer ]}>
               <View style={styles.searchBoxIcon}>
                 <Icon
@@ -602,22 +492,6 @@ export default function AddContactAddressBook( props ) {
                           textAlign: 'center'
                         }}
                       >{strings.cannotSelect}</Text>
-                      {/* <AppBottomSheetTouchableWrapper
-                      onPress={() => getContactPermission()}
-                      style={{
-                        // height: wp( '8%' ),
-                        marginTop: hp( 1.8 ),
-                        paddingLeft: wp( '8%' ),
-                      }}
-                    >
-                      <Text
-                        style={{
-                          ...styles.proceedButtonText,
-                        }}
-                      >
-                        Grant Permission
-                      </Text>
-                    </AppBottomSheetTouchableWrapper> */}
                     </View>
                   }
                   renderItem={( { item, index } ) => {
@@ -647,17 +521,6 @@ export default function AddContactAddressBook( props ) {
                           onpress={() => onContactSelect( index )}
                         />
                         <Text style={styles.contactText}>
-                          {/* {item.name && item.name.split( ' ' )[ 0 ]
-                          ? item.name.split( ' ' )[ 0 ]
-                          : ''}{' '}
-                        <Text style={{
-                          fontFamily: Fonts.Medium
-                        }}>
-                          {item.name && item.name.split( ' ' )[ 1 ]
-                            ? item.name.split( ' ' )[ 1 ]
-                            : ''}
-                        </Text> */}
-
                           {item.name && item.name.split( ' ' ).map( ( x, index ) => {
                             const i = item.name.split( ' ' ).length
                             return (
@@ -741,36 +604,8 @@ export default function AddContactAddressBook( props ) {
                 </AppBottomSheetTouchableWrapper>
               }
 
-              {/* {
-              <View style={styles.statusIndicatorView}>
-
-                <View style={styles.statusIndicatorActiveView} />
-                <View style={styles.statusIndicatorInactiveView} />
-                <View style={styles.statusIndicatorInactiveView} />
-              </View>
-
-            } */}
-
             </View>
             {/* )} */}
-            {/* <ModalContainer onBackground={()=>setErrModal( false )} visible={permissionErrModal} closeBottomSheet={() => { setErrModal( false ) }}>
-            <ErrorModalContents
-              title={strings.erroraAccessing}
-              info={errorMessage}
-              proceedButtonText={strings.openSetting}
-              isIgnoreButton={true}
-              onPressProceed={() => {
-                Linking.openURL( 'app-settings:' )
-                setErrModal( false )
-              }}
-              onPressIgnore={() => {
-                setErrModal( false )
-
-              }}
-              isBottomImage={true}
-              bottomImage={require( '../../assets/images/icons/errorImage.png' )}
-            />
-          </ModalContainer> */}
             <ModalContainer onBackground={() => setModal( false )} visible={permissionModal} closeBottomSheet={() => { }}>
               <ErrorModalContents
               // modalRef={contactPermissionBottomSheet}
@@ -808,26 +643,6 @@ export default function AddContactAddressBook( props ) {
 }
 
 const styles = StyleSheet.create( {
-  statusIndicatorView: {
-    flexDirection: 'row',
-    marginLeft: 'auto',
-    marginHorizontal: wp( '6%' ),
-    marginBottom: hp( 2 )
-  },
-  statusIndicatorActiveView: {
-    height: 5,
-    width: 25,
-    backgroundColor: Colors.blue,
-    borderRadius: 10,
-    marginLeft: 5,
-  },
-  statusIndicatorInactiveView: {
-    height: 5,
-    width: 5,
-    backgroundColor: Colors.lightBlue,
-    borderRadius: 10,
-    marginLeft: 5,
-  },
   proceedButtonText: {
     color: Colors.blue,
     fontSize: RFValue( 12 ),
@@ -849,21 +664,6 @@ const styles = StyleSheet.create( {
     marginLeft: wp( '4%' ),
     marginRight: wp( '4%' ),
   },
-  modalHeaderTitleText: {
-    color: Colors.blue,
-    fontSize: RFValue( 18 ),
-    fontFamily: Fonts.Regular,
-  },
-  modalHeaderInfoText: {
-    color: Colors.textColorGrey,
-    fontSize: RFValue( 12 ),
-    fontFamily: Fonts.Regular,
-  },
-  TitleText: {
-    color: Colors.blue,
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Regular,
-  },
   buttonText: {
     color: Colors.white,
     fontFamily: Fonts.Medium,
@@ -877,32 +677,8 @@ const styles = StyleSheet.create( {
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    // elevation: 10,
     marginBottom: 20,
     marginRight:30
-  },
-  selectedContactView: {
-    width: wp( '42%' ),
-    height: wp( '12%' ),
-    backgroundColor: Colors.lightBlue,
-    borderRadius: 10,
-    padding: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  selectedContactNameText: {
-    color: Colors.white,
-    fontSize: RFValue( 13 ),
-    fontFamily: Fonts.Regular
-  },
-  selectedContactContainer: {
-    height: wp( '20%' ),
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    marginLeft: 20,
-    marginRight: 20,
   },
   contactView: {
     height: hp( 6 ),
@@ -960,7 +736,7 @@ const styles = StyleSheet.create( {
   selectedContactText: {
     fontSize: RFValue( 12 ),
     color: Colors.backgroundColor1,
-    fontFamily: Fonts.FiraSans,
+    fontFamily: Fonts.Regular,
     paddingRight: wp( 3 ),
     fontWeight: '500'
   },

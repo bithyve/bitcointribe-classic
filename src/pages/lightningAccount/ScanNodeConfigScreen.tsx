@@ -34,11 +34,6 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
-    // shadowColor: Colors.shadowBlue,
-    // shadowOpacity: 1,
-    // shadowOffset: {
-    //   width: 15, height: 15
-    // },
     backgroundColor: Colors.blue,
     marginHorizontal: wp( 4 ),
     marginVertical: hp( '2%' ),
@@ -47,12 +42,6 @@ const styles = StyleSheet.create( {
     marginLeft: wp( '3%' ),
     marginRight: wp( '3%' ),
     alignSelf: 'center',
-  },
-  textValue: {
-    fontFamily: Fonts.Regular,
-    fontSize: RFValue( 13 ),
-    color: Colors.THEAM_INFO_TEXT_COLOR,
-    marginLeft: wp( '3%' ),
   },
   textHelpUs: {
     fontFamily: Fonts.SemiBold,
@@ -189,15 +178,6 @@ export default function ScanNodeConfig( { navigation } ) {
             marginBottom: 16
           }}
         />
-        {/* <TouchableOpacity
-          style={styles.buttonView}
-          activeOpacity={0.6}
-          onPress={() => {
-            navigation.navigate( 'EnterNodeConfig' )
-          }}
-        >
-          <Text style={styles.buttonText}>{strings.Entermanually}</Text>
-        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => {
             navigation.navigate( 'EnterNodeConfig' )
