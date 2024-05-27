@@ -1,6 +1,5 @@
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import * as ExpoContacts from 'expo-contacts'
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   Linking,
@@ -11,25 +10,26 @@ import {
   Text,
   TextInput,
   View
-} from 'react-native'
-import { FlatList } from 'react-native-gesture-handler'
-import { RFValue } from 'react-native-responsive-fontsize'
+} from 'react-native';
+import Contacts from 'react-native-contacts';
+import { FlatList } from 'react-native-gesture-handler';
+import { RFValue } from 'react-native-responsive-fontsize';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
-} from 'react-native-responsive-screen'
-import EvilIcons from 'react-native-vector-icons/EvilIcons'
-import { useDispatch, useSelector } from 'react-redux'
-import Colors from '../common/Colors'
-import { LocalizationContext } from '../common/content/LocContext'
-import Fonts from '../common/Fonts'
-import ErrorModalContents from '../components/ErrorModalContents'
-import ModalHeader from '../components/ModalHeader'
-import RadioButton from '../components/RadioButton'
-import Toast from '../components/Toast'
-import { setIsPermissionGiven } from '../store/actions/preferences'
-import { AppBottomSheetTouchableWrapper } from './AppBottomSheetTouchableWrapper'
-import ModalContainer from './home/ModalContainer'
+} from 'react-native-responsive-screen';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import { useDispatch, useSelector } from 'react-redux';
+import Colors from '../common/Colors';
+import { LocalizationContext } from '../common/content/LocContext';
+import Fonts from '../common/Fonts';
+import ErrorModalContents from '../components/ErrorModalContents';
+import ModalHeader from '../components/ModalHeader';
+import RadioButton from '../components/RadioButton';
+import Toast from '../components/Toast';
+import { setIsPermissionGiven } from '../store/actions/preferences';
+import { AppBottomSheetTouchableWrapper } from './AppBottomSheetTouchableWrapper';
+import ModalContainer from './home/ModalContainer';
 
 export default function ContactList( props ) {
   let [ selectedContacts, setSelectedContacts ] = useState( [] )
@@ -112,20 +112,21 @@ export default function ContactList( props ) {
   }
 
   const getContact = () => {
-    ExpoContacts.getContactsAsync().then( async ( { data } ) => {
-      if ( !data.length ) {
+    Contacts.getAll()
+    .then(async(contacts) => {
+      if ( contacts && !contacts.length ) {
         setErrorMessage(
           strings.Nocontacts,
         )
         // ( contactListErrorBottomSheet as any ).current.snapTo( 1 )
         setPermissionsErrModal( true )
       }
-      setContactData( data )
-      await AsyncStorage.setItem( 'ContactData', JSON.stringify( data ) )
-      const contactList = data.sort( function ( a, b ) {
-        if ( a.name && b.name ) {
-          if ( a.name.toLowerCase() < b.name.toLowerCase() ) return -1
-          if ( a.name.toLowerCase() > b.name.toLowerCase() ) return 1
+      setContactData( contacts )
+      await AsyncStorage.setItem( 'ContactData', JSON.stringify( contacts ) )
+      const contactList = contacts.sort( function ( a, b ) {
+        if ( a.displayName && b.displayName ) {
+          if ( a.displayName.toLowerCase() < b.displayName.toLowerCase() ) return -1
+          if ( a.displayName.toLowerCase() > b.displayName.toLowerCase() ) return 1
         }
         return 0
       } )
@@ -147,7 +148,7 @@ export default function ContactList( props ) {
         getContact()
       }
     } else if ( Platform.OS === 'ios' ) {
-      const { status } = await ExpoContacts.requestPermissionsAsync()
+      const status  = await Contacts.requestPermission()
       if ( status === 'denied' ) {
         setContactPermissionIOS( false )
         setErrorMessage( strings.cannotSelect )
@@ -170,7 +171,7 @@ export default function ContactList( props ) {
         getContactPermission()
       }
     } else if ( Platform.OS === 'ios' ) {
-      if( ( await ExpoContacts.requestPermissionsAsync() ).status === 'undetermined' ){
+      if ( ( await Contacts.requestPermission() ) === 'undefined' ) {
         setPermissionsModal( true )
       }
       else {
@@ -188,9 +189,9 @@ export default function ContactList( props ) {
           if ( data && data.length ) {
             setContactData( data )
             const contactList = data.sort( function ( a, b ) {
-              if ( a.name && b.name ) {
-                if ( a.name.toLowerCase() < b.name.toLowerCase() ) return -1
-                if ( a.name.toLowerCase() > b.name.toLowerCase() ) return 1
+              if ( a.displayName && b.displayName ) {
+                if ( a.displayName.toLowerCase() < b.displayName.toLowerCase() ) return -1
+                if ( a.displayName.toLowerCase() > b.displayName.toLowerCase() ) return 1
               }
               return 0
             } )
@@ -212,12 +213,12 @@ export default function ContactList( props ) {
       const filterContactsForDisplay = []
       for ( let i = 0; i < contactData.length; i++ ) {
         if (
-          ( contactData[ i ].firstName &&
-            contactData[ i ].firstName
+          ( contactData[ i ].familyName &&
+            contactData[ i ].familyName
               .toLowerCase()
               .startsWith( keyword.toLowerCase() ) ) ||
-          ( contactData[ i ].lastName &&
-            contactData[ i ].lastName
+          ( contactData[ i ].givenName &&
+            contactData[ i ].givenName
               .toLowerCase()
               .startsWith( keyword.toLowerCase() ) )
         ) {
@@ -256,12 +257,12 @@ export default function ContactList( props ) {
         }
         if (
           selectedContactsTemp.findIndex(
-            ( item ) => item.id == contacts[ index ].id,
+            ( item ) => item.recordID == contacts[ index ].recordID,
           ) > -1
         ) {
           selectedContactsTemp.splice(
             selectedContactsTemp.findIndex(
-              ( temp ) => temp.id == contacts[ index ].id,
+              ( temp ) => temp.recordID == contacts[ index ].recordID,
             ),
             1,
           )
@@ -293,9 +294,9 @@ export default function ContactList( props ) {
   }
 
   async function onCancel( value ) {
-    if ( filterContactData.findIndex( ( tmp ) => tmp.id == value.id ) > -1 ) {
+    if ( filterContactData.findIndex( ( tmp ) => tmp.recordID == value.recordID ) > -1 ) {
       filterContactData[
-        filterContactData.findIndex( ( tmp ) => tmp.id == value.id )
+        filterContactData.findIndex( ( tmp ) => tmp.recordID == value.recordID )
       ].checked = false
     }
     selectedContacts.splice(
@@ -309,9 +310,9 @@ export default function ContactList( props ) {
       if ( !selectedContacts ) {
         selectedContacts = []
       }
-      if ( selectedContacts.findIndex( ( item ) => item.id == value.id ) > -1 ) {
+      if ( selectedContacts.findIndex( ( item ) => item.recordID == value.recordID ) > -1 ) {
         selectedContacts.splice(
-          selectedContacts.findIndex( ( temp ) => temp.id == value.id ),
+          selectedContacts.findIndex( ( temp ) => temp.recordID == value.recordID ),
           1,
         )
       }
@@ -464,7 +465,7 @@ export default function ContactList( props ) {
             renderItem={( { item, index } ) => {
               let selected = false
               if (
-                selectedContacts.findIndex( ( temp ) => temp.id == item.id ) > -1
+                selectedContacts.findIndex( ( temp ) => temp.recordID == item.recordID ) > -1
               ) {
                 selected = true
               }
@@ -483,14 +484,14 @@ export default function ContactList( props ) {
                     onpress={() => onContactSelect( index )}
                   />
                   <Text style={styles.contactText}>
-                    {item.name && item.name.split( ' ' )[ 0 ]
-                      ? item.name.split( ' ' )[ 0 ]
+                    {item.givenName && item.givenName.split( ' ' )[ 0 ]
+                      ? item.givenName.split( ' ' )[ 0 ]
                       : ''}{' '}
                     <Text style={{
                       fontFamily: Fonts.Medium
                     }}>
-                      {item.name && item.name.split( ' ' )[ 1 ]
-                        ? item.name.split( ' ' )[ 1 ]
+                      {item.familyName && item.familyName.split( ' ' )[ 1 ]
+                        ? item.familyName.split( ' ' )[ 1 ]
                         : ''}
                     </Text>
                   </Text>
