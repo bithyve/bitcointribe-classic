@@ -1,6 +1,5 @@
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import * as ExpoContacts from 'expo-contacts'
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import {
   PermissionsAndroid,
   Platform,
@@ -11,29 +10,30 @@ import {
   TextInput,
   TouchableOpacity,
   View
-} from 'react-native'
-import { FlatList } from 'react-native-gesture-handler'
-import { RFValue } from 'react-native-responsive-fontsize'
+} from 'react-native';
+import Contacts from 'react-native-contacts';
+import { FlatList } from 'react-native-gesture-handler';
+import { RFValue } from 'react-native-responsive-fontsize';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
-} from 'react-native-responsive-screen'
-import Icon from 'react-native-vector-icons/MaterialIcons'
-import { useDispatch, useSelector } from 'react-redux'
-import { v4 as uuid } from 'uuid'
-import { Trusted_Contacts } from '../../bitcoin/utilities/Interface'
-import Colors from '../../common/Colors'
-import { LocalizationContext } from '../../common/content/LocContext'
-import Fonts from '../../common/Fonts'
-import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper'
-import ErrorModalContents from '../../components/ErrorModalContents'
-import CreateFNFInvite from '../../components/friends-and-family/CreateFNFInvite'
-import HeaderTitle from '../../components/HeaderTitle'
-import ModalContainer from '../../components/home/ModalContainer'
-import RadioButton from '../../components/RadioButton'
-import { setContactPermissionAsked, setIsPermissionGiven } from '../../store/actions/preferences'
-import { editTrustedContact } from '../../store/actions/trustedContacts'
-import AlphabeticList from './AlphabeticList'
+} from 'react-native-responsive-screen';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuid } from 'uuid';
+import { Trusted_Contacts } from '../../bitcoin/utilities/Interface';
+import Colors from '../../common/Colors';
+import { LocalizationContext } from '../../common/content/LocContext';
+import Fonts from '../../common/Fonts';
+import { AppBottomSheetTouchableWrapper } from '../../components/AppBottomSheetTouchableWrapper';
+import ErrorModalContents from '../../components/ErrorModalContents';
+import CreateFNFInvite from '../../components/friends-and-family/CreateFNFInvite';
+import HeaderTitle from '../../components/HeaderTitle';
+import ModalContainer from '../../components/home/ModalContainer';
+import RadioButton from '../../components/RadioButton';
+import { setContactPermissionAsked, setIsPermissionGiven } from '../../store/actions/preferences';
+import { editTrustedContact } from '../../store/actions/trustedContacts';
+import AlphabeticList from './AlphabeticList';
 
 const viewabilityConfig = {
   itemVisiblePercentThreshold: 50 // Adjust as needed
@@ -94,11 +94,11 @@ export default function AddContactAddressBook( props ) {
   const onViewableItemsChanged = useCallback( ( { viewableItems } ) => {
     if ( viewableItems.length > 0 ) {
       const firstItem = viewableItems[ 0 ].item
-      let firstLetter = firstItem.name.trim()[ 0 ]
-      if ( firstLetter.match( /[^A-Za-z]/ ) ) {
+      let firstLetter = firstItem && firstItem.displayName && firstItem.displayName.trim()[ 0 ]
+      if ( firstLetter && firstLetter.match( /[^A-Za-z]/ ) ) {
         firstLetter = '#'
       } else {
-        firstLetter = firstLetter.toUpperCase() // Ensure it's uppercase
+        firstLetter = firstLetter && firstLetter.toUpperCase() // Ensure it's uppercase
       }
       if( currentLetter !== firstLetter ){
         setCurrentLetter( firstLetter )
@@ -108,19 +108,20 @@ export default function AddContactAddressBook( props ) {
 
   const getContact = () => {
     // if ( props.isLoadContacts ) {
-    ExpoContacts.getContactsAsync().then( async ( { data } ) => {
-      if ( !data.length ) {
+      Contacts.getAll()
+      .then(async(contacts) => {
+      if ( contacts && !contacts.length ) {
         setErrorMessage(
           strings.Nocontacts,
         )
         setErrModal( true )
       }
-      setContactData( data )
-      await AsyncStorage.setItem( 'ContactData', JSON.stringify( data ) )
-      const contactList = data.sort( function ( a, b ) {
-        if ( a.name && b.name ) {
-          if ( a.name.toLowerCase() < b.name.toLowerCase() ) return -1
-          if ( a.name.toLowerCase() > b.name.toLowerCase() ) return 1
+      setContactData( contacts )
+      await AsyncStorage.setItem( 'ContactData', JSON.stringify( contacts ) )
+      const contactList = contacts.sort( function ( a, b ) {
+        if ( a.displayName && b.displayName ) {
+          if ( a.displayName.toLowerCase() < b.displayName.toLowerCase() ) return -1
+          if ( a.displayName.toLowerCase() > b.displayName.toLowerCase() ) return 1
         }
         return 0
       } )
@@ -141,13 +142,11 @@ export default function AddContactAddressBook( props ) {
         setContactPermissionAndroid( false )
         return
       } else {
-
-
         // TODO: Migrate it using react-native-contact
         getContact()
       }
     } else if ( Platform.OS === 'ios' ) {
-      const { status } = await ExpoContacts.requestPermissionsAsync()
+      const status  = await Contacts.requestPermission()
       if ( status === 'denied' ) {
         setContactPermissionIOS( false )
         setErrorMessage( strings.cannotSelect )
@@ -170,7 +169,7 @@ export default function AddContactAddressBook( props ) {
         getContactPermission()
       }
     } else if ( Platform.OS === 'ios' ) {
-      if ( ( await ExpoContacts.requestPermissionsAsync() ).status === 'undetermined' ) {
+      if ( ( await Contacts.requestPermission() ) === 'undefined' ) {
         setModal( true )
       }
       else {
@@ -188,9 +187,9 @@ export default function AddContactAddressBook( props ) {
           if ( data && data.length ) {
             setContactData( data )
             const contactList = data.sort( function ( a, b ) {
-              if ( a.name && b.name ) {
-                if ( a.name.toLowerCase() < b.name.toLowerCase() ) return -1
-                if ( a.name.toLowerCase() > b.name.toLowerCase() ) return 1
+              if ( a.displayName && b.displayName ) {
+                if ( a.displayName.toLowerCase() < b.displayName.toLowerCase() ) return -1
+                if ( a.displayName.toLowerCase() > b.displayName.toLowerCase() ) return 1
               }
               return 0
             } )
@@ -202,7 +201,7 @@ export default function AddContactAddressBook( props ) {
   }, [] )
 
   const filterContacts = ( keyword ) => {
-    if ( contactData.length > 0 ) {
+    if ( contactData && contactData.length > 0 ) {
       if ( !keyword.length ) {
         setFilterContactData( contactData )
         return
@@ -210,20 +209,20 @@ export default function AddContactAddressBook( props ) {
       const isFilter = true
       const filterContactsForDisplay = []
       for ( let i = 0; i < contactData.length; i++ ) {
-        if ( contactData[ i ].name != undefined && contactData[ i ].name != null && contactData[ i ].name != '' ) {
-          const contactWords = contactData[ i ].name.split( ' ' ).length
-          const middleName = contactData[ i ].name.split( ' ' ).slice( 1, contactWords - 1 ).join( ' ' )
+        if ( contactData[ i ].displayName != undefined && contactData[ i ].displayName != null && contactData[ i ].displayName != '' ) {
+          const contactWords = contactData[ i ].displayName.split( ' ' ).length
+          const middleName = contactData[ i ].displayName.split( ' ' ).slice( 1, contactWords - 1 ).join( ' ' )
           if (
-            ( contactData[ i ].firstName &&
-              contactData[ i ].firstName
+            ( contactData[ i ].familyName &&
+              contactData[ i ].familyName
                 .toLowerCase()
                 .startsWith( keyword.toLowerCase() ) ) ||
-            ( contactData[ i ].lastName &&
-              contactData[ i ].lastName
+            ( contactData[ i ].givenName &&
+              contactData[ i ].givenName
                 .toLowerCase()
                 .startsWith( keyword.toLowerCase() ) ) ||
-            ( contactData[ i ].name &&
-              contactData[ i ].name
+            ( contactData[ i ].displayName &&
+              contactData[ i ].displayName
                 .toLowerCase()
                 .startsWith( keyword.toLowerCase() ) ) ||
             ( middleName &&
@@ -248,7 +247,7 @@ export default function AddContactAddressBook( props ) {
 
   const findIndexOfLetter = ( letter ) => {
     return filterContactData.findIndex( ( contact ) => {
-      let firstCharacter = contact.name.trim()[ 0 ].toUpperCase()
+      let firstCharacter = contact.displayName.trim()[ 0 ].toUpperCase()
       if ( firstCharacter.match( /[^A-Za-z]/ ) ) {
         firstCharacter = '#'
       }
@@ -280,13 +279,13 @@ export default function AddContactAddressBook( props ) {
 
   async function onCancel( value ) {
 
-    if ( filterContactData.findIndex( ( tmp ) => tmp.id == value.id ) > -1 ) {
+    if ( filterContactData.findIndex( ( tmp ) => tmp.recordID == value.recordID ) > -1 ) {
       filterContactData[
-        filterContactData.findIndex( ( tmp ) => tmp.id == value.id )
+        filterContactData.findIndex( ( tmp ) => tmp.recordID == value.recordID )
       ].checked = false
     }
     selectedContacts.splice(
-      selectedContacts.findIndex( ( temp ) => temp.id == value.id ),
+      selectedContacts.findIndex( ( temp ) => temp.recordID == value.recordID ),
       1,
     )
     setSelectedContacts( selectedContacts )
@@ -419,10 +418,10 @@ export default function AddContactAddressBook( props ) {
         {selectedContacts.length !== 0 &&
         <View style={styles.selectedContactContent}>
           <View style={styles.selectedContact}>
-            <Text style={styles.selectedContactText}><Text style={styles.firstName}>{selectedContacts[ 0 ].firstName}</Text> {selectedContacts[ 0 ].lastName}</Text>
+            <Text style={styles.selectedContactText}><Text style={styles.firstName}>{selectedContacts[ 0 ].givenName}</Text> {selectedContacts[ 0 ].familyName}</Text>
             <TouchableOpacity onPress={() => {
               setSelectedContacts( [] )
-              onContactSelect( filterContactData.findIndex( ( tmp ) => tmp.id == selectedContacts[ 0 ].id ) )
+              onContactSelect( filterContactData.findIndex( ( tmp ) => tmp.recordID == selectedContacts[ 0 ].recordID ) )
             }}>
               <Icon name='close' color={Colors.backgroundColor1} size={18} />
             </TouchableOpacity>
@@ -468,7 +467,7 @@ export default function AddContactAddressBook( props ) {
               <AlphabeticList selected={currentLetter} onPress={scrollToChar}/>
               {filterContactData ? (
                 <FlatList
-                  keyExtractor={( item, index ) => item.id}
+                  keyExtractor={( item, index ) => item.recordID}
                   data={filterContactData}
                   extraData={radioOnOff}
                   ref={flatListRef}
@@ -497,7 +496,7 @@ export default function AddContactAddressBook( props ) {
                   renderItem={( { item, index } ) => {
                     let selected = false
                     if (
-                      selectedContacts.findIndex( ( temp ) => temp.id == item.id ) >
+                      selectedContacts.findIndex( ( temp ) => temp.recordID == item.recordID ) >
                     -1
                     ) {
                       selected = true
@@ -521,11 +520,11 @@ export default function AddContactAddressBook( props ) {
                           onpress={() => onContactSelect( index )}
                         />
                         <Text style={styles.contactText}>
-                          {item.name && item.name.split( ' ' ).map( ( x, index ) => {
-                            const i = item.name.split( ' ' ).length
+                          {item.givenName && item.familyName &&  item.givenName.concat(' '+item.familyName).split( ' ' ).map( ( x, index ) => {
+                            const i = item.givenName.concat(' '+item.familyName).split( ' ' ).length
                             return (
                               <Text key={`${x}_${index}`} style={{
-                                color: selected ? Colors.white : Colors.black
+                                color: selected ? Colors.white : Colors.primaryText
                               }}>
                                 {index !== i - 1 ? `${x} ` :
                                   <Text style={{
