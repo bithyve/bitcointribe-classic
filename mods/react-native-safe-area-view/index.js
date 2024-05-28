@@ -1,12 +1,11 @@
+import hoistStatics from 'hoist-non-react-statics'
 import React, { Component } from 'react'
 import {
-  Dimensions,
+  Animated, Dimensions,
   InteractionManager,
   Platform,
-  StyleSheet,
-  Animated,
+  StyleSheet
 } from 'react-native'
-import hoistStatics from 'hoist-non-react-statics'
 
 import withOrientation from './withOrientation'
 
@@ -95,13 +94,6 @@ const statusBarHeight = isLandscape => {
    * factor in the height here; if translucent (content renders under it) then
    * we do.
    */
-  if ( Platform.OS === 'android' ) {
-    if ( global.Expo ) {
-      return global.Expo.Constants.statusBarHeight
-    } else {
-      return 0
-    }
-  }
 
   if ( isIPhoneX ) {
     return isLandscape ? 0 : 44
