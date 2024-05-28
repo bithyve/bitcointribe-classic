@@ -1,18 +1,18 @@
 import React, { memo, useMemo } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
-import Colors from '../../common/Colors'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
-import Fonts from './../../common/Fonts'
 import {
-  widthPercentageToDP as wp,
+  widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import Entypo from 'react-native-vector-icons/Entypo'
+import config from '../../bitcoin/HexaConfig'
+import Colors from '../../common/Colors'
 import {
   REGULAR_ACCOUNT,
-  SECURE_ACCOUNT,
+  SECURE_ACCOUNT
 } from '../../common/constants/wallet-service-types'
-import config from '../../bitcoin/HexaConfig'
 import LabeledBalanceDisplay from '../../components/LabeledBalanceDisplay'
+import Fonts from './../../common/Fonts'
 
 const AccountsListSend = ( {
   balances,

@@ -1,29 +1,26 @@
 
+import * as bip39 from 'bip39'
 import React, { useState } from 'react'
 import {
-  View,
-  SafeAreaView,
+  NativeModules, Platform, SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
-  TouchableOpacity,
-  Platform,
-  NativeModules
+  TouchableOpacity, View
 } from 'react-native'
-import Colors from '../../common/Colors'
-import SeedHeaderComponent from '../NewBHR/SeedHeaderComponent'
-import ArrowRight from '../../assets/images/svgs/icon_arrow_right.svg'
-import Fonts from '../../common/Fonts'
+import DocumentPicker from 'react-native-document-picker'
 import { RFValue } from 'react-native-responsive-fontsize'
+import ArrowRight from '../../assets/images/svgs/icon_arrow_right.svg'
+import IconUp from '../../assets/images/svgs/icon_arrow_up.svg'
+import { GridType } from '../../bitcoin/utilities/Interface'
+import Colors from '../../common/Colors'
+import Fonts from '../../common/Fonts'
+import MnemonicPDFError from '../../components/border-wallet/MnemonicPDFError'
 import RecoverBorderWalletModal from '../../components/border-wallet/RecoverBorderWalletModal'
 import ModalContainer from '../../components/home/ModalContainer'
-import IconUp from '../../assets/images/svgs/icon_arrow_up.svg'
-import DocumentPicker from 'react-native-document-picker'
-import MnemonicPDFError from '../../components/border-wallet/MnemonicPDFError'
-import * as bip39 from 'bip39'
 import Toast from '../../components/Toast'
 import PDFUtils from '../../nativemodules/PDFUtils'
-import { GridType } from '../../bitcoin/utilities/Interface'
+import SeedHeaderComponent from '../NewBHR/SeedHeaderComponent'
 const iCloud = NativeModules.iCloud
 
 const RegenerateEntropyGrid = ( props ) => {

@@ -60,13 +60,6 @@ const SecureScan = props => {
     : ''
   const dispatch = useDispatch()
 
-  // useEffect( () => {
-  //   if ( !secondaryQR ) {
-  // sss file removed
-  //     dispatch( uploadEncMShare( 0 ) )
-  //   }
-  // }, [] )
-
   const renderErrorModalContent = useCallback( () => {
     return (
       <ErrorModalContents

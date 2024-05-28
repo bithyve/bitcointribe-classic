@@ -1,21 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import {
-  View,
-  Text,
-  StyleSheet,
-  SafeAreaView,
-  StatusBar,
-  TouchableOpacity,
-  ScrollView,
-  FlatList,
-  ActivityIndicator,
+  ActivityIndicator, FlatList, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View
 } from 'react-native'
-import Colors from '../../common/Colors'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import CommonStyles from '../../common/Styles/Styles'
 import { RFValue } from 'react-native-responsive-fontsize'
-import Fonts from '../../common/Fonts'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Colors from '../../common/Colors'
 import { windowWidth } from '../../common/data/responsiveness/responsive'
+import Fonts from '../../common/Fonts'
+import CommonStyles from '../../common/Styles/Styles'
 
 const blockheight = 15
 

@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
-import Colors from '../../common/Colors'
-import Fonts from '../../common/Fonts'
-import { TouchableOpacity, Text, StyleSheet, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { heightPercentageToDP, widthPercentageToDP as wp } from 'react-native-responsive-screen'
-import ListStyles from '../../common/Styles/ListStyles'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Colors from '../../common/Colors'
 import { LocalizationContext } from '../../common/content/LocContext'
+import Fonts from '../../common/Fonts'
+import ListStyles from '../../common/Styles/ListStyles'
 
 const BottomSheetHeader = ( { title, onPress } ) => {
   const { translations } = useContext( LocalizationContext )

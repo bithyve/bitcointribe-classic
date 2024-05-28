@@ -220,11 +220,6 @@ const ReceivingAddress = ( props ) => {
     )
   }, [] )
 
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   if (!receivingAddress) dispatch(fetchAddress(serviceType));
-  // }, [serviceType]);
-
   return (
     <View style={{
       flex: 1

@@ -238,31 +238,6 @@ export default function QRModal( props ) {
             </Text>
             <Text style={styles.bottomNoteInfoText}>
               {props.infoText}
-              {/* {props.linkText ? (
-                  <Text
-                    style={{
-                      color: Colors.textColorGrey,
-                      fontSize: RFValue(12),
-                      fontFamily: Fonts.Regular,
-                      textDecorationLine: 'underline',
-                    }}
-                    onPress={props.onPress ? props.onPress : () => {}}
-                  >
-                    {props.linkText}
-                  </Text>
-                ) : null}
-                {props.italicText ? (
-                  <Text
-                    style={{
-                      fontFamily: Fonts.MediumItalic,
-                      fontWeight: 'bold',
-                      fontStyle: 'italic',
-                      fontSize: RFValue(12),
-                    }}
-                  >
-                    {props.italicText}
-                  </Text>
-                ) : null}*/}
             </Text>
           </View>
         </View>

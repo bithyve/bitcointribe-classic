@@ -253,15 +253,6 @@ const styles = StyleSheet.create( {
     marginHorizontal:  wp( 25 ),
     alignItems: 'center'
   },
-  indexWrapper: {
-    width: '10%'
-  },
-  gridItemIndex: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: Colors.blue,
-    opacity: 0.6
-  },
   title: {
     fontSize: 12,
     fontWeight: 'bold',
