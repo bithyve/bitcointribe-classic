@@ -1,4 +1,4 @@
-#import <Expo/Expo.h>
+
 //
 //  HEXA-Bridging-Header.h
 //  HEXA Stage
