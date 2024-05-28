@@ -1,8 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import * as ExpoContacts from 'expo-contacts'
 import idx from 'idx'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { FlatList, Linking, PermissionsAndroid, Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import Contacts from 'react-native-contacts'
 import DeviceInfo from 'react-native-device-info'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
@@ -196,7 +196,7 @@ const FNFToKeeper = ( props ) => {
         getContactPermission()
       }
     } else if ( Platform.OS === 'ios' ) {
-      if( ( await ExpoContacts.requestPermissionsAsync() ).status === 'undetermined' ){
+      if ( ( await Contacts.requestPermission() ) === 'undefined' ) {
         // ( contactPermissionBottomSheet as any ).current.snapTo( 1 )
         setPermissionsModal( true )
       }
@@ -207,20 +207,21 @@ const FNFToKeeper = ( props ) => {
   }
 
   const getContact = () => {
-    ExpoContacts.getContactsAsync().then( async ( { data } ) => {
-      if ( !data.length ) {
+    Contacts.getAll()
+      .then(async(contacts) => {
+        if ( contacts && !contacts.length ) {
         setErrorMessage(
           strings.Nocontacts,
         )
         // ( contactListErrorBottomSheet as any ).current.snapTo( 1 )
         setPermissionsErrModal( true )
       }
-      setContactData( data )
-      await AsyncStorage.setItem( 'ContactData', JSON.stringify( data ) )
-      const contactList = data.sort( function ( a, b ) {
-        if ( a.name && b.name ) {
-          if ( a.name.toLowerCase() < b.name.toLowerCase() ) return -1
-          if ( a.name.toLowerCase() > b.name.toLowerCase() ) return 1
+      setContactData( contacts )
+      await AsyncStorage.setItem( 'ContactData', JSON.stringify( contacts ) )
+      const contactList = contacts.sort( function ( a, b ) {
+        if ( a.displayName && b.displayName ) {
+          if ( a.displayName.toLowerCase() < b.displayName.toLowerCase() ) return -1
+          if ( a.displayName.toLowerCase() > b.displayName.toLowerCase() ) return 1
         }
         return 0
       } )
@@ -242,7 +243,7 @@ const FNFToKeeper = ( props ) => {
         getContact()
       }
     } else if ( Platform.OS === 'ios' ) {
-      const { status } = await ExpoContacts.requestPermissionsAsync()
+      const status  = await Contacts.requestPermission()
       if ( status === 'denied' ) {
         setContactPermissionIOS( false )
         setErrorMessage( strings.cannotSelect )
@@ -284,12 +285,12 @@ const FNFToKeeper = ( props ) => {
       const filterContactsForDisplay = []
       for ( let i = 0; i < contactData.length; i++ ) {
         if (
-          ( contactData[ i ].firstName &&
-            contactData[ i ].firstName
+          ( contactData[ i ].familyName &&
+            contactData[ i ].familyName
               .toLowerCase()
               .startsWith( keyword.toLowerCase() ) ) ||
-          ( contactData[ i ].lastName &&
-            contactData[ i ].lastName
+          ( contactData[ i ].givenName &&
+            contactData[ i ].givenName
               .toLowerCase()
               .startsWith( keyword.toLowerCase() ) )
         ) {
@@ -311,9 +312,9 @@ const FNFToKeeper = ( props ) => {
           if ( data && data.length ) {
             setContactData( data )
             const contactList = data.sort( function ( a, b ) {
-              if ( a.name && b.name ) {
-                if ( a.name.toLowerCase() < b.name.toLowerCase() ) return -1
-                if ( a.name.toLowerCase() > b.name.toLowerCase() ) return 1
+              if ( a.displayName && b.displayName ) {
+                if ( a.displayName.toLowerCase() < b.displayName.toLowerCase() ) return -1
+                if ( a.displayName.toLowerCase() > b.displayName.toLowerCase() ) return 1
               }
               return 0
             } )
@@ -604,14 +605,14 @@ const FNFToKeeper = ( props ) => {
                         isChecked={item.checked}
                       />
                       <Text style={styles.contactText}>
-                        {item.name && item.name.split( ' ' )[ 0 ]
-                          ? item.name.split( ' ' )[ 0 ]
+                        {item.givenName && item.givenName.split( ' ' )[ 0 ]
+                          ? item.givenName.split( ' ' )[ 0 ]
                           : ''}{' '}
                         <Text style={{
                           fontFamily: Fonts.Medium
                         }}>
-                          {item.name && item.name.split( ' ' )[ 1 ]
-                            ? item.name.split( ' ' )[ 1 ]
+                          {item.familyName && item.familyName.split( ' ' )[ 1 ]
+                            ? item.familyName.split( ' ' )[ 1 ]
                             : ''}
                         </Text>
                       </Text>
