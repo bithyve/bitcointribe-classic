@@ -1,11 +1,11 @@
-import * as ExpoContacts from 'expo-contacts'
-import React, { useContext, useEffect, useState } from 'react'
-import { Image, PermissionsAndroid, Platform, Text, View } from 'react-native'
-import Colors from '../common/Colors'
-import { nameToInitials } from '../common/CommonFunctions'
-import { LocalizationContext } from '../common/content/LocContext'
-import RecipientKind from '../common/data/enums/RecipientKind'
-import { RecipientDescribing } from '../common/data/models/interfaces/RecipientDescribing'
+import React, { useContext, useEffect, useState } from 'react';
+import { Image, PermissionsAndroid, Platform, Text, View } from 'react-native';
+import Contacts from 'react-native-contacts';
+import Colors from '../common/Colors';
+import { nameToInitials } from '../common/CommonFunctions';
+import { LocalizationContext } from '../common/content/LocContext';
+import RecipientKind from '../common/data/enums/RecipientKind';
+import { RecipientDescribing } from '../common/data/models/interfaces/RecipientDescribing';
 
 export type Props = {
   recipient: RecipientDescribing;
@@ -40,7 +40,7 @@ const RecipientAvatar: React.FC<Props> = ( {
           setContactPermission( true )
         }
       } else if ( Platform.OS === 'ios' ) {
-        const { status } = await ExpoContacts.requestPermissionsAsync()
+        const status  = await Contacts.requestPermission()
         if ( status === 'denied' ) {
           setContactPermission( false )
         } else {

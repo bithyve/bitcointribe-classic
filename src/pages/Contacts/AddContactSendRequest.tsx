@@ -1,33 +1,33 @@
-import * as ExpoContacts from 'expo-contacts'
-import idx from 'idx'
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import idx from 'idx';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
   TouchableOpacity,
   View
-} from 'react-native'
-import DeviceInfo from 'react-native-device-info'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { useDispatch, useSelector } from 'react-redux'
-import { DeepLinkEncryptionType, DeepLinkKind, QRCodeTypes, TrustedContact, Trusted_Contacts, Wallet } from '../../bitcoin/utilities/Interface'
-import TrustedContactsOperations from '../../bitcoin/utilities/TrustedContactsOperations'
-import Colors from '../../common/Colors'
-import { generateDeepLink, getDeepLinkKindFromContactsRelationType } from '../../common/CommonFunctions'
-import { LocalizationContext } from '../../common/content/LocContext'
-import CommonStyles from '../../common/Styles/Styles'
-import BottomInfoBox from '../../components/BottomInfoBox'
-import ModalContainer from '../../components/home/ModalContainer'
-import RequestKeyFromContact from '../../components/RequestKeyFromContact'
-import Toast from '../../components/Toast'
-import { initializeTrustedContact, InitTrustedContactFlowKind, updateTrustedContacts } from '../../store/actions/trustedContacts'
-import { AccountsState } from '../../store/reducers/accounts'
-import useTrustedContacts from '../../utils/hooks/state-selectors/trusted-contacts/UseTrustedContacts'
-import ChangeSelection from '../FriendsAndFamily/ChangeSelection'
-import ShareOtpWithContact from '../NewBHR/ShareOtpWithTrustedContact'
-import Secure2FA from './Secure2FAModal'
-import TimerModalContents from './TimerModalContents'
+} from 'react-native';
+import Contacts from 'react-native-contacts';
+import DeviceInfo from 'react-native-device-info';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { useDispatch, useSelector } from 'react-redux';
+import { DeepLinkEncryptionType, DeepLinkKind, QRCodeTypes, TrustedContact, Trusted_Contacts, Wallet } from '../../bitcoin/utilities/Interface';
+import TrustedContactsOperations from '../../bitcoin/utilities/TrustedContactsOperations';
+import Colors from '../../common/Colors';
+import { generateDeepLink, getDeepLinkKindFromContactsRelationType } from '../../common/CommonFunctions';
+import { LocalizationContext } from '../../common/content/LocContext';
+import CommonStyles from '../../common/Styles/Styles';
+import BottomInfoBox from '../../components/BottomInfoBox';
+import ModalContainer from '../../components/home/ModalContainer';
+import RequestKeyFromContact from '../../components/RequestKeyFromContact';
+import Toast from '../../components/Toast';
+import { initializeTrustedContact, InitTrustedContactFlowKind, updateTrustedContacts } from '../../store/actions/trustedContacts';
+import { AccountsState } from '../../store/reducers/accounts';
+import useTrustedContacts from '../../utils/hooks/state-selectors/trusted-contacts/UseTrustedContacts';
+import ChangeSelection from '../FriendsAndFamily/ChangeSelection';
+import ShareOtpWithContact from '../NewBHR/ShareOtpWithTrustedContact';
+import Secure2FA from './Secure2FAModal';
+import TimerModalContents from './TimerModalContents';
 
 export default function AddContactSendRequest( props ) {
   const { translations, formatString } = useContext( LocalizationContext )
@@ -103,8 +103,9 @@ export default function AddContactSendRequest( props ) {
   const dispatch = useDispatch()
 
   const getContact = () => {
-    ExpoContacts.getContactsAsync().then( async ( { data } ) => {
-      const filteredData = data.find( item => item.id === contactInfo.id )
+    Contacts.getAll()
+      .then(async(contacts) => {
+      const filteredData = contacts.find( item => item.recordID === contactInfo.recordID )
       // setPhoneumber( filteredData.phoneNumbers )
 
       setContact( filteredData )
