@@ -399,11 +399,6 @@ const styles = StyleSheet.create( {
     height: '100%',
     backgroundColor: Colors.white,
   },
-  passcodeTextInputText: {
-    color: Colors.blue,
-    fontWeight: 'bold',
-    fontSize: RFValue( 13 ),
-  },
   textBoxStyles: {
     borderWidth: 0.5,
     height: wp( '12%' ),
@@ -435,18 +430,6 @@ const styles = StyleSheet.create( {
     justifyContent: 'center',
     backgroundColor: Colors.white,
     marginLeft: 8,
-    color: Colors.black,
-    fontSize: RFValue( 13 ),
-    textAlign: 'center',
-    lineHeight: 18,
-  },
-  textStyles: {
-    color: Colors.black,
-    fontSize: RFValue( 13 ),
-    textAlign: 'center',
-    lineHeight: 18,
-  },
-  textFocused: {
     color: Colors.black,
     fontSize: RFValue( 13 ),
     textAlign: 'center',

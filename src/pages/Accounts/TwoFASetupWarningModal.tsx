@@ -45,16 +45,6 @@ export default function TwoFASetupWarningModal(props) {
                 Ok, I understand
               </Text>
             </AppBottomSheetTouchableWrapper>
-            {/* <AppBottomSheetTouchableWrapper
-              onPress={() => props.onPressManageBackup()}
-              style={{
-                ...styles.confirmButtonView,
-                width: wp('30%'),
-                marginLeft: 5,
-              }}
-            >
-              <Text style={styles.manageBackupButtonText}>Manage Backup</Text>
-            </AppBottomSheetTouchableWrapper> */}
           </View>
         </View>
     </View>
@@ -75,11 +65,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '100%',
     paddingBottom: hp('2%'),
-  },
-  manageBackupButtonText: {
-    color: Colors.blue,
-    fontSize: RFValue(13),
-    fontFamily: Fonts.Regular,
   },
   bottomButtonView: {
     paddingLeft: 20,

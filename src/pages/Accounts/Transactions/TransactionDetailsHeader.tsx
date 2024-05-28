@@ -1,19 +1,15 @@
 import React, { useMemo } from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
+import { widthPercentageToDP } from 'react-native-responsive-screen'
+import Colors from '../../../common/Colors'
 import SubAccountKind from '../../../common/data/enums/SubAccountKind'
+import TransactionKind from '../../../common/data/enums/TransactionKind'
 import TransactionDescribing from '../../../common/data/models/Transactions/Interfaces'
+import ListStyles from '../../../common/Styles/ListStyles'
+import LabeledBalanceDisplay from '../../../components/LabeledBalanceDisplay'
+import getAvatarForSubAccount from '../../../utils/accounts/GetAvatarForTransaction'
 import usePrimarySubAccountForShell from '../../../utils/hooks/account-utils/UsePrimarySubAccountForShell'
 import useAccountShellForID from '../../../utils/hooks/state-selectors/accounts/UseAccountShellForID'
-import useAccountShellFromRoute from '../../../utils/hooks/state-selectors/accounts/UseAccountShellFromNavigation'
-import Colors from '../../../common/Colors'
-import ImageStyles from '../../../common/Styles/ImageStyles'
-import ListStyles from '../../../common/Styles/ListStyles'
-import { Icon } from 'react-native-elements'
-import moment from 'moment'
-import TransactionKind from '../../../common/data/enums/TransactionKind'
-import getAvatarForSubAccount from '../../../utils/accounts/GetAvatarForTransaction'
-import LabeledBalanceDisplay from '../../../components/LabeledBalanceDisplay'
-import { widthPercentageToDP } from 'react-native-responsive-screen'
 
 export type Props = {
   transaction: TransactionDescribing;
@@ -109,14 +105,6 @@ const TransactionDetailsHeader: React.FC<Props> = ( {
           }}
           verticalAlignUnit={'center'}
         />
-        {/* <Icon
-          // style={styles.transactionKindIcon}
-          name={transactionKindIconName}
-          type={'font-awesome'}
-          color={transactionKindIconColor}
-          size={13}
-        /> */}
-
       </View>
     </View>
   )
@@ -135,15 +123,7 @@ const styles = StyleSheet.create( {
   contentContainer: {
     flexDirection: 'row',
     alignContent: 'center',
-  },
-
-  avatarImage: {
-    // ...ImageStyles.thumbnailImageMedium,
-    width: widthPercentageToDP( 12 ),
-    height: widthPercentageToDP( 12 ),
-    marginRight: 14,
-    // borderRadius: 9999,
-  },
+  }
 } )
 
 export default TransactionDetailsHeader
