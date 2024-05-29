@@ -111,7 +111,7 @@ object RGBHelper {
         return RGBWalletRepository.wallet.getAssetBalance(assetID)
     }
 
-    fun getBlindedUTXO(assetID: String? = null, expirationSeconds: UInt): ReceiveData {
+    private fun getBlindedUTXO(assetID: String? = null, expirationSeconds: UInt): ReceiveData {
         Log.d(TAG, "getBlindedUTXO: assetID"+assetID)
         return RGBWalletRepository.wallet.blindReceive(
             assetID,
@@ -227,24 +227,24 @@ object RGBHelper {
         return  asset
     }
 
-    private fun createUTXOs(): UByte {
+    private fun createUTXOs(feeRate: Float): UByte {
         return RGBWalletRepository.wallet.createUtxos(
             RGBWalletRepository.online,
             false,
             null,
             null,
-            AppConstants.defaultFeeRate
+            feeRate
         )
     }
 
-    fun createNewUTXOs(): Boolean {
+    fun createNewUTXOs(feeRate: Float): Boolean {
         Log.d(TAG, "Creating UTXOs")
         var attempts = 3
         var newUTXOs: UByte = 0u
         while (newUTXOs == 0u.toUByte() && attempts > 0) {
             try {
                 Log.d(TAG, "Calling create UTXOs...")
-                newUTXOs = createUTXOs()
+                newUTXOs = createUTXOs(feeRate)
             } catch (_: RgbLibException.InsufficientBitcoins) {
                 throw Exception("Insufficient sats for RGB")
             }

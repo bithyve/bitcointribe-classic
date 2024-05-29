@@ -73,7 +73,6 @@ export default function IssueScreen(props) {
           setRequesting(true);
           setTimeout(async () => {
             const newAsset = await RGBServices.issueRgb20Asset(ticker, name, totalAmount);
-            console.log('newAsset',newAsset)
             setRequesting(false);
             if (newAsset.assetId) {
               dispatch(syncRgb());
@@ -107,11 +106,12 @@ export default function IssueScreen(props) {
       }
       const account = accounts[accountId];
       const response = await RGBServices.createUtxos(account, averageTxFees[RGBServices.NETWORK])
-      console.log('response$',response)
       if(response.created) {
         IssueAssetClick()
+      } else {
+        setRequesting(false)
+      Toast( `${response.error}` )
       }
-      setRequesting(false)
     } catch (error) {
       setRequesting(false)
       props.navigation.goBack()
