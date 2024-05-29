@@ -96,9 +96,9 @@ object RGBHelper {
                 }
                 is RgbLibException.InvalidInvoice ->
                     throw Exception("Invalid invoice")
-//                is RgbLibException.Invalid ->
-//                    throw Exception("Blinded utxo already used")
-                else -> throw e
+                is RgbLibException.InvalidRecipientId ->
+                    throw Exception("Invalid recipient ID")
+                else -> throw Exception(e.message)
             }
         }
     }

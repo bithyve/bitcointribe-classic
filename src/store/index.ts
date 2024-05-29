@@ -92,6 +92,7 @@ import {
   updateMessageStatusWatcher
 } from './sagas/notifications'
 import {
+  createUtxosWatcher,
   receiveRgbAssetWatcher,
   rgbSyncWatcher
 } from './sagas/rgb'
@@ -341,6 +342,7 @@ const rootSaga = function* () {
     // rgb
     rgbSyncWatcher,
     receiveRgbAssetWatcher,
+    createUtxosWatcher
   ]
 
   yield all(

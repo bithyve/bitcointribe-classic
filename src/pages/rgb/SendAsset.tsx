@@ -42,7 +42,7 @@ export default function RGBSend(props) {
         const endpoint = payTo.match(/endpoints=([^&]+)/)[1]
         setSending(true)
         setTimeout(async () => {
-          const isValidInvoice = await RGBServices.isValidBlindedUtxo(utxo)
+          const isValidInvoice = await RGBServices.isValidBlindedUtxo(payTo)
           if (isValidInvoice) {
             response = await RGBServices.sendAsset(asset.assetId, utxo, amount, endpoint)
             setSending(false)
@@ -50,7 +50,7 @@ export default function RGBSend(props) {
               Toast('Sent Successfully')
               props.navigation.goBack()
             } else {
-              Toast('Failed')
+              Toast(response.error)
             }
           } else {
             Toast('Invalid RGB invoice/blinded UTXO')
