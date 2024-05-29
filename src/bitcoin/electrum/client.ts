@@ -108,7 +108,7 @@ export default class ElectrumClient {
       }
     } catch ( error ) {
       ELECTRUM_CLIENT.isClientConnected = false
-      ELECTRUM_CLIENT.activePeer.isConnected = false
+      if (ELECTRUM_CLIENT.activePeer) ELECTRUM_CLIENT.activePeer.isConnected = false;
     } finally {
       if ( timeoutId ) clearTimeout( timeoutId )
     }
@@ -125,7 +125,7 @@ export default class ElectrumClient {
     ELECTRUM_CLIENT.connectionAttempt += 1
 
     // close the connection before attempting again
-    if ( ELECTRUM_CLIENT.electrumClient.close ) ELECTRUM_CLIENT.electrumClient.close()
+    if ( ELECTRUM_CLIENT.electrumClient?.close ) ELECTRUM_CLIENT.electrumClient.close()
 
     if ( ELECTRUM_CLIENT.connectionAttempt >= ELECTRUM_CLIENT_CONFIG.maxConnectionAttempt ) {
       const nextPeer = ElectrumClient.getNextDefaultPeer()
@@ -148,7 +148,7 @@ export default class ElectrumClient {
 
   public static forceDisconnect() {
     if ( !ELECTRUM_CLIENT.electrumClient ) throw new Error( 'Electrum client not available' )
-    if ( ELECTRUM_CLIENT.electrumClient.close ) ELECTRUM_CLIENT.electrumClient.close()
+    if ( ELECTRUM_CLIENT.electrumClient?.close ) ELECTRUM_CLIENT.electrumClient.close()
     ELECTRUM_CLIENT.isClientConnected = false
     ELECTRUM_CLIENT.activePeer.isConnected = false
   }
