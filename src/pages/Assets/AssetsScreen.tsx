@@ -50,6 +50,7 @@ export default function AssetsScreen(props) {
   const { syncing, balances, rgb20Assets, rgb25Assets } = useSelector(
     state => state.rgb,
   )
+  
   const rgbConfig: RGBConfig = useSelector(state => state.rgb.config)
   const RgbIntroModal: boolean = useSelector(state => state.rgb.isIntroModal)
   const wallet: Wallet = dbManager.getWallet()
@@ -208,14 +209,14 @@ export default function AssetsScreen(props) {
         </Text>
         <Text style={styles.labelOuterText}>{item.ticker}</Text>
         <Text style={styles.amountText}>
-          {item.balance ? numberWithCommas(item.balance.settled) : numberWithCommas(item.amount)}
+          {item && item.balance ? numberWithCommas(item &&  item.balance && item.balance.settled) : numberWithCommas(item && item.amount)}
         </Text>
       </TouchableOpacity>
     )
   }
 
   const renderCollectibleItems = (item, index) => {
-    const uri = item.dataPaths[0].filePath.replace('/private','');
+    const uri = item.media.filePath.replace('/private','');
     return (
       <TouchableOpacity
         style={
@@ -233,12 +234,12 @@ export default function AssetsScreen(props) {
           style={
             index == 7 ? styles.randomImageContainer : styles.imageContainer
           }>
-          {item.dataPaths[0].filePath? 
+          {item.media.filePath? 
           <Image
             style={styles.image}
             source={{
               uri: Platform.select({
-                android: `file://${item.dataPaths[0].filePath}`,
+                android: `file://${item.media.filePath}`,
                 ios: uri,
               }),
             }}

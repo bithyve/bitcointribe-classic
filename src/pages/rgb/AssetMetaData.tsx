@@ -1,8 +1,7 @@
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 import {
-  ActivityIndicator,
-  PermissionsAndroid,
+  ActivityIndicator, Image, PermissionsAndroid,
   Platform,
   SafeAreaView,
   ScrollView,
@@ -17,9 +16,9 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import RNFetchBlob from 'rn-fetch-blob'
 import Colors from '../../common/Colors'
+import { hp, wp } from '../../common/data/responsiveness/responsive'
 import Fonts from '../../common/Fonts'
 import CommonStyles from '../../common/Styles/Styles'
-import { wp } from '../../common/data/responsiveness/responsive'
 import HeaderTitle from '../../components/HeaderTitle'
 import Toast from '../../components/Toast'
 import RGBServices from '../../services/RGBServices'
@@ -143,11 +142,11 @@ const AssetMetaData = (props) => {
     }
     setDownloading(true)
     const localFilePath = Platform.select({
-      android: `file://${asset.dataPaths[0].filePath}`,
-      ios: asset.dataPaths[0].filePath.replace('/private','')
+      android: `file://${asset.media.filePath}`,
+      ios: asset.media.filePath.replace('/private','')
     })
     const timestamp = new Date().getTime()
-    const mime = asset.dataPaths[0].mime || 'application/octet-stream'
+    const mime = asset.media.mime || 'application/octet-stream'
     const extension = mime.split('/')[1]
     const destinationPath = Platform.select({
       android:`${RNFS.DownloadDirectoryPath}/${timestamp}.${extension}`,
@@ -201,8 +200,8 @@ const AssetMetaData = (props) => {
             height: '70%'
           }} /> :
           <ScrollView style={{ height: '100%', padding: 20 }}>
-            {/* {
-              asset?.dataPaths.length > 0 && (
+            {
+              asset?.media && (
                 <View >
                   <Image
                     style={{
@@ -212,8 +211,8 @@ const AssetMetaData = (props) => {
                     resizeMode="contain"
                     source={{
                       uri: Platform.select({
-                        android: `file://${asset.dataPaths[0].filePath}`,
-                        ios: asset.dataPaths[0].filePath.replace('/private','')
+                        android: `file://${asset.media.filePath}`,
+                        ios: asset.media.filePath.replace('/private','')
                       })
                     }}
                   />
@@ -230,7 +229,7 @@ const AssetMetaData = (props) => {
                   </TouchableOpacity>
                 </View>
               )
-            } */}
+            }
             <Text style={styles.title}>Asset Meta Data</Text>
             <DetailsItem
               name="Asset ID"
