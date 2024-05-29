@@ -205,4 +205,12 @@ RCT_EXPORT_METHOD(isValidBlindedUtxo:(NSString*)invoiceData
    ];
 }
 
+RCT_EXPORT_METHOD(createUtxos:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject){
+  RGBHelper *helper = [[RGBHelper alloc]init];
+  [helper createUTXOsWithCallback:^(NSString * _Nonnull response) {
+    resolve(response);
+  }];
+}
+
 @end

@@ -41,6 +41,7 @@ export default function IssueScreen(props) {
   async function IssueAssetClick() {
     Keyboard.dismiss();
     try {
+      setRequesting(true)
       if (issueType === 'collectible') {
         if (!name || !description || !totalAmount || attachedfile == 'Attach File') {
           Toast('Please enter all details.');
@@ -75,9 +76,7 @@ export default function IssueScreen(props) {
             console.log('newAsset',newAsset)
             setRequesting(false);
             if (newAsset.assetId) {
-              // props.navigation.goBack()
               dispatch(syncRgb());
-              // Toast('Asset created');
               setSuccessModal(true)
             } else {
               Toast(`Failed ${newAsset.error}`);
@@ -87,10 +86,10 @@ export default function IssueScreen(props) {
         }
       }
     } catch (error) {
+      console.log('error', error);
       setRequesting(false);
       Toast(`Failed ${error}`);
       setFailedModal(true)
-      console.log('error', error);
     }
   }
 
@@ -108,6 +107,7 @@ export default function IssueScreen(props) {
       }
       const account = accounts[accountId];
       const response = await RGBServices.createUtxos(account, averageTxFees[RGBServices.NETWORK])
+      console.log('response$',response)
       if(response.created) {
         IssueAssetClick()
       }

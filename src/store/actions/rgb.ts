@@ -2,6 +2,7 @@ import { RGBConfig } from '../../bitcoin/utilities/Interface'
 
 export const SET_RGB_CONFIG = 'SET_RGB_CONFIG'
 export const SYNC_RGB = 'SYNC_RGB'
+export const CREATE_UTXOS = 'CREATE_UTXOS'
 export const RGB_SYNCING = 'RGB_SYNCING'
 export const SET_RGB_ONCHAIN_BALANCE = 'SET_RGB_ONCHAIN_BALANCE'
 export const SET_NEXT_FREE_ADDRESS = 'SET_NEXT_FREE_ADDRESS'
@@ -55,6 +56,15 @@ export const receiveRgbAsset = (
 ) => {
   return {
     type: RECEIVE_RGB_ASSET,
+    payload:{
+    },
+  }
+}
+
+export const createUtxos = (
+) => {
+  return {
+    type: CREATE_UTXOS,
     payload:{
     },
   }

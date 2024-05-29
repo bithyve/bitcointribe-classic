@@ -79,7 +79,8 @@ import CloudKit
       jsonObject["ticker"] = metaData.ticker
       jsonObject["description"] = metaData.details
       jsonObject["timestamp"] = metaData.timestamp
-      jsonObject["assetType"] = "\(metaData.assetIface)"
+      jsonObject["assetIface"] = "\(metaData.assetIface)"
+      jsonObject["assetSchema"] = "\(metaData.assetSchema)"
       //jsonObject["parentId"] = metaData.parentId
       jsonObject["issuedSupply"] = metaData.issuedSupply
       
@@ -234,31 +235,38 @@ import CloudKit
     fatalError("Missing return statement")
   }
   
-  @objc func createNewUTXOs(callback: @escaping ((String) -> Void)) {
+  @objc func createUTXOs(callback: @escaping ((String) -> Void)) {
     print("Creating UTXOs...")
-    var attempts = 3
-    var newUTXOs: UInt8 = 0
-    while newUTXOs == 0 && attempts > 0 {
-      do {
-        print("Calling create UTXOs...")
-        newUTXOs = createUTXOs()
-        print("newUTXOs=\(newUTXOs)")
-      } catch let error  as RgbLibError{
-        switch error {
-        case .InsufficientBitcoins(_,_):
-          print("ss")
-        default:
-          print("ss")
+    do {
+      return try handleMissingFunds {
+        var attempts = 3
+        var newUTXOs: UInt8 = 0
+        while newUTXOs == 0 && attempts > 0 {
+          print("Calling create UTXOs...")
+          newUTXOs = try self.rgbManager.rgbWallet!.createUtxos(online: self.rgbManager.online!, upTo: false, num: nil, size: nil, feeRate: Float(Constants.defaultFeeRate))
+          print("newUTXOs=\(newUTXOs)")
+          attempts -= 1
         }
-        print("createUTXOs ERROR: \(error.localizedDescription)")
+        let data: [String: Any] = [
+          "created": true,
+        ]
+        let json = Utility.convertToJSONString(params: data)
+        callback(json)
       }
-      attempts -= 1
+      
+    } catch let error {
+      let data: [String: Any] = [
+        "error": error.localizedDescription,
+      ]
+      let json = Utility.convertToJSONString(params: data)
+      callback(json)
     }
   }
+
   
-  private func createUTXOs()->UInt8{
-    return try! self.rgbManager.rgbWallet!.createUtxos(online: self.rgbManager.online!, upTo: false, num: nil, size: nil, feeRate: Float(Constants.defaultFeeRate))
-  }
+//  private func createUTXOs()->UInt8{
+//    return try! self.rgbManager.rgbWallet!.createUtxos(online: self.rgbManager.online!, upTo: false, num: nil, size: nil, feeRate: Float(Constants.defaultFeeRate))
+//  }
   
   func genReceiveData() -> String {
     do {
@@ -364,7 +372,11 @@ import CloudKit
       }
     } catch{
       print(error)
-      callback("{error:\(error.localizedDescription)}")
+      let data: [String: Any] = [
+        "error": error.localizedDescription,
+      ]
+      let json = Utility.convertToJSONString(params: data)
+      callback(json)
     }
   }
   
@@ -395,7 +407,11 @@ import CloudKit
       }
     } catch{
       print(error)
-      callback("{error:\(error.localizedDescription)}")
+      let data: [String: Any] = [
+        "error": error.localizedDescription,
+      ]
+      let json = Utility.convertToJSONString(params: data)
+      callback(json)
     }
   }
   
@@ -415,7 +431,11 @@ import CloudKit
       callback(json)
     }catch{
       print(error)
-      callback("{error:\(error.localizedDescription)}")
+      let data: [String: Any] = [
+        "error": error.localizedDescription,
+      ]
+      let json = Utility.convertToJSONString(params: data)
+      callback(json)
     }
   }
   
@@ -565,7 +585,11 @@ import CloudKit
       })
     }
     catch let error{
-      callback(error.localizedDescription)
+      let data: [String: Any] = [
+        "error": error.localizedDescription,
+      ]
+      let json = Utility.convertToJSONString(params: data)
+      callback(json)
     }}
   
   
