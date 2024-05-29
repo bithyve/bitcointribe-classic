@@ -4,24 +4,6 @@ PODS:
     - React-Core
   - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
-  - EXApplication (5.1.1):
-    - ExpoModulesCore
-  - EXConstants (14.2.1):
-    - ExpoModulesCore
-  - EXContacts (12.4.0):
-    - ExpoModulesCore
-  - EXFileSystem (15.2.2):
-    - ExpoModulesCore
-  - EXFont (11.1.1):
-    - ExpoModulesCore
-  - Expo (48.0.20):
-    - ExpoModulesCore
-  - ExpoKeepAwake (12.0.1):
-    - ExpoModulesCore
-  - ExpoModulesCore (1.2.7):
-    - React-Core
-    - React-RCTAppDelegate
-    - ReactCommon/turbomodule/core
   - FBLazyVector (0.71.13)
   - FBReactNativeSpec (0.71.13):
     - RCT-Folly (= 2021.07.22.00)
@@ -424,6 +406,8 @@ PODS:
     - glog
   - react-native-background-timer (2.4.1):
     - React-Core
+  - react-native-biometrics (3.0.1):
+    - React-Core
   - react-native-blur (4.3.2):
     - React-Core
   - react-native-camera (3.44.3):
@@ -438,7 +422,7 @@ PODS:
     - react-native-config/App (= 1.4.0)
   - react-native-config/App (1.4.0):
     - React-Core
-  - react-native-contacts (5.2.8):
+  - react-native-contacts (7.0.8):
     - React-Core
   - react-native-document-picker (8.2.0):
     - React-Core
@@ -596,6 +580,8 @@ PODS:
     - React-Core
   - RNGestureHandler (2.13.1):
     - React-Core
+  - RNKeychain (8.1.3):
+    - React-Core
   - RNLocalize (1.4.3):
     - React-Core
   - RNQrGenerator (1.3.1):
@@ -651,14 +637,6 @@ DEPENDENCIES:
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
   - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
-  - EXApplication (from `../node_modules/expo-application/ios`)
-  - EXConstants (from `../node_modules/expo-constants/ios`)
-  - EXContacts (from `../node_modules/expo-contacts/ios`)
-  - EXFileSystem (from `../node_modules/expo-file-system/ios`)
-  - EXFont (from `../node_modules/expo-font/ios`)
-  - Expo (from `../node_modules/expo`)
-  - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
-  - ExpoModulesCore (from `../node_modules/expo-modules-core`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
   - Flipper (= 0.125.0)
@@ -707,6 +685,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-background-timer (from `../node_modules/react-native-background-timer`)
+  - react-native-biometrics (from `../node_modules/react-native-biometrics`)
   - "react-native-blur (from `../node_modules/@react-native-community/blur`)"
   - react-native-camera (from `../node_modules/react-native-camera`)
   - react-native-config (from `../node_modules/react-native-config`)
@@ -754,6 +733,7 @@ DEPENDENCIES:
   - "RNFBStorage (from `../node_modules/@react-native-firebase/storage`)"
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNLocalize (from `../node_modules/react-native-localize`)
   - RNQrGenerator (from `../node_modules/rn-qr-generator`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -804,22 +784,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-linear-gradient"
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
-  EXApplication:
-    :path: "../node_modules/expo-application/ios"
-  EXConstants:
-    :path: "../node_modules/expo-constants/ios"
-  EXContacts:
-    :path: "../node_modules/expo-contacts/ios"
-  EXFileSystem:
-    :path: "../node_modules/expo-file-system/ios"
-  EXFont:
-    :path: "../node_modules/expo-font/ios"
-  Expo:
-    :path: "../node_modules/expo"
-  ExpoKeepAwake:
-    :path: "../node_modules/expo-keep-awake/ios"
-  ExpoModulesCore:
-    :path: "../node_modules/expo-modules-core"
   FBLazyVector:
     :path: "../node_modules/react-native/Libraries/FBLazyVector"
   FBReactNativeSpec:
@@ -862,6 +826,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   react-native-background-timer:
     :path: "../node_modules/react-native-background-timer"
+  react-native-biometrics:
+    :path: "../node_modules/react-native-biometrics"
   react-native-blur:
     :path: "../node_modules/@react-native-community/blur"
   react-native-camera:
@@ -956,6 +922,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-fs"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNKeychain:
+    :path: "../node_modules/react-native-keychain"
   RNLocalize:
     :path: "../node_modules/react-native-localize"
   RNQrGenerator:
@@ -979,15 +947,7 @@ SPEC CHECKSUMS:
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
   BVLinearGradient: 880f91a7854faff2df62518f0281afb1c60d49a3
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
-  DoubleConversion: cde416483dac037923206447da6e1454df403714
-  EXApplication: d8f53a7eee90a870a75656280e8d4b85726ea903
-  EXConstants: f348da07e21b23d2b085e270d7b74f282df1a7d9
-  EXContacts: afd38f7adacef9a76d6d0bc479f30051736f068f
-  EXFileSystem: 844e86ca9b5375486ecc4ef06d3838d5597d895d
-  EXFont: 6ea3800df746be7233208d80fe379b8ed74f4272
-  Expo: b7d2843b0a0027d0ce76121a63085764355a16ed
-  ExpoKeepAwake: 69f5f627670d62318410392d03e0b5db0f85759a
-  ExpoModulesCore: 653958063a301098b541ae4dfed1ac0b98db607b
+  DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
   FBLazyVector: 24e08bf294faea0abc0278abb2fcad7f3e446f6f
   FBReactNativeSpec: c949e4b726d8cf9e19b73be60ecfa26355deceb3
   Firebase: 5f8193dff4b5b7c5d5ef72ae54bb76c08e2b841d
@@ -1007,7 +967,7 @@ SPEC CHECKSUMS:
   Flipper-RSocket: d9d9ade67cbecf6ac10730304bf5607266dd2541
   FlipperKit: cbdee19bdd4e7f05472a66ce290f1b729ba3cb86
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
-  glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
+  glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
   GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
@@ -1035,10 +995,11 @@ SPEC CHECKSUMS:
   React-jsinspector: 7e58fe86c7cc442fd11da0c9d8bef12a8d63f771
   React-logger: a3f6ca0d018749852a2a6f07c154bfc6fcd4195a
   react-native-background-timer: 17ea5e06803401a379ebf1f20505b793ac44d0fe
+  react-native-biometrics: 352e5a794bfffc46a0c86725ea7dc62deb085bdc
   react-native-blur: cfdad7b3c01d725ab62a8a729f42ea463998afa2
   react-native-camera: b8cc03e2feec0c04403d0998e37cf519d8fd4c6f
   react-native-config: f309b9ac19456dea12325699af51e0fa0217ce6a
-  react-native-contacts: 7b5e16196278636030c3fbbb9505543984b01697
+  react-native-contacts: cb4f3b823550adbce0802901b9e63bf1526ec0af
   react-native-document-picker: 495c444c0c773c6e83a5d91165890ecb1c0a399a
   react-native-encrypted-storage: db300a3f2f0aba1e818417c1c0a6be549038deb7
   react-native-flipper: bbe3c862a02dab5e0f71b639855a180b699a590a
@@ -1082,6 +1043,7 @@ SPEC CHECKSUMS:
   RNFBStorage: 814adb8c5bf4ff86a0b0641d750a64d6d48d9a75
   RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
   RNGestureHandler: 38aa38413896620338948fbb5c90579a7b1c3fde
+  RNKeychain: f1b48665a4646f61191eb048c4c05c58d9a7596f
   RNLocalize: 7c7aeda16c01db7a0918981c14875c0a53be9b79
   RNQrGenerator: 90461ba3ca88c1d38ef73da50fade35d9648215d
   RNReanimated: f186e85d9f28c9383d05ca39e11dd194f59093ec
@@ -1095,6 +1057,6 @@ SPEC CHECKSUMS:
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
   ZXingObjC: 8898711ab495761b2dbbdec76d90164a6d7e14c5
 
-PODFILE CHECKSUM: d8ffac5afd6873be5938f88cdaaf63e6c46645d3
+PODFILE CHECKSUM: b45614add47048f32e7e8f90f7d772a8c7310f76
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.15.2
