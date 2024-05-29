@@ -32,7 +32,7 @@ export default class RGBServices{
     const address = await RGB.getAddress()
     const txid = await AccountOperations.sendToAddress(account, address, SATS_FOR_RGB, averageTxFeeByNetwork )
     if(txid) {
-      const response = await RGB.createUtxos()
+      const response = await RGB.createUtxos(averageTxFeeByNetwork.low.feePerByte)
       return JSON.parse( response )
     }
   }
@@ -121,6 +121,7 @@ export default class RGBServices{
     const data = await RGB.issueRgb20Asset(
       ticker, name, supply
     )
+    console.log(data)
     return JSON.parse( data )
   }
 
