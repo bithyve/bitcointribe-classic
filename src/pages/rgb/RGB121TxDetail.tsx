@@ -204,8 +204,8 @@ export default function RGB121TxDetail(props) {
                 height: 50, width: 50, borderRadius: 30
               }} source={{
                 uri: Platform.select( {
-                  android: `file://${asset.dataPaths[ 0 ].filePath}`,
-                  ios: asset.dataPaths[ 0 ].filePath.replace('/private','')
+                  android: `file://${asset.media.filePath}`,
+                  ios: asset.media.filePath.replace('/private','')
                 } )
               }}/>
             </View>}
