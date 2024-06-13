@@ -12,9 +12,10 @@ import { setShowAllAccount } from '../../../../store/actions/accounts'
 
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen'
 import { useDispatch, useSelector } from 'react-redux'
+import LoginMethod from 'src/common/interfaces/LoginMethod'
+import CommonStyles from '../../../../common/Styles/Styles'
 import { translations } from '../../../../common/content/LocContext'
 import { hp } from '../../../../common/data/responsiveness/responsive'
-import CommonStyles from '../../../../common/Styles/Styles'
 import HeaderTitle from '../../../../components/HeaderTitle'
 import { credsAuth, credsAuthenticated, switchReLogin } from '../../../../store/actions/setupAndAuth'
 
@@ -252,7 +253,7 @@ export default function EnterPasscodeScreen( props ) {
           <TouchableOpacity
             disabled={pin.length == 4 ? false : true}
             onPress={() => {
-              dispatch( credsAuth( pin, true ) )
+              dispatch( credsAuth( pin, LoginMethod.PIN, true ) )
               //props.navigation.navigate('SettingGetNewPin')
               //PinChangeSuccessBottomSheet.current.snapTo(1);
             }}
